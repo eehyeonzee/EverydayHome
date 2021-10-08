@@ -7,9 +7,10 @@
 <meta charset="UTF-8">
 <title><tiles:getAsString name="title"/></title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/layout.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/default.css">
 </head>
 <body>
-<div id="main">
+<div id="container">
 	<div id="main_header">
 		<tiles:insertAttribute name="header"/>
 	</div>
