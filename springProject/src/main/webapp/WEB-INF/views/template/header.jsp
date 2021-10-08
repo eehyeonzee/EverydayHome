@@ -138,7 +138,16 @@ height: 40px;
 .nav-dropdown {
 	margin : 50px;
 }
-
+.nav-right-item-dropdown{
+	font-size : 15px;
+	line-height : 23px;
+	margin : 8px 4px;
+	padding : 6px 8px 4px;
+	font-weight : bold;
+}
+.nav-right-menu-li:hover .dropdown{
+height: 40px; 
+}
 </style>
 <div class="navgation-bar">
 	<div class="nav-line">
@@ -155,7 +164,8 @@ height: 40px;
 							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="#">사진게시판</a></li>
 							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="#">고객센터게시판</a></li>
 							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="#">QnA게시판</a></li>
-						</ul></li>
+						</ul>
+					</li>
 					<li class="nav-menu-li"><a class="nav-menu-item" href="#">스토어</a>
 						<ul class="dropdown">
 							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="#">스토어홈</a></li>
@@ -174,17 +184,45 @@ height: 40px;
 					<a class="nav-right-item" href="#">장바구니</a> 
 					<a class="nav-right-item" href="#">로그인</a> 
 					<a class="nav-right-item" href="#">회원가입</a> 
-					<a class="nav-right-item" href="#">글쓰기</a>
+					<div class="nav-right-menu">
+						<ul>
+							<li class="nav-right-menu-li"><a class="nav-menu-item" href="#" style="color: #35c5f0;">글쓰기</a>
+								<ul class="dropdown">
+									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">사진올리기</a></li>
+									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">상품리뷰쓰기</a></li>
+									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">고객센터질문하기</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</nav>
 			</c:if>
 			<c:if test="${!empty user_num}">
 				<nav class="nav-right">
 					<a class="nav-right-item" href="#">장바구니</a> 
-					<a class="nav-right-item" href="#">마이페이지</a> 
-					<a class="nav-right-item" href="#">나의쇼핑</a> 
-					<a class="nav-right-item" href="#">판매자신청</a> 
-					<a class="nav-right-item" href="#">글쓰기</a>
-					<a class="nav-right-item" href="#">로그아웃</a>
+					<div class="nav-right-menu">
+						<ul>
+							<li class="nav-right-menu-li"><a class="nav-menu-item" href="#" style="color: #35c5f0;">마이페이지</a>
+								<ul class="dropdown">
+									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">마이페이지</a></li>
+									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">나의쇼핑</a></li>
+									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">판매자신청</a></li>
+									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">로그아웃</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<div class="nav-right-menu">
+						<ul>
+							<li class="nav-right-menu-li"><a class="nav-menu-item" href="#" style="color: #35c5f0;">글쓰기</a>
+								<ul class="dropdown">
+									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">사진올리기</a></li>
+									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">상품리뷰쓰기</a></li>
+									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">고객센터질문하기</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</nav>
 			</c:if>
 		</div>
