@@ -2,6 +2,6 @@
     pageEncoding="UTF-8"%>
 <!-- 메인 시작 -->
 <div class="page-main">
-	<div><b>메인 화면</b></div>
+	<div><b>메인 화면</b></div>z
 </div>
 <!-- 메인 끝 -->
