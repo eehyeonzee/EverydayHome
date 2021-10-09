@@ -211,3 +211,6 @@ div#main_menu ul li{
 	padding:10px;
 }
 
+.emailCheckText{
+	display: none;
+}

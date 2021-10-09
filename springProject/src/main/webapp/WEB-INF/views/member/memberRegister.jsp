@@ -9,7 +9,58 @@
 --%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
+<script type="text/javascript">
+	$(function() {
+		$("#email_check_button").hide();	// body가 시작하면 인증확인 버튼 숨기기
+		var emailCheckCode = "";	// 이메일 인증번호 변수
+		var emailCertification = false;	// 이메일 인증 성공 여부
+		
+		$("#email_send_button").click(function(){	// 인증번호전송 버튼 클릭시
+				
+			if($("#email").val().trim() == ""){
+				alert("이메일을 입력해주세요!!");
+				return false;
+			}
+				
+			var email = $("#email").val();					// 입력 이메일
+			var email_Check = $("#email_check");			// 인증번호 입력란
+			var email_CheckBox = $("#email_check_button");	// 인증번호전송 버튼
+				
+			// 인증번호 전송 클릭시 입력 이메일 전송 ajax 작성
+			$.ajax({
+				type : "GET",
+				url:"mailCheck.do?email=" + email,
+				success:function(data){
+					console.log("data : " + data);
+					email_Check.attr("disabled",false);		// 인증번호 입력란 활성화
+					$("#email_check_button").show();		// 인증확인 버튼 보이기
+					emailCheckCode = data;					// 변수에 인증번호 담기
+				},
+				error : function(){
+					alert("네트워크 오류 발생!!");
+				}
+			});
+				
+		});	// end of send
+		
+		/* 인증번호 비교 */
+		$("#email_check_button").click(function(){			// 인증확인 버튼 클릭시
+			var user_inputCode = $("#email_check").val();	// 사용자 입력코드    
+			    
+		    if(user_inputCode == emailCheckCode){	// 인증번호가 일치한 경우
+		    	alert("인증번호가 일치합니다.");
+		    	$("#email_check_button").hide();	// 인증확인 버튼 숨기기
+		    	emailCertification = true;			// 인증여부 성공으로 변경
+		    	$("#email_check").attr("readonly",true);	// 인증번호 입력칸 비활성화
+		    }else{	// 인증번호 불일치
+		    	alert("인증번호가 불일치합니다.");
+		    }		
+		});
+		
+		// submit 이벤트 발생시 emailCertification가 false라면 체크 다시
+		
+	});
+</script>
 <!-- 중앙 내용 시작 -->
 <div class="page-main">
 	<h2>회원가입</h2>
@@ -43,15 +94,20 @@
 				<form:errors path="email" cssClass="error-color"/>
 			</li>
 			<li>
+				<label for="email_check">이메일인증</label>
+				<input type="text" id="email_check" size="5" disabled="disabled">
+				<input type="button" id="email_send_button" value="인증번호전송">
+				<input type="button" id="email_check_button" value="인증확인">
+			</li>
+			<li>
 				<label for="zipcope">우편번호</label>
-				<form:input path="zipcode" placeholder="우편번호" maxlength="5"/>
+				<input id="zipcode" name="zipcode" placeholder="우편번호" type="text" value="" maxlength="5" readonly="readonly"/>
 				<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 				
 				<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
 <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
 
 </div>
-
 				<script>
     function sample6_execDaumPostcode() {
         new daum.Postcode({
@@ -101,21 +157,37 @@
         }).open();
     }
 	</script>
+			<form:errors path="zipcode" cssClass="error-color"/>
 			</li>
 			<li>
 				<label for="address1">주소</label>
-				<form:input path="address1" maxlength="30"/>
-				
+				<input id="address1" name="address1" type="text" value="" maxlength="30" readonly="readonly" placeholder="주소"/>
+				<form:errors path="address1" cssClass="error-color"/>
 			</li>
 			<li>
 				<label for="address2">나머지주소</label>
-				<form:input path="address2" maxlength="30"/>
+				<form:input path="address2" maxlength="30" placeholder="상세주소"/>
+				<form:errors path="address2" cssClass="error-color"/>
 			</li>
+			<li>
+				<label for="birthday">생일</label>
+				<input type="date" id="birthday" name="birthday">
+				<form:errors path="birthday" cssClass="error-color"/>
+			</li>
+			<li>
+				<label for="passwd_question">비밀번호 찾기</label>
+				<select id="passwd_question" name="passwd_question">
+					<option value=""></option>
+				</select>
+			</li>
+			
 		</ul>
 		<div class="align-center">
 			<form:button>전송</form:button>
 			<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 		</div>
+		
+		
 	</form:form>
 </div>
 <!-- 중앙 내용 끝 -->

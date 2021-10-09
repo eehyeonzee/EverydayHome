@@ -38,6 +38,7 @@ public class MemberVO {
 	   private int point;			// 포인트
 	   @NotEmpty
 	   private String passwdkey;	// 비밀번호 키
+	   private String passwd_question;	// 비밀번호 찾기 힌트
 	   private int coupon_num;		// 쿠폰번호
 	   private String coupon_name;	// 쿠폰명
 	   private String coupon_context; // 쿠폰내용
@@ -156,6 +157,13 @@ public class MemberVO {
 	public void setPasswdkey(String passwdkey) {
 		this.passwdkey = passwdkey;
 	}
+	public String getPasswd_question() {
+		return passwd_question;
+	}
+
+	public void setPasswd_question(String passwd_question) {
+		this.passwd_question = passwd_question;
+	}
 	public int getCoupon_num() {
 		return coupon_num;
 	}
@@ -180,14 +188,17 @@ public class MemberVO {
 	public void setDiscount_price(int discount_price) {
 		this.discount_price = discount_price;
 	}
+
 	@Override
 	public String toString() {
 		return "MemberVO [mem_num=" + mem_num + ", mem_id=" + mem_id + ", mem_auth=" + mem_auth + ", mem_name="
 				+ mem_name + ", passwd=" + passwd + ", phone=" + phone + ", email=" + email + ", zipcode=" + zipcode
 				+ ", address1=" + address1 + ", address2=" + address2 + ", birthday=" + birthday + ", profile_filename="
 				+ profile_filename + ", reg_date=" + reg_date + ", point=" + point + ", passwdkey=" + passwdkey
-				+ ", coupon_num=" + coupon_num + ", coupon_name=" + coupon_name + ", coupon_context=" + coupon_context
-				+ ", discount_price=" + discount_price + "]";
-	}   
+				+ ", passwd_question=" + passwd_question + ", coupon_num=" + coupon_num + ", coupon_name=" + coupon_name
+				+ ", coupon_context=" + coupon_context + ", discount_price=" + discount_price + "]";
+	}
+	
+	
 	   
 }
