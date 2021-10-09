@@ -183,7 +183,7 @@ height: 40px;
 			</form>
 					<a class="nav-right-item" href="#">장바구니</a> 
 					<a class="nav-right-item" href="#">로그인</a> 
-					<a class="nav-right-item" href="#">회원가입</a> 
+					<a class="nav-right-item" href="${pageContext.request.contextPath}/member/registerUser.do">회원가입</a> 
 					<div class="nav-right-menu">
 						<ul>
 							<li class="nav-right-menu-li"><a class="nav-menu-item" href="#" style="color: #35c5f0;">글쓰기</a>

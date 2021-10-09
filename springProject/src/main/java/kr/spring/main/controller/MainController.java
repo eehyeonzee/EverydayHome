@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 	@RequestMapping("/main/main.do")
 	public String main() {
-		return "main";//타일스 식별자
+		return "main"; //타일스 식별자
 	}
 }
