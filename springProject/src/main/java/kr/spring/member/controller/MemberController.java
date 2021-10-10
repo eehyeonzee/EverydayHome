@@ -1,6 +1,9 @@
 package kr.spring.member.controller;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
+import java.util.regex.Pattern;
 
 import javax.mail.internet.MimeMessage;
 import javax.validation.Valid;
@@ -15,6 +18,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.spring.member.service.MemberService;
@@ -117,7 +122,30 @@ public class MemberController {
     }
 	
 	
-	
+	// 회원가입 - 아이디 중복 체크
+	@RequestMapping("/member/confirmId.do")
+	@ResponseBody
+	public Map<String, String> process(@RequestParam String mem_id){
+		Map<String, String> map = new HashMap<String, String>();
+		logger.debug("<<id>> : " + mem_id);
+				
+		// DB저장 아이디
+		MemberVO member = memberService.selectCheckMember(mem_id);
+		if(member!=null) { 
+			//아이디 중복
+			map.put("result", "idDuplicated");
+		}else {
+			if(!Pattern.matches("^[A-Za-z0-9]{4,12}$", mem_id)) {
+				//패턴 불일치
+				map.put("result", "notMatchPattern");
+			}else{
+				//아이디 미중복
+				map.put("result", "idNotFound");
+			}
+		}
+		
+		return map;	
+	}
 	
 	
 	

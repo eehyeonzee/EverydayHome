@@ -31,6 +31,12 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
+	@Override
+	public MemberVO selectCheckMember(String mem_id) {
+		// 회원 아이디 중복 체크
+		return memberMapper.selectCheckMember(mem_id);
+	}
+
 	
 	
 	

@@ -11,6 +11,57 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 	$(function() {
+		
+		var checkID = 0;
+		
+		// 아이디 중복체크
+		$("#confirmId").click(function(){
+			if($('#mem_id').val().trim()==''){
+				$('#message_id').css('color','red').text('아이디를 입력하세요!');
+				$('#mem_id').val('').focus();//공백이 있으면 공백을 지우고 포커스를 줌
+				return;
+			}
+			$.ajax({
+				url:'confirmId.do',
+				type:'post',
+				data:{mem_id:$('#mem_id').val()},
+				dataType:'json',
+				cache:false,
+				timeout:30000,
+				success:function(param){
+					if(param.result == 'idNotFound'){
+						$('#message_id').css('color','#000').text('등록가능ID');
+						checkId = 1;
+					}else if(param.result == 'idDuplicated'){
+						$('#message_id').css('color','red').text('중복된 ID');
+						$('#mem_id').val('').focus();
+						checkId = 0;
+					}else if(param.result == 'notMatchPattern'){
+						$('#message_id').css('color','red').text('영문,숫자 4자이상 12자이하 입력');
+						$('#mem_id').val('').focus();
+						checkId = 0;
+					}else{
+						checkId = 0;
+						alert('ID중복체크 오류');
+					}
+				},
+				error : function(request,status,error){      // 에러메세지 반환
+		               alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
+		            }
+			}); //end if ajax
+		}); //end if click
+		
+		
+		//아이디 중복 안내 메시지 초기화 및 아이디 중복 값 초기화
+		$('#register_form #mem_id').keydown(function(){
+			checkId = 0;
+			$('#message_id').text('');
+		});
+		
+		
+		
+		//---------------------이메일 인증 부분
+		
 		$("#email_check_button").hide();	// body가 시작하면 인증확인 버튼 숨기기
 		var emailCheckCode = "";	// 이메일 인증번호 변수
 		var emailCertification = false;	// 이메일 인증 성공 여부
@@ -57,8 +108,24 @@
 		    }		
 		});
 		
-		// submit 이벤트 발생시 emailCertification가 false라면 체크 다시
 		
+		
+		// submit 이벤트 발생시 emailCertification가 false라면 체크 다시
+		//submit 이벤트 발생시 아이디 중복 체크 여부 확인
+		$('#register_form').submit(function(){
+			if(checkId==0){
+				$('#message_id').css('color','red').text('아이디 중복 체크 필수');
+				if($('#mem_id').val().trim()==''){
+					$('#mem_id').val('').focus();
+				}
+				return false;
+			}
+			
+			if(emailCertification==false){
+				alert("이메일 인증을 해주세요!!");
+				return false;
+			}
+		});
 	});
 </script>
 <!-- 중앙 내용 시작 -->
