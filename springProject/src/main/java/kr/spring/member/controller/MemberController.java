@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.regex.Pattern;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.util.AuthCheckException;
 
 @Controller
 public class MemberController {
@@ -147,7 +149,55 @@ public class MemberController {
 		return map;	
 	}
 	
+	//로그인 - 로그인 폼 호출
+	@GetMapping("/member/login.do")
+	public String formLogin() {
+		return "memberLogin";//타일스 식별자
+	}
 	
+	//로그인 - 로그인 데이터 처리
+		@PostMapping("/member/login.do")
+		public String submitLogin(@Valid MemberVO memberVO,BindingResult result, 
+				                  HttpSession session) {
+			
+			logger.debug("<<회원 로그인>> : " + memberVO);
+			
+			//유효성 체크 결과 오류가 있으면 폼 호출
+			//id와 passwd 필드만 체크
+			if(result.hasFieldErrors("mem_id") || result.hasFieldErrors("passwd")) {
+				return formLogin();
+			}
+			
+			//로그인 체크(id,비밀번호 일치 여부 체크)
+			try {
+				// DB에 저장된 정보 담아서 객체 생성
+				MemberVO member = memberService.selectCheckMember(memberVO.getMem_id());	
+				// 입력 아이디 넣어서 생성 존재하지 않다면 null
+				boolean check = false;
+				
+				if(member!=null) {//아이디 일치
+					//비밀번호 일치 여부 체크               사용자가 입력한 비밀번호
+					check = member.isCheckedPassword(memberVO.getPasswd());
+				}
+				if(check) {
+					//인증 성공, 로그인 처리
+					session.setAttribute("user_num", member.getMem_num());
+					session.setAttribute("user_id", member.getMem_id());
+					session.setAttribute("user_auth", member.getMem_auth());
+					session.setAttribute("user_photo", member.getProfile());
+					
+					return "redirect:/main/main.do";
+				}else {
+					//인증 실패
+					throw new AuthCheckException();
+				}
+			}catch(AuthCheckException e) {
+				//인증 실패로 메시지 생성 및 로그인 폼 호출
+				result.reject("invalidIdOrPassword");
+				
+				return formLogin();
+			}
+		}
 	
 	
 	//----------------- 회원가입 이메일 인증 8자리 난수 생성 부분

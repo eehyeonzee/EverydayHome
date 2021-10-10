@@ -182,7 +182,7 @@ height: 40px;
 				</div>
 			</form>
 					<a class="nav-right-item" href="#">장바구니</a> 
-					<a class="nav-right-item" href="#">로그인</a> 
+					<a class="nav-right-item" href="${pageContext.request.contextPath}/member/login.do">로그인</a> 
 					<a class="nav-right-item" href="${pageContext.request.contextPath}/member/registerUser.do">회원가입</a> 
 					<div class="nav-right-menu">
 						<ul>
