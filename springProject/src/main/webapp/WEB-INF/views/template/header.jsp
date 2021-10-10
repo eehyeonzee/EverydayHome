@@ -160,7 +160,7 @@ height: 40px;
 					<li class="nav-menu-li"><a class="nav-menu-item" href="#" style="color: #35c5f0;">커뮤니티</a>
 						<ul class="dropdown">
 							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="#">커뮤니티 메인</a></li>
-							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="#">공지사항</a></li>
+							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/notice/noticeList.do">공지사항</a></li>
 							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="#">사진게시판</a></li>
 							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/serviceBoard/serviceBoardInsertForm.do">고객센터게시판</a></li>
 							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/serviceBoard/serviceBoardInsert.do">QnA게시판</a></li>

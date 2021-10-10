@@ -18,7 +18,7 @@
  		<c:if test="${count>0}">
  		<center>
  		<c:forEach var="notice" items="${list}">
- 		<div class="link-item" onclick="location.href='notice/noticeDetail.do?notice_num=${notice.notice_num}'">
+ 		<div class="link-item" onclick="location.href='noticeDetail.do?notice_num=${notice.notice_num}'">
  			<h3>${notice.notice_num}.${notice.notice_title}</h3>
  			<span>작성일 : ${notice.notice_reg_date}</span><br>
  			<span>조회수 : ${notice.notice_hits}</span>
