@@ -31,7 +31,7 @@
 				type : "GET",
 				url:"mailCheck.do?email=" + email,
 				success:function(data){
-					console.log("data : " + data);
+					console.log("data : " + data);			// 나중에 삭제꼭하자!!!!
 					email_Check.attr("disabled",false);		// 인증번호 입력란 활성화
 					$("#email_check_button").show();		// 인증확인 버튼 보이기
 					emailCheckCode = data;					// 변수에 인증번호 담기
@@ -168,17 +168,6 @@
 				<label for="address2">나머지주소</label>
 				<form:input path="address2" maxlength="30" placeholder="상세주소"/>
 				<form:errors path="address2" cssClass="error-color"/>
-			</li>
-			<li>
-				<label for="birthday">생일</label>
-				<input type="date" id="birthday" name="birthday">
-				<form:errors path="birthday" cssClass="error-color"/>
-			</li>
-			<li>
-				<label for="passwd_question">비밀번호 찾기</label>
-				<select id="passwd_question" name="passwd_question">
-					<option value=""></option>
-				</select>
 			</li>
 			
 		</ul>

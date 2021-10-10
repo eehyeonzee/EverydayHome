@@ -30,15 +30,10 @@ public class MemberVO {
 	   private String address1;   // 주소
 	   @NotEmpty
 	   private String address2;   // 나머지 주소
-	   @NotEmpty
-	   private Date birthday;	  // 생일
 	   private byte[] profile;      // 프로필 사진
 	   private String profile_filename;   // 프로필 사진 파일명
 	   private Date reg_date;      // 가입일
 	   private int point;			// 포인트
-	   @NotEmpty
-	   private String passwdkey;	// 비밀번호 키
-	   private String passwd_question;	// 비밀번호 찾기 힌트
 	   private int coupon_num;		// 쿠폰번호
 	   private String coupon_name;	// 쿠폰명
 	   private String coupon_context; // 쿠폰내용
@@ -121,12 +116,6 @@ public class MemberVO {
 	public void setAddress2(String address2) {
 		this.address2 = address2;
 	}
-	public Date getBirthday() {
-		return birthday;
-	}
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
 	public byte[] getProfile() {
 		return profile;
 	}
@@ -151,19 +140,7 @@ public class MemberVO {
 	public void setPoint(int point) {
 		this.point = point;
 	}
-	public String getPasswdkey() {
-		return passwdkey;
-	}
-	public void setPasswdkey(String passwdkey) {
-		this.passwdkey = passwdkey;
-	}
-	public String getPasswd_question() {
-		return passwd_question;
-	}
 
-	public void setPasswd_question(String passwd_question) {
-		this.passwd_question = passwd_question;
-	}
 	public int getCoupon_num() {
 		return coupon_num;
 	}
@@ -193,9 +170,9 @@ public class MemberVO {
 	public String toString() {
 		return "MemberVO [mem_num=" + mem_num + ", mem_id=" + mem_id + ", mem_auth=" + mem_auth + ", mem_name="
 				+ mem_name + ", passwd=" + passwd + ", phone=" + phone + ", email=" + email + ", zipcode=" + zipcode
-				+ ", address1=" + address1 + ", address2=" + address2 + ", birthday=" + birthday + ", profile_filename="
-				+ profile_filename + ", reg_date=" + reg_date + ", point=" + point + ", passwdkey=" + passwdkey
-				+ ", passwd_question=" + passwd_question + ", coupon_num=" + coupon_num + ", coupon_name=" + coupon_name
+				+ ", address1=" + address1 + ", address2=" + address2 + ", profile_filename="
+				+ profile_filename + ", reg_date=" + reg_date + ", point=" + point 
+				+ ", coupon_num=" + coupon_num + ", coupon_name=" + coupon_name
 				+ ", coupon_context=" + coupon_context + ", discount_price=" + discount_price + "]";
 	}
 	

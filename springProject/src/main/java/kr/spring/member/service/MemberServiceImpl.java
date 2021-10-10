@@ -23,21 +23,15 @@ public class MemberServiceImpl implements MemberService {
 	private MemberMapper memberMapper;
 
 	@Override
-	public int seleceMem_num() {
-		return 0;
-	}
-
-	@Override
 	public void insertMember(MemberVO member) {
-		// TODO Auto-generated method stub
+		//회원번호 셋팅
+		member.setMem_num(memberMapper.seleceMem_num());
+		memberMapper.insertMember(member);
+		memberMapper.insertMember_datail(member);
 		
 	}
 
-	@Override
-	public void insertMember_datail(MemberVO member) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 	
 }

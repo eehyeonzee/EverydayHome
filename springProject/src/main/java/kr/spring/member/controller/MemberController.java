@@ -57,6 +57,8 @@ public class MemberController {
 			return form();
 		}
 		
+		// 회원가입
+		memberService.insertMember(memberVO);
 		return "redirect:/main/main.do";
 	}
 	
@@ -72,7 +74,7 @@ public class MemberController {
         
         // JAVA Random 객체를 사용하여 숫자 + 문자 8자리 난수 생성
         String emailCheckCode = excuteGenerate();
-        logger.info("인증번호 : " + emailCheckCode);
+        logger.info("인증번호 : " + emailCheckCode);	
         
         
         String title = "매일의 홈 이메일 인증 이메일 입니다.";	
