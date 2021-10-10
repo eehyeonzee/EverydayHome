@@ -204,7 +204,7 @@ height: 40px;
 						<ul>
 							<li class="nav-right-menu-li"><a class="nav-menu-item" href="#" style="color: #35c5f0;">마이페이지</a>
 								<ul class="dropdown">
-									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">마이페이지</a></li>
+									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/member/myPage.do">마이페이지</a></li>
 									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">나의쇼핑</a></li>
 									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">판매자신청</a></li>
 									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
