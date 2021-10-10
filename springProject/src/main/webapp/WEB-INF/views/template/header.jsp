@@ -166,9 +166,9 @@ height: 40px;
 							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="#">QnA게시판</a></li>
 						</ul>
 					</li>
-					<li class="nav-menu-li"><a class="nav-menu-item" href="${pageContext.request.contextPath}/store/storeMain">스토어</a>
+					<li class="nav-menu-li"><a class="nav-menu-item" href="${pageContext.request.contextPath}/store/storeMain.do">스토어</a>
 						<ul class="dropdown">
-							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/store/storeMain">스토어홈</a></li>
+							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/store/storeMain.do">스토어홈</a></li>
 							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="#">카테고리</a></li>
 							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="#">베스트</a></li>
 						</ul>
