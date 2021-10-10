@@ -56,7 +56,7 @@ public class HouseBoardController {
 		
 		houseBoardService.insertHBoard(houseBoardVO);
 		
-		return "redirect:/list.do";
+		return "redirect:/main/main.do";
 	}
 	
 

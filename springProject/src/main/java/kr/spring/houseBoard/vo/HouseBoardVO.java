@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class HouseBoardVO {
 	private int house_num; // 글번호
+	private int mem_num; // 회원번호
 	private String house_type; // 주거 형태
 	private String house_space; // 공간
 	private String house_area; // 평수
@@ -51,6 +52,14 @@ public class HouseBoardVO {
 		this.house_num = house_num;
 	}
 	
+	public int getMem_num() {
+		return mem_num;
+	}
+
+	public void setMem_num(int mem_num) {
+		this.mem_num = mem_num;
+	}
+
 	public String getHouse_type() {
 		return house_type;
 	}
@@ -169,13 +178,12 @@ public class HouseBoardVO {
 	public void setUpload_filename(String upload_filename) {
 		this.upload_filename = upload_filename;
 	}
-	
+
 	// ***(주의)*** 프로퍼티 타입이 byte[]인 것은 항목에서 제외해야 함
 	@Override
 	public String toString() {
-		return "HouseBoardVO [house_num=" + house_num + ", house_type=" + house_type + ", house_space=" + house_space
-				+ ", house_area=" + house_area + ", house_color="
-				+ /* house_color + */ ", house_style=" + house_style
+		return "HouseBoardVO [house_num=" + house_num + ", mem_num=" + mem_num + ", house_type=" + house_type
+				+ ", house_space=" + house_space + ", house_area=" + house_area + ", house_style=" + house_style
 				+ ", house_title=" + house_title + ", house_content=" + house_content + ", house_hits=" + house_hits
 				+ ", house_recom=" + house_recom + ", house_reg_date=" + house_reg_date + ", house_modi=" + house_modi
 				+ ", thumbnail_filename=" + thumbnail_filename + ", upload_filename=" + upload_filename + "]";

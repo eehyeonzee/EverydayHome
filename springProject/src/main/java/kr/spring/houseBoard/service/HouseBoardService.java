@@ -14,7 +14,7 @@ import kr.spring.houseBoard.vo.HouseBoardVO;
  */
 
 public interface HouseBoardService {
-	public void insertHBoard(HouseBoardVO houseBoard);
+	public void insertHBoard(HouseBoardVO houseBoard); // 글쓰기 등록
 	public int getHBoardCount();
 	public List<HouseBoardVO> getHBoardList(Map<String,Object> map);
 	public HouseBoardVO getHBoard(int num);

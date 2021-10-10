@@ -94,20 +94,17 @@
 			<!-- 내용 시작 -->
 			<li>
 				<label for="house_content"></label>
-				<form:textarea path="house_content"/>
+				<form:textarea path="house_content" placeholder="내용을 입력하세요"/>
 				<form:errors path="house_content" cssClass="error-color"/>
 			</li>
 			<!-- 내용 끝 -->
 			<!-- 사진 시작 -->
-			<li>
-				<label for="house_thumbnail"></label>
-			</li>
 			<!-- 사진 끝 -->
 		</ul>
 		<!-- 버튼 시작 -->
 		<div class="align-center">
 			<input type="submit" value="등록">
-			<input type="button" value="목록" onclick="location.href='list.do'">	
+			<input type="button" value="목록" onclick="location.href='houseBoardList.do'">	
 		</div>
 		<!-- 버튼 끝 -->
 	</form:form>

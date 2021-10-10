@@ -9,8 +9,8 @@
     	<put-attribute name="title" value="집들이 게시판 글쓰기"/>
     	<put-attribute name="body" value="/WEB-INF/views/houseBoard/houseBoardWrite.jsp"/>
     </definition>
-<!-- <definition name="houseBoardMain" extends="main">
+	<definition name="houseBoardList" extends="main">
     	<put-attribute name="title" value="집들이 게시판 목록"/>
     	<put-attribute name="body" value="/WEB-INF/views/houseBoard/houseBoardList.jsp"/>
-    </definition> -->
+    </definition>
 </tiles-definitions>
