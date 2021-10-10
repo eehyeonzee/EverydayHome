@@ -207,7 +207,7 @@ height: 40px;
 									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">마이페이지</a></li>
 									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">나의쇼핑</a></li>
 									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">판매자신청</a></li>
-									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">로그아웃</a></li>
+									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -230,7 +230,7 @@ height: 40px;
 			<nav class="nav-right">
 				<a class="nav-right-item" href="#">판매자페이지</a> 
 				<a class="nav-right-item" href="#">나의 물건</a> 
-				<a class="nav-right-item" href="#">로그아웃</a>
+				<a class="nav-right-item" href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
 			</nav>
 		</c:if>
 	</div>

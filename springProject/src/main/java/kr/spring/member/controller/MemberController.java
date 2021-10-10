@@ -198,6 +198,15 @@ public class MemberController {
 				return formLogin();
 			}
 		}
+		
+	//로그아웃
+	@RequestMapping("/member/logout.do")
+	public String processLogout(HttpSession session) {
+		//로그아웃
+		session.invalidate();
+			
+		return "redirect:/main/main.do";
+	}
 	
 	
 	//----------------- 회원가입 이메일 인증 8자리 난수 생성 부분
