@@ -9,7 +9,6 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import kr.spring.notice.vo.NoticeVO;
-
 public interface NoticeMapper {
 	@Insert("INSERT INTO notice (notice_num,notice_title,notice_content,notice_reg_date,notice_hits,mem_num VALUES(notice_seq.nextval,#{mem_num},#{notice_title},#{notice_content},#{notice_reg_date},#{notice_hits},#{mem_num}")
 	public void noticeWrite(NoticeVO notice);
@@ -23,5 +22,6 @@ public interface NoticeMapper {
 	public void noticeUpdate(NoticeVO notice);
 	@Delete("DELETE FROM notice WHERE notice_num=#{notice_num}")
 	public void noticeDelete(int notice_num);
+	@Select("select * FROM (select a.*,rownum rnum FROM (SELECT * FROM notice ORDER BY notice_reg_date DESC)a)WHERE rnum>= #{start} AND rnum <= #{end}")
 	public List<NoticeVO> noticeGetList(Map<String,Object> map);
 }
