@@ -20,16 +20,6 @@
 	<form:form action="serviceBoardInsert.do" modelAttribute="serviceBoardVO">
 		<ul>
 			<li>
-				<label for="service_num">글 번호</label>
-				<form:input path="service_num"/>
-				<form:errors path="service_num" cssClass="error-color"/>
-			</li>
-			<li>
-				<label for="mem_num">회원번호</label>
-				<form:input path="mem_num"/>
-				<form:errors path="mem_num" cssClass="error-color"/>
-			</li>
-			<li>
 				<label for="service_title">제목</label>
 				<form:input path="service_title"/>
 				<form:errors path="service_title" cssClass="error-color"/>
@@ -38,21 +28,6 @@
 				<label for="service_content">내용</label>
 				<form:textarea path="service_content"/>
 				<form:errors path="service_content" cssClass="error-color"/>
-			</li>
-			<li>
-				<label for="service_email">이메일</label>
-				<form:input path="service_email"/>
-				<form:errors path="service_email" cssClass="error-color"/>
-			</li>
-			<li>
-				<label for="service_keyword">유형</label>
-				<form:input path="service_keyword"/>
-				<form:errors path="service_keyword" cssClass="error-color"/>
-			</li>
-			<li>
-				<label for="service_file">파일</label>
-				<form:input path="service_file"/>
-				<form:errors path="service_file" cssClass="error-color"/>
 			</li>
 		</ul>
 		<div class="align-center">
