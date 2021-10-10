@@ -27,16 +27,17 @@ import kr.spring.util.PagingUtil;
  * @FileName  : ServiceBoardController.java
  * @작성일       : 2021. 10. 10. 
  * @작성자       : 나윤경
- * @프로그램 설명 : 
+ * @프로그램 설명 : 고객센터 컨트롤러
  */
 @Controller
 public class ServiceBoardController {
 
-	@Autowired
-	private ServiceBoardService serviceBoardService;
 	
 	//로그 처리 (로그 대상 지정)
-		private static final Logger log = LoggerFactory.getLogger(ServiceBoardController.class);
+	private static final Logger log = LoggerFactory.getLogger(ServiceBoardController.class);
+	
+	@Autowired
+	private ServiceBoardService serviceBoardService;
 	
 	//자바빈 초기화
 	@ModelAttribute
@@ -44,12 +45,14 @@ public class ServiceBoardController {
 		return new ServiceBoardVO();
 	}
 	
-	@GetMapping("service/serviceBoardInsert.do")
+	@GetMapping("/serviceBoard/serviceBoardInsert.do")
 	//글쓰기 폼 호출
 	public String serviceBoardInsertForm() {
+		log.debug("<<글쓰기 폼 호출>>");
+		
 		return "serviceBoardInsertForm";
 	}
-	@PostMapping("/serviceBoardInsert.do")
+	@PostMapping("/serviceBoard/serviceBoardInsert.do")
 	//글쓰기 처리
 	public String submit(@Valid ServiceBoardVO vo, BindingResult result) {
 		//유효성 체크 결과 오류가 있으면 폼 호출
@@ -63,7 +66,7 @@ public class ServiceBoardController {
 	}
 	
 	//게시판 목록
-	@RequestMapping("/serviceBoardList.do")
+	@RequestMapping("/serviceBoard/serviceBoardList.do")
 	public ModelAndView getServiceBoardList(
 			@RequestParam(value="pageNum", defaultValue="1")int currentPage) {
 		

@@ -58,6 +58,7 @@
 				<beans:value>/WEB-INF/tiles-def/member.xml</beans:value>
 				<beans:value>/WEB-INF/tiles-def/store.xml</beans:value>
 				<beans:value>/WEB-INF/tiles-def/houseBoard.xml</beans:value>
+				<beans:value>/WEB-INF/tiles-def/serviceBoard.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>
