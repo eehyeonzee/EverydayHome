@@ -1,13 +1,32 @@
 package kr.spring.serviceBoard.vo;
 
+import java.io.IOException;
+
+import org.springframework.web.multipart.MultipartFile;
+
+/**
+ * @Package Name   : kr.spring.serviceBoard.vo
+ * @FileName  : ServiceBoardVO.java
+ * @작성일       : 2021. 10. 11. 
+ * @작성자       : 나윤경
+ * @프로그램 설명 : 고객센터 VO
+ */
 public class ServiceBoardVO {
-	private int service_num;
-	private String service_title;
-	private String service_content;
-	private String service_email;
-	private String service_keyword;
-	private String service_file;
-	private int mem_num;
+	private int service_num;		//문의 번호
+	private String service_title;	//제목
+	private String service_content;	//내용
+	private String service_email;	//이메일
+	private String service_keyword;	//키워드(유형)
+	private String service_file;	//파일명
+	private int mem_num;			//회원번호
+	
+	// ========== 이미지 BLOB 처리 ========== //
+	public void setUpload(MultipartFile upload) throws IOException {
+		// MultipartFile -> byte[]
+		// 파일 이름
+		setService_file(upload.getOriginalFilename());
+	}
+	
 	
 	public int getService_num() {
 		return service_num;

@@ -36,26 +36,22 @@ public class ServiceBoardServiceImpl implements ServiceBoardService {
 
 	@Override
 	public List<ServiceBoardVO> getServiceBoardList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return serviceBoardMapper.getBoardList(map);
 	}
 
 	@Override
 	public ServiceBoardVO getServiceBoard(int num) {
-		// TODO Auto-generated method stub
-		return null;
+		return serviceBoardMapper.getServiceBoard(num);
 	}
 
 	@Override
 	public void serviceBoardUpdate(ServiceBoardVO board) {
-		// TODO Auto-generated method stub
-		
+		serviceBoardMapper.serviceBoardUpdate(board);
 	}
 
 	@Override
 	public void serviceBoardDelete(int num) {
-		// TODO Auto-generated method stub
-		
+		serviceBoardMapper.serviceBoardDelete(num);
 	}
 
 }

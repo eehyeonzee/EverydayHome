@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -91,7 +92,7 @@ public class ServiceBoardController {
 		ModelAndView mav = new ModelAndView();
 		
 		//뷰 이름 설정
-		mav.setViewName("serviceBoardSelectList");
+		mav.setViewName("serviceBoardList");
 		
 		//데이터 저장
 		mav.addObject("count",count);
@@ -102,8 +103,53 @@ public class ServiceBoardController {
 		
 	}
 			
+	//글 상세
+	@RequestMapping("/serviceBoard/serviceBoardDetail.do")
+	public ModelAndView serviceBoardDetail(@RequestParam int num) {
+		ServiceBoardVO serviceboard = serviceBoardService.getServiceBoard(num);
+								//뷰 이름					//속성명		//속성값
+		return new ModelAndView("serviceBoardDetail","serviceboard","serviceboard");
+	}
 	
+	//수정폼
+	@GetMapping("/serviceBoard/serviceBoardUpdate.do")
+	public String serviceBoardUpdateForm(@RequestParam int num, Model model) {
+		ServiceBoardVO serviceboard = serviceBoardService.getServiceBoard(num);
+		
+		model.addAttribute("serviceBoardVO", serviceboard);
+		return "serviceBoardUpdateForm";
+		
+	}
+	//수정 처리
+	@PostMapping("/serviceBoard/serviceBoardUpdate.do")
+	public String serviceBoardUpdateSubmit(@Valid ServiceBoardVO vo, BindingResult result) {
+		//유효성 체크 결과 오류가 있으면 폼을 호출
+		if(result.hasErrors()) {
+			return "serviceBoardUpdateForm";
+			
+		}
+		serviceBoardService.serviceBoardUpdate(vo);
+		return "redirect:/serviceBoardList.do";
+	}
 	
+	//글 삭제 폼
+	@GetMapping("/serviceBoard/serviceBoardDelete.do")
+	public String serviceBoardDeleteForm(@RequestParam int num, Model model) {
+		ServiceBoardVO vo = new ServiceBoardVO();
+		vo.setService_num(num);
+		
+		model.addAttribute("serviceBoardVO",vo);
+		
+		return "serviceBoardDeleteForm";
+	}
+	//글 삭제 처리
+	@PostMapping("/serviceBoard/serviceBoardDelete.do")
+	public String serviceBoardDeleteSubmit(@Valid ServiceBoardVO vo, BindingResult result) {
+		
+		serviceBoardService.serviceBoardDelete(vo.getService_num());
+		
+		return "redirect:/serviceBoardList.do";
+	}
 	
 	
 }
