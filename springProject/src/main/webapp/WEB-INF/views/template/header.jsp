@@ -218,7 +218,7 @@ height: 40px;
 								<ul class="dropdown">
 									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">사진올리기</a></li>
 									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">상품리뷰쓰기</a></li>
-									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">고객센터질문하기</a></li>
+									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/serviceBoard/serviceBoardInsertForm.do">고객센터질문하기</a></li>
 								</ul>
 							</li>
 						</ul>
