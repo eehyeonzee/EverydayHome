@@ -1,5 +1,9 @@
 package kr.spring.serviceBoard.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -10,9 +14,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.serviceBoard.service.ServiceBoardService;
 import kr.spring.serviceBoard.vo.ServiceBoardVO;
+import kr.spring.util.PagingUtil;
 
 /**
  * @Package Name   : kr.spring.serviceBoard.controller
@@ -36,7 +44,7 @@ public class ServiceBoardController {
 		return new ServiceBoardVO();
 	}
 	
-	@GetMapping("/serviceBoardInsert.do")
+	@GetMapping("service/serviceBoardInsert.do")
 	//글쓰기 폼 호출
 	public String serviceBoardInsertForm() {
 		return "serviceBoardInsertForm";
@@ -54,6 +62,43 @@ public class ServiceBoardController {
 		return "redirect:/serviceBoardList.do";
 	}
 	
+	//게시판 목록
+	@RequestMapping("/serviceBoardList.do")
+	public ModelAndView getServiceBoardList(
+			@RequestParam(value="pageNum", defaultValue="1")int currentPage) {
+		
+		log.debug("<<currentPage>>: " + currentPage);
+		
+		//총 레코드 수
+		int count = serviceBoardService.getServiceBoardCount();
+		
+		//페이지 처리
+		PagingUtil page = new PagingUtil(currentPage, count, 10, 10, "serviceBoardList.do");
+		
+		//목록 호출
+		List<ServiceBoardVO> list = null;
+		if(count>0) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("start", page.getStartCount());
+			map.put("end", page.getEndCount());
+			
+			list = serviceBoardService.getServiceBoardList(map);
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		
+		//뷰 이름 설정
+		mav.setViewName("serviceBoardSelectList");
+		
+		//데이터 저장
+		mav.addObject("count",count);
+		mav.addObject("list", list);
+		mav.addObject("pagingHtml", page.getPagingHtml());
+		
+		return mav;
+		
+	}
+			
 	
 	
 	

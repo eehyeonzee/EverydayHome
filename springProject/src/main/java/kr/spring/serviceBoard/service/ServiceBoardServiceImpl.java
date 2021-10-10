@@ -31,8 +31,7 @@ public class ServiceBoardServiceImpl implements ServiceBoardService {
 
 	@Override
 	public int getServiceBoardCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return serviceBoardMapper.getServiceBoardCount();
 	}
 
 	@Override
