@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%-- 
  * 작성일 : 2021. 10. 9.
  * 작성자 : 나윤경
  * 설명 : 
  * 수정일 : 
 --%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,9 +35,9 @@
 				<form:errors path="service_title" cssClass="error-color"/>
 			</li>
 			<li>
-				<label for="service_context">내용</label>
-				<form:textarea path="service_context"/>
-				<form:errors path="service_context" cssClass="error-color"/>
+				<label for="service_content">내용</label>
+				<form:textarea path="service_content"/>
+				<form:errors path="service_content" cssClass="error-color"/>
 			</li>
 			<li>
 				<label for="service_email">이메일</label>
