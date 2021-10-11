@@ -69,7 +69,7 @@
 		        			  alert(param.kid);
 		        			  alert(param.knickname);
 		        			  alert(param.kprofile_image_url);
-		        			  location.href="${pageContext.request.contextPath}/main.main.do";
+		        			  location.href='${pageContext.request.contextPath}/main/main.do';
 		        		  },
 		  				  error : function(request,status,error){      // 에러메세지 반환
 				               alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);

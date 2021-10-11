@@ -150,7 +150,7 @@ public class MemberController {
 		// DB저장 아이디
 		MemberVO member = memberService.selectCheckMember(mem_id);
 		if(member!=null) { 
-			//아이디 중복
+			//아이디 중복;
 			map.put("result", "idDuplicated");
 		}else {
 			if(!Pattern.matches("^[A-Za-z0-9]{4,12}$", mem_id)) {
