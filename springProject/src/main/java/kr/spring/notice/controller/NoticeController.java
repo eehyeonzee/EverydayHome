@@ -43,7 +43,7 @@ public class NoticeController {
 		//총 레코드 수
 		int count = noticeService.noticeTotalCount();
 		
-		PagingUtil page = new PagingUtil(currentPage, count ,10, 10, "notice/noticeList.do");
+		PagingUtil page = new PagingUtil(currentPage, count ,10, 10, "/EverydayHome/notice/noticeList.do");
 		
 		List<NoticeVO> list = null;
 		
@@ -56,7 +56,7 @@ public class NoticeController {
 		}
 		ModelAndView mav = new ModelAndView();
 		
-		mav.setViewName("/notice/noticeList");
+		mav.setViewName("noticeList");
 		mav.addObject("count",count);
 		mav.addObject("list",list);
 		mav.addObject("pagingHtml",page.getPagingHtml());
@@ -67,14 +67,14 @@ public class NoticeController {
 	@GetMapping("notice/noticeDetail.do")
 	public ModelAndView noticeDetail(@RequestParam(value="notice_num") int notice_num) {
 		NoticeVO notice = noticeService.noticeDetail(notice_num);
-		return new ModelAndView("/notice/noticeDetail","notice",notice);
+		return new ModelAndView("noticeDetail","notice",notice);
 	}
 	
 	//공지 작성하기
 	@GetMapping("/notice/noticeWrite.do")
 	//글쓰기 폼 호출
 	public String form() {
-		return "/notice/noticeWrite";
+		return "noticeWrite";
 	}
 	
 	@PostMapping("/notice/noticeWrite.do")
@@ -101,7 +101,7 @@ public class NoticeController {
 		
 		model.addAttribute("noticeVO", noticeVO);
 		
-		return "notice/noticeUpdate";
+		return "noticeUpdate";
 	}
 	
 	@PostMapping("/notice/noticeUpdate.do")
