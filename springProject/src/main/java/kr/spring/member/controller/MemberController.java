@@ -208,6 +208,13 @@ public class MemberController {
 		return "redirect:/main/main.do";
 	}
 	
+	//마이페이지 호출
+	@GetMapping("/member/myPage.do")
+	public String myPageMain() {
+		return "memberView";
+	}
+	
+	
 	
 	//----------------- 회원가입 이메일 인증 8자리 난수 생성 부분
     private int certCharLength = 8;
