@@ -20,11 +20,6 @@
 	<hr size="1" noshade width="100%">
 	<form:form action="serviceBoardInsert.do" modelAttribute="serviceBoardVO">
 		<ul>
-			<li>
-				<label for="service_num"></label>
-				글 번호: ${serviceboard.service_num }
-				<form:errors path="service_num" cssClass="error-color"/>
-			</li>
 			<li><!-- 문의 유형 선택 카테고리 -->
 				<label for="service_keyword"></label>
 				<select name="service_keyword" id="service_keyword">
@@ -43,13 +38,8 @@
 				<form:errors path="service_keyword" cssClass="error-color"/>
 			</li>
 			<li>
-				<label for="mem_num"></label>
-				닉네임: ${serviceboard.mem_num }
-				<form:errors path="mem_num" cssClass="error-color"/>
-			</li>
-			<li>
-				<label for="service_email"></label>
-				이메일: ${serviceboard.service_email }
+				<label for="service_email">이메일</label>
+				<form:input path="service_email"/>
 				<form:errors path="service_email" cssClass="error-color"/>
 			</li>
 			<li>
@@ -76,7 +66,7 @@
 		<!-- 버튼 -->
 		<div class="align-center">
 			<input type="submit" value="등록">
-			<input type="button" value="홈으로" onclick="location.href='serviceBoardList.do'">
+			<input type="button" value="홈으로" onclick="location.href='main.do'">
 		</div>
 		</form:form>
 </div>

@@ -1,8 +1,5 @@
 package kr.spring.serviceBoard.service;
 
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,30 +25,4 @@ public class ServiceBoardServiceImpl implements ServiceBoardService {
 	public void serviceBoardInsert(ServiceBoardVO serviceBoard) {
 		serviceBoardMapper.serviceBoardInsert(serviceBoard);
 	}
-
-	@Override
-	public int getServiceBoardCount() {
-		return serviceBoardMapper.getServiceBoardCount();
-	}
-
-	@Override
-	public List<ServiceBoardVO> getServiceBoardList(Map<String, Object> map) {
-		return serviceBoardMapper.getBoardList(map);
-	}
-
-	@Override
-	public ServiceBoardVO getServiceBoard(int num) {
-		return serviceBoardMapper.getServiceBoard(num);
-	}
-
-	@Override
-	public void serviceBoardUpdate(ServiceBoardVO board) {
-		serviceBoardMapper.serviceBoardUpdate(board);
-	}
-
-	@Override
-	public void serviceBoardDelete(int num) {
-		serviceBoardMapper.serviceBoardDelete(num);
-	}
-
 }
