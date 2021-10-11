@@ -162,8 +162,8 @@ height: 40px;
 							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="#">커뮤니티 메인</a></li>
 							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/notice/noticeList.do">공지사항</a></li>
 							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="#">사진게시판</a></li>
-							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/serviceBoard/serviceBoardInsertForm.do">고객센터게시판</a></li>
-							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/serviceBoard/serviceBoardInsert.do">QnA게시판</a></li>
+							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/serviceBoard/serviceBoardInsert.do">고객센터게시판</a></li>
+							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/qna/qnaList.do">QnA게시판</a></li>
 						</ul>
 					</li>
 					<li class="nav-menu-li"><a class="nav-menu-item" href="${pageContext.request.contextPath}/store/storeMain.do">스토어</a>
@@ -190,7 +190,7 @@ height: 40px;
 								<ul class="dropdown">
 									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/houseBoard/houseBoardWrite.do">사진올리기</a></li>
 									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">상품리뷰쓰기</a></li>
-									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/serviceBoard/serviceBoardList.do">고객센터질문하기</a></li>
+									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/serviceBoard/serviceBoardInsert.do">고객센터질문하기</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -218,7 +218,7 @@ height: 40px;
 								<ul class="dropdown">
 									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/houseBoard/houseBoardWrite.do">사진올리기</a></li>
 									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">상품리뷰쓰기</a></li>
-									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/serviceBoard/serviceBoardList.do">고객센터질문하기</a></li>
+									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/serviceBoard/serviceBoardInsert.do">고객센터질문하기</a></li>
 								</ul>
 							</li>
 						</ul>
