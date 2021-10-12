@@ -174,9 +174,10 @@ public class MemberController {
 		
 		logger.debug("<<카카오 로그인>> : " + id);
 		
-		session.setAttribute("kakao_nickname", id);
-		session.setAttribute("kakao_id", nickname);
+		session.setAttribute("kakao_id", id);
+		session.setAttribute("kakao_nickname", nickname);
 		session.setAttribute("kakao_profile_image_url", profile_image_url);
+		session.setAttribute("user_auth", "2");		// 추후 DB 추가예정
 		
 		map.put("kid", id);
 		map.put("knickname", nickname);

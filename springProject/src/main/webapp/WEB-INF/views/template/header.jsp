@@ -174,7 +174,7 @@ height: 40px;
 						</ul>
 				</ul>
 			</nav>
-			<c:if test="${empty user_num}">
+			<c:if test="${empty user_num && empty kakao_id}">
 				<nav class="nav-right">
 				<form id="search" action="#" method="get">
 					<div class="search-bar" style="width: 170px;">
@@ -197,7 +197,7 @@ height: 40px;
 					</div>
 				</nav>
 			</c:if>
-			<c:if test="${!empty user_num}">
+			<c:if test="${!empty user_num || !empty kakao_id}">
 				<nav class="nav-right">
 					<a class="nav-right-item" href="#">장바구니</a> 
 					<div class="nav-right-menu">
@@ -226,7 +226,7 @@ height: 40px;
 				</nav>
 			</c:if>
 		</div>
-		<c:if test="${!empty user_num && user_auth == 2}">
+		<c:if test="${(!empty user_num && user_auth == 2) || (!empty kakao_id  && user_auth == 2)}">
 			<nav class="nav-right">
 				<a class="nav-right-item" href="#">판매자페이지</a> 
 				<a class="nav-right-item" href="#">나의 물건</a> 

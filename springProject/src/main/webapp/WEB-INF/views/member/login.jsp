@@ -48,7 +48,6 @@
 		Kakao.init('16010447afb451f74b595f91fc611d31'); //발급받은 키 중 javascript키를 사용해준다.
 		console.log(Kakao.isInitialized()); // sdk초기화여부판단
 		//카카오로그인
-		var rediret_url = "";
 		function kakaoLogin() {
 		    Kakao.Auth.login({
 		      success: function (response) {
@@ -56,7 +55,7 @@
 		          url: '/v2/user/me',
 		          success: function (response) {
 		        	  console.log(response) 
-		        	  $.ajax({
+		        	  $.ajax({	// 카카오 로그인 세션 처리
 		        		  url:"kakaologin.do",
 		        		  type:"POST",
 		        		  data:{
