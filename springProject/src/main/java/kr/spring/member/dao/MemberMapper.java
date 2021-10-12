@@ -21,5 +21,8 @@ public interface MemberMapper {
 	public void insertMember_datail(MemberVO member);	// 회원가입 - 회원 상세 테이블
 	@Select("SELECT m.mem_num,m.mem_id,m.mem_auth,d.passwd,d.profile,d.email, d.nickname FROM member m LEFT OUTER JOIN mem_detail d ON m.mem_num=d.mem_num WHERE m.mem_id=#{mem_id}")
 	public MemberVO selectCheckMember(String mem_id);	// 회원가입 중복체크 - 회원존재 여부 체크
-
+	@Select("SELECT * FROM member m JOIN mem_detail d ON m.mem_num=d.mem_num WHERE m.mem_num=#{mem_num}")
+	public MemberVO selectMember(Integer mem_num);		// 마이페이지 - 회원 정보 출력
+	@Select("SELECT count(*) FROM coupon WHERE mem_num=#{mem_num}")
+	public int selectGetCouponCount(Integer mem_num);	// 마이페이지 - 회원 쿠폰 수 반환
 }

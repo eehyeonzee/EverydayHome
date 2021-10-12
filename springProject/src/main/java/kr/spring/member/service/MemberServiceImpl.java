@@ -27,17 +27,19 @@ public class MemberServiceImpl implements MemberService {
 		//회원번호 셋팅
 		member.setMem_num(memberMapper.seleceMem_num());
 		memberMapper.insertMember(member);
-		memberMapper.insertMember_datail(member);
-		
+		memberMapper.insertMember_datail(member);		
 	}
-
 	@Override
 	public MemberVO selectCheckMember(String mem_id) {
 		// 회원 아이디 중복 체크
 		return memberMapper.selectCheckMember(mem_id);
 	}
-
-	
-	
-	
+	@Override
+	public MemberVO selectMember(Integer mem_num) {
+		return memberMapper.selectMember(mem_num);
+	}
+	@Override
+	public int selectGetCouponCount(Integer mem_num) {
+		return memberMapper.selectGetCouponCount(mem_num);
+	}
 }

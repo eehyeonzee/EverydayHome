@@ -37,6 +37,7 @@ public class MemberVO {
 	   private int coupon_num;		// 쿠폰번호
 	   private String coupon_name;	// 쿠폰명
 	   private String coupon_context; // 쿠폰내용
+	   private int coupon_count;	// 쿠폰 갯수
 	   private int discount_price;	// 할인가격
 	   private String nickname;		// 닉네임
 	   
@@ -175,18 +176,22 @@ public class MemberVO {
 		this.nickname = nickname;
 	}
 
+	public int getCoupon_count() {
+		return coupon_count;
+	}
+
+	public void setCoupon_count(int coupon_count) {
+		this.coupon_count = coupon_count;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberVO [mem_num=" + mem_num + ", mem_id=" + mem_id + ", mem_auth=" + mem_auth + ", mem_name="
 				+ mem_name + ", passwd=" + passwd + ", phone=" + phone + ", email=" + email + ", zipcode=" + zipcode
 				+ ", address1=" + address1 + ", address2=" + address2 + ", profile_filename=" + profile_filename
 				+ ", reg_date=" + reg_date + ", point=" + point + ", coupon_num=" + coupon_num + ", coupon_name="
-				+ coupon_name + ", coupon_context=" + coupon_context + ", discount_price=" + discount_price
-				+ ", nickname=" + nickname + "]";
+				+ coupon_name + ", coupon_context=" + coupon_context + ", coupon_count=" + coupon_count
+				+ ", discount_price=" + discount_price + ", nickname=" + nickname + "]";
 	}
 
-	
-	
-	
-	   
 }

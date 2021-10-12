@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -308,9 +308,6 @@ public class MemberController {
 		}
 	}
 	
-		
-
-	
 	//로그아웃
 	@RequestMapping("/member/logout.do")
 	public String processLogout(HttpSession session) {
@@ -322,8 +319,32 @@ public class MemberController {
 	
 	//마이페이지 호출
 	@GetMapping("/member/myPage.do")
-	public String myPageMain() {
-		return "memberView";
+	public String myPageMain(HttpSession session, Model model) {
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		
+		MemberVO member = memberService.selectMember(user_num);
+		member.setCoupon_count(memberService.selectGetCouponCount(user_num));
+		
+		logger.debug("<<회원 상세정보>> : " + member);
+		
+		model.addAttribute("member", member);
+		
+		return "memberView";	// 타일스 식별자
+	}
+	
+	//프로필 사진 출력
+	@RequestMapping("/member/photoView.do")
+	public ModelAndView viewImage(HttpSession session) {
+			
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		MemberVO memberVO = memberService.selectMember(user_num);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("imageView");
+		mav.addObject("imageFile", memberVO.getProfile());
+		mav.addObject("filename", memberVO.getProfile_filename());
+			
+		return mav;
 	}
 	
 	
