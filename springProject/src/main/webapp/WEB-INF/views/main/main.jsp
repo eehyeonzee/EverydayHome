@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
+
 <!-- 메인 시작 -->
 <style>
 .main {
@@ -74,12 +78,44 @@
 	font-color: gray;
 	font-size: 13px;
 }
+
 </style>
+
+
 <div class="main">
 	<div class="main-container">
-		<div class="main-item">메인썸네일메인썸네일v메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일메인썸네일
+		<div class="main-item">
+		    <div class="jumbotron">
+        <h1>Hello, world!</h1>
+        <p>The time on the server is ${serverTime}.</p>
+    </div>
 		</div>
-		<div class="main-item">이벤트 썸네일</div>
+		<div class="main-item">
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/img1.png" alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/img2.png" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/img3.png" alt="Third slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/img4.png" alt="Four slide">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+		</div>
 		<div class="main-item">매일의 스토리</div>
 		<div class="main-item" id="main-item-link">
 			<div class="main-story">

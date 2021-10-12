@@ -51,7 +51,7 @@ a {
 	color: black;
 }
 /* 컨테이너 속성 */
-.nav-container{
+.navcontainer{
 	display: flex;
 	align-items:flex-start;
 	postion:relative;
@@ -63,7 +63,7 @@ a {
 }
 /* 메뉴중앙세팅 */
 /*커뮤니티 스토어 버튼 설정 */
-.nav-menu-item{
+.navmenuitem{
 	float:left;
 	display:display-block;
 	position:relative;
@@ -79,7 +79,7 @@ a {
 	flex:0 0 auto;
 }
 /*드롭다운메뉴 설정 */
- .dropdown{
+ .dropdownbar{
 position: absolute; 
 height: 0px; 
 overflow: hidden;  
@@ -90,13 +90,13 @@ transition: height .2s;
 width: 800px;       
 margin-top:80px;
 }
-.dropdown li {
+.dropdownbar li {
 	display : inline-block;
 }
-.nav-menu-li:hover .dropdown{
+.navmenuli:hover .dropdownbar{
 height: 40px; 
 }
-.nav-menu-item-dropdown{
+.navmenuitemdropdown{
 	font-size : 15px;
 	line-height : 23px;
 	margin : 8px 4px;
@@ -118,7 +118,7 @@ height: 40px;
 		flex-grow:1;
 		flex:0 0 auto;
 }
-.nav-right-item{
+.navrightitem{
 	display:inline-block;
 	position:relative;
 	font-weight:700;
@@ -128,7 +128,7 @@ height: 40px;
 	margin:7px 10px 0;
 }
 /*하단 줄*/
-.nav-line{
+.navline{
 	z-index:502;
 	position:relative;
 	transition: top .1s;
@@ -138,39 +138,39 @@ height: 40px;
 .nav-dropdown {
 	margin : 50px;
 }
-.nav-right-item-dropdown{
+.navrightitemdropdown{
 	font-size : 15px;
 	line-height : 23px;
 	margin : 8px 4px;
 	padding : 6px 8px 4px;
 	font-weight : bold;
 }
-.nav-right-menu-li:hover .dropdown{
+.navrightmenuli:hover .dropdownbar{
 height: 40px; 
 }
 </style>
-<div class="navgation-bar">
-	<div class="nav-line">
-		<div class="nav-container">
+<div class="topbar">
+	<div class="navline">
+		<div class="navcontainer">
 			<div class="nav-left">
 				<a class="logo" href="#" style="">걍 매일의 집</a>
 			</div>
 			<nav class="nav-menu">
 				<ul>
-					<li class="nav-menu-li"><a class="nav-menu-item" href="#" style="color: #35c5f0;">커뮤니티</a>
-						<ul class="dropdown">
-							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="#">커뮤니티 메인</a></li>
-							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/notice/noticeList.do">공지사항</a></li>
-							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="#">사진게시판</a></li>
-							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/serviceBoard/serviceBoardInsert.do">고객센터게시판</a></li>
-							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/qna/qnaList.do">QnA게시판</a></li>
+					<li class="navmenuli"><a class="navmenuitem" href="#" style="color: #35c5f0;">커뮤니티</a>
+						<ul class="dropdownbar">
+							<li class="navmenuitemdropdown" style="color: #35c5f0;"><a href="#">커뮤니티 메인</a></li>
+							<li class="navmenuitemdropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/notice/noticeList.do">공지사항</a></li>
+							<li class="navmenuitemdropdown" style="color: #35c5f0;"><a href="#">사진게시판</a></li>
+							<li class="navmenuitemdropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/serviceBoard/serviceBoardInsert.do">고객센터게시판</a></li>
+							<li class="navmenuitemdropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/qna/qnaList.do">QnA게시판</a></li>
 						</ul>
 					</li>
-					<li class="nav-menu-li"><a class="nav-menu-item" href="${pageContext.request.contextPath}/store/storeMain.do">스토어</a>
-						<ul class="dropdown">
-							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/store/storeMain.do">스토어홈</a></li>
-							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="#">카테고리</a></li>
-							<li class="nav-menu-item-dropdown" style="color: #35c5f0;"><a href="#">베스트</a></li>
+					<li class="navmenuli"><a class="navmenuitem" href="${pageContext.request.contextPath}/store/storeMain.do">스토어</a>
+						<ul class="dropdownbar">
+							<li class="navmenuitemdropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/store/storeMain.do">스토어홈</a></li>
+							<li class="navmenuitemdropdown" style="color: #35c5f0;"><a href="#">카테고리</a></li>
+							<li class="navmenuitemdropdown" style="color: #35c5f0;"><a href="#">베스트</a></li>
 						</ul>
 				</ul>
 			</nav>
@@ -181,16 +181,16 @@ height: 40px;
 						<input type="search" name="search" id="search" class="form-control rounded-pill" placeholder="통합검색" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
 				</div>
 			</form>
-					<a class="nav-right-item" href="#">장바구니</a> 
-					<a class="nav-right-item" href="${pageContext.request.contextPath}/member/login.do">로그인</a> 
-					<a class="nav-right-item" href="${pageContext.request.contextPath}/member/registerUser.do">회원가입</a> 
+					<a class="navrightitem" href="#">장바구니</a> 
+					<a class="navrightitem" href="${pageContext.request.contextPath}/member/login.do">로그인</a> 
+					<a class="navrightitem" href="${pageContext.request.contextPath}/member/registerUser.do">회원가입</a> 
 					<div class="nav-right-menu">
 						<ul>
-							<li class="nav-right-menu-li"><a class="nav-menu-item" href="#" style="color: #35c5f0;">글쓰기</a>
-								<ul class="dropdown">
-									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/houseBoard/houseBoardWrite.do">사진올리기</a></li>
-									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">상품리뷰쓰기</a></li>
-									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/serviceBoard/serviceBoardInsert.do">고객센터질문하기</a></li>
+							<li class="navrightmenuli"><a class="navmenuitem" href="#" style="color: #35c5f0;">글쓰기</a>
+								<ul class="dropdownbar">
+									<li class="navrightitemdropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/houseBoard/houseBoardWrite.do">사진올리기</a></li>
+									<li class="navrightitemdropdown" style="color: #35c5f0;"><a href="#">상품리뷰쓰기</a></li>
+									<li class="navrightitemdropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/serviceBoard/serviceBoardInsert.do">고객센터질문하기</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -199,26 +199,26 @@ height: 40px;
 			</c:if>
 			<c:if test="${!empty user_num}">
 				<nav class="nav-right">
-					<a class="nav-right-item" href="#">장바구니</a> 
+					<a class="navrightitem" href="#">장바구니</a> 
 					<div class="nav-right-menu">
 						<ul>
-							<li class="nav-right-menu-li"><a class="nav-menu-item" href="#" style="color: #35c5f0;">마이페이지</a>
-								<ul class="dropdown">
-									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/member/myPage.do">마이페이지</a></li>
-									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">나의쇼핑</a></li>
-									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">판매자신청</a></li>
-									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
+							<li class="navrightmenuli"><a class="navmenuitem" href="#" style="color: #35c5f0;">마이페이지</a>
+								<ul class="dropdownbar">
+									<li class="navrightitemdropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/member/myPage.do">마이페이지</a></li>
+									<li class="navrightitemdropdown" style="color: #35c5f0;"><a href="#">나의쇼핑</a></li>
+									<li class="navrightitemdropdown" style="color: #35c5f0;"><a href="#">판매자신청</a></li>
+									<li class="navrightitemdropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
 								</ul>
 							</li>
 						</ul>
 					</div>
 					<div class="nav-right-menu">
 						<ul>
-							<li class="nav-right-menu-li"><a class="nav-menu-item" href="#" style="color: #35c5f0;">글쓰기</a>
-								<ul class="dropdown">
-									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/houseBoard/houseBoardWrite.do">사진올리기</a></li>
-									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="#">상품리뷰쓰기</a></li>
-									<li class="nav-right-item-dropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/serviceBoard/serviceBoardInsert.do">고객센터질문하기</a></li>
+							<li class="navrightmenuli"><a class="navmenuitem" href="#" style="color: #35c5f0;">글쓰기</a>
+								<ul class="dropdownbar">
+									<li class="navrightitemdropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/houseBoard/houseBoardWrite.do">사진올리기</a></li>
+									<li class="navrightitemdropdown" style="color: #35c5f0;"><a href="#">상품리뷰쓰기</a></li>
+									<li class="navrightitemdropdown" style="color: #35c5f0;"><a href="${pageContext.request.contextPath}/serviceBoard/serviceBoardInsert.do">고객센터질문하기</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -228,16 +228,16 @@ height: 40px;
 		</div>
 		<c:if test="${!empty user_num && user_auth == 2}">
 			<nav class="nav-right">
-				<a class="nav-right-item" href="#">판매자페이지</a> 
-				<a class="nav-right-item" href="#">나의 물건</a> 
-				<a class="nav-right-item" href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
+				<a class="navrightitem" href="#">판매자페이지</a> 
+				<a class="navrightitem" href="#">나의 물건</a> 
+				<a class="navrightitem" href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
 			</nav>
 		</c:if>
 	</div>
 </div>
 <div class="nav-dropdown">
 	<div class="nav-dropdown-bar">
-		<div class="nav-line"></div>
+		<div class="navline"></div>
 	</div>
 </div>
 
