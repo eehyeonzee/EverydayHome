@@ -104,7 +104,6 @@
 				<form:input path="address2" maxlength="30" placeholder="상세주소"/>
 				<form:errors path="address2" cssClass="error-color"/>
 			</li>
-			
 		</ul>
 		<div class="align-center">
 			<form:button>전송</form:button>

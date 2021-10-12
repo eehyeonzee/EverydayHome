@@ -227,7 +227,7 @@ height: 40px;
 				</nav>
 			</c:if>
 		</div>
-		<c:if test="${!empty user_num && user_auth == 2}">
+		<c:if test="${!empty user_num && user_auth == 3}">
 			<nav class="nav-right">
 				<a class="navrightitem" href="#" style="font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">판매자페이지</a> 
 				<a class="navrightitem" href="#" style="font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">나의 물건</a> 

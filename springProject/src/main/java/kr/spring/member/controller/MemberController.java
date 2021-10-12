@@ -81,6 +81,10 @@ public class MemberController {
 		}
 		
 		// 회원가입
+		String nickname = memberVO.getMem_id();
+		memberVO.setNickname(nickname);
+		
+		// 회원가입
 		memberService.insertMember(memberVO);
 		return "redirect:/main/main.do";
 	}
