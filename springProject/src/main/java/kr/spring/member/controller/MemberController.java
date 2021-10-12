@@ -172,18 +172,86 @@ public class MemberController {
 		
 		Map<String, String> map = new HashMap<String, String>();
 		
-		logger.debug("<<카카오 로그인>> : " + id);
+		// 카카오 로그인 - 회원 DB 등록 확인
 		
 		session.setAttribute("kakao_id", id);
 		session.setAttribute("kakao_nickname", nickname);
-		session.setAttribute("kakao_profile_image_url", profile_image_url);
-		session.setAttribute("user_auth", "2");		// 추후 DB 추가예정
-		
-		map.put("kid", id);
+		session.setAttribute("kakao_photo", profile_image_url);
 		map.put("knickname", nickname);
-		map.put("kprofile_image_url", profile_image_url);
 		
 		return map;
+	}
+	
+	// 카카오 로그인 - 회원 정보 DB 등록 및 로그인 처리
+	@PostMapping("/member/kakaoLoginProcess.do")
+	public String kakaoRegister(@Valid MemberVO memberVO, BindingResult result, HttpSession session) {
+		
+		// 세션 정보 저장
+		String id = (String) session.getAttribute("kakao_id");
+		String nickname = (String) session.getAttribute("kakao_nickname");
+		String photo = (String) session.getAttribute("kakao_photo");
+		
+		// 로그인한 내역이 한번이라도 없으면 DB 등록 후 로그인
+		logger.debug("<<회원정보>> : " + memberVO);
+			
+		// 유효성 검사 결과 오류가 있으면 폼 호출
+		if(result.hasErrors()) {
+			return form();
+		}
+		// 입력받은 자바빈 객체에 세션정보 담기
+		memberVO.setMem_id(id);
+		memberVO.setNickname(nickname);
+		memberVO.setProfile_filename(photo);
+		// 비밀번호 난수 생성하여 입력
+		String radomPasswd = "KAKA" + excuteGenerate();
+		memberVO.setPasswd(radomPasswd);
+		
+		// 회원 정보 DB 등록
+		memberService.insertMember(memberVO);
+		
+		MemberVO newMemberVO = memberService.selectCheckMember(id);
+		
+		//session.invalidate();
+		// 세션 재설정
+		session.setAttribute("user_num", newMemberVO.getMem_num());
+		session.setAttribute("user_auth", newMemberVO.getMem_auth());
+		session.setAttribute("user_photo", newMemberVO.getProfile());
+		session.setAttribute("user_nickname", newMemberVO.getNickname());
+		
+		return "redirect:/main/main.do";
+	}
+	
+	
+	@GetMapping("/member/kakaoMemberInfoRegister.do")
+	// 카카오 로그인 - 회원 상세 정보 입력 페이지 호출
+	public String kakaoMemberInfoRegisterForm(HttpSession session) {
+		
+		// 세션 정보 저장
+		String id = (String) session.getAttribute("kakao_id");
+		
+		// 카카오 로그인 - 회원 DB 등록 확인
+		
+		// DB 저장 아이디
+		MemberVO memberKakao = memberService.selectCheckMember(id);
+		if(memberKakao!=null) {		// 회원이 존재하는 경우 DB 등록 없이 바로 로그인
+			logger.debug("<<카카오 로그인>> : " + id);
+					
+			//session.invalidate();
+			// 세션 재설정
+			session.setAttribute("user_num", memberKakao.getMem_num());
+			session.setAttribute("user_auth", memberKakao.getMem_auth());
+			session.setAttribute("user_photo", memberKakao.getProfile());
+			session.setAttribute("user_nickname", memberKakao.getNickname());
+					
+			logger.debug("<<카카오 로그인>> : " + id);
+			
+			// 메인화면 호출
+			return "redirect:/main/main.do";
+		}else {
+			logger.debug("<<카카오회원 상세정보 입력 폼 호출>>");
+			
+			return "kakaoRegForm";	// 타일스 식별자
+		}
 	}
 	
 	//로그인 - 로그인 폼 호출

@@ -36,11 +36,6 @@
           <img width="150" height="33" src="../resources/images/kakao_login_img.png"/>
       </a>
 	</li>
-	<li onclick="kakaoLogout();">
-      <a href="javascript:void(0)">
-          <span>카카오 로그아웃</span>
-      </a>
-	</li>
 </ul>
 <!-- 카카오 스크립트 -->
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
@@ -54,7 +49,6 @@
 		        Kakao.API.request({
 		          url: '/v2/user/me',
 		          success: function (response) {
-		        	  console.log(response) 
 		        	  $.ajax({	// 카카오 로그인 세션 처리
 		        		  url:"kakaologin.do",
 		        		  type:"POST",
@@ -65,10 +59,8 @@
 		        			  },
 		        		  dataType:"json",
 		        		  success:function(param){
-		        			  alert(param.kid);
-		        			  alert(param.knickname);
-		        			  alert(param.kprofile_image_url);
-		        			  location.href='${pageContext.request.contextPath}/main/main.do';
+		        			  alert(param.knickname + "님 환영합니다!!");
+		        			  location.href='${pageContext.request.contextPath}/member/kakaoMemberInfoRegister.do';
 		        		  },
 		  				  error : function(request,status,error){      // 에러메세지 반환
 				               alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
@@ -76,33 +68,13 @@
 		        	  })
 		          },
 		          fail: function (error) {
-		            console.log(error)
 		          },
 		        })
 		      },
 		      fail: function (error) {
-		        console.log(error)
 		      },
 		    })
-		  }
-		//카카오로그아웃  
-		function kakaoLogout() {
-		    if (Kakao.Auth.getAccessToken()) {
-		      Kakao.API.request({
-		        url: '/v1/user/unlink',
-		        success: function (response) {
-		        	console.log(response)
-		        	
-		        	
-		        },
-		        fail: function (error) {
-		          console.log(error)
-		          
-		        },
-		      })
-		      Kakao.Auth.setAccessToken(undefined)
-		    }
-		  }  
+		  } 
 	</script>
 		<br>
 		<div class="align-center">

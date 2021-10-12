@@ -38,6 +38,7 @@ public class MemberVO {
 	   private String coupon_name;	// 쿠폰명
 	   private String coupon_context; // 쿠폰내용
 	   private int discount_price;	// 할인가격
+	   private String nickname;		// 닉네임
 	   
 	   //============ 비밀번호 일치 여부 체크 ==============//
 	   public boolean isCheckedPassword(String userPasswd) {
@@ -166,15 +167,25 @@ public class MemberVO {
 		this.discount_price = discount_price;
 	}
 
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberVO [mem_num=" + mem_num + ", mem_id=" + mem_id + ", mem_auth=" + mem_auth + ", mem_name="
 				+ mem_name + ", passwd=" + passwd + ", phone=" + phone + ", email=" + email + ", zipcode=" + zipcode
-				+ ", address1=" + address1 + ", address2=" + address2 + ", profile_filename="
-				+ profile_filename + ", reg_date=" + reg_date + ", point=" + point 
-				+ ", coupon_num=" + coupon_num + ", coupon_name=" + coupon_name
-				+ ", coupon_context=" + coupon_context + ", discount_price=" + discount_price + "]";
+				+ ", address1=" + address1 + ", address2=" + address2 + ", profile_filename=" + profile_filename
+				+ ", reg_date=" + reg_date + ", point=" + point + ", coupon_num=" + coupon_num + ", coupon_name="
+				+ coupon_name + ", coupon_context=" + coupon_context + ", discount_price=" + discount_price
+				+ ", nickname=" + nickname + "]";
 	}
+
+	
 	
 	
 	   
