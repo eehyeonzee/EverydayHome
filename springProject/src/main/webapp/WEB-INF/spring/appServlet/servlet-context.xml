@@ -72,4 +72,11 @@
 		<beans:property name="order" value="1"/>
 	</beans:bean>
 	
+	<!-- 로그인 여부 체크 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/member/myPage.do"/>
+			<beans:bean class="kr.spring.interceptor.LoginCheckInterceptor"/>
+		</interceptor>
+	</interceptors>
 </beans:beans>
