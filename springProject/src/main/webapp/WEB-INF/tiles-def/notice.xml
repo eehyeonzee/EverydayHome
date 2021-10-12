@@ -21,6 +21,10 @@
     	<put-attribute name="title" value="공지사항"/>
     	<put-attribute name="body" value="/WEB-INF/views/notice/noticeUpdate.jsp"/>
     </definition>
+     <definition name="noticeDelete" extends="main">
+    	<put-attribute name="title" value="공지사항"/>
+    	<put-attribute name="body" value="/WEB-INF/views/notice/noticeDelete.jsp"/>
+    </definition>
 </tiles-definitions>
 
 

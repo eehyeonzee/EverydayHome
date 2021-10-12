@@ -38,15 +38,15 @@ public class NoticeController {
 	private static final Logger logger = LoggerFactory.getLogger(NoticeController.class);
 	//공지 리스트 출력
 	@RequestMapping("notice/noticeList.do")
-	public ModelAndView noticeList(@RequestParam(value="pageNum",defaultValue="1") int currentPage) {
+	public ModelAndView noticeList(@RequestParam(value="pageNum",defaultValue="1") int currentPage,HttpSession session) {
 		
 		//총 레코드 수
 		int count = noticeService.noticeTotalCount();
-		
+		//페이징 처리
 		PagingUtil page = new PagingUtil(currentPage, count ,10, 10, "/EverydayHome/notice/noticeList.do");
-		
+		//목록출력
 		List<NoticeVO> list = null;
-		
+		//만약 글이 있을 시
 		if(count > 0) {
 			Map<String,Object> map = new HashMap<String,Object>();
 			map.put("start", page.getStartCount());
@@ -54,20 +54,36 @@ public class NoticeController {
 			
 			list = noticeService.noticeGetList(map);
 		}
+		
+		//권한정보 받아오기
+		Integer user_auth = (Integer)session.getAttribute("user_auth");
+		//전달 객체 생성
 		ModelAndView mav = new ModelAndView();
 		
 		mav.setViewName("noticeList");
 		mav.addObject("count",count);
 		mav.addObject("list",list);
 		mav.addObject("pagingHtml",page.getPagingHtml());
-		
+		mav.addObject("user_auth",user_auth);
 		return mav;
 	}
 	//공지 상세정보가기
 	@GetMapping("notice/noticeDetail.do")
-	public ModelAndView noticeDetail(@RequestParam(value="notice_num") int notice_num) {
+	public ModelAndView noticeDetail(@RequestParam(value="notice_num") int notice_num,HttpSession session) {
+		//조회수 증가 처리
+		//상세정보 저장
 		NoticeVO notice = noticeService.noticeDetail(notice_num);
-		return new ModelAndView("noticeDetail","notice",notice);
+		//권한정보저장
+		Integer user_num=(Integer)session.getAttribute("user_auth");
+		//mav객체생성
+		ModelAndView mav= new ModelAndView();
+		//갈 페이지 앨리어스
+		mav.setViewName("noticeDetail");
+		//보낼 데이터 정보
+		mav.addObject("notice", notice);
+		mav.addObject("user_num",user_num);
+		
+		return mav;
 	}
 	
 	//공지 작성하기
@@ -78,16 +94,12 @@ public class NoticeController {
 	}
 	
 	@PostMapping("/notice/noticeWrite.do")
-	public String submit(@Valid NoticeVO noticeVo, BindingResult result) {
+	public String submit(@Valid NoticeVO noticeVo, BindingResult result, HttpSession session) {
 		logger.debug("<<공지정보>> : " + noticeVo);
 
 		if(result.hasErrors()) {
 			return form();
 		}
-		/*
-		vo.setMem_num((Integer)session.getAttribute("mem_num"));
-		 * if(vo.getMem_num()!=3) { return form(); }
-		 */
 		noticeService.noticeWrite(noticeVo);
 		
 		return "redirect:noticeList.do";
@@ -95,12 +107,14 @@ public class NoticeController {
 	
 	//공지 수정폼 호출
 	@GetMapping("/notice/noticeUpdate.do")
-	public String updateForm(@RequestParam int notice_num, Model model) {
+	public String updateForm(@RequestParam int notice_num, Model model, HttpSession session ) {
 		
 		NoticeVO noticeVO=noticeService.noticeDetail(notice_num);
 		
-		model.addAttribute("noticeVO", noticeVO);
+		Integer user_auth = (Integer)session.getAttribute("user_auth");
 		
+		model.addAttribute("noticeVO", noticeVO);
+		model.addAttribute("user_num",user_auth);
 		return "noticeUpdate";
 	}
 	
@@ -111,6 +125,12 @@ public class NoticeController {
 		
 		return "redirect:noticeList.do";
 	}
-	
+	//공지 삭제하기
+	@GetMapping("/notice/noticeDelete.do")
+	public String deleteForm(@RequestParam int notice_num, HttpSession session) {
+		
+		noticeService.noticeDelete(notice_num);
+		return "redirect:noticeList.do";
+		}
 	
 }

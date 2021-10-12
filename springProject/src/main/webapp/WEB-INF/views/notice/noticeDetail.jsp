@@ -46,7 +46,10 @@ padding : 40px 8px 0px 100px;
  	</div>
  	 <div class="icon-item" align="center">
  	<a href="${pageContext.request.contextPath}/notice/noticeList.do">목록으로 돌아가기</a>
+ 	<%-- <c:if test="${user_auth}!=3"> --%>
  	<a href="${pageContext.request.contextPath}/notice/noticeUpdate.do?notice_num=${notice.notice_num}">수정</a>
+	<a href="${pageContext.request.contextPath}/notice/noticeDelete.do?notice_num=${notice.notice_num}">삭제</a>
+	<%-- </c:if> --%>
  	</div>
  	</div>
  </div>

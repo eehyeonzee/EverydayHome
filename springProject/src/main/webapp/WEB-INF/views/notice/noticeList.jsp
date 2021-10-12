@@ -75,9 +75,11 @@ h2{
  		<div class="paging">
  			<span>${pagingHtml}</span>
  		</div>
+ 		<%-- <c:if test="${user_auth}==3"> --%>
  		 <div class="write-button"> 		
  		<a href="${pageContext.request.contextPath}/notice/noticeWrite.do">공지 쓰기</a>
  		</div>
+ 		<%-- </c:if> --%>
  	</div>
  </div>
  </div>
