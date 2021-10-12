@@ -24,4 +24,6 @@ public interface NoticeMapper {
 	public void noticeDelete(int notice_num);
 	@Select("select * FROM (select a.*,rownum rnum FROM (SELECT * FROM notice ORDER BY notice_reg_date DESC)a)WHERE rnum>= #{start} AND rnum <= #{end}")
 	public List<NoticeVO> noticeGetList(Map<String,Object> map);
+	@Update("UPDATE notice SET notice_hits=notice_hits+1 WHERE notice_num=#{notice_num}")
+	public int noticeGetHits(int notice_num);
 }

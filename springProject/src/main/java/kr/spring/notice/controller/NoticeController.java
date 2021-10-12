@@ -71,6 +71,7 @@ public class NoticeController {
 	@GetMapping("notice/noticeDetail.do")
 	public ModelAndView noticeDetail(@RequestParam(value="notice_num") int notice_num,HttpSession session) {
 		//조회수 증가 처리
+		noticeService.noticeGetHits(notice_num);
 		//상세정보 저장
 		NoticeVO notice = noticeService.noticeDetail(notice_num);
 		//권한정보저장

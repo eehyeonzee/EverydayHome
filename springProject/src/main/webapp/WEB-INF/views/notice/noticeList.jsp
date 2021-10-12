@@ -51,23 +51,23 @@ h2{
 <div class="container"> 
  <div class="main-container">
  	<div class="name-item" align="center">
- 	<h2>공지사항</h2>
+ 	<h2 style="font-family: 'Gowun Dodum', sans-serif;">공지사항</h2>
  	</div>
  	<div class="link-container">
  		<c:if test="${count==0}">
- 		<div class="link-item">출력할 내용이 없습니다</div>
+ 		<div class="link-item" style="font-family: 'Gowun Dodum', sans-serif;">출력할 내용이 없습니다</div>
  		<div class="write-button">
- 		<a href="${pageContext.request.contextPath}/notice/noticeWrite.do">공지 쓰기</a>
+ 		<a href="${pageContext.request.contextPath}/notice/noticeWrite.do" >공지 쓰기</a>
  		</div>
  		</c:if>
  		<c:if test="${count>0}">
  		<c:forEach var="notice" items="${list}">
  		<div class="link-item" onclick="location.href='noticeDetail.do?notice_num=${notice.notice_num}'">
  			<div class="title">
- 			<p>${notice.notice_title}</p>
+ 			<p style="font-family: 'Gowun Dodum', sans-serif;">${notice.notice_title}</p>
  			</div>
  			<div class="reg_date">
- 			<span>${notice.notice_reg_date}</span>
+ 			<span style="font-family: 'Gowun Dodum', sans-serif;">${notice.notice_reg_date}</span>
  			</div>
  		</div>
  		</c:forEach>

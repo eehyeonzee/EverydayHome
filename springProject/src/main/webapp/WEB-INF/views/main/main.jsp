@@ -78,7 +78,12 @@
 	font-color: gray;
 	font-size: 13px;
 }
-
+.rankfeedli{
+display:inline;
+}
+.rankfeed{
+position:sticky;
+}
 </style>
 
 
@@ -141,7 +146,27 @@
 		</div>
 		<div class="main-item">카테고리</div>
 		<div class="main-item">매일의 인기사진</div>
-		<div class="main-item">베스트</div>
+		<div class="main-item">
+			<div class="rankfeed">
+				<ol class="rankfeedul">
+					<li class="rankfeedli">전체</li>
+					<li class="rankfeedli">가구</li>
+					<li class="rankfeedli">패브릭</li>
+					<li class="rankfeedli">조명</li>
+					<li class="rankfeedli">가전</li>
+					<li class="rankfeedli">주방용품</li>
+					<li class="rankfeedli">데코/취미</li>
+					<li class="rankfeedli">수납/정리</li>
+					<li class="rankfeedli">생필품</li>
+					<li class="rankfeedli">공구/DIY</li>
+					<li class="rankfeedli">인테리어시공</li>
+					<li class="rankfeedli">반려동물용품</li>
+					<li class="rankfeedli">실내운동</li>
+					<li class="rankfeedli">유아아동</li>
+					<li class="rankfeedli">렌탈</li>
+				</ol>
+			</div>
+		</div>
 	</div>
 </div>
 <!-- 메인 끝 -->

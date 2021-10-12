@@ -13,5 +13,5 @@ public interface NoticeService {
 	public void noticeUpdate(NoticeVO notice);
 	public void noticeDelete(int notice_num);
 	public List<NoticeVO> noticeGetList(Map<String,Object> map);
-	
+	public int noticeGetHits(int notice_num);
 }

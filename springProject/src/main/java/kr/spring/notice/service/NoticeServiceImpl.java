@@ -50,4 +50,9 @@ public class NoticeServiceImpl implements NoticeService{
 		return noticeMapper.noticeGetList(map);
 	}
 
+	@Override
+	public int noticeGetHits(int notice_num) {
+		return noticeMapper.noticeGetHits(notice_num);
+	}
+
 }
