@@ -2,6 +2,7 @@ package kr.spring.member.dao;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import kr.spring.member.vo.MemberVO;
 
@@ -29,4 +30,8 @@ public interface MemberMapper {
 	public int selectGetFollowCount(Integer mem_num);	// 마이페이지 - 팔로우 수 구하기
 	@Select("SELECT count(*) FROM follow WHERE follower_mem_num = #{mem_num}")
 	public int selectGetFollowerCount(Integer mem_num);	// 마이페이지 - 팔로워 수 구하기
+	@Update("UPDATE mem_detail SET profile=#{profile},profile_filename=#{profile_filename} WHERE mem_num=#{mem_num}") // 프로필 이미지 업데이트
+	public void updateProfile(MemberVO member);
+	@Update("UPDATE mem_detail SET mem_name = #{mem_name}, nickname = #{nickname}, phone = #{phone}, email = #{email}, zipcode = #{zipcode}, address1 = #{address1}, address2 = #{address2} WHERE mem_num = #{mem_num}")
+	public void updateMember(MemberVO member);
 }

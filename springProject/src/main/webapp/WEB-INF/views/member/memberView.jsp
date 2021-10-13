@@ -11,7 +11,7 @@
 	.mypage-info-main{
 	border: 2px solid; 
 	width: 20%; 
-	height: 40%;
+	height: 45%;
 	}
 	div.mypage-info{
 	border: 2px solid white; 

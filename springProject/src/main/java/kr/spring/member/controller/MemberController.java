@@ -356,7 +356,48 @@ public class MemberController {
 		return "memberModify";	// 타일스 섫정
 	}
 	
+	// 회원정보수정 - 수정 데이터 처리
+	@PostMapping("/member/memberUpdate.do")
+	public String submitUpdate(@Valid MemberVO memberVO, BindingResult result, HttpSession session) {
+				
+		logger.debug("<<회원정보수정>> : " + memberVO);
+				
+		// 유효성 체크 결과 오류가 있으면 폼 호출
+		if(result.hasErrors()) {
+			logger.debug("<<회원정보수정 에러>> : " + result.toString());
+			return "memberModify";
+		}
+				
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		memberVO.setMem_num(user_num);
+				
+		// 회원정보수정
+		memberService.updateMember(memberVO);
+				
+		return "redirect:/member/myPage.do";
+	}
 	
+	// 회원정보 수정 - 프로필 사진 변경
+	@PostMapping("member/updateMyPhoto.do")
+	@ResponseBody
+	public Map<String,String> processProfile(MemberVO memberVO, HttpSession session){
+		Map<String,String> map = new HashMap<String,String>();
+		
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		if(user_num==null) {//로그인이 되지 않은 상태
+			map.put("result", "logout");
+		}else {//로그인 된 상태
+			memberVO.setMem_num(user_num);
+			memberService.updateProfile(memberVO);
+			
+			//이미지를 업로드한 후 세션에 저장된 프로필 사진 정보 갱신
+			session.setAttribute("user_photo", memberVO.getProfile());
+			
+			map.put("result", "success");
+		}
+		
+		return map;
+	}
 	
 	//----------------- 회원가입 이메일 인증 8자리 난수 생성 부분
     private int certCharLength = 8;

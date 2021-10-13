@@ -18,55 +18,6 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 	$(function() {
-		
-		var checkID = 0;
-		
-		// 아이디 중복체크
-		$("#confirmId").click(function(){
-			if($('#mem_id').val().trim()==''){
-				$('#message_id').css('color','red').text('아이디를 입력하세요!');
-				$('#mem_id').val('').focus();//공백이 있으면 공백을 지우고 포커스를 줌
-				return;
-			}
-			$.ajax({
-				url:'confirmId.do',
-				type:'post',
-				data:{mem_id:$('#mem_id').val()},
-				dataType:'json',
-				cache:false,
-				timeout:30000,
-				success:function(param){
-					if(param.result == 'idNotFound'){
-						$('#message_id').css('color','#000').text('등록가능ID');
-						checkId = 1;
-					}else if(param.result == 'idDuplicated'){
-						$('#message_id').css('color','red').text('중복된 ID');
-						$('#mem_id').val('').focus();
-						checkId = 0;
-					}else if(param.result == 'notMatchPattern'){
-						$('#message_id').css('color','red').text('영문,숫자 4자이상 12자이하 입력');
-						$('#mem_id').val('').focus();
-						checkId = 0;
-					}else{
-						checkId = 0;
-						alert('ID중복체크 오류');
-					}
-				},
-				error : function(request,status,error){      // 에러메세지 반환
-		               alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
-		            }
-			}); //end if ajax
-		}); //end if click
-		
-		
-		//아이디 중복 안내 메시지 초기화 및 아이디 중복 값 초기화
-		$('#register_form #mem_id').keydown(function(){
-			checkId = 0;
-			$('#message_id').text('');
-		});
-		
-		
-		
 		//---------------------이메일 인증 부분
 		
 		$("#email_check_button").hide();	// body가 시작하면 인증확인 버튼 숨기기
@@ -115,19 +66,10 @@
 		    }		
 		});
 		
-		
-		
+
 		// submit 이벤트 발생시 emailCertification가 false라면 체크 다시
 		//submit 이벤트 발생시 아이디 중복 체크 여부 확인
-		$('#register_form').submit(function(){
-			if(checkId==0){
-				$('#message_id').css('color','red').text('아이디 중복 체크 필수');
-				if($('#mem_id').val().trim()==''){
-					$('#mem_id').val('').focus();
-				}
-				return false;
-			}
-			
+		$('#modify_form').submit(function(){
 			if(emailCertification==false){
 				alert("이메일 인증을 해주세요!!");
 				return false;
@@ -141,6 +83,11 @@
 	<h2>회원정보 수정</h2>
 	<form:form id="modify_form" action="memberUpdate.do" modelAttribute="memberVO" enctype="multipart/form-data">
 		<ul>
+			<li>
+				<label for="mem_name">이름</label>
+				<form:input path="mem_name"/>
+				<form:errors path="mem_name" cssClass="error-color"/>
+			</li>
 			<li>
 				<label for="email">이메일</label>
 				<form:input path="email"/>
@@ -156,6 +103,11 @@
 				<label for="nickname">별명</label>
 				<form:input path="nickname"/>
 				<form:errors path="nickname" cssClass="error-color"/>
+			</li>
+			<li>
+				<label for="phone">전화번호</label>
+				<form:input path="phone"/>
+				<form:errors path="phone" cssClass="error-color"/>
 			</li>
 			<li>
 				<label for="zipcope">우편번호</label>
@@ -227,38 +179,104 @@
 				<form:input path="address2" maxlength="30" placeholder="상세주소"/>
 				<form:errors path="address2" cssClass="error-color"/>
 			</li>
+			<li>&nbsp;</li>
 			<li>
 				<label for="profile">프로필 이미지</label>
 				<c:if test="${empty memberVO.profile_filename}">
-				<a href="#"><img src="${pageContext.request.contextPath}/resources/images/basic.jpg" width="150" height="150" id="target_img"></a>
+				<img src="${pageContext.request.contextPath}/resources/images/basic.jpg" width="150" height="150" class="my-photo">
 				</c:if>
 				<c:if test="${!empty memberVO.profile_filename}">
-				<a href="#"><img src="${pageContext.request.contextPath}/member/photoView.do" width="150" height="150" id="target_img"></a>
+				<img src="${pageContext.request.contextPath}/member/photoView.do" width="150" height="150" class="my-photo">
 				</c:if>
-				<input type="file" name="upload" id="upload" accept="image/gif,image/png,image/jpeg"
-						style="display: none;" onchange="changeValue(this)">
-				<input type="hidden" name="img_url" id="img_url">
+				<div class="align-center" style="padding-left: 10em;">
+					<input type="button" value="수정" id="photo_btn">
+				</div>
+				<br><br>
+				<div id="photo_choice" style="display:none;">
+					<input type="file" id="upload" accept="image/gif,image/png,image/jpeg">
+					<input type="button" value="전송" id="photo_submit">
+					<input type="button" value="취소" id="photo_reset">
+				</div>
 				<%-- 이미지 처리 자바스크립트 부분 --%>
 				<script type="text/javascript">
 					$(function(){
-						function changeValue(obj){
-							   document.signform.submit();
+						//MyPage 프로필 사진 수정
+						$('#photo_btn').click(function(){
+							$('#photo_choice').show();
+							$(this).hide();
+						});
 						
-						}
+						//파일 미리 보기
+						var photo_path;
+						var my_photo;
+						$('#upload').change(function(){	// 업로드 파일이 바뀌면
+							var upload = document.getElementById('upload');
+							my_photo = upload.files[0];
+							if(my_photo){
+								var reader = new FileReader();
+								
+								reader.readAsDataURL(my_photo);
+								
+								reader.onload = function(){
+									photo_path = $('.my-photo').attr('src');
+									$('.my-photo').attr('src',reader.result);
+								};
+							}
+						});
 						
-						$('#target_img').click(function (e) {
-							document.signform.img_url.value = document.getElementById( 'target_img' ).src;
-							e.preventDefault();
-							$('#file').click();
-						});        
-
+						//ajax를 이용한 파일 전송
+						$('#photo_submit').click(function(){
+							if($('#upload').val()==''){
+								alert('파일을 선택하세요!');
+								$('#upload').focus();
+								return;
+							}
+							
+							//파일 전송
+							var form_data = new FormData();
+							form_data.append('upload',my_photo);
+							$.ajax({
+								data:form_data,
+								type:'post',
+								url:'updateMyPhoto.do',
+								dataType:'json',
+								cache:false,
+								contentType:false,
+								enctype:'multipart/form-data',
+								processData:false,
+								success:function(param){
+									if(param.result == 'logout'){
+										alert('로그인 후 사용하세요');
+									}else if(param.result == 'success'){
+										alert('프로필 사진이 수정되었습니다.');
+										$('#upload').val('');
+										$('#photo_choice').hide();
+										$('#photo_btn').show();
+									}else{
+										alert('파일 전송 오류 발생');
+									}
+								},
+								error:function(){
+									alert('네트워크 오류 발생');
+								}
+							});
+							
+						});
+						
+						// 프로필 사진 전송 취소
+						$('#photo_reset').click(function() {
+							$('.my-photo').attr('src',photo_path);
+							$('#upload').val('');
+							$('#photo_choice').hide();
+							$('#photo_btn').show();
+						});
 					});
 					
 				</script>
 				</li>
 		</ul>
 	
-		<div class="align-center">
+		<div class="align-center" style="margin-top: 2em;">
 			<form:button>회원정보수정</form:button>
 			<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 		</div>
