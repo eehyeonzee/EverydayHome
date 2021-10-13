@@ -25,4 +25,8 @@ public interface MemberMapper {
 	public MemberVO selectMember(Integer mem_num);		// 마이페이지 - 회원 정보 출력
 	@Select("SELECT count(*) FROM coupon WHERE mem_num=#{mem_num}")
 	public int selectGetCouponCount(Integer mem_num);	// 마이페이지 - 회원 쿠폰 수 반환
+	@Select("SELECT count(*) FROM follow WHERE follow_mem_num = #{mem_num}")
+	public int selectGetFollowCount(Integer mem_num);	// 마이페이지 - 팔로우 수 구하기
+	@Select("SELECT count(*) FROM follow WHERE follower_mem_num = #{mem_num}")
+	public int selectGetFollowerCount(Integer mem_num);	// 마이페이지 - 팔로워 수 구하기
 }

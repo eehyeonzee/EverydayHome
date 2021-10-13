@@ -39,7 +39,12 @@ public class MemberVO {
 	   private String coupon_context; // 쿠폰내용
 	   private int coupon_count;	// 쿠폰 갯수
 	   private int discount_price;	// 할인가격
+	   @NotEmpty
 	   private String nickname;		// 닉네임
+	   private int follow_count;	// 팔로우 숫자
+	   private int follower_count; // 팔로워 숫자
+	   private int scrapbook_count;	// 스크랩 북 숫자
+	   private int recommend_count;	// 좋아요 숫자
 	   
 	   //============ 비밀번호 일치 여부 체크 ==============//
 	   public boolean isCheckedPassword(String userPasswd) {
@@ -184,6 +189,39 @@ public class MemberVO {
 		this.coupon_count = coupon_count;
 	}
 
+	public int getFollow_count() {
+		return follow_count;
+	}
+
+	public void setFollow_count(int follow_count) {
+		this.follow_count = follow_count;
+	}
+
+	public int getFollower_count() {
+		return follower_count;
+	}
+
+	public void setFollower_count(int follower_count) {
+		this.follower_count = follower_count;
+	}
+	
+
+	public int getScrapbook_count() {
+		return scrapbook_count;
+	}
+
+	public void setScrapbook_count(int scrapbook_count) {
+		this.scrapbook_count = scrapbook_count;
+	}
+
+	public int getRecommend_count() {
+		return recommend_count;
+	}
+
+	public void setRecommend_count(int recommend_count) {
+		this.recommend_count = recommend_count;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberVO [mem_num=" + mem_num + ", mem_id=" + mem_id + ", mem_auth=" + mem_auth + ", mem_name="
@@ -191,7 +229,12 @@ public class MemberVO {
 				+ ", address1=" + address1 + ", address2=" + address2 + ", profile_filename=" + profile_filename
 				+ ", reg_date=" + reg_date + ", point=" + point + ", coupon_num=" + coupon_num + ", coupon_name="
 				+ coupon_name + ", coupon_context=" + coupon_context + ", coupon_count=" + coupon_count
-				+ ", discount_price=" + discount_price + ", nickname=" + nickname + "]";
+				+ ", discount_price=" + discount_price + ", nickname=" + nickname + ", follow_count=" + follow_count
+				+ ", follower_count=" + follower_count + ", scrapbook_count=" + scrapbook_count + ", recommend_count="
+				+ recommend_count + "]";
 	}
+
+	
+	
 
 }

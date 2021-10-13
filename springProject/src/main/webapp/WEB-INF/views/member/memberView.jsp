@@ -7,9 +7,23 @@
  * 설명 : 마이페이지
  * 수정일 : 
 --%>
+<style>
+	.mypage-info-main{
+	border: 2px solid; 
+	width: 20%; 
+	height: 40%;
+	}
+	div.mypage-info{
+	border: 2px solid white; 
+	width: 90%; 
+	height: 90%;
+	font-size: 10px;
+	}
+</style>
 <!-- 중앙 내용 시작 -->
 <div class ="page-main">
 	<h2>프로필 사진</h2>
+	<div class="mypage-info-main" align="center" ">
 	<ul>
 		<li>
 			<c:if test="${empty member.profile_filename }">
@@ -20,29 +34,33 @@
 			</c:if>
 		</li>
 		<li>
-			<div class="align-center">
-				<input type="button" value="수정" id="photo_btn">
-			</div>
-			<div id="photo_choice" style="display:none;">
-				<input type="file" id="upload" accept="image/gif,image/png,image/jpeg">
-				<input type="button" value="전송" id="photo_submit">
-				<input type="button" value="취소" id="photo_reset">
-			</div>
+			
 		</li>
 	</ul>
-	<h2>회원 상세 정보</h2>
-	<ul>
-		<li>이름 : ${member.mem_name}</li>
-		<li>닉네임 : ${member.nickname}</li>
-		<li>전화번호 : ${member.phone}</li>
-		<li>이메일 : ${member.email}</li>
-		<li>우편번호 : ${member.zipcode}</li>
-		<li>주소 : ${member.address1}</li>
-		<li>상세주소 : ${member.address2}</li>
-		<li>포인트 : ${member.point}</li>
-		<li>보유쿠폰 : <a href="#">${member.coupon_count}</a>
-		<li>가입날짜 : ${member.reg_date}</li>
-	</ul>
+	
+		<h3>닉네임 : ${member.nickname}</h3><br>
+		팔로우 : ${member.follow_count} | 팔로워 : ${member.follower_count}
+		<br><br> 
+		<div class="align-center">
+				<input type="button" value="설정" id="modify_btn" onclick="location.href='memberUpdate.do'">
+			</div>
+		<hr>
+		<div class="mypage-info">
+			<table>
+				<tr>
+					<th>스크랩북</th>
+					<th>좋아요</th>
+					<th>내 쿠폰</th>
+				</tr>
+				<tr>
+					<td><a href="#">${ member.scrapbook_count }</a></td>
+					<td><a href="#">${ member.recommend_count }</a></td>
+					<td><a href="#">${member.coupon_count}</a></td>
+				</tr>
+			</table>
+		</div>
+
+	</div>
 	<hr size="1" width="100%">
 	<p class="align-right">
 		<input type="button" value="회원정보수정" onclick="location.href='update.do'">

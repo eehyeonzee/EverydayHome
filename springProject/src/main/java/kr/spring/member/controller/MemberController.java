@@ -62,7 +62,7 @@ public class MemberController {
 	
 	
 	// 회원가입 - 회원가입 폼 호출
-	@GetMapping("/member/registerUser.do")
+	@RequestMapping("/member/registerUser.do")
 	public String form() {
 		
 		logger.debug("<<회원가입 폼 호출>>");
@@ -73,17 +73,14 @@ public class MemberController {
 	// 회원가입 - 회원가입 폼 처리
 	@PostMapping("/member/registerUser.do")
 	public String submit(@Valid MemberVO memberVO, BindingResult result) {
-		logger.debug("<<회원정보>> : " + memberVO);
 		
 		// 유효성 검사 결과 오류가 있으면 폼 호출
 		if(result.hasErrors()) {
+			logger.debug(result.toString());
 			return form();
 		}
 		
-		// 회원가입
-		String nickname = memberVO.getMem_id();
-		memberVO.setNickname(nickname);
-		
+		logger.debug("<<회원정보>> : " + memberVO);
 		// 회원가입
 		memberService.insertMember(memberVO);
 		return "redirect:/main/main.do";
@@ -323,7 +320,6 @@ public class MemberController {
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		
 		MemberVO member = memberService.selectMember(user_num);
-		member.setCoupon_count(memberService.selectGetCouponCount(user_num));
 		
 		logger.debug("<<회원 상세정보>> : " + member);
 		
@@ -345,6 +341,19 @@ public class MemberController {
 		mav.addObject("filename", memberVO.getProfile_filename());
 			
 		return mav;
+	}
+	
+	
+	// 회원정보 수정 - 폼 호출
+	@GetMapping("/member/memberUpdate.do")
+	public String modifyForm(HttpSession session, Model model) {
+		Integer user_num = (Integer) session.getAttribute("user_num");
+		
+		MemberVO memberVO = memberService.selectMember(user_num);
+		
+		model.addAttribute("memberVO", memberVO);
+		
+		return "memberModify";	// 타일스 섫정
 	}
 	
 	

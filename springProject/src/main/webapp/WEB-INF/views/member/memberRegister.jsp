@@ -146,6 +146,11 @@
 				<form:errors path="mem_name" cssClass="error-color"/>
 			</li>
 			<li>
+				<label for="nickname">닉네임</label>
+				<form:input path="nickname"/>
+				<form:errors path="nickname" cssClass="error-color"/>
+			</li>
+			<li>
 				<label for="passwd">비밀번호</label>
 				<form:password path="passwd" placeholder="4~12 영문,숫자만 허용"/>
 				<form:errors path="passwd" cssClass="error-color"/>
