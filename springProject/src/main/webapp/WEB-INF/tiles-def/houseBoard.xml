@@ -6,11 +6,19 @@
 
 <tiles-definitions>
 	<definition name="houseBoardWrite" extends="main">
-    	<put-attribute name="title" value="집들이 게시판 글쓰기"/>
+    	<put-attribute name="title" value="집들이 게시판 글등록"/>
     	<put-attribute name="body" value="/WEB-INF/views/houseBoard/houseBoardWrite.jsp"/>
     </definition>
 	<definition name="houseBoardList" extends="main">
-    	<put-attribute name="title" value="집들이 게시판 목록"/>
+    	<put-attribute name="title" value="집들이 게시판 글목록"/>
     	<put-attribute name="body" value="/WEB-INF/views/houseBoard/houseBoardList.jsp"/>
+    </definition>
+    <definition name="houseBoardDetail" extends="main">
+    	<put-attribute name="title" value="집들이 게시판 글상세"/>
+    	<put-attribute name="body" value="/WEB-INF/views/houseBoard/houseBoardDetail.jsp"/>
+    </definition>
+    <definition name="houseBoardUpdate" extends="main">
+    	<put-attribute name="title" value="집들이 게시판 글수정"/>
+    	<put-attribute name="body" value="/WEB-INF/views/houseBoard/houseBoardUpdate.jsp"/>
     </definition>
 </tiles-definitions>

@@ -7,18 +7,11 @@
  * 설명 : 집들이 게시판 글쓰기 폼
  * 수정일 : 
 --%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>글쓰기</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/layout.css" type="text/css">
-</head>
-<body>
+<!-- 중앙 내용 시작 -->
 <div class="page-main">
 	<h2>글쓰기</h2>
 	<hr size="1" noshade width="100%">
-	<form:form action="houseBoardWrite.do" modelAttribute="houseBoardVO">
+	<form:form id="register_form" action="write.do" modelAttribute="houseBoardVO" enctype="multipart/form-data">
 		<ul>
 			<!-- 제목 시작 -->
 			<li>
@@ -40,8 +33,6 @@
 					<option value="50평 이상">50평 이상</option>
 				</select>
 				<form:errors path="house_area" cssClass="error-color"/>
-			</li>
-			<li>
 				<label for="house_type"></label>
 				<select name="house_type" id="house_type">
 					<option value="">주거형태</option>
@@ -53,8 +44,6 @@
 					<option value="상업공간">상업공간</option>
 				</select>
 				<form:errors path="house_type" cssClass="error-color"/>
-			</li>
-			<li>
 				<label for="house_style"></label>
 				<select name="house_style" id="house_style">
 					<option value="">스타일</option>
@@ -94,21 +83,27 @@
 			<!-- 내용 시작 -->
 			<li>
 				<label for="house_content"></label>
-				<form:textarea path="house_content" placeholder="내용을 입력하세요"/>
+				<form:textarea path="house_content" rows="5" cols="60" placeholder="사진에 대해 설명해주세요"/>
 				<form:errors path="house_content" cssClass="error-color"/>
 			</li>
 			<!-- 내용 끝 -->
-			<!-- 사진 시작 -->
-			<!-- 사진 끝 -->
+			<!-- 이미지 파일 시작 -->
+			<li>
+				<label for="upload">썸네일 파일</label>
+				<input type="file" name="upload" id="upload" accept="image/gif,image/png,image/jpeg">
+			</li>
+			<li>
+				<label for="upload">이미지 파일</label>
+				<input type="file" name="upload" id="upload" accept="image/gif,image/png,image/jpeg">
+			</li>
+			<!-- 이미지 파일 끝 -->
 		</ul>
 		<!-- 버튼 시작 -->
 		<div class="align-center">
-			<input type="submit" value="등록">
-			<input type="button" value="목록" onclick="location.href='houseBoardList.do'">	
+			<form:button>등록</form:button>
+			<input type="button" value="목록" onclick="location.href='list.do'">	
 		</div>
 		<!-- 버튼 끝 -->
 	</form:form>
 </div>
-</body>
-</html>
-
+<!-- 중앙 내용 끝 -->

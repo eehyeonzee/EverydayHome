@@ -47,3 +47,9 @@ CREATE TABLE service_board
     mem_num             NUMBER           NULL, 
     CONSTRAINT PK_service_num PRIMARY KEY (service_num)
 );
+
+-- 21.10.14 12:20 집들이게시판 테이블 컬럼명 변경 및 컬럼 제거
+ALTER TABLE house_board RENAME COLUMN house_modi TO house_mod_date;
+ALTER TABLE house_board DROP COLUMN house_color;
+
+

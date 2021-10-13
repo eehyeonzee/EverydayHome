@@ -26,26 +26,30 @@ public class HouseBoardServiceImpl implements HouseBoardService {
 	private HouseBoardMapper houseBoardMapper;
 	
 	@Override
+	public List<HouseBoardVO> selectHBoardList(Map<String, Object> map) {
+		return houseBoardMapper.selectHBoardList(map);
+	}
+
+	@Override
+	public int selectRowCount(Map<String, Object> map) {
+		return houseBoardMapper.selectRowCount(map);
+	}
+
+	@Override
 	public void insertHBoard(HouseBoardVO houseBoard) {
 		houseBoardMapper.insertHBoard(houseBoard);
 	}
 
 	@Override
-	public int getHBoardCount() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public List<HouseBoardVO> getHBoardList(Map<String, Object> map) {
+	public HouseBoardVO selectHBoard(Integer house_num) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public HouseBoardVO getHBoard(int num) {
+	public void updateHBoardHits(Integer house_num) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 	@Override
@@ -55,9 +59,15 @@ public class HouseBoardServiceImpl implements HouseBoardService {
 	}
 
 	@Override
-	public void deleteHBoard(int num) {
+	public void deleteHBoard(int house_num) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public String getHBoardNick(Integer mem_num) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -71,5 +81,5 @@ public class HouseBoardServiceImpl implements HouseBoardService {
 		// TODO Auto-generated method stub
 		
 	}
-	
+
 }
