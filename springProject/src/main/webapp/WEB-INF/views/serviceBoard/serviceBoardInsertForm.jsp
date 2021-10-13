@@ -19,7 +19,7 @@
 <div class="page-main">
 	<h2>이메일 문의 하기</h2>
 	<hr size="1" noshade width="100%">
-	<form:form action="serviceBoardInsert.do" modelAttribute="serviceBoardVO">
+	<form:form action="serviceBoardInsert.do" modelAttribute="serviceBoardVO" enctype="multipart/form-data">
 		<ul>
 			<li><!-- 문의 유형 선택 카테고리 -->
 				<label for="service_keyword"></label>
@@ -49,11 +49,20 @@
 				<form:errors path="service_title" cssClass="error-color"/>
 			</li>
 			<li>
+				<label for="service_nickname">닉네임</label>
+				<form:input path="service_nickname"/>
+				<form:errors path="service_nickname" cssClass="error-color"/>
+			</li>
+			<li>
 				<label for="service_content">내용</label>
 				<form:textarea path="service_content"/>
 				<form:errors path="service_content" cssClass="error-color"/>
 			</li>
- 			<li><!-- 파일 선택 -->
+			<li>
+				<label for="upload">이미지 파일</label>
+				<input type="file" name="upload" id="upload" accept="image/gif,image/png,image/jpeg">
+			</li>
+ 			<%-- <li><!-- 파일 선택 -->
 				<label for="service_file">파일</label>
 				<form:input path="service_file"/>
 				<form:errors path="service_file" cssClass="error-color"/>
@@ -62,27 +71,13 @@
 				<input type="button" value="전송" id="file_submit">
 				<input type="button" value="취소" id="file_reset">
 				</div>
-			</li> 
+			</li>  --%>
 		</ul>
-<%-- 		<ul>
-		<li>
-			<img src="${pageContext.request.contextPath}/serviceboard/fileView.do" width="100" height="100" class="my-file">
-		</li>
-		<li>
-			<div class="align-center">
-				<input type="button" value="수정" id="file_btn">
-			</div>
-			<div id="file_choice" style="display:none;">
-				<input type="file" id="upload" accept="image/gif,image/png,image/jpeg">
-				<input type="button" value="전송" id="file_submit">
-				<input type="button" value="취소" id="file_reset">
-			</div>
-		</li>
-		</ul> --%>
+
 		<!-- 버튼 -->
 		<div class="align-center">
-			<input type="submit" value="등록">
-			<input type="button" value="홈으로" onclick="location.href='main.do'">
+			<form:button>전송</form:button>
+			<input type="button" value="목록" onclick="location.href='serviceBoardList.do'">
 		</div>
 		</form:form>
 </div>

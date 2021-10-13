@@ -30,3 +30,20 @@ CREATE SEQUENCE follow_SEQ
 START WITH 1
 INCREMENT BY 1;
 /
+
+--21.10.14 12:07 service_board 테이블 drop 후 create 해주세요
+DROP TABLE service_board;
+
+CREATE TABLE service_board
+(
+    service_num         NUMBER           NOT NULL, 
+    service_title       VARCHAR2(150)    NOT NULL, 
+    service_nickname    VARCHAR2(30)     NOT NULL, 
+    service_content     CLOB             NOT NULL, 
+    service_email       VARCHAR2(150)    NOT NULL, 
+    service_keyword     VARCHAR2(50)     NOT NULL, 
+    service_filename    VARCHAR2(150)    NULL, 
+    service_file        BLOB             NULL, 
+    mem_num             NUMBER           NULL, 
+    CONSTRAINT PK_service_num PRIMARY KEY (service_num)
+);
