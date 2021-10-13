@@ -5,6 +5,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 
 <!-- 메인 시작 -->
+<!-- main 스타일 적용 -->
 <style>
 .main {
 	display: flex;
@@ -81,34 +82,203 @@
 .rankfeedli{
 display:inline;
 }
+.rankfeedul{
+	text-align:center;
+}
 .rankfeed{
 position:sticky;
 }
+.rankitemul{
+float::inline-block ;
+display:flex;
+text-align:center;
+width: 300px;
+height: 280px;
+background-color:black;
+}
+.rankcontent{
+width: 1083px;
+height : 150px;
+text-align : center;
+}
+
+/* 베스트아이템 */
+.bestitemli {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 2rem;
+}
+.bestimage {
+	height: 0;
+	padding-bottom: 60%;
+	background-color: lightgray;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+.bestimage img {
+	display: none;
+}
+.bestdesc {
+	flex: 1 1 auto;
+	padding: 1em;
+	background: white;
+}
+
+@media (min-width: 600px) {
+	.bestitemul {
+		display: flex;
+		flex-wrap: wrap;
+		margin: 0 -1rem;
+	}
+	.bestitemli {
+		width: 50%;
+		padding: 0 1rem;
+	}
+}
+
+@media (min-width: 1200px) {
+	.bestitemli {
+		width: 25%;
+	}
+	.carousel slide{
+ 	visibility : hidden ;  
+	}
+}
+
+/* 인기사진 */
+.popularli {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 2rem;
+}
+.popularimage {
+	height: 0;
+	padding-bottom: 60%;
+	background-color: lightgray;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+.popularimage img {
+	display: none;
+}
+.populardesc {
+	flex: 1 1 auto;
+	padding: 1em;
+	background: white;
+}
+
+@media (min-width: 600px) {
+	.popularul {
+		display: flex;
+		flex-wrap: wrap;
+		margin: 0 -1rem;
+	}
+	.popularli {
+		width: 50%;
+		padding: 0 1rem;
+	}
+}
+
+@media (min-width: 1200px) {
+	.popularli {
+		width: 25%;
+	}
+}
+/*인기사진 끝*/
+/*매일의 스토리 */
+.storyli {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 2rem;
+}
+.storyimage {
+	height: 0;
+	padding-bottom: 60%;
+	background-color: lightgray;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+.storyimage img {
+	display: none;
+}
+.storydesc {
+	flex: 1 1 auto;
+	padding: 1em;
+	background: white;
+}
+
+@media (min-width: 600px) {
+	.storyul {
+		display: flex;
+		flex-wrap: wrap;
+		margin: 0 -1rem;
+	}
+	.storyli {
+		width: 50%;
+		padding: 0 1rem;
+	}
+}
+
+@media (min-width: 1200px) {
+	.storyli {
+		width: 33.33333%;
+	}
+}
 </style>
 
+<script type="text/javascript">
+	$(function(){
+		//메뉴클릭시
+		$('.rankfeedli').click(function(){
+			var activeTab = $(this).attr('value');
+			$('li').css('text-color','orange');
+			$.getJSON("/main/main.do"+"?activeTab"+activeTab, function(data){
+				var str="";
+				$(data).each(function(){
+					console.log(data);
+					str +="<li"
+				})
+				
+			})
+		});
+		
+	$('.mainimgwrapper').hover(function() {
+		  $("#mainimg1").css("transform", "scale(1.1)"),$("#mainimgbutton").css("color","black");
+		}, function(){
+		  $("#mainimg1").css("transform", "scale(1)"),$("#mainimgbutton").css("color","pink");
+		});
+	});
 
+</script>
 <div class="main">
 	<div class="main-container">
 		<div class="main-item">
-		    <div class="jumbotron">
-        <h1>Hello, world!</h1>
-        <p>The time on the server is ${serverTime}.</p>
-    </div>
+			<div class="mainimgwrapper" style="height:560px;width:1084px;">
+			<div class="main-img" id="main-img" style="overflow: hidden;">
+				<img src="${pageContext.request.contextPath}/resources/images/mainimg1.png" id="mainimg1" style="border-radius:1%;  transition: all 0.2s linear;">
+			</div>
+			<div class="mainimgtext" style="position: relative; bottom:130px;">
+			<p style="font-size:40px; padding-left: 55px; font-family: 'Gowun Dodum', sans-serif; font-weight:bolder; color:white;">어디든 환하게 밝혀주는 조명</p><button type="button" class="btn btn-light btn-lg" id="mainimgbutton" style="float:right; margin-right:70px; font-family: 'Gowun Dodum', sans-serif; position: relative; bottom:50px;">보러가기</button>
+			</div>
+			</div>
 		</div>
 		<div class="main-item">
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/img1.png" alt="First slide">
+      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/img1.png" alt="First slide" style="border-radius:1%;">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/img2.png" alt="Second slide">
+      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/img2.png" alt="Second slide" style="border-radius:1%;">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/img3.png" alt="Third slide">
+      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/img3.png" alt="Third slide" style="border-radius:1%;">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/img4.png" alt="Four slide">
+      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/img4.png" alt="Four slide" style="border-radius:1%;">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -120,8 +290,32 @@ position:sticky;
     <span class="sr-only">Next</span>
   </a>
 </div>
+<div class="test" id="test">테스트</div>
 		</div>
-		<div class="main-item">매일의 스토리</div>
+		<div class="main-item" style="margin-top : 20px;">매일의 스토리
+			<section class="everydaystory">
+			<ul class="storyul">
+				<li class="storyli">
+					<figure class="storyimage"></figure>
+					<div class="storydesc">
+						<p>작성자</p>
+					</div>
+				</li>
+				<li class="storyli">
+					<figure class="storyimage"></figure>
+					<div class="storydesc">
+						<p>작성자</p>
+					</div>
+				</li>
+				<li class="storyli">
+					<figure class="storyimage"></figure>
+					<div class="storydesc">
+						<p>작성자</p>
+					</div>
+				</li>
+			</ul>
+		</section>
+		</div>
 		<div class="main-item" id="main-item-link">
 			<div class="main-story">
 			<div class="main-story-link" onclick="location.href='#';">
@@ -145,28 +339,92 @@ position:sticky;
 			</div>
 		</div>
 		<div class="main-item">카테고리</div>
-		<div class="main-item">매일의 인기사진</div>
+		<!-- 매일의 인기사진 시작 -->
+		<div class="main-item">매일의 인기사진
+			<section class="popular">
+			<ul class="popularul">
+				<li class="popularli">
+					<figure class="popularimage"></figure>
+					<div class="populardesc">
+						<p>작성자</p>	
+					</div>
+				</li>
+				<li class="popularli">
+					<figure class="popularimage"></figure>
+					<div class="populardesc">
+						<p>작성자</p>				
+					</div>
+				</li>
+				<li class="popularli">
+					<figure class="popularimage"></figure>
+					<div class="populardesc">
+					<p>작성자</p>	
+					</div>
+				</li>
+				<li class="popularli">
+					<figure class="popularimage"></figure>
+					<div class="populardesc">
+					<p>작성자</p>	
+					</div>
+				</li>
+			</ul>
+		</section>
+		</div>
+		<!-- 매인의 인기사진 끝 -->
+		<!-- 베스트 랭킹 시작 -->
 		<div class="main-item">
 			<div class="rankfeed">
 				<ol class="rankfeedul">
-					<li class="rankfeedli">전체</li>
-					<li class="rankfeedli">가구</li>
-					<li class="rankfeedli">패브릭</li>
-					<li class="rankfeedli">조명</li>
-					<li class="rankfeedli">가전</li>
-					<li class="rankfeedli">주방용품</li>
-					<li class="rankfeedli">데코/취미</li>
-					<li class="rankfeedli">수납/정리</li>
-					<li class="rankfeedli">생필품</li>
-					<li class="rankfeedli">공구/DIY</li>
-					<li class="rankfeedli">인테리어시공</li>
-					<li class="rankfeedli">반려동물용품</li>
-					<li class="rankfeedli">실내운동</li>
-					<li class="rankfeedli">유아아동</li>
-					<li class="rankfeedli">렌탈</li>
+					<li class="rankfeedli" >전체</li>
+					<li class="rankfeedli" value="">가구</li>
+					<li class="rankfeedli" value="">패브릭</li>
+					<li class="rankfeedli" value="light">조명</li>
+					<li class="rankfeedli" value="">가전</li>
+					<li class="rankfeedli" value="kitchen">주방용품</li>
+					<li class="rankfeedli" value="deco">데코/취미</li>
+					<li class="rankfeedli" value="">수납/정리</li>
+					<li class="rankfeedli" value="">생필품</li>
+					<li class="rankfeedli" value="DIY">공구/DIY</li>
+					<li class="rankfeedli" value="pets">반려동물용품</li>
+					<li class="rankfeedli" value="">실내운동</li>
+					<li class="rankfeedli" value="baby">유아아동</li>
+					<li class="rankfeedli" value="lental">렌탈</li>
 				</ol>
 			</div>
+				<section class="bestitem">
+			<ul class="bestitemul">
+				<li class="bestitemli">
+					<figure class="bestimage"></figure>
+					<div class="bestdesc">
+						제품명<br>
+						가격
+					</div>
+				</li>
+				<li class="bestitemli">
+					<figure class="bestimage"></figure>
+					<div class="bestdesc">
+						제품명<br>
+						가격
+					</div>
+				</li>
+				<li class="bestitemli">
+					<figure class="bestimage"></figure>
+					<div class="bestdesc">
+						제품명<br>
+						가격
+					</div>
+				</li>
+				<li class="bestitemli">
+					<figure class="bestimage"></figure>
+					<div class="bestdesc">
+						제품명<br>
+						가격
+					</div>
+				</li>
+			</ul>
+		</section>		
 		</div>
+		<!-- 베스트 랭킹 끝 -->
 	</div>
 </div>
 <!-- 메인 끝 -->
