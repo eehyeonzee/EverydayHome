@@ -15,3 +15,18 @@ create table category (
     prod_cate varchar2(50) not null,
     cate_name varchar2(50) not null
 );
+
+-- 21.10.13 16:55 회원 팔로우 테이블 추가
+CREATE TABLE follow
+(
+    follow_num              NUMBER          NOT NULL, 
+    follow_mem_id           VARCHAR2(20)    NOT NULL, 
+    follower_mem_id         VARCHAR2(20)    NOT NULL, 
+    CONSTRAINT PK_follow_num PRIMARY KEY (follow_num)
+);
+/
+
+CREATE SEQUENCE follow_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
