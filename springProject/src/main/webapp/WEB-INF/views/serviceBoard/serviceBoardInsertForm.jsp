@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- 
  * 작성일 : 2021. 10. 9.
  * 작성자 : 나윤경
- * 설명 : 고객센터 글쓰기 폼
+ * 설명 : 고객센터 질문하기 폼
  * 수정일 : 
 --%>
 <!DOCTYPE html>
@@ -36,7 +37,7 @@
 					<option value="기타 문의">기타 문의</option>
 				</select>
 				<form:errors path="service_keyword" cssClass="error-color"/>
-			</li>
+			</li><!-- 문의 유형 선택 카테고리 끝-->
 			<li>
 				<label for="service_email">이메일</label>
 				<form:input path="service_email"/>
@@ -52,17 +53,32 @@
 				<form:textarea path="service_content"/>
 				<form:errors path="service_content" cssClass="error-color"/>
 			</li>
-			<li><!-- 파일 선택 -->
+ 			<li><!-- 파일 선택 -->
 				<label for="service_file">파일</label>
 				<form:input path="service_file"/>
 				<form:errors path="service_file" cssClass="error-color"/>
-				<div id="photo_choice" style="diplay:none;">
+				<div id="file_choice" style="diplay:none;">
 				<input type="file" id="upload" accept = "image/gif, image/png, image/jpeg">
-				<input type="button" value="전송" id="photo_submit">
-				<input type="button" value="취소" id="photo_reset">
-			</div>
-			</li>
+				<input type="button" value="전송" id="file_submit">
+				<input type="button" value="취소" id="file_reset">
+				</div>
+			</li> 
 		</ul>
+<%-- 		<ul>
+		<li>
+			<img src="${pageContext.request.contextPath}/serviceboard/fileView.do" width="100" height="100" class="my-file">
+		</li>
+		<li>
+			<div class="align-center">
+				<input type="button" value="수정" id="file_btn">
+			</div>
+			<div id="file_choice" style="display:none;">
+				<input type="file" id="upload" accept="image/gif,image/png,image/jpeg">
+				<input type="button" value="전송" id="file_submit">
+				<input type="button" value="취소" id="file_reset">
+			</div>
+		</li>
+		</ul> --%>
 		<!-- 버튼 -->
 		<div class="align-center">
 			<input type="submit" value="등록">

@@ -11,4 +11,5 @@ import kr.spring.serviceBoard.vo.ServiceBoardVO;
  */
 public interface ServiceBoardService {
 	public void serviceBoardInsert(ServiceBoardVO serviceBoard);
+	/* public void updateServiceFile(ServiceBoardVO serviceBoard); */
 }

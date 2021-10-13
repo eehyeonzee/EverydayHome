@@ -12,22 +12,22 @@ import kr.spring.qna.vo.QnaVO;
 
 public interface QnaMapper {
 
-	@Insert("INSERT INTO service_board (service_num, service_title, service_content, service_email, service_keyword, service_file, mem_num) VALUES (service_board_seq.nextval, #{service_title}, #{service_content}, #{service_email}, #{service_keyword}, #{service_file}, 1)")
-	public void qnaInsert(QnaVO serviceboard);
+	@Insert("INSERT INTO qna_list (qna_num, qna_category, qna_content, qna_reply) VALUES (qna_list_seq.nextval, #{qna_category}, #{qna_content}, #{qna_reply})")
+	public void qnaInsert(QnaVO qna);
 	
-	@Select("SELECT COUNT(*) FROM service_board")
+	@Select("SELECT COUNT(*) FROM qna_list")
 	public int getQnaCount();
 	
-	@Select("SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM service_board ORDER BY service_num DESC)a) WHERE rnum >= #{start} AND rnum <= #{end}")
+	@Select("SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM qna_list ORDER BY qna_num DESC)a) WHERE rnum >= #{start} AND rnum <= #{end}")
 	public List<QnaVO> getQnaList(Map<String, Object> map);
 	
-	@Select("SELECT * FROM service_board WHERE service_num = #{service_num}")
+	@Select("SELECT * FROM qna_list WHERE qna_num = #{qna_num}")
 	public QnaVO getQna(int num);
 	
-	@Update("UPDATE service_board SET service_title=#{service_title},service_content=#{service_content},service_keyword=#{service_keyword},service_file=#{service_file} WHERE service_num=#{service_num}")
-	public void qnaUpdate(QnaVO serviceboard);
+	@Update("UPDATE qna_list SET qna_content=#{qna_content},qna_category=#{qna_category},qna_reply=#{qna_reply} WHERE qna_num=#{qna_num}")
+	public void qnaUpdate(QnaVO qna);
 	
-	@Delete("DELETE FROM service_board WHERE service_num = #{service_num}")
+	@Delete("DELETE FROM qna_list WHERE qna_num = #{qna_num}")
 	public void qnaDelete(int num);
 	
 }

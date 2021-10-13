@@ -2,6 +2,9 @@ package kr.spring.serviceBoard.vo;
 
 import java.io.IOException;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -13,8 +16,12 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public class ServiceBoardVO {
 	private int service_num;		//문의 번호
+	@NotEmpty
 	private String service_title;	//제목
+	@NotEmpty
 	private String service_content;	//내용
+	@Email
+	@NotEmpty
 	private String service_email;	//이메일
 	private String service_keyword;	//키워드(유형)
 	private String service_file;	//파일명

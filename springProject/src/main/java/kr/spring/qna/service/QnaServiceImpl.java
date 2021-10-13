@@ -19,38 +19,32 @@ public class QnaServiceImpl implements QnaService{
 	
 	@Override
 	public void qnaInsert(QnaVO qna) {
-		// TODO Auto-generated method stub
-		
+		qnaMapper.qnaInsert(qna);
 	}
 
 	@Override
 	public int getQnaCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return qnaMapper.getQnaCount();
 	}
 
 	@Override
 	public List<QnaVO> getQnaList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return qnaMapper.getQnaList(map);
 	}
 
 	@Override
 	public QnaVO getQna(int num) {
-		// TODO Auto-generated method stub
-		return null;
+		return qnaMapper.getQna(num);
 	}
 
 	@Override
 	public void qnaUpdate(QnaVO qna) {
-		// TODO Auto-generated method stub
-		
+		qnaMapper.qnaUpdate(qna);
 	}
 
 	@Override
 	public void qnaDelete(int num) {
-		// TODO Auto-generated method stub
-		
+		qnaMapper.qnaDelete(num);
 	}
 
 	

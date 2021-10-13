@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.spring.serviceBoard.service.ServiceBoardService;
 import kr.spring.serviceBoard.vo.ServiceBoardVO;
@@ -25,7 +26,6 @@ import kr.spring.serviceBoard.vo.ServiceBoardVO;
 @Controller
 public class ServiceBoardController {
 
-	
 	//로그 처리 (로그 대상 지정)
 	private static final Logger log = LoggerFactory.getLogger(ServiceBoardController.class);
 	
@@ -57,6 +57,11 @@ public class ServiceBoardController {
 		
 		return "redirect:/main/main.do";
 	}
-
+	
+	/*
+	 * //글쓰기 파일 첨부 업데이트(ajax)
+	 * 
+	 * @RequestMapping("/serviceBoard/serviceBoard")
+	 */
 	
 }

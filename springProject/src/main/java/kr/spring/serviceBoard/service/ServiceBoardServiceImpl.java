@@ -25,4 +25,8 @@ public class ServiceBoardServiceImpl implements ServiceBoardService {
 	public void serviceBoardInsert(ServiceBoardVO serviceBoard) {
 		serviceBoardMapper.serviceBoardInsert(serviceBoard);
 	}
+
+	/*
+	 * @Override public void updateServiceFile(ServiceBoardVO serviceBoard) { }
+	 */
 }

@@ -6,8 +6,12 @@
 
 <tiles-definitions>
     <definition name="qnaInsert" extends="main">
-    	<put-attribute name="title" value="고객센터 글 등록"/>
+    	<put-attribute name="title" value="qna 게시판 글 등록"/>
     	<put-attribute name="body" value="/WEB-INF/views/qna/qnaInsert.jsp"/>
+    </definition>
+    <definition name="qnaList" extends="main">
+    	<put-attribute name="title" value="qna 게시판 글 목록"/>
+    	<put-attribute name="body" value="/WEB-INF/views/qna/qnaList.jsp"/>
     </definition>
 </tiles-definitions>
 
