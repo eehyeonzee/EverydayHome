@@ -19,9 +19,9 @@ create table category (
 -- 21.10.13 16:55 회원 팔로우 테이블 추가
 CREATE TABLE follow
 (
-    follow_num              NUMBER          NOT NULL, 
-    follow_mem_id           VARCHAR2(20)    NOT NULL, 
-    follower_mem_id         VARCHAR2(20)    NOT NULL, 
+    follow_num          NUMBER    NOT NULL, 
+    follow_mem_num      NUMBER    NOT NULL, 
+    follower_mem_num    NUMBER    NOT NULL, 
     CONSTRAINT PK_follow_num PRIMARY KEY (follow_num)
 );
 /
