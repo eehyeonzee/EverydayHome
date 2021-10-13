@@ -2,9 +2,13 @@ package kr.spring.notice.vo;
 
 import java.sql.Date;
 
+import javax.validation.constraints.NotEmpty;
+
 public class NoticeVO {
 	private int notice_num;
+	@NotEmpty
 	private String notice_title;
+	@NotEmpty
 	private String notice_content;
 	private Date notice_reg_date;
 	private int notice_hits;

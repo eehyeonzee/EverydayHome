@@ -92,20 +92,32 @@ public class NoticeController {
 	@GetMapping("/notice/noticeWrite.do")
 	//글쓰기 폼 호출
 	public String form() {
-		return "noticeWrite";
-	}
 	
+		return "noticeWrite";
+	
+	}
+	//공지 INSERT
 	@PostMapping("/notice/noticeWrite.do")
 	public String submit(@Valid NoticeVO noticeVo, BindingResult result, HttpSession session) {
+		
 		logger.debug("<<공지정보>> : " + noticeVo);
-
+		//오류 있을 시 다시 폼호출
 		if(result.hasErrors()) {
 			return form();
 		}
+		//세션에서 로그인한 유저 정보를 받아서 저장
 		Integer mem_num = (Integer)session.getAttribute("user_num");
+		Integer user_auth =(Integer)session.getAttribute("user_auth");
 		
+		//세션이 종료되거나 유저 권한이 관리자가 아닐경우 리스트로 이동
+		if(user_auth!=4) {
+			return "redirect:noticeList.do";
+		}
+		//멤버 정보 vo에 넣기
 		noticeVo.setMem_num(mem_num);
+		// 글작성
 		noticeService.noticeWrite(noticeVo);
+		
 		
 		return "redirect:noticeList.do";
 	}
@@ -117,15 +129,25 @@ public class NoticeController {
 		NoticeVO noticeVO=noticeService.noticeDetail(notice_num);
 		
 		Integer user_auth = (Integer)session.getAttribute("user_auth");
-		
+		//모델에 VO랑 권한이랑 같이 넣어서 전달
 		model.addAttribute("noticeVO", noticeVO);
 		model.addAttribute("user_auth",user_auth);
+		//세션이 종료되거나 유저 권한이 관리자가 아닐경우 리스트로 이동
+		if(user_auth!=4) {
+			return "redirect:noticeList.do";
+		}
+		
 		return "noticeUpdate";
 	}
 	
+	
+	//공지수정
 	@PostMapping("/notice/noticeUpdate.do")
 	public String submitUpdate(@Valid NoticeVO noticeVO, BindingResult result) {
-		
+		//오류가 있을 경우 다시 폼호출
+		if(result.hasErrors()) {
+			return form();
+		}
 		noticeService.noticeUpdate(noticeVO);
 		
 		return "redirect:noticeList.do";
@@ -133,8 +155,14 @@ public class NoticeController {
 	//공지 삭제하기
 	@GetMapping("/notice/noticeDelete.do")
 	public String deleteForm(@RequestParam int notice_num, HttpSession session) {
-		
+		//권한저장
+		Integer user_auth = (Integer)session.getAttribute("user_auth");		
+		//세션이 종료되거나 유저 권한이 관리자가 아닐경우 리스트로 이동
+		if(user_auth!=4) {
+			return "redirect:noticeList.do";
+		}
 		noticeService.noticeDelete(notice_num);
+		
 		return "redirect:noticeList.do";
 		}
 	

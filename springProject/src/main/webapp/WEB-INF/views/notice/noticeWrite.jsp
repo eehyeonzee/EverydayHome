@@ -47,12 +47,12 @@ text-align: center;
 		<ul>
 			<li class="li-title">
 				<label for="notice_title">제목</label>
-				<form:input path="notice_title"/>
+				<form:input path="notice_title"/><br>
 				<form:errors path="notice_title" cssClass="error-color"/>
 			</li>
 			<li class="li-content">
 				<label for="notice_content">내용</label><br>
-				<form:textarea path="notice_content"/>
+				<form:textarea path="notice_content"/><br>
 				<form:errors path="notice_content" cssClass="error-color"/>
 			</li>
 		</ul>
