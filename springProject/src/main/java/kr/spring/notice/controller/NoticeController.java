@@ -65,6 +65,7 @@ public class NoticeController {
 		mav.addObject("list",list);
 		mav.addObject("pagingHtml",page.getPagingHtml());
 		mav.addObject("user_auth",user_auth);
+		
 		return mav;
 	}
 	//공지 상세정보가기
@@ -75,14 +76,14 @@ public class NoticeController {
 		//상세정보 저장
 		NoticeVO notice = noticeService.noticeDetail(notice_num);
 		//권한정보저장
-		Integer user_num=(Integer)session.getAttribute("user_auth");
+		Integer user_auth=(Integer)session.getAttribute("user_auth");
 		//mav객체생성
 		ModelAndView mav= new ModelAndView();
 		//갈 페이지 앨리어스
 		mav.setViewName("noticeDetail");
 		//보낼 데이터 정보
 		mav.addObject("notice", notice);
-		mav.addObject("user_num",user_num);
+		mav.addObject("user_auth",user_auth);
 		
 		return mav;
 	}
@@ -101,6 +102,9 @@ public class NoticeController {
 		if(result.hasErrors()) {
 			return form();
 		}
+		Integer mem_num = (Integer)session.getAttribute("user_num");
+		
+		noticeVo.setMem_num(mem_num);
 		noticeService.noticeWrite(noticeVo);
 		
 		return "redirect:noticeList.do";
@@ -115,7 +119,7 @@ public class NoticeController {
 		Integer user_auth = (Integer)session.getAttribute("user_auth");
 		
 		model.addAttribute("noticeVO", noticeVO);
-		model.addAttribute("user_num",user_auth);
+		model.addAttribute("user_auth",user_auth);
 		return "noticeUpdate";
 	}
 	

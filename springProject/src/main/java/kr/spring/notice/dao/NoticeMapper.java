@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Update;
 
 import kr.spring.notice.vo.NoticeVO;
 public interface NoticeMapper {
-	@Insert("INSERT INTO notice (notice_num,notice_title,notice_content,notice_reg_date,notice_hits,mem_num) VALUES(notice_seq.NEXTVAL,#{notice_title},#{notice_content},sysdate,1,1)")
+	@Insert("INSERT INTO notice (notice_num,notice_title,notice_content,notice_reg_date,notice_hits,mem_num) VALUES(notice_seq.NEXTVAL,#{notice_title},#{notice_content},sysdate,1,#{mem_num})")
 	public void noticeWrite(NoticeVO noticeVO);
 	@Select("SELECT COUNT(*) FROM notice")
 	public int noticeTotalCount();

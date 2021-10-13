@@ -35,20 +35,19 @@ padding : 40px 8px 0px 100px;
 </style>
 <!-- 공유하기 API -->
 <script type="text/javascript">
-function kakaoshare() {
-	var title = document.getElementById(title);
-	var content = document.getElementById(content);
-  Kakao.Link.sendCustom({
-    templateId: 3135,
-    templateArgs: {
-      title:
-        title,
-      description:
-        content,
-    },
-  })
-}
-
+  function kakaoshare() {
+	  var content = document.getElementById("content").innerHTML;
+	  console.log("값:"+content);
+    Kakao.Link.sendDefault({
+      objectType: 'text',
+      text:
+		content,
+      link: {
+        mobileWebUrl: 'https://developers.kakao.com',
+        webUrl: 'https://developers.kakao.com',
+      },
+    })
+  }
 </script>
 
  <div class="container">
@@ -63,15 +62,15 @@ function kakaoshare() {
  	<p style="font-family: 'Gowun Dodum', sans-serif;">hits : ${notice.notice_hits}  |  작성자 : 관리자</p>
  	</div>
  	<div class="content-item" align="center">
- 	<span id="content" style="font-family: 'Gowun Dodum', sans-serif;">${notice.notice_content}</span>
+ 	<p id="content" style="font-family: 'Gowun Dodum', sans-serif;">${notice.notice_content}</p>
  	</div>
  	 <div class="icon-item" align="center">
  	<a href="${pageContext.request.contextPath}/notice/noticeList.do">목록으로 돌아가기</a>
  	<button type="button" onclick="kakaoshare()">공유하기 </button>
- 	<%-- <c:if test="${user_auth}!=3"> --%>
+ 	<c:if test="${user_auth==4}">
  	<a href="${pageContext.request.contextPath}/notice/noticeUpdate.do?notice_num=${notice.notice_num}">수정</a>
-	<a href="${pageContext.request.contextPath}/notice/noticeDelete.do?notice_num=${notice.notice_num}">삭제</a>
-	<%-- </c:if> --%>
+	<a href="${pageContext.request.contextPath}/notice/noticeDelete.do?notice_num=${notice.notice_num}" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+	</c:if>
  	</div>
  	</div>
  </div>
