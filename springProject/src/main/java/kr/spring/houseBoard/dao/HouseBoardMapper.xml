@@ -59,4 +59,20 @@
   			</if>
 		</where>
 	</select>
+	<update id="updateHBoard" parameterType="houseBoardVO">
+		UPDATE house_board SET
+			<if test="thumbnail_filename != ''">
+			house_thumbnail = #{house_thumbnail},
+			thumbnail_filename = #{thumbnail_filename},
+			</if>
+			house_title = #{house_title},
+			house_area = #{house_area},
+			house_type = #{house_type},
+			house_style = #{house_style},
+			house_space = #{house_space},
+			house_content = #{house_content},
+			house_mod_date = SYSDATE
+		WHERE house_num = #{house_num}
+	</update>
 </mapper>
+

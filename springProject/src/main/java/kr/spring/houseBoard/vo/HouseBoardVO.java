@@ -45,10 +45,15 @@ public class HouseBoardVO {
 	public void setUpload(MultipartFile upload) throws IOException {
 		// MultipartFile -> byte[]
 		setHouse_thumbnail(upload.getBytes());
-		setHouse_img(upload.getBytes());
 		// 파일 이름
 		setThumbnail_filename(upload.getOriginalFilename());
-		setUpload_filename(upload.getOriginalFilename());
+	}
+	
+	public void setUpload2(MultipartFile upload2) throws IOException {
+		// MultipartFile -> byte[]
+		setHouse_img(upload2.getBytes());
+		// 파일 이름
+		setUpload_filename(upload2.getOriginalFilename());
 	}
 
 	public int getHouse_num() {

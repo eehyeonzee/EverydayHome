@@ -12,6 +12,7 @@
 	<h2>글쓰기</h2>
 	<hr size="1" noshade width="100%">
 	<form:form id="register_form" action="write.do" modelAttribute="houseBoardVO" enctype="multipart/form-data">
+		<form:errors element="div" cssClass="error-color"/>
 		<ul>
 			<!-- 제목 시작 -->
 			<li>
@@ -92,10 +93,10 @@
 				<label for="upload">썸네일 파일</label>
 				<input type="file" name="upload" id="upload" accept="image/gif,image/png,image/jpeg">
 			</li>
-			<li>
-				<label for="upload">이미지 파일</label>
-				<input type="file" name="upload" id="upload" accept="image/gif,image/png,image/jpeg">
-			</li>
+			<!-- <li>
+				<label for="upload2">이미지 파일</label>
+				<input type="file" name="upload2" id="upload2" accept="image/gif,image/png,image/jpeg">
+			</li> -->
 			<!-- 이미지 파일 끝 -->
 		</ul>
 		<!-- 버튼 시작 -->

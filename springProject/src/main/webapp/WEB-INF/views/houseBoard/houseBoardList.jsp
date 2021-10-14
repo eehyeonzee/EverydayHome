@@ -8,9 +8,22 @@
  * 수정일 : 
 --%>
 <!-- 중앙 내용 시작 -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		// 검색 유효성 체크
+		$('#search_form').submit(function() {
+			if($('#keyword').val().trim() == '') {
+				alert('검색어를 입력하세요!');
+				$('#keyword').val('').focus();
+				return false;
+			}
+		});
+	});
+</script>
 <div class="page-main">
 	<h2>글 목록</h2>
-	<form id="search_form" action="list.do" method="get"><!-- 검색은 get방식 -->
+	<form id="search_form" action="list.do" method="get">
 		<ul class="search">
 			<li>
 				<select name="keyfield" id="keyfield">

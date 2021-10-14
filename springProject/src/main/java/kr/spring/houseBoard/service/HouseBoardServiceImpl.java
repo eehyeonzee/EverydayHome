@@ -42,44 +42,33 @@ public class HouseBoardServiceImpl implements HouseBoardService {
 
 	@Override
 	public HouseBoardVO selectHBoard(Integer house_num) {
-		// TODO Auto-generated method stub
-		return null;
+		return houseBoardMapper.selectHBoard(house_num);
 	}
 
 	@Override
 	public void updateHBoardHits(Integer house_num) {
-		// TODO Auto-generated method stub
-		
+		houseBoardMapper.updateHBoardHits(house_num);
 	}
 
 	@Override
 	public void updateHBoard(HouseBoardVO houseBoard) {
-		// TODO Auto-generated method stub
-		
+		houseBoardMapper.updateHBoard(houseBoard);
 	}
 
 	@Override
 	public void deleteHBoard(int house_num) {
-		// TODO Auto-generated method stub
-		
+		houseBoardMapper.deleteHBoard(house_num);
 	}
 
-	@Override
-	public String getHBoardNick(Integer mem_num) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void updateHThumbnail(HouseBoardVO houseBoard) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateHImg(HouseBoardVO houseBoard) {
-		// TODO Auto-generated method stub
-		
-	}
+	/*
+	 * @Override public String getHBoardNick(Integer mem_num) { // TODO
+	 * Auto-generated method stub return null; }
+	 * 
+	 * @Override public void updateHThumbnail(HouseBoardVO houseBoard) { // TODO
+	 * Auto-generated method stub }
+	 * 
+	 * @Override public void updateHImg(HouseBoardVO houseBoard) { // TODO
+	 * Auto-generated method stub }
+	 */
 
 }

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -11,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.spring.houseBoard.service.HouseBoardService;
 import kr.spring.houseBoard.vo.HouseBoardVO;
 import kr.spring.util.PagingUtil;
+import kr.spring.util.StringUtil;
 
 /**
  * @Package Name   : kr.spring.houseBoard.controller
@@ -111,6 +114,20 @@ public class HouseBoardController {
 	}
 	
 	// 글 상세
+	@RequestMapping("/houseBoard/detail.do")
+	public ModelAndView process(@RequestParam int house_num) { // 글번호 저장
+		// 해당 글의 조회수 증가
+		houseBoardService.updateHBoardHits(house_num);
+		// selectHBoard에 글번호 전달
+		HouseBoardVO houseBoard = houseBoardService.selectHBoard(house_num);
+		
+		// HTML 태그 불허용
+		houseBoard.setHouse_title(StringUtil.useNoHtml(houseBoard.getHouse_title()));
+		// HTML 태그 불허, 줄바꿈 허용
+		houseBoard.setHouse_content(StringUtil.useBrNoHtml(houseBoard.getHouse_content()));
+		//								뷰 이름			속성명		속성값
+		return new ModelAndView("houseBoardDetail", "houseBoard", houseBoard);
+	}
 	
 	// 이미지 출력
 	@RequestMapping("/houseBoard/imageView.do")
@@ -122,136 +139,53 @@ public class HouseBoardController {
 		mav.setViewName("imageView"); // // imageView 빈 이름(id) 생성 -> mav가 클래스 파일(빈 객체) 찾아서 실행시켜줌
 		//				속성명		속성값(byte[]의 데이터)
 		mav.addObject("imageFile", houseBoard.getHouse_thumbnail());
-		mav.addObject("imageFile", houseBoard.getHouse_img());
 		mav.addObject("filename", houseBoard.getThumbnail_filename());
-		mav.addObject("filename", houseBoard.getUpload_filename());
 		
 		return mav;
 	}
 	
-	// 글 수정
-	
-	// 글 삭제
-	
-	
-	
-	/*
-	// 로그 처리(로그 대상 지정)
-	private static final Logger log = LoggerFactory.getLogger(HouseBoardController.class);
-	
-	@Autowired
-	private HouseBoardService houseBoardService;
-	
-	// 자바빈(VO) 초기화
-	@ModelAttribute
-	public HouseBoardVO initCommand() {
-		return new HouseBoardVO();
+	// 글 수정 - 폼 호출
+	@GetMapping("/houseBoard/update.do")
+	public String formUpdate(@RequestParam int house_num, Model model) {
+		
+		HouseBoardVO houseBoardVO = houseBoardService.selectHBoard(house_num);
+		
+		model.addAttribute("houseBoardVO", houseBoardVO);
+		
+		return "houseBoardModify"; // 타일스 식별자
 	}
 	
-	// 글쓰기 폼 호출
-	@GetMapping("/houseBoard/houseBoardWrite.do")
-	public String insertHBoardForm() {
-		log.debug("<<글쓰기 폼 호출>>");
-		return "houseBoardWrite"; // 타일스 식별자 호출
-	}
-	
-	// 글 쓰기 처리
-	@PostMapping("/houseBoard/houseBoardWrite.do")
-	public String submitHBoard(@Valid HouseBoardVO houseBoardVO, BindingResult result) {
+	// 글 수정 - 전송된 데이터 처리
+	@PostMapping("/houseBoard/update.do")
+	public String submitUpdate(@Valid HouseBoardVO houseBoardVO, BindingResult result, HttpServletRequest request, Model model) {
+		
+		logger.debug("<<글 수정>> : " + houseBoardVO);
 		
 		// 유효성 체크 결과 오류가 있으면 폼 호출
 		if(result.hasErrors()) {
-			return insertHBoardForm();
+			return "houseBoardModify";
 		}
 		
-		houseBoardService.insertHBoard(houseBoardVO);
+		// 글 수정
+		houseBoardService.updateHBoard(houseBoardVO);
+		// View에 표시할 메시지
+		model.addAttribute("message", "수정이 완료되었습니다.");
+		model.addAttribute("url", request.getContextPath() + "/houseBoard/list.do"); // url은 전체 경로를 명시해주는 것이 좋음
 		
-		return "redirect:/houseBoard/houseBoardList.do";
-	}
-	
-	// 글 목록
-	@RequestMapping("/houseBoard/houseBoardList.do")
-	public ModelAndView getHBoardList(@RequestParam(value="pageNum",defaultValue="1") int currentPage) {
-		
-		log.debug("<<currentPage>> : " + currentPage);
-		
-		// 총 레코드 수
-		int count = houseBoardService.getHBoardCount();
-		
-		// 페이지 처리
-		PagingUtil page = new PagingUtil(currentPage,count,12,5,"houseBoardList.do");
-		
-		// 목록 호출
-		List<HouseBoardVO> list = null;
-		if(count > 0) {
-			Map<String,Object> map = new HashMap<String,Object>();
-			map.put("start",page.getStartCount());
-			map.put("end", page.getEndCount());
-			
-			list = houseBoardService.getHBoardList(map);
-		}
-		
-		ModelAndView mav = new ModelAndView();
-		// 뷰 이름 설정
-		mav.setViewName("houseBoardList");
-		// 데이터 저장
-		mav.addObject("count",count);
-		mav.addObject("list",list);
-		mav.addObject("pagingHtml",page.getPagingHtml());
-		
-		return mav;
-	}
-	
-	// 글 상세
-	@RequestMapping("/houseBoard/houseBoardDetail.do")
-	public ModelAndView getHBoardDetail(@RequestParam int house_num) { // 글번호 저장
-		HouseBoardVO houseBoard = houseBoardService.getHBoard(house_num); // getHBoard에 글번호 전달
-		houseBoard.setNickname(houseBoardService.getHBoardNick(houseBoard.getMem_num()));
-		//								뷰 이름			속성명		속성값
-		return new ModelAndView("houseBoardDetail", "houseBoard", houseBoard);
-	}
-	
-	// 글 수정 폼
-	@GetMapping("/houseBoard/houseBoardUpdate.do")
-	public String updateHBoard(@RequestParam int house_num, Model model) { // Model -> 메소드 호출될 때 컨테이너가 객체를 주입해줌
-		HouseBoardVO houseBoard = houseBoardService.getHBoard(house_num);
-		// 데이터 저장				속성명			속성값
-		model.addAttribute("houseBoardVO", houseBoard);
-		
-		return "houseBoardUpdate";
-	}
-	
-	// 글 수정 처리
-	@PostMapping("/houseBoard/houseBoardUpdate.do")
-	public String submitUpdate(@Valid HouseBoardVO houseBoard, BindingResult result) {
-		// 유효성 체크 결과 오류가 있으면 폼을 호출
-		if(result.hasErrors()) {
-			return "houseBoardUpdate";
-		}
-		
-		houseBoardService.updateHBoard(houseBoard);
-		
-		return "redirect:/houseBoard/houseBoardList.do";
+		return "common/resultView";
 	}
 	
 	// 글 삭제
-	 */
-	
+	@RequestMapping("/houseBoard/delete.do")
+	public String submitDelete(@RequestParam int house_num) {
+		
+		logger.debug("<<글 삭제>> : " + house_num);
+		
+		// 글 삭제
+		houseBoardService.deleteHBoard(house_num);
+		
+		return "redirect:/houseBoard/list.do";
+	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
