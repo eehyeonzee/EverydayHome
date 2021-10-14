@@ -39,19 +39,29 @@
 				<form:errors path="service_keyword" cssClass="error-color"/>
 			</li><!-- 문의 유형 선택 카테고리 끝-->
 			<li>
-				<label for="service_email">이메일</label>
-				<form:input path="service_email"/>
-				<form:errors path="service_email" cssClass="error-color"/>
-			</li>
-			<li>
 				<label for="service_title">제목</label>
 				<form:input path="service_title"/>
 				<form:errors path="service_title" cssClass="error-color"/>
 			</li>
 			<li>
 				<label for="service_nickname">닉네임</label>
-				<form:input path="service_nickname"/>
+				<c:if test="${empty mem_num }">
+					<input type="text" class="form-control" name="service_nickname" id="service_nickname" maxlength="10" placeholder="닉네임을 입력하세요"> 
+				</c:if>
+				<c:if test="${!empty mem_num }">
+					<input type="text" class="form-control" name="service_nickname" id="service_nickname" maxlength="12" value="${nickname }" readonly>
+				</c:if>
 				<form:errors path="service_nickname" cssClass="error-color"/>
+			</li>
+			<li>
+				<label for="service_email">이메일</label>
+				<c:if test="${empty mem_num }">
+					<input type="text" class="form-control" name="service_email" id="service_email" maxlength="30" placeholder="이메일을 입력하세요"> 
+				</c:if>
+				<c:if test="${!empty mem_num }">
+					<input type="text" class="form-control" name="service_email" id="service_email" maxlength="30" value="${email }" readonly>
+				</c:if>
+				<form:errors path="service_email" cssClass="error-color"/>
 			</li>
 			<li>
 				<label for="service_content">내용</label>

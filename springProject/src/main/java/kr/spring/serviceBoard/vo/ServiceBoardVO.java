@@ -112,6 +112,7 @@ import org.springframework.web.multipart.MultipartFile;
 		this.mem_num = mem_num;
 	}
 
+	// ***(주의)*** 프로퍼티 타입이 byte[]인 것은 항목에서 제외해야 함
 	@Override
 	public String toString() {
 		return "ServiceBoardVO [service_num=" + service_num + ", service_title=" + service_title + ", service_nickname="
@@ -120,7 +121,6 @@ import org.springframework.web.multipart.MultipartFile;
 				+ mem_num + "]";
 	}
 	
-	// ***(주의)*** 프로퍼티 타입이 byte[]인 것은 항목에서 제외해야 함
 	
 	
 }

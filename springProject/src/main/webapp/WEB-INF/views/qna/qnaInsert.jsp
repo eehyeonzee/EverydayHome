@@ -20,6 +20,10 @@
 	<h2>자주묻는질문 추가</h2>
 	<hr size="1" noshade width="100%">
 	<form:form action="qnaInsert.do" modelAttribute="qnaVO">
+	
+	<button id="slideToggle">slideToggle</button>
+	
+	
 		<ul>
 			<li>
 				<label for="qna_category">카테고리</label>
@@ -33,7 +37,7 @@
 					<option value="회원정보변경">회원정보변경</option>
 					<option value="서비스/기타">서비스/기타</option>
 				</select>
-					<form:errors path="qna_category" cssClass="error-color"/>
+				<form:errors path="qna_category" cssClass="error-color"/>
 			</li>
 			<li>
 				<label for="qna_content">질문내용</label>

@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.Session;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.spring.member.vo.MemberVO;
 import kr.spring.serviceBoard.service.ServiceBoardService;
 import kr.spring.serviceBoard.vo.ServiceBoardVO;
 import kr.spring.util.PagingUtil;
@@ -57,13 +61,15 @@ public class ServiceBoardController {
 	}
 	//글쓰기 처리
 	@PostMapping("/serviceBoard/serviceBoardInsert.do")
-	public String submit(@Valid ServiceBoardVO vo, BindingResult result) {
+	public String submit(@Valid ServiceBoardVO serviceboard, BindingResult result) {
 		//유효성 체크 결과 오류가 있으면 폼 호출
 		if(result.hasErrors()) {
 			return serviceBoardInsertForm();
 		}
+		//회원번호를 세팅
+		//serviceboard.setMem_num((Integer)session.getAttribute("mem_num"));
 		//글쓰기
-		serviceBoardService.serviceBoardInsert(vo);
+		serviceBoardService.serviceBoardInsert(serviceboard);
 		
 		return "redirect:/serviceBoard/serviceBoardList.do";
 	}
@@ -107,14 +113,14 @@ public class ServiceBoardController {
 			
 	//글 상세
 	@RequestMapping("/serviceBoard/serviceBoardDetail.do")
-	public ModelAndView serviceBoardDetail(@RequestParam int num) {
-		ServiceBoardVO serviceboard = serviceBoardService.getServiceBoard(num);
+	public ModelAndView serviceBoardDetail(@RequestParam int service_num) {
+		ServiceBoardVO serviceboard = serviceBoardService.getServiceBoard(service_num);
 		//HTML 태그 불허
-		serviceboard.setService_title(StringUtil.useNoHtml(serviceboard.getService_title()));
+		//serviceboard.setService_title(StringUtil.useNoHtml(serviceboard.getService_title()));
 		//HTML 태그 불허, 줄바꿈 허용
-		serviceboard.setService_content(StringUtil.useBrNoHtml(serviceboard.getService_content()));
+		//serviceboard.setService_content(StringUtil.useBrNoHtml(serviceboard.getService_content()));
 								//뷰 이름					//속성명		//속성값
-		return new ModelAndView("/serviceBoard/serviceBoardDetail","serviceboard","serviceboard");
+		return new ModelAndView("serviceBoard/serviceBoardDetail","serviceboard",serviceboard);
 	}
 	
 	//이미지 출력
@@ -132,7 +138,7 @@ public class ServiceBoardController {
 	return mav;
 }
 	
-	
+	/*
 	//수정폼
 	@GetMapping("/serviceBoard/serviceBoardUpdate.do")
 	public String serviceBoardUpdateForm(@RequestParam int num, Model model) {
@@ -173,5 +179,5 @@ public class ServiceBoardController {
 		return "redirect:/serviceBoard/serviceBoardList.do";
 	}
 	
-	
+	*/
 }

@@ -27,22 +27,20 @@
    <table>
    		<tr>
    			<th>문의번호</th>
-   			<th>회원번호</th>
+   			<th>닉네임</th>
    			<th>제목</th>
    			<th>내용</th>
    			<th>이메일</th>
    			<th>키워드</th>
-   			<th>파일명</th>
    		</tr>
    		<c:forEach var="serviceboard" items="${list }">
    		<tr>
    			<td>${serviceboard.service_num}</td>
-   			<td>${serviceboard.mem_num}</td>
-   			<td><a href="serviceBoardDetail.do?num=${serviceboard.service_num}">${serviceboard.service_title}</a></td>
+   			<td>${serviceboard.service_nickname}</td>
+   			<td><a href="serviceBoardDetail.do?service_num=${serviceboard.service_num}">${serviceboard.service_title}</a></td>
    			<td>${serviceboard.service_content}</td>
    			<td>${serviceboard.service_email}</td>
    			<td>${serviceboard.service_keyword}</td>
-   			<td>${serviceboard.service_file}</td>
    		</tr>
    		</c:forEach>
    </table>

@@ -13,6 +13,14 @@
     	<put-attribute name="title" value="qna 게시판 글 목록"/>
     	<put-attribute name="body" value="/WEB-INF/views/qna/qnaList.jsp"/>
     </definition>
+    <definition name="qnaUpdate" extends="main">
+    	<put-attribute name="title" value="qna 게시판 글 수정"/>
+    	<put-attribute name="body" value="/WEB-INF/views/qna/qnaUpdate.jsp"/>
+    </definition>
+    <definition name="qnaDelete" extends="main">
+    	<put-attribute name="title" value="qna 게시판 글 삭제"/>
+    	<put-attribute name="body" value="/WEB-INF/views/qna/qnaDelete.jsp"/>
+    </definition>
 </tiles-definitions>
 
 

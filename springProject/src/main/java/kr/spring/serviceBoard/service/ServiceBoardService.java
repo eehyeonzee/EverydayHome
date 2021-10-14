@@ -13,10 +13,10 @@ import kr.spring.serviceBoard.vo.ServiceBoardVO;
  * @프로그램 설명 : 고객센터 서비스
  */
 public interface ServiceBoardService {
-	public void serviceBoardInsert(ServiceBoardVO serviceBoard);
+	public void serviceBoardInsert(ServiceBoardVO serviceboard);
 	public int getServiceBoardCount();
 	public List<ServiceBoardVO> getServiceBoardList(Map<String,Object> map);
-	public ServiceBoardVO getServiceBoard(int num);
-	public void serviceBoardUpdate(ServiceBoardVO board);
-	public void serviceBoardDelete(int num);
+	public ServiceBoardVO getServiceBoard(int service_num);
+	//public void serviceBoardUpdate(ServiceBoardVO serviceboard);
+	//public void serviceBoardDelete(int service_num);
 }

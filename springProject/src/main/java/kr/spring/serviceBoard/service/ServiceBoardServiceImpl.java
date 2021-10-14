@@ -25,8 +25,8 @@ public class ServiceBoardServiceImpl implements ServiceBoardService {
 	private ServiceBoardMapper serviceBoardMapper;
 	
 	@Override
-	public void serviceBoardInsert(ServiceBoardVO serviceBoard) {
-		serviceBoardMapper.serviceBoardInsert(serviceBoard);
+	public void serviceBoardInsert(ServiceBoardVO serviceboard) {
+		serviceBoardMapper.serviceBoardInsert(serviceboard);
 	}
 
 	@Override
@@ -40,18 +40,18 @@ public class ServiceBoardServiceImpl implements ServiceBoardService {
 	}
 
 	@Override
-	public ServiceBoardVO getServiceBoard(int num) {
-		return serviceBoardMapper.getServiceBoard(num);
+	public ServiceBoardVO getServiceBoard(int service_num) {
+		return serviceBoardMapper.getServiceBoard(service_num);
+	}
+
+/*	@Override
+	public void serviceBoardUpdate(ServiceBoardVO serviceboard) {
+		serviceBoardMapper.serviceBoardUpdate(serviceboard);
 	}
 
 	@Override
-	public void serviceBoardUpdate(ServiceBoardVO board) {
-		serviceBoardMapper.serviceBoardUpdate(board);
+	public void serviceBoardDelete(int service_num) {
+		serviceBoardMapper.serviceBoardDelete(service_num);
 	}
-
-	@Override
-	public void serviceBoardDelete(int num) {
-		serviceBoardMapper.serviceBoardDelete(num);
-	}
-
+*/
 }

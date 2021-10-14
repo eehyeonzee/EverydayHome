@@ -1,9 +1,14 @@
 package kr.spring.qna.vo;
 
+import javax.validation.constraints.NotEmpty;
+
 public class QnaVO {
 	private int qna_num;			//질문 번호
+	@NotEmpty
 	private String qna_category;	//분류
+	@NotEmpty
 	private String qna_content;		//질문 내용
+	@NotEmpty
 	private String qna_reply;		//답변 내용
 	
 	public int getQna_num() {

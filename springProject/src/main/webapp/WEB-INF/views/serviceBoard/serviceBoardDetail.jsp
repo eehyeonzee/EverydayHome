@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- 
  * 작성일 : 2021. 10. 11.
  * 작성자 : 나윤경
@@ -15,21 +16,24 @@
 </head>
 <body>
 <div class="page-main">
-	<h2>${vo.service_title }</h2>
-	<p>
-		글번호: ${vo.service_num }<br>
-		작성자 이메일: ${vo.service_email }<br>
-		문의 유형: ${vo.service_keyword }<br>
-		제목: ${vo.service_title }<br>
-	</p>
+	<h2>${serviceboard.service_title }</h2>
+	<ul>
+		<li>글번호: ${serviceboard.service_num }</li>
+		<li>작성자 이메일: ${serviceboard.service_email }</li>
+		<li>문의 유형: ${serviceboard.service_keyword }</li>
+		<li>제목: ${serviceboard.service_title }</li>
+	</ul>
 	<hr width="100%" size="1" noshade="noshade">
 	<p>
-		문의내용: ${vo.service_content }<br>
-		파일: ${vo.service_file }<br>
+		문의내용: ${serviceboard.service_content }<br>
 	</p>
+	<hr size="1" width="100%">
+	<c:if test="${!empty serviceboard.service_filename}">
 	<div class="align-center">
-		<input type="button" value="수정" onclick="location.href='serviceBoardUpdateForm.do?num=${vo.service_num}'">
-		<input type="button" value="삭제" onclick="location.href='serviceBoardDeleteForm.do?num=${vo.service_num}'">
+		<img src="imageView.do?service_num=${serviceboard.service_num }" style="max-width:500px">
+	</div>
+	</c:if>
+	<div class="align-center">
 		<input type="button" value="목록" onclick="location.href='serviceBoardList.do'">
 	</div>
 </div>
