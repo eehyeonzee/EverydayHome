@@ -181,6 +181,13 @@ div#main_menu ul li{
 .page-main form#register_form, .page-main form#update_form{
 	width:700px;
 }
+
+.page-main2 form {
+	width:700px;
+	margin:0 auto;
+	padding:10px 10px 10px 30px;
+}
+
 .page-main ul{
 	list-style:none;
 }
