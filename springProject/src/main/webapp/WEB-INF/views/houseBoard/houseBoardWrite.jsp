@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%-- 
  * 작성일 : 2021. 10. 10.
- * 작성자 : 이현지/
+ * 작성자 : 이현지
  * 설명 : 집들이 게시판 글쓰기 폼
  * 수정일 : 
 --%>
@@ -94,7 +94,7 @@
 			<!-- 내용 시작 -->
 			<li>
 				<label for="house_content"></label>
-				<textarea id="house_content" name="house_content"></textarea>
+				<form:textarea path="house_content" id="house_content" name="house_content"/>
 				<script>
 					CKEDITOR.replace("house_content", ckeditor_config);
 				</script>

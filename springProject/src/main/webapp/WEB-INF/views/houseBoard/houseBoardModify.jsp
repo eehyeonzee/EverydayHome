@@ -96,7 +96,7 @@
 			<!-- 내용 시작 -->
 			<li>
 				<label for="house_content"></label>
-				<textarea id="house_content" name="house_content"></textarea>
+				<form:textarea path="house_content" id="house_content" name="house_content"/>
 				<script>
 					CKEDITOR.replace("house_content", ckeditor_config);
 				</script>
