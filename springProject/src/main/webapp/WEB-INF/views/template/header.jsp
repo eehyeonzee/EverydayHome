@@ -164,6 +164,7 @@ height: 40px;
 							<li class="navmenuitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/houseBoard/list.do">사진게시판</a></li>
 							<li class="navmenuitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/serviceBoard/serviceBoardList.do">고객센터게시판</a></li>
 							<li class="navmenuitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/qna/qnaList.do">QnA게시판</a></li>
+							<li class="navmenuitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/event/event.do">이벤트 게시판</a></li>
 						</ul>
 					</li>
 					<li class="navmenuli"><a class="navmenuitem" style="font-family: 'Gowun Dodum', sans-serif; text-decoration: none;" href="${pageContext.request.contextPath}/store/storeMain.do">스토어</a>
