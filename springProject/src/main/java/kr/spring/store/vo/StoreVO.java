@@ -34,16 +34,23 @@ public class StoreVO {
 	@NotEmpty
 	private String prod_cate;			// 카테고리
 	
-	// 이미지 BLOB 처리
-	public void setUpload(MultipartFile upload)throws IOException {
+	// 썸네일 BLOB 처리
+	public void setUpload1(MultipartFile upload1)throws IOException {
 		
 		// MultipartFile -> byte[]
-		setProd_img(upload.getBytes());
-		setThumbnail_img(upload.getBytes());
+		setThumbnail_img(upload1.getBytes());
 		
 		// 파일 이름
-		setProd_filename(upload.getOriginalFilename());
-		setThumbnail_filename(upload.getOriginalFilename());
+		setThumbnail_filename(upload1.getOriginalFilename());
+	}
+	// 상품이미지 BLOB 처리
+	public void setUpload2(MultipartFile upload2)throws IOException {
+		
+		// MultipartFile -> byte[]
+		setProd_img(upload2.getBytes());
+		
+		// 파일 이름
+		setProd_filename(upload2.getOriginalFilename());
 	}
 	
 	public int getProd_num() {

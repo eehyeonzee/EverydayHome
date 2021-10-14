@@ -2,10 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix = "form" uri = "http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 <!-- 내용 시작 -->
 <div class = "container">
 	<h2>상품 등록</h2>
-	<form:form id = "productRegister" action = "storeRegister.do" modelAttribute = "storeVO">
+	<form:form id = "productRegister" action = "storeRegister.do" modelAttribute = "storeVO"
+	           enctype="multipart/form-data">
 		<input type = "hidden" value = "${user_num}">
 		<ul>
 			<li>
@@ -79,10 +85,8 @@
 				<form:errors path = "add_product" cssClass = "error-color" />
 			</li>
 			<li>
-				<label for = "thumbnail_img">썸네일 이미지</label>
-				<input type = "file" id = "thumbnail_img" accept = "image/gif,image/png,image/jpeg">
-				<form:errors path = "thumbnail_img" cssClass = "error-color" />
-				<form:hidden path="thumbnail_filename" />
+				<label for = "upload1">썸네일 이미지</label>
+				<input type = "file" name = "upload1" id = "upload1" accept = "image/gif,image/png,image/jpeg">
 			</li>
 			<li>
 				<label for = "prod_content">상품 내용</label>
@@ -90,10 +94,8 @@
 				<form:errors path = "prod_content" cssClass = "error-color" />
 			</li>
 			<li>
-				<label for = "prod_img">상품 이미지</label>
-				<input type = "file" id = "prod_img" accept = "image/gif,image/png,image/jpeg">
-				<form:errors path = "prod_img" cssClass = "error-color" />
-				<form:hidden path = "prod_filename" />
+				<label for = "upload2">상품 이미지</label>
+				<input type = "file" name = "upload2" id = "upload2" accept = "image/gif,image/png,image/jpeg">
 			</li>
 		</ul>
 		<div class = "align-center">

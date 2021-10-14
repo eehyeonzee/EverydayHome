@@ -3,5 +3,40 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 <mapper namespace="kr.spring.store.dao.StoreMapper">  
+  	<select id = "selectList" parameterType = "map" resultType = "storeVO">
+  		SELECT
+  		   *
+  		FROM (SELECT
+  				a.*,
+  				rownum rnum
+  			  FROM (SELECT
+  			  		  p.prod_num,
+  			  		  <![CDATA[
+  			  		  REPLACE(REPLACE(p.prod_name, '<', '&lt;'), '>', '&gt;') prod_name,
+  			  		  ]]>
+  			  		  p.thumbnail_filename,
+  			  		  p.thumbnail_img,
+  			  		  p.prod_price
+  			  FROM product p JOIN member m ON p.mem_num = m.mem_num
+  			  <where>
+			  	  <if test = "keyword != '' and keyfield == 1">
+			  	  	  p.prod_name '%' || #{keyword} || '%'
+			  	  </if>
+  			  </where>
+  			  ORDER BY p.prod_num DESC) a)
+  		<![CDATA[
+  		WHERE rnum >= #{start} AND rnum <= #{end}
+  		]]>
+  	</select>
   	
+  	<select id = "selectRowCount" parameterType = "map" resultType = "integer">
+  		SELECT
+  			COUNT(*)
+  		FROM product p JOIN member m ON p.mem_num = m.mem_num
+  		<where>
+	  		<if test = "keyword != '' and keyfield == 1">
+	  			p.prod_name '%' || #{keyword} || '%'
+	  		</if>
+		</where>
+  	</select>
 </mapper>

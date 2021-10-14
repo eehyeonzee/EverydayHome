@@ -95,31 +95,6 @@
 			</div>
 		</div>
 	</div>
-	<div class="container">
-		<ul>
-			<li class = "active" role = "button">
-				<span>연휴특가</span>
-			</li>
-			<li role = "button">
-				<span>가을맞이 멍냥템 특가</span>
-			</li>
-			<li role = "button">
-				<span>신혼 필수가전 추천</span>
-			</li>
-			<li role = "button">
-				<span>인기가구 세일위크</span>
-			</li>
-			<li role = "button">
-				<span>300개 브랜드 릴레이 세일</span>
-			</li>
-			<li role = "button">
-				<span>신규브랜드 런칭특가</span>
-			</li>
-			<li role = "button">
-				<span>원하는 날 무료배송</span>
-			</li>
-		</ul>
-	</div>
 </div> <!-- end of carousel -->
 
 <script>

@@ -1,5 +1,8 @@
 package kr.spring.store.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +20,21 @@ public class StoreServiceImpl implements StoreService{
 	@Override
 	public void productRegister(StoreVO storeVO) {
 		storeMapper.productRegister(storeVO);
+	}
+
+	@Override
+	public List<StoreVO> selectList(Map<String, Object> map) {
+		return storeMapper.selectList(map);
+	}
+
+	@Override
+	public int selectRowCount(Map<String, Object> map) {
+		return storeMapper.selectRowCount(map);
+	}
+
+	@Override
+	public StoreVO selectProduct(Integer prod_num) {
+		return storeMapper.selectProduct(prod_num);
 	}
 
 }
