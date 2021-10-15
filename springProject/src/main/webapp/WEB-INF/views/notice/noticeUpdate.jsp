@@ -39,7 +39,14 @@ margin : 20px 0px 0px 0px;
 margin: 0 auto;
 text-align: center;
 }
+.ck-editor__editable_inline {
+min-height: 500px;
+}
 </style>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ckeditor.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/uploadAdapter.js"></script>
     <div class="container">
     <div class="main-container">
 	<h2>공지 수정</h2>
@@ -55,6 +62,21 @@ text-align: center;
 				<label for="notice_content">내용</label><br>
 				<form:textarea path="notice_content"/>
 				<form:errors path="notice_content" cssClass="error-color"/>
+				<script>
+					function MyCustomUploadAdapterPlugin(editor) {
+						editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+							return new UploadAdapter(loader);	
+						}
+					}
+					
+					ClassicEditor.create(document.querySelector('#notice_content'), {
+						extraPlugins:[MyCustomUploadAdapterPlugin]
+					}).then(editor => {
+						window.editor = editor;
+					}).catch(error => {
+						console.error(error);
+					})
+				</script>
 			</li>
 		</ul>
 		<div class="submit-button">

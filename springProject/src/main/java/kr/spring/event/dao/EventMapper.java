@@ -25,6 +25,6 @@ public interface EventMapper {
 	public List<EventVO> eventGetList(Map<String,Object> map);
 	@Update("UPDATE event SET event_hits=event_hits+1 WHERE event_num=#{event_num}")
 	public int eventGetHits(int event_num);
-	@Update("UPDATE spboard SET event_filename = '', event_photo = '' WHERE event_num = #{event_num}")
+	@Update("UPDATE event SET event_filename = '', event_photo = '' WHERE event_num = #{event_num}")
 	public void deleteFile(Integer event_num);
 }
