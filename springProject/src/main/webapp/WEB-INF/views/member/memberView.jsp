@@ -33,7 +33,7 @@
 					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="#">주문배송내역조회</a></li>						
 					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="#">상품 스크랩북</a></li>
 					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="#">상품 문의내역</a></li>
-					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/memberUpdate.do">포인트</a></li>
+					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="#">포인트</a></li>
 					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/notice/noticeList.do">공지사항</a></li>
 					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/serviceBoard/serviceBoardList.do">고객센터</a></li>
 				</ul>
@@ -90,16 +90,22 @@
 			</div>
 		<hr>
 		<div class="mypage-info">
-			<table>
+			<table  style="border:1px dashed #b5b7ba;">
 				<tr>
-					<th>스크랩북</th>
-					<th>좋아요</th>
-					<th>내 쿠폰</th>
-				</tr>
-				<tr>
-					<td><a href="#">${ member.scrapbook_count }</a></td>
-					<td><a href="#">${ member.recommend_count }</a></td>
-					<td><a href="#">${member.coupon_count}</a></td>
+					<th style="border:1px dashed white;"><div class="profile_btn" style="cursor: pointer;" align="center" onclick="location.href='#'">
+																	<img src="${pageContext.request.contextPath}/resources/images/bookmark.svg">
+																			<p>스크랩북
+																			<p>${member.scrapbook_count}
+																			</div></th>
+					<th style="border:1px dashed white;"><div class="profile_btn" style="cursor: pointer;" align="center" onclick="location.href='#'">
+																	<img src="${pageContext.request.contextPath}/resources/images/heart.svg">
+																			<p>좋아요
+																			<p>${member.recommend_count}
+																			</div></th>
+					<th style="border:1px dashed white;"><div class="profile_btn" style="cursor: pointer;" align="center" onclick="location.href='#'">
+																	<img src="${pageContext.request.contextPath}/resources/images/coupon.png">
+																			<p>내 쿠폰
+																			<p>${member.coupon_count}</div></th>
 				</tr>
 			</table>
 		</div>
