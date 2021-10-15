@@ -129,8 +129,8 @@
 							$('#file_del').click(function() {
 								var choice = confirm('삭제하시겠습니까?');
 								if(choice) { // true
-									$ajax({
-										data: {house_num:${houseBoardVO.house_num}},
+									$.ajax({
+										data: {house_num: ${houseBoardVO.house_num}},
 										type: 'post',
 										url: 'deleteFile.do',
 										dataType: 'json',

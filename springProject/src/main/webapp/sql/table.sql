@@ -52,4 +52,9 @@ CREATE TABLE service_board
 ALTER TABLE house_board RENAME COLUMN house_modi TO house_mod_date;
 ALTER TABLE house_board DROP COLUMN house_color;
 
+-- 21.10.15 16:00 집들이게시판 테이블 컬럼 제거
+ALTER TABLE house_board DROP COLUMN house_img;
+ALTER TABLE house_board DROP COLUMN upload_filename;
+
+
 

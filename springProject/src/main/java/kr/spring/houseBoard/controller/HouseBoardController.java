@@ -133,27 +133,6 @@ public class HouseBoardController {
 		return new ModelAndView("houseBoardDetail", "houseBoard", houseBoard);
 	}
 	
-	// 글 수정 - 썸네일 삭제 (ajax방식)
-	@RequestMapping("/houseBoard/deleteFile.do")
-	@ResponseBody
-	public Map<String,String> processFile(int house_num, HttpSession session) {
-		
-		Map<String,String> map = new HashMap<String, String>();
-		
-		Integer user_num = (Integer)session.getAttribute("user_num");
-		
-		if(user_num == null) {
-			map.put("result", "logout");
-			
-		}else {
-			houseBoardService.deleteFile(house_num);
-			map.put("result", "success");
-		}
-		
-		return map;
-	}
-	
-	
 	// 이미지 출력
 	@RequestMapping("/houseBoard/imageView.do")
 	public ModelAndView viewImage(@RequestParam int house_num) {
@@ -198,6 +177,26 @@ public class HouseBoardController {
 		model.addAttribute("url", request.getContextPath() + "/houseBoard/list.do"); // url은 전체 경로를 명시해주는 것이 좋음
 		
 		return "common/resultView";
+	}
+	
+	// 글 수정 - 썸네일 삭제 (ajax방식)
+	@RequestMapping("/houseBoard/deleteFile.do")
+	@ResponseBody
+	public Map<String,String> processFile(int house_num, HttpSession session) {
+		
+		Map<String,String> map = new HashMap<String,String>();
+		
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		
+		if(user_num == null) {
+			map.put("result", "logout");
+			
+		}else {
+			houseBoardService.deleteFile(house_num);
+			map.put("result", "success");
+		}
+		
+		return map;
 	}
 	
 	// CKEditor를 이용한 이미지 업로드
