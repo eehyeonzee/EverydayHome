@@ -7,11 +7,19 @@
  * 설명 : 마이페이지
  * 수정일 : 
 --%>
-<style>
-	
-</style>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$(".profile_btn").hover(function(){
+			$(this).css("background-color", "#f0e9e9");
+		}, function() {
+		        $(this).css("background-color","white");
+		});
+	});
+</script>
+
 <!-- 중앙 내용 시작 -->
-<div align="left" style="padding-left: 15em;">
+<div align="left" style="padding-left: 15em;  ">
 <nav class="nav-right">
 	<div class="nav-right-menu">
 		<ul style=" display: inline-block; ">
@@ -93,19 +101,19 @@
 			<table  style="border:1px dashed #b5b7ba;">
 				<tr>
 					<th style="border:1px dashed white;"><div class="profile_btn" style="cursor: pointer;" align="center" onclick="location.href='#'">
-																	<img src="${pageContext.request.contextPath}/resources/images/bookmark.svg">
+																	<img style="margin-top: 1em; margin-bottom: 2px; width: 40px; height: 40px;" src="${pageContext.request.contextPath}/resources/images/bookmark.svg">
 																			<p>스크랩북
-																			<p>${member.scrapbook_count}
+																			<p style="margin-bottom: 2em;">${member.scrapbook_count}
 																			</div></th>
 					<th style="border:1px dashed white;"><div class="profile_btn" style="cursor: pointer;" align="center" onclick="location.href='#'">
-																	<img src="${pageContext.request.contextPath}/resources/images/heart.svg">
+																	<img style="margin-top: 1em; margin-bottom: 2px; width: 40px; height: 40px;" src="${pageContext.request.contextPath}/resources/images/heart.svg">
 																			<p>좋아요
-																			<p>${member.recommend_count}
+																			<p style="margin-bottom: 2em;">${member.recommend_count}
 																			</div></th>
 					<th style="border:1px dashed white;"><div class="profile_btn" style="cursor: pointer;" align="center" onclick="location.href='#'">
-																	<img src="${pageContext.request.contextPath}/resources/images/coupon.png">
+																	<img style="margin-top: 1em; margin-bottom: 2px; width: 40px; height: 40px;" src="${pageContext.request.contextPath}/resources/images/coupon.png">
 																			<p>내 쿠폰
-																			<p>${member.coupon_count}</div></th>
+																			<p style="margin-bottom: 2em;">${member.coupon_count}</div></th>
 				</tr>
 			</table>
 		</div>
