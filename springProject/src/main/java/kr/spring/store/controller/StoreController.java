@@ -220,4 +220,15 @@ public class StoreController {
 		return map;
 	}
 	
+	// 상품 삭제
+	@RequestMapping("/store/productDelete.do")
+	public String productDelete(@RequestParam int prod_num) {
+		
+		logger.debug("<<상품 삭제>> : " + prod_num);
+		
+		// 상품 삭제
+		storeService.deleteProduct(prod_num);
+		
+		return "redirect:/store/storeCategory.do";
+	}
 }

@@ -17,7 +17,7 @@
 				delete_btn.onclick=function() {
 					var choice = confirm('삭제하시겠습니까?');
 					if(choice) {
-						location.replace('delete.do?prod_num=${storeVO.prod_num}');
+						location.replace('productDelete.do?prod_num=${storeVO.prod_num}');
 					}
 				};
 			</script>

@@ -3,6 +3,7 @@ package kr.spring.store.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -27,4 +28,6 @@ public interface StoreMapper {
 	public void updateProduct(StoreVO storeVO);
 	@Update("UPDATE product SET thumbnail_img = '', thumbnail_filename = '' WHERE prod_num = #{prod_num}")
 	public void deleteThumbnail(Integer prod_num);
+	@Delete("DELETE FROM product WHERE prod_num = #{prod_num}")
+	public void deleteBoard(Integer prod_num);
 }

@@ -47,4 +47,9 @@ public class StoreServiceImpl implements StoreService{
 		storeMapper.deleteThumbnail(prod_num);
 	}
 
+	@Override
+	public void deleteProduct(Integer prod_num) {
+		storeMapper.deleteBoard(prod_num);
+	}
+
 }
