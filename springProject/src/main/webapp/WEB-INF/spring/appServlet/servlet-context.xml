@@ -76,6 +76,7 @@
 		<!-- 로그인 여부 체크 -->
 		<interceptor>
 			<mapping path="/member/myPage.do"/>
+			<mapping path="/member/memberUpdate.do"/>
 			<mapping path="/houseBoard/write.do"/>
 			<mapping path="/houseBoard/update.do"/>
 			<mapping path="/houseBoard/delete.do"/>
