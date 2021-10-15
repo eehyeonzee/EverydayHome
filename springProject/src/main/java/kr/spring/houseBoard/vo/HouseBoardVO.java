@@ -27,8 +27,6 @@ public class HouseBoardVO {
 	private Date house_mod_date; // 수정일
 	private byte[] house_thumbnail; // 썸네일 이미지
 	private String thumbnail_filename; // 썸네일 파일명
-	private byte[] house_img; // 업로드 이미지
-	private String upload_filename; // 업로드 파일명
 	
 	// === 회원 === //
 	private int mem_num; // 회원번호
@@ -47,13 +45,6 @@ public class HouseBoardVO {
 		setHouse_thumbnail(upload.getBytes());
 		// 파일 이름
 		setThumbnail_filename(upload.getOriginalFilename());
-	}
-	
-	public void setUpload2(MultipartFile upload2) throws IOException {
-		// MultipartFile -> byte[]
-		setHouse_img(upload2.getBytes());
-		// 파일 이름
-		setUpload_filename(upload2.getOriginalFilename());
 	}
 
 	public int getHouse_num() {
@@ -160,22 +151,6 @@ public class HouseBoardVO {
 		this.thumbnail_filename = thumbnail_filename;
 	}
 
-	public byte[] getHouse_img() {
-		return house_img;
-	}
-
-	public void setHouse_img(byte[] house_img) {
-		this.house_img = house_img;
-	}
-
-	public String getUpload_filename() {
-		return upload_filename;
-	}
-
-	public void setUpload_filename(String upload_filename) {
-		this.upload_filename = upload_filename;
-	}
-
 	public int getMem_num() {
 		return mem_num;
 	}
@@ -231,7 +206,7 @@ public class HouseBoardVO {
 				+ ", house_area=" + house_area + ", house_style=" + house_style + ", house_title=" + house_title
 				+ ", house_content=" + house_content + ", house_hits=" + house_hits + ", house_recom=" + house_recom
 				+ ", house_reg_date=" + house_reg_date + ", house_mod_date=" + house_mod_date + ", thumbnail_filename="
-				+ thumbnail_filename + ", upload_filename=" + upload_filename + ", mem_num=" + mem_num + ", mem_id="
+				+ thumbnail_filename + ", mem_num=" + mem_num + ", mem_id="
 				+ mem_id + ", mem_auth=" + mem_auth + ", nickname=" + nickname + ", scrap_num=" + scrap_num
 				+ ", follow_num=" + follow_num + "]";
 	}

@@ -32,9 +32,6 @@
 	
 	<context:component-scan base-package="kr.spring.**.controller" />
 	
-	<!-- CK에디터 이미지 첨부 파일 경로 -->
-	<resources location="/resources/ckUpload" mapping="/ckUpload/**"/>
-	
 	<!-- 파일 업로드 -->
 	<beans:bean id="multipartResolver"
 	  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

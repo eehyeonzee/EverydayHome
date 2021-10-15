@@ -21,10 +21,6 @@ public interface HouseBoardService {
 	public void updateHBoardHits(Integer house_num); // 조회수
 	public void updateHBoard(HouseBoardVO houseBoard); // 글 수정
 	public void deleteHBoard(int house_num); // 글 삭제
-	
-	/*
-	 * public String getHBoardNick(Integer mem_num); // 닉네임 // 썸네일 업데이트 public void
-	 * updateHThumbnail(HouseBoardVO houseBoard); // 글쓰기 이미지 업데이트 public void
-	 * updateHImg(HouseBoardVO houseBoard);
-	 */
+	// 썸네일 삭제(업데이트)
+	public void deleteFile(Integer house_num);
 }

@@ -1,5 +1,6 @@
 package kr.spring.houseBoard.controller;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.houseBoard.service.HouseBoardService;
@@ -124,10 +127,32 @@ public class HouseBoardController {
 		// HTML 태그 불허용
 		houseBoard.setHouse_title(StringUtil.useNoHtml(houseBoard.getHouse_title()));
 		// HTML 태그 불허, 줄바꿈 허용
-		houseBoard.setHouse_content(StringUtil.useBrNoHtml(houseBoard.getHouse_content()));
+	    // CK에디터 사용시 주석 처리
+	    // houseBoard.setHouse_content(StringUtil.useBrNoHtml(houseBoard.getHouse_content()));
 		//								뷰 이름			속성명		속성값
 		return new ModelAndView("houseBoardDetail", "houseBoard", houseBoard);
 	}
+	
+	// 글 수정 - 썸네일 삭제 (ajax방식)
+	@RequestMapping("/houseBoard/deleteFile.do")
+	@ResponseBody
+	public Map<String,String> processFile(int house_num, HttpSession session) {
+		
+		Map<String,String> map = new HashMap<String, String>();
+		
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		
+		if(user_num == null) {
+			map.put("result", "logout");
+			
+		}else {
+			houseBoardService.deleteFile(house_num);
+			map.put("result", "success");
+		}
+		
+		return map;
+	}
+	
 	
 	// 이미지 출력
 	@RequestMapping("/houseBoard/imageView.do")
@@ -175,6 +200,40 @@ public class HouseBoardController {
 		return "common/resultView";
 	}
 	
+	// CKEditor를 이용한 이미지 업로드
+	@RequestMapping("/houseBoard/imageUploader.do")
+	@ResponseBody
+	public Map<String,Object> uploadImage(MultipartFile upload, HttpSession session, HttpServletRequest request) throws Exception {
+		
+		// 업로드와 절대 경로 구하기
+		String realFolder = session.getServletContext().getRealPath("/resources/image_upload");
+		
+		// 업로드한 파일 이름
+		String org_filename = upload.getOriginalFilename();
+		String str_filename = System.currentTimeMillis() + org_filename;
+		
+		logger.debug("<<원본 파일명>> : " + org_filename);
+		logger.debug("<<저장할 파일명>> : " + str_filename);
+		
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		
+		String filepath = realFolder + "\\" + user_num + "\\" + str_filename;
+		logger.debug("<<파일 경로>> : " + filepath);
+		
+		File f = new File(filepath);
+		if(!f.exists()) {
+			f.mkdirs();
+		}
+		
+		upload.transferTo(f);
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("uploaded", true);
+		map.put("url", request.getContextPath() + "/resources/image_upload/" + user_num + "/" + str_filename);
+		
+		return map;
+	}
+
 	// 글 삭제
 	@RequestMapping("/houseBoard/delete.do")
 	public String submitDelete(@RequestParam int house_num) {

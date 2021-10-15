@@ -60,15 +60,9 @@ public class HouseBoardServiceImpl implements HouseBoardService {
 		houseBoardMapper.deleteHBoard(house_num);
 	}
 
-	/*
-	 * @Override public String getHBoardNick(Integer mem_num) { // TODO
-	 * Auto-generated method stub return null; }
-	 * 
-	 * @Override public void updateHThumbnail(HouseBoardVO houseBoard) { // TODO
-	 * Auto-generated method stub }
-	 * 
-	 * @Override public void updateHImg(HouseBoardVO houseBoard) { // TODO
-	 * Auto-generated method stub }
-	 */
+	@Override
+	public void deleteFile(Integer house_num) {
+		houseBoardMapper.deleteFile(house_num);	
+	}
 
 }

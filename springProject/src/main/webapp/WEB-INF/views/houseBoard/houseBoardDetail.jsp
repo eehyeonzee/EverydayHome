@@ -7,6 +7,7 @@
  * 설명 : 집들이 게시판 글 상세
  * 수정일 : 
 --%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/videoAdapter.js"></script>
 <!-- 중앙 내용 시작 -->
 <div class="page-main">
 	<h2>${houseBoard.house_title}</h2>
@@ -24,11 +25,6 @@
 		<img src="imageView.do?house_num=${houseBoard.house_num}" style="max-width:500px">
 	</div>
 	</c:if>
-	<%-- <c:if test="${!empty houseBoard.upload_filename}">
-	<div class="align-center">
-		<img src="imageView.do?house_num=${houseBoard.house_num}" style="max-width:500px">
-	</div>
-	</c:if> --%>
 	<p>${houseBoard.house_content}</p>
 	<hr size="1" width="100%" noshade>
 	<div class="align-right">

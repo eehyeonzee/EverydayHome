@@ -8,17 +8,16 @@
  * 설명 : 집들이 게시판 글 수정 폼
  * 수정일 : 
 --%>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/layout.css" type="text/css">
-<script src="${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>
+<link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style>
+	.ck-editor__editable_inline {
+		min-height: 250px;
+	}
+</style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-<script>
-	var ckeditor_config = {
-		resize_enable: false,
-		enterMode: CKEDITOR.ENTER_BR,
-		shiftEnterMode: CKEDITOR.ENTER_P,
-		filebrowserUploadUrl: "/common/ckUpload"
-	};
-</script>
+<script type="text/javascript" src="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ckeditor.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/uploadAdapter.js"></script>
 <!-- 중앙 내용 시작 -->
 <div class="page-main2">
 	<h2>글 수정</h2>
@@ -93,36 +92,70 @@
 				<form:errors path="house_space" cssClass="error-color"/>
 			</li>
 			<!-- 카테고리 끝 -->
-			<!-- 내용 시작 -->
+			<!-- CKEditor 시작 -->
 			<li>
 				<label for="house_content"></label>
-				<form:textarea path="house_content" id="house_content" name="house_content"/>
-				<script>
-					CKEDITOR.replace("house_content", ckeditor_config);
-				</script>
+				<form:textarea path="house_content"/>
 				<form:errors path="house_content" cssClass="error-color"/>
+				<script>
+					function MyCustomUploadAdapterPlugin(editor) {
+						editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+							return new UploadAdapter(loader);	
+						}
+					}
+					
+					ClassicEditor.create(document.querySelector('#house_content'), {
+						extraPlugins:[MyCustomUploadAdapterPlugin]
+					}).then(editor => {
+						window.editor = editor;
+					}).catch(error => {
+						console.error(error);
+					})
+				</script>
 			</li>
-			<!-- 내용 끝 -->
-			<!-- 이미지 파일 시작 -->
+			<!-- CKEditor 끝 -->
+			<!-- 썸네일 시작 -->
 			<li>
 				<label for="upload">썸네일 파일</label>
 				<input type="file" name="upload" id="upload" accept="image/gif,image/png,image/jpeg">
 				<c:if test="${!empty houseBoardVO.thumbnail_filename}">
 					<br>
-					<span>(${houseBoardVO.thumbnail_filename}) 파일이 등록되어 있습니다.
+					<span id="file_detail">(${houseBoardVO.thumbnail_filename}) 파일이 등록되어 있습니다.
 					다시 업로드하면 기존 파일은 삭제됩니다.</span>
+					<input type="button" value="파일삭제" id="file_del">
+					<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+					<script type="text/javascript">
+						$(function() {
+							$('#file_del').click(function() {
+								var choice = confirm('삭제하시겠습니까?');
+								if(choice) { // true
+									$ajax({
+										data: {house_num:${houseBoardVO.house_num}},
+										type: 'post',
+										url: 'deleteFile.do',
+										dataType: 'json',
+										cache: false,
+										timeout: 30000,
+										success: function(param) {
+											if(param.result == 'logout') {
+												alert('로그인 후 사용하세요');
+											}else if(param.result == 'success') {
+												$('#file_detail').hide();
+											}else {
+												alert('파일삭제 오류 발생');
+											}
+										},
+										error: function() {
+											alert('네트워크 오류 발생');
+										}
+									});
+								}
+							});
+						});
+					</script>
 				</c:if>
 			</li>
-			<%-- <li>
-				<label for="upload2">이미지 파일</label>
-				<input type="file" name="upload2" id="upload2" accept="image/gif,image/png,image/jpeg">
-				<c:if test="${!empty houseBoardVO.upload_filename}">
-					<br>
-					<span>(${houseBoardVO.upload_filename}) 파일이 등록되어 있습니다.
-					다시 업로드하면 기존 파일은 삭제됩니다.</span>
-				</c:if>
-			</li> --%>
-			<!-- 이미지 파일 끝 -->
+			<!-- 썸네일 끝 -->
 		</ul>
 		<!-- 버튼 시작 -->
 		<div class="align-center">

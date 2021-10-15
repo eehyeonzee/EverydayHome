@@ -31,10 +31,7 @@ public interface HouseBoardMapper {
 	public void updateHBoard(HouseBoardVO houseBoard); // 글 수정
 	@Delete("DELETE FROM house_board WHERE house_num = #{house_num}")
 	public void deleteHBoard(Integer house_num); // 글 삭제
-	/*
-	 * @Select("SELECT nickname FROM mem_detail WHERE mem_num = #{mem_num}") public
-	 * String getHBoardNick(Integer mem_num); // 닉네임 // 썸네일 업데이트 public void
-	 * updateHThumbnail(HouseBoardVO houseBoard); // 글쓰기 이미지 업데이트 public void
-	 * updateHImg(HouseBoardVO houseBoard);
-	 */
+	// 썸네일 삭제(업데이트)
+	@Update("UPDATE house_board SET house_thumbnail = '', thumbnail_filename = '' WHERE house_num = #{house_num}")
+	public void deleteFile(Integer house_num);
 }
