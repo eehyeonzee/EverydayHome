@@ -24,8 +24,63 @@
 	</c:if>
 </div>
 <div>
+	<c:if test = "${!empty storeVO.thumbnail_img}">
 	<img src = "imageView.do?prod_num=${storeVO.prod_num}" style = "width:240px; height:240px; max-width:240px; max-height:240px;"><br>
+	</c:if>
+	<c:if test = "${empty storeVO.thumbnail_img}">
+	<img src = "${pageContext.request.contextPath}/resources/images/gift.png">
+	</c:if>
 	${storeVO.prod_name}
 	${storeVO.prod_price}
+	<c:if test = "${!empty storeVO.prod_option1}">
+	<select id = "product">
+		<option value = "" id = "selec_option">${storeVO.selec_product}</option>
+		<option value = "${storeVO.prod_price}">${storeVO.prod_option1}</option>
+		<c:if test = "${!empty storeVO.prod_option2}">
+		<option value = "${storeVO.prod_price}">${storeVO.prod_option2}</option>
+		</c:if>
+	</select>
+	</c:if>
+	<c:if test = "${!empty storeVO.prod_img}">
 	<img src = "contentImageView.do?prod_num=${storeVO.prod_num}">
+	</c:if>
+	<div>
+		<c:if test = "${!empty storeVO.prod_option1}">
+			<script type = "text/javascript">
+				$(document).ready(function() {
+					
+					$('#product').click(function() {
+						var result = '';
+						var price = 0;						
+						var productOption = $('#product option:selected').text();
+						var productPrice = $('#product option:selected').val();
+						
+						if($('#product').val() != '') {
+							result += productOption + " ";
+							price += parseInt(productPrice);
+						}
+						
+						if(price != 0) {
+							$('#result').text(result);
+							$('#price').text(price + '원');
+						}
+						
+						if($('#product').val() == '') {
+							$('#result').text('');
+							$('#price').text('');
+						}
+					});
+				});
+			</script>
+		</c:if>
+		<div>
+			<span id = "result"></span>
+			<span id = "price"></span>
+			<div id = "result-next">
+			</div>
+		</div>
+		<div>
+			<span id = "last_price">0원</span>
+		</div>
+	</div>
 </div>

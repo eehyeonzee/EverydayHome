@@ -141,7 +141,16 @@
 					<div class = "col-6 col-md-4">
 						<article id = "product" class = "product-item">
 							<div class = "align-center">
+								<c:if test = "${empty storeVO.thumbnail_filename}">
+									<!-- 썸네일 이미지가 존재하지 않을 경우 -->
+									<a class = "item-overlay" href = "storeDetail.do?prod_num=${storeVO.prod_num}">
+									<img src = "${pageContext.request.contextPath}/resources/images/gift.png" style = "width:240px; height:240px; max-width:240px; max-height:240px;"><br>
+									${storeVO.prod_name}<br>
+									${storeVO.prod_price}원
+									</a>
+								</c:if>
 								<c:if test = "${!empty storeVO.thumbnail_filename}">
+									<!-- 썸네일 이미지가 존재 -->
 									<a class = "item-overlay" href = "storeDetail.do?prod_num=${storeVO.prod_num}">
 									<img src = "imageView.do?prod_num=${storeVO.prod_num}" style = "width:240px; height:240px; max-width:240px; max-height:240px;"><br>
 									${storeVO.prod_name}<br>
