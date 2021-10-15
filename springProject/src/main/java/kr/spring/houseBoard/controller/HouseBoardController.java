@@ -73,7 +73,7 @@ public class HouseBoardController {
 			return form();
 		}
 		
-		// 회원번호 세팅
+		// 회원번호
 		houseBoardVO.setMem_num((Integer)session.getAttribute("user_num"));
 		// 글쓰기
 		houseBoardService.insertHBoard(houseBoardVO);
@@ -107,6 +107,7 @@ public class HouseBoardController {
 			list = houseBoardService.selectHBoardList(map);
 		}
 		
+		// 전달 객체
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("houseBoardList"); // 타일스 식별자
 		mav.addObject("count", count);
@@ -246,4 +247,3 @@ public class HouseBoardController {
 	}
 
 }
-

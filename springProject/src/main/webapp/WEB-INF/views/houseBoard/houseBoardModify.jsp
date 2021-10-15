@@ -18,6 +18,48 @@
 <script type="text/javascript" src="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ckeditor.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/uploadAdapter.js"></script>
+<script type="text/javascript">
+$(function() {
+	// 이벤트 연결
+	$('#register_form').submit(function() {
+		if($('#house_title').val().trim() == '') {
+			alert('제목을 입력하세요');
+			$('#house_title').val('').focus();
+			return false;
+		}
+				
+		if($('#house_area').val() == '') {
+			alert('평수를 선택하세요');
+			$('#house_area').val('').focus();
+			return false;
+		}
+		
+		if($('#house_type').val() == '') {
+			alert('주거형태를 선택하세요');
+			$('#house_type').val('').focus();
+			return false;
+		}
+		
+		if($('#house_style').val() == '') {
+			alert('스타일을 선택하세요');
+			$('#house_type').val('').focus();
+			return false;
+		}
+		
+		if($('#house_space').val() == '') {
+			alert('공간을 선택하세요');
+			$('#house_type').val('').focus();
+			return false;
+		}
+		
+		if($('#house_content').val() == '') {
+			alert('내용을 입력하세요');
+			$('#house_content').val('').focus();
+			return false;
+		}
+	});
+});
+</script>
 <!-- 중앙 내용 시작 -->
 <div class="page-main2">
 	<h2>글 수정</h2>
