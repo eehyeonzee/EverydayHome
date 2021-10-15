@@ -1,9 +1,11 @@
 package kr.spring.notice.controller;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.notice.service.NoticeService;
@@ -151,6 +155,40 @@ public class NoticeController {
 		noticeService.noticeUpdate(noticeVO);
 		
 		return "redirect:noticeList.do";
+	}
+	
+	// CKEditor를 이용한 이미지 업로드
+	@RequestMapping("/notice/imageUploader.do")
+	@ResponseBody
+	public Map<String,Object> uploadImage(MultipartFile upload, HttpSession session, HttpServletRequest request) throws Exception {
+		
+		// 업로드할 절대 경로 구하기
+		String realFolder = session.getServletContext().getRealPath("/resources/image_upload");
+		
+		// 업로드한 파일 이름
+		String org_filename = upload.getOriginalFilename();
+		String str_filename = System.currentTimeMillis() + org_filename; // long타입으로 밀리세컨드를 가져와서 중복되지 않은 파일명을 만듦
+		
+		logger.debug("<<원본 파일명>> : " + org_filename);
+		logger.debug("<<저장할 파일명>> : " + str_filename);
+		
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		
+		String filepath = realFolder + "\\" + user_num + "\\" + str_filename;
+		logger.debug("<<파일 경로>> : " + filepath);
+		
+		File f = new File(filepath);
+		if(!f.exists()) { // 폴더가 존재하지 않는다면 만들자
+			f.mkdirs();
+		}
+		
+		upload.transferTo(f); // 경로가 있다면 파일 업로드
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("uploaded", true);
+		map.put("url", request.getContextPath() + "/resources/image_upload/" + user_num + "/" + str_filename); // 리퀘스트를 사용해서 경로를 읽어옴
+		
+		return map;
 	}
 	//공지 삭제하기
 	@GetMapping("/notice/noticeDelete.do")
