@@ -39,4 +39,20 @@
 	  		</if>
 		</where>
   	</select>
+  	
+  	<update id = "updateProduct" parameterType = "storeVO">
+  		UPDATE product SET 
+  			prod_name = #{prod_name}, prod_price = #{prod_price}, delive_price = #{delive_price},
+			delive_type = #{delive_type}, selec_product = #{selec_product}, prod_option1 = #{prod_option1}, 
+            prod_content = #{prod_content}, 
+            <if test = "prod_filename != ''">
+            prod_img = #{prod_img}, prod_filename = #{prod_filename},
+            </if>
+            <if test = "thumbnail_filename != ''"> 
+            thumbnail_img = #{thumbnail_img}, thumbnail_filename = #{thumbnail_filename}, 
+            </if>
+            prod_quan = #{prod_quan},
+			add_product = #{add_product}, prod_keyword = #{prod_keyword}, prod_cate = #{prod_cate}
+         WHERE prod_num = #{prod_num}
+  	</update>
 </mapper>

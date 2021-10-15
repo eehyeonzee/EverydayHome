@@ -136,17 +136,23 @@
 				<h3>${storeVO.prod_cate}</h3>
 				CAROUSEL
 				
-				<c:forEach var = "storeVO" items = "${list}">
 				<div class = "row" style="padding-top: 0px; padding-bottom: 5562px; transform: translateY(0px);">
-					<div class = "col-6 col-lg-4">
+					<c:forEach var = "storeVO" items = "${list}">
+					<div class = "col-6 col-md-4">
 						<article id = "product" class = "product-item">
-								${storeVO.thumbnail_img}
-								${storeVO.prod_name}
-								${storeVO.prod_price}	
+							<div class = "align-center">
+								<c:if test = "${!empty storeVO.thumbnail_filename}">
+									<a class = "item-overlay" href = "storeDetail.do?prod_num=${storeVO.prod_num}">
+									<img src = "imageView.do?prod_num=${storeVO.prod_num}" style = "width:240px; height:240px; max-width:240px; max-height:240px;"><br>
+									${storeVO.prod_name}<br>
+									${storeVO.prod_price}원
+									</a>
+								</c:if>	
+							</div>
 						</article>
 					</div>
+					</c:forEach>
 				</div>
-				</c:forEach>
 				<div class = "align-center">${pagingHtml}</div>
 			</div>
 		</div>

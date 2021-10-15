@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import kr.spring.store.vo.StoreVO;
 
@@ -23,4 +24,7 @@ public interface StoreMapper {
 	public int selectRowCount(Map<String, Object> map);
 	@Select("SELECT * FROM product p JOIN member m ON p.mem_num = m.mem_num WHERE p.prod_num = #{prod_num}")
 	public StoreVO selectProduct(Integer prod_num);
+	public void updateProduct(StoreVO storeVO);
+	@Update("UPDATE product SET thumbnail_img = '', thumbnail_filename = '' WHERE prod_num = #{prod_num}")
+	public void deleteThumbnail(Integer prod_num);
 }

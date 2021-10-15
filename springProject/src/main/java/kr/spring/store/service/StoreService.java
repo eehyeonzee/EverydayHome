@@ -11,4 +11,6 @@ public interface StoreService {
 	public List<StoreVO> selectList(Map<String, Object> map);
 	public int selectRowCount(Map<String, Object> map);
 	public StoreVO selectProduct(Integer prod_num);
+	public void updateProduct(StoreVO storeVO);
+	public void deleteThumbnail(Integer prod_num);
 }

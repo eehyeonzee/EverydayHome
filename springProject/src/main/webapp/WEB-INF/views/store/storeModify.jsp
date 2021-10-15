@@ -10,8 +10,9 @@
 <!-- 내용 시작 -->
 <div class = "container">
 	<h2>상품 등록</h2>
-	<form:form id = "productRegister" action = "storeRegister.do" modelAttribute = "storeVO"
+	<form:form id = "productModify" action = "updateProduct.do" modelAttribute = "storeVO"
 	           enctype="multipart/form-data">
+		<form:hidden path = "prod_num" />
 		<input type = "hidden" value = "${user_num}">
 		<ul>
 			<li>
@@ -86,7 +87,40 @@
 			</li>
 			<li>
 				<label for = "upload1">썸네일 이미지</label>
-				<input type = "file" name = "upload1" id = "upload1" accept = "image/gif,image/png,image/jpeg">
+				<input type = "file" name = "upload1" id = "upload1" accept = "image/gif,image/png,image/jpeg"><br>
+				<span id = "file_detail">(${storeVO.thumbnail_filename}) 파일이 등록되어 있습니다.
+				다시 업로드하면 기존 파일은 삭제 됩니다.
+				<input type = "button" value = "파일삭제" id = "file_del">
+				</span>
+				<script type = "text/javascript">
+					$(function() {
+						$('#file_del').click(function() {
+							var choice = confirm('삭제 하시겠습니까?');
+							if(choice) {
+								$.ajax({
+									data : {prod_num : ${storeVO.prod_num}},
+									type : 'post',
+									url : 'deleteFile.do',
+									dataType : 'json',
+									cache : false,
+									timeout : 30000,
+									success : function(param) {
+										if(param.result == 'logout') {
+											alert('로그인 후 사용하세요!');
+										}else if(param.result == 'success') {
+											$('#file_detail').hide();
+										}else {
+											alert('파일 삭제 오류 발생');
+										}
+									},
+									error : function() {
+										alert('네트워크 오류 발생');
+									}
+								});
+							}
+						});
+					});
+				</script>
 			</li>
 			<li>
 				<label for = "prod_content">상품 내용</label>
@@ -95,15 +129,18 @@
 			</li>
 			<li>
 				<label for = "upload2">상품 이미지</label>
-				<input type = "file" name = "upload2" id = "upload2" accept = "image/gif,image/png,image/jpeg">
+				<input type = "file" name = "upload2" id = "upload2" accept = "image/gif,image/png,image/jpeg"><br>
+				<span id = "file_detail2">(${storeVO.prod_filename}) 파일이 등록되어 있습니다.
+				다시 업로드하면 기존 파일은 삭제 됩니다.
+				</span>
 			</li>
 		</ul>
 		<div class = "align-center">
-			<input type = "submit" value = "상품 등록" id = "regist">
+			<input type = "submit" value = "상품 수정" id = "modify">
 			<script type = "text/javascript">
-				var regist = document.getElementById('regist');
-				regist.onclick=function() {
-					var choice = confirm('등록 하시겠습니까?');
+				var modify = document.getElementById('modify');
+				modify.onclick=function() {
+					var choice = confirm('수정 하시겠습니까?');
 					if(choice) {
 						return;
 					}else {

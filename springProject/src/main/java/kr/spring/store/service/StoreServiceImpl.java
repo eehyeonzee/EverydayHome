@@ -37,4 +37,14 @@ public class StoreServiceImpl implements StoreService{
 		return storeMapper.selectProduct(prod_num);
 	}
 
+	@Override
+	public void updateProduct(StoreVO storeVO) {
+		storeMapper.updateProduct(storeVO);
+	}
+
+	@Override
+	public void deleteThumbnail(Integer prod_num) {
+		storeMapper.deleteThumbnail(prod_num);
+	}
+
 }
