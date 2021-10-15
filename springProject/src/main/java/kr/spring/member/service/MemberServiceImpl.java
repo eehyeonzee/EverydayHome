@@ -40,6 +40,7 @@ public class MemberServiceImpl implements MemberService {
 		memberVO.setCoupon_count(memberMapper.selectGetCouponCount(mem_num));	// 쿠폰번호 저장
 		memberVO.setFollower_count(memberMapper.selectGetFollowCount(mem_num));	// 팔로우 수 저장
 		memberVO.setFollow_count(memberMapper.selectGetFollowerCount(mem_num));	// 팔로워 수 저장
+		memberVO.setHouse_board_count(memberMapper.selectGetHouseBoardCount(mem_num)); // 작성글 수 저장
 		
 		return memberVO;
 	}

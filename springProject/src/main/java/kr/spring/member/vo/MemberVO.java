@@ -45,6 +45,7 @@ public class MemberVO {
 	   private int follower_count; // 팔로워 숫자
 	   private int scrapbook_count;	// 스크랩 북 숫자
 	   private int recommend_count;	// 좋아요 숫자
+	   private int house_board_count;	// 사진 글 숫자
 	   
 	   //============ 비밀번호 일치 여부 체크 ==============//
 	   public boolean isCheckedPassword(String userPasswd) {
@@ -221,6 +222,13 @@ public class MemberVO {
 	public void setRecommend_count(int recommend_count) {
 		this.recommend_count = recommend_count;
 	}
+	public int getHouse_board_count() {
+		return house_board_count;
+	}
+
+	public void setHouse_board_count(int house_board_count) {
+		this.house_board_count = house_board_count;
+	}
 
 	@Override
 	public String toString() {
@@ -231,8 +239,10 @@ public class MemberVO {
 				+ coupon_name + ", coupon_context=" + coupon_context + ", coupon_count=" + coupon_count
 				+ ", discount_price=" + discount_price + ", nickname=" + nickname + ", follow_count=" + follow_count
 				+ ", follower_count=" + follower_count + ", scrapbook_count=" + scrapbook_count + ", recommend_count="
-				+ recommend_count + "]";
+				+ recommend_count + ", house_board_count=" + house_board_count + "]";
 	}
+
+	
 
 	
 	
