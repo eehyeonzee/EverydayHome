@@ -42,8 +42,9 @@ text-align: center;
 </style>
     <div class="container">
     <div class="main-container">
-	<h2>글쓰기</h2>
-	<form:form action="noticeWrite.do" modelAttribute="noticeVO">
+	<h2>공지 수정</h2>
+	<form:form action="noticeUpdate.do" modelAttribute="noticeVO">
+		<form:hidden path="notice_num"/>
 		<ul>
 			<li class="li-title">
 				<label for="notice_title">제목</label>

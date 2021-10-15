@@ -7,23 +7,30 @@
  * 설명 : 마이페이지
  * 수정일 : 
 --%>
-<style>
-	.mypage-info-main{
-	border: 2px solid; 
-	width: 20%; 
-	height: 45%;
-	}
-	div.mypage-info{
-	border: 2px solid white; 
-	width: 90%; 
-	height: 90%;
-	font-size: 10px;
-	}
-</style>
-<!-- 중앙 내용 시작 -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		// 프로필 버튼
+		$(".profile_btn").hover(function(){
+			$(this).css("background-color", "#f0e9e9");
+		}, function() {
+		        $(this).css("background-color","white");
+		});
+		
+		
+		// 사진 올리기
+		$(".mypage-photo-write").hover(function(){
+			$(this).css("color", "#d9d4d4");
+		}, function() {
+		        $(this).css("color","black");
+		});
+		
+	});
+</script>
+<%@ include file="/WEB-INF/views/member/myPageHeader.jsp" %>
 <div class ="page-main">
 	<h2>프로필 사진</h2>
-	<div class="mypage-info-main" align="center" ">
+	<div class="mypage-info-main" align="center">
 	<ul>
 		<li>
 			<c:if test="${empty member.profile_filename }">
@@ -46,26 +53,48 @@
 			</div>
 		<hr>
 		<div class="mypage-info">
-			<table>
+			<table  style="border:1px dashed #b5b7ba;">
 				<tr>
-					<th>스크랩북</th>
-					<th>좋아요</th>
-					<th>내 쿠폰</th>
-				</tr>
-				<tr>
-					<td><a href="#">${ member.scrapbook_count }</a></td>
-					<td><a href="#">${ member.recommend_count }</a></td>
-					<td><a href="#">${member.coupon_count}</a></td>
+					<th style="border:1px dashed white;"><div class="profile_btn" style="cursor: pointer;" align="center" onclick="location.href='#'">
+																	<img style="margin-top: 1em; margin-bottom: 2px; width: 40px; height: 40px;" src="${pageContext.request.contextPath}/resources/images/bookmark.svg">
+																			<p>스크랩북
+																			<p style="margin-bottom: 2em;">${member.scrapbook_count}
+																			</div></th>
+					<th style="border:1px dashed white;"><div class="profile_btn" style="cursor: pointer;" align="center" onclick="location.href='#'">
+																	<img style="margin-top: 1em; margin-bottom: 2px; width: 40px; height: 40px;" src="${pageContext.request.contextPath}/resources/images/heart.svg">
+																			<p>좋아요
+																			<p style="margin-bottom: 2em;">${member.recommend_count}
+																			</div></th>
+					<th style="border:1px dashed white;"><div class="profile_btn" style="cursor: pointer;" align="center" onclick="location.href='#'">
+																	<img style="margin-top: 1em; margin-bottom: 2px; width: 40px; height: 40px;" src="${pageContext.request.contextPath}/resources/images/coupon.png">
+																			<p>내 쿠폰
+																			<p style="margin-bottom: 2em;">${member.coupon_count}</div></th>
 				</tr>
 			</table>
 		</div>
-
 	</div>
-	<hr size="1" width="100%">
-	<p class="align-right">
-		<input type="button" value="회원정보수정" onclick="location.href='update.do'">
-		<input type="button" value="비밀번호변경" onclick="location.href='changePassword.do'">
-		<input type="button" value="회원탈퇴" onclick="location.href='delete.do'">
-	</p>
+	<div class="mypage-main-content" align="center">
+		<div class="mypage-photo-write-divi">
+		<div align="left">사진 ${member.house_board_count}</div>
+		<table style="border:1px dashed #b5b7ba;">
+			<tr>
+			<td style="border:1px dashed #b5b7ba;" class="mypage-photo-write" align="center" onclick="location.href='${pageContext.request.contextPath}/houseBoard/write.do'">
+				<span style="font-size: 25px;">+</span>
+				<span style="font-size: 14px;">사진을 올려보세요</span>
+			</td>			
+			</tr>
+		</table>	
+		<br><br>
+		<div align="left">문의하기</div>
+		<table style="border:1px dashed #b5b7ba;">
+			<tr style="border-style: dotted;">
+			<td style="border:1px dashed #b5b7ba;" class="mypage-photo-write" align="center" onclick="location.href='${pageContext.request.contextPath}/serviceBoard/serviceBoardList.do'">
+				<span style="font-size: 25px;">+</span>
+				<span style="font-size: 14px;">질문을 올려보세요</span>
+			</td>			
+			</tr>
+		</table>
+		</div>
+	</div>
 </div>
 <!-- 중앙 내용 끝 -->
