@@ -87,7 +87,7 @@ public class MemberController {
 	}
 	
 	
-	// 회원가입 - 이메일 인증 난수 생성 및 메일 발송 컨트롤러
+	// 회원가입 - 이메일 인증 난수 생성 및 메일 발송 컨트롤러.
 	@GetMapping("/member/mailCheck.do")
 	@ResponseBody	// ajax처리를 위한 어노테이션
     public String sendMail(String email) throws Exception{		// ModelAttribute 생략
