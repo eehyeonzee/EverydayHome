@@ -36,4 +36,7 @@ public interface MemberMapper {
 	public void updateProfile(MemberVO member);		// 마이페이지 - 프로필 사진 업데이트
 	@Update("UPDATE mem_detail SET mem_name = #{mem_name}, nickname = #{nickname}, phone = #{phone}, email = #{email}, zipcode = #{zipcode}, address1 = #{address1}, address2 = #{address2} WHERE mem_num = #{mem_num}")
 	public void updateMember(MemberVO member);		// 마이페이지 - 회원 정보 수정
+	@Select("SELECT * FROM house_board WHERE mem_num=#{mem_nane}")
+	public void selectMyBoard(Integer mem_num);		 // 마이페이지 - 내가 쓴 글
+	
 }
