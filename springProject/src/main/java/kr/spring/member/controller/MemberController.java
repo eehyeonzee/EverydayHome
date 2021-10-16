@@ -414,13 +414,13 @@ public class MemberController {
 		MemberVO member = memberService.selectMember(user_num);
 		logger.debug("<<회원 내가 쓴 글>> : " + member);
 		
-		HouseBoardVO houseBoardVO = houseBoardService.selectMyBoard(user_num);
+		//HouseBoardVO houseBoardVO = houseBoardService.selectMyBoard(user_num);
 		
 		
 		logger.debug("<<회원 내가 쓴 글>> : " + member);
 		
 		model.addAttribute("member", member);
-		model.addAttribute("houseBoard", houseBoardVO);
+		//model.addAttribute("houseBoard", houseBoardVO);
 		
 		return "myBoardView";	// 타일스 식별자
 	}
