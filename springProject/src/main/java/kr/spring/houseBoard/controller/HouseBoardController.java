@@ -73,7 +73,7 @@ public class HouseBoardController {
 			return form();
 		}
 		
-		// 회원번호
+		// 회원번호 세팅
 		houseBoardVO.setMem_num((Integer)session.getAttribute("user_num"));
 		// 글쓰기
 		houseBoardService.insertHBoard(houseBoardVO);

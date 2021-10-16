@@ -17,14 +17,14 @@
 			  		  b.house_hits,
 			  		  b.house_reg_date,
 			  		  b.mem_num,
-			  		  m.mem_id
-			  		FROM house_board b JOIN member m ON b.mem_num = m.mem_num
+			  		  m.nickname
+			  		FROM house_board b JOIN mem_detail m ON b.mem_num = m.mem_num
 			  		<where>
 			  			<if test="keyword != '' and keyfield == 1">
 			  				b.house_title LIKE '%' || #{keyword} || '%'
 			  			</if>
 			  			<if test="keyword != '' and keyfield == 2">
-			  				m.mem_id LIKE '%' || #{keyword} || '%'
+			  				m.nickname LIKE '%' || #{keyword} || '%'
 			  			</if>
 			  			<if test="keyword != '' and keyfield == 3">
 			  				b.house_content LIKE '%' || #{keyword} || '%'
@@ -42,13 +42,13 @@
 	<select id="selectRowCount" parameterType="map" resultType="integer">
 		SELECT
 			COUNT(*)
-		FROM house_board b JOIN member m ON b.mem_num = m.mem_num
+		FROM house_board b JOIN mem_detail m ON b.mem_num = m.mem_num
 		<where>
 			<if test="keyword != '' and keyfield == 1">
   				b.house_title LIKE '%' || #{keyword} || '%'
   			</if>
   			<if test="keyword != '' and keyfield == 2">
-  				m.mem_id LIKE '%' || #{keyword} || '%'
+  				m.nickname LIKE '%' || #{keyword} || '%'
   			</if>
   			<if test="keyword != '' and keyfield == 3">
   				b.house_content LIKE '%' || #{keyword} || '%'

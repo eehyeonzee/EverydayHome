@@ -13,7 +13,7 @@
 	<h2>${houseBoard.house_title}</h2>
 	<ul>
 		<li>번호 : ${houseBoard.house_num}</li>
-		<li>작성자 : ${user_nickname}</li>
+		<li>작성자 : ${houseBoard.nickname}</li>
 		<li>조회수 : ${houseBoard.house_hits}</li>
 		<li>작성일 : ${houseBoard.house_reg_date}</li>
 		<li>최근수정일 : ${houseBoard.house_mod_date}</li>
