@@ -55,12 +55,13 @@ public class MemberController {
 	@Autowired
 	private JavaMailSender mailSender;	//자바 메일 전송 객체 생성
 	
-	// 자바빈(VO) 초기화
+	// Member 자바빈(VO) 초기화
 	 @ModelAttribute
 	 public MemberVO initCommand() {
+		 
 	    return new MemberVO();
 	 }
-	
+		 
 	
 	// 회원가입 - 회원가입 폼 호출
 	@RequestMapping("/member/registerUser.do")
@@ -402,10 +403,20 @@ public class MemberController {
 	
 	// 마이페이지 - 내가 쓴 글 목록
 	@GetMapping("/member/myBoard.do")
-	public String myBoardView() {
+	public String myBoardView(HttpSession session, Model model) {
+	
+		Integer user_num = (Integer)session.getAttribute("user_num");
 		
-		HouseBoardVO houseBoardVO = new HouseBoardVO();
+		MemberVO member = memberService.selectMember(user_num);
+		logger.debug("<<회원 내가 쓴 글>> : " + member);
 		
+		HouseBoardVO houseBoardVO = memberService.selectMyBoard(user_num);
+		
+		
+		logger.debug("<<회원 내가 쓴 글>> : " + member);
+		
+		model.addAttribute("member", member);
+		model.addAttribute("houseBoard", houseBoardVO);
 		
 		return "myBoardView";	// 타일스 식별자
 	}

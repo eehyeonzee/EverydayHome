@@ -135,13 +135,13 @@ public class EventController {
 	//이벤트 업데이트 
 	@PostMapping("/event/eventUpdate.do")
 	public String submitUpdate(@Valid EventVO eventVO, BindingResult result) {
+		logger.debug("<<수정>>:" + eventVO);
 		
 		if(result.hasErrors()) {
 			return "redirect:eventList.do";
 		}
 		
 		eventService.eventUpdate(eventVO);
-		logger.debug("<<수정>>:" + eventVO);
 		return "redirect:eventList.do";
 	}
 	//글 수정시 이미지 

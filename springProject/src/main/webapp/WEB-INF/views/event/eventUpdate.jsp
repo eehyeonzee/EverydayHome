@@ -39,11 +39,18 @@ margin : 20px 0px 0px 0px;
 margin: 0 auto;
 text-align: center;
 }
+.ck-editor__editable_inline {
+min-height: 500px;
+}
 </style>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ckeditor.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/uploadAdapter.js"></script>
     <div class="container">
     <div class="main-container">
 	<h2>이벤트 수정</h2>
-	<form:form action="eventUpdate.do" modelAttribute="eventVO">
+	<form:form action="eventUpdate.do" modelAttribute="eventVO" enctype="multipart/form-data">
 	<form:hidden path="event_num"/>
 		<ul>
 			<li class="li-title">
@@ -52,9 +59,25 @@ text-align: center;
 				<form:errors path="event_title" cssClass="error-color"/>
 			</li>
 			<li class="li-content">
-				<label for="event_content">내용</label><br>
+			<li>
 				<form:textarea path="event_content"/>
 				<form:errors path="event_content" cssClass="error-color"/>
+				<script>
+					function MyCustomUploadAdapterPlugin(editor) {
+						editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+							return new UploadAdapter(loader);	
+						}
+					}
+					
+					ClassicEditor.create(document.querySelector('#event_content'), {
+						extraPlugins:[MyCustomUploadAdapterPlugin]
+					}).then(editor => {
+						window.editor = editor;
+					}).catch(error => {
+						console.error(error);
+					})
+				</script>
+			</li>
 			</li>
 			<li>
 				<label for="upload">이미지 파일</label>
