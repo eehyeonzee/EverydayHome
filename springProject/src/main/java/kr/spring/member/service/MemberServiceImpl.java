@@ -28,7 +28,7 @@ public class MemberServiceImpl implements MemberService {
 		//회원번호 셋팅
 		member.setMem_num(memberMapper.seleceMem_num());
 		memberMapper.insertMember(member);
-		memberMapper.insertMember_datail(member);		
+		memberMapper.insertMember_datail(member);
 	}
 	@Override
 	public MemberVO selectCheckMember(String mem_id) {
@@ -53,12 +53,6 @@ public class MemberServiceImpl implements MemberService {
 	public void updateMember(MemberVO member) {
 		memberMapper.updateMember(member);
 		
-	}
-	@Override
-	public HouseBoardVO selectMyBoard(Integer mem_num) {
-		HouseBoardVO houseBoardVO = new HouseBoardVO();
-		memberMapper.selectMyBoard(mem_num);
-		return houseBoardVO;
 	}
 	
 }

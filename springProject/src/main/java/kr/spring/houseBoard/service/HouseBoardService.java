@@ -18,6 +18,7 @@ public interface HouseBoardService {
 	public int selectRowCount(Map<String,Object> map); // 글의 개수
 	public void insertHBoard(HouseBoardVO houseBoard); // 글쓰기
 	public HouseBoardVO selectHBoard(Integer house_num); // 글 상세
+	public HouseBoardVO selectMyBoard(Integer mem_num);	 // 마이페이지 글 상세
 	public void updateHBoardHits(Integer house_num); // 조회수
 	public void updateHBoard(HouseBoardVO houseBoard); // 글 수정
 	public void deleteHBoard(int house_num); // 글 삭제

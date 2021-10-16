@@ -39,6 +39,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import kr.spring.houseBoard.service.HouseBoardService;
 import kr.spring.houseBoard.vo.HouseBoardVO;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
@@ -52,6 +53,10 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private HouseBoardService houseBoardService;
+	
 	@Autowired
 	private JavaMailSender mailSender;	//자바 메일 전송 객체 생성
 	
@@ -397,7 +402,6 @@ public class MemberController {
 			
 			map.put("result", "success");
 		}
-		
 		return map;
 	}
 	
@@ -410,7 +414,7 @@ public class MemberController {
 		MemberVO member = memberService.selectMember(user_num);
 		logger.debug("<<회원 내가 쓴 글>> : " + member);
 		
-		HouseBoardVO houseBoardVO = memberService.selectMyBoard(user_num);
+		HouseBoardVO houseBoardVO = houseBoardService.selectMyBoard(user_num);
 		
 		
 		logger.debug("<<회원 내가 쓴 글>> : " + member);
