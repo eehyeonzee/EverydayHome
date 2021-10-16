@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
 <style>
 .name-item{
 	align-items: center;
@@ -58,19 +59,21 @@ h2{
  		<div class="link-item" style="font-family: 'Gowun Dodum', sans-serif;">장바구니에 아무것도 없습니다.</div>
  		</c:if>
  		<c:if test="${map.count>0}">
-		<form name="form1" id="form1" method="post" action="/cart/cartUpdate.do">
-		<c:forEach var="row" items="${map.list}" varStatus="i">
+		<form name="form1" id="form1" method="post" action="cartUpdate.do">
+			<c:forEach var="row" items="${map.list}" varStatus="i">
 			<!-- 상세페이지링크연결 -->
 			<div class="link-item" onclick="location.href='#'"> 
+			<!-- 이미지 추가 -->
  			<div class="title">
  			<p style="font-family: 'Gowun Dodum', sans-serif;">${row.prod_name}</p>
  			</div>
-            <input type="number" style="width: 40px" name="amount" value="${row.cart_quan}" min="1">
-            <input type="hidden" name="productId" value="${row.prod_num}">
+            <input type="number" style="width: 40px" name="cart_quan" value="${row.cart_quan}" min="1" max="10">
+            <input type="hidden" name="prod_num" value="${row.prod_num}">
  			<div class="reg_date">
  			<span style="font-family: 'Gowun Dodum', sans-serif;">
  			 <fmt:formatNumber pattern="###,###,###" value="${row.prod_price}"/>
  			 </span>
+ 			 <a href="${pageContext.request.contextPath}/cart/cartDelete.do?cart_num=${row.cart_num}">삭제</a>
  			</div>
  		</div>
 		</c:forEach>
@@ -78,8 +81,7 @@ h2{
 		 장바구니 금액 합계 : <fmt:formatNumber pattern="###,###,###" value="${map.sumMoney}"/><br>
          배송료 : ${map.fee}<br>
          전체 주문금액  :<fmt:formatNumber pattern="###,###,###" value="${map.allSum}"/>
-		<input type="hidden" name="count" value="${map.count}">
-		<button type="submit" id="btnUpdate">수정</button>
+			<button type="submit" id="btnUpdate">수정</button>
 		</form>
  		</c:if>
  	</div>

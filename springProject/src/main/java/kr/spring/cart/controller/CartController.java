@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -68,26 +69,29 @@ public class CartController {
 		}else {
 			cartService.CurrentUpdate(cart);
 		}
-		return "redirect:cart/cartList.do";
+		return "redirect:cartList.do";
+		//장바구니에 추가되었습니다. 장바구니로 가시겠습니까? 하면 장바구니로 가게하고 취소를 누르면 그 페이지 그대로 남아있도록하기.
 	}
 	//장바구니 삭제
-	@RequestMapping("cart/cartDelete.do")
+	@GetMapping("cart/cartDelete.do")
 	public String delete(@RequestParam int cart_num) {
 		cartService.cartDelete(cart_num);
-		return "redirect:cart/cartList.do";
+		return "redirect:cartList.do";
 	}
 	//장바구니 수정
 	@RequestMapping("cart/cartUpdate.do")
-	public String cartUpdate(@RequestParam int[] amount, @RequestParam int[] prod_num, HttpSession session) {
+	public String cartUpdate(@RequestParam int[] cart_quan, @RequestParam int[] prod_num, HttpSession session) {
 		//session에서 유저 번호 알아옴
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		for(int i=0; i<prod_num.length; i++) {
 			CartVO cart = new CartVO();
 			cart.setMem_num(user_num);
 			cart.setProd_num(prod_num[i]);
-			cart.setCart_quan(amount[i]);
+			cart.setCart_quan(cart_quan[i]);
 			cartService.cartUpdate(cart);
+			logger.debug ("<<cartUpdate>>: " +cart);
 		}
-		return "redirect:cart/cartList.do";
+		
+		return "redirect:cartList.do";
 	}
 }
