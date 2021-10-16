@@ -54,7 +54,7 @@ public class CartController {
 		logger.debug("<<count>>:" + list.size());
 		return mav;
 	}
-	//장바구니 버튼 폼 cartVO로 넘겨야함
+	//장바구니 버튼 폼 cartVO로 넘겨야함 cartVO 필요한거 : 개수 , 제품 번호 
 	//장바구니 추가
 	@RequestMapping("cart/cartInsert.do")
 	public String cartInsert(@ModelAttribute CartVO cart, HttpSession session) {
