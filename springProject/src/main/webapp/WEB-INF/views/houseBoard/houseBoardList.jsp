@@ -28,7 +28,7 @@
 			<li>
 				<select name="keyfield" id="keyfield">
 					<option value="1">제목</option>
-					<option value="2">ID</option>
+					<option value="2">작성자</option>
 					<option value="3">내용</option>
 					<option value="4">제목+내용</option>
 				</select>
@@ -60,7 +60,7 @@
 		<tr>
 			<td>${houseBoard.house_num}</td>
 			<td><a href="detail.do?house_num=${houseBoard.house_num}">${houseBoard.house_title}</a></td>
-			<td>${user_nickname}</td>
+			<td>${houseBoard.nickname}</td>
 			<td>${houseBoard.house_reg_date}</td>
 			<td>${houseBoard.house_hits}</td>
 		</tr>

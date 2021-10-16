@@ -24,7 +24,7 @@ public interface HouseBoardMapper {
 	@Insert("INSERT INTO house_board (house_num,house_title,house_area,house_type,house_style,house_space,house_content,house_thumbnail,thumbnail_filename,mem_num)"
 			+ " VALUES (house_board_seq.nextval,#{house_title},#{house_area},#{house_type},#{house_style},#{house_space},#{house_content},#{house_thumbnail},#{thumbnail_filename},#{mem_num})")
 	public void insertHBoard(HouseBoardVO houseBoard); // 글쓰기
-	@Select("SELECT * FROM house_board b JOIN member m ON b.mem_num = m.mem_num WHERE b.house_num = #{house_num}")
+	@Select("SELECT * FROM house_board b JOIN mem_detail m ON b.mem_num = m.mem_num WHERE b.house_num = #{house_num}")
 	public HouseBoardVO selectHBoard(Integer house_num); // 글 상세
 	@Update("UPDATE house_board SET house_hits=house_hits+1 WHERE house_num = #{house_num}")
 	public void updateHBoardHits(Integer house_num); // 조회수
