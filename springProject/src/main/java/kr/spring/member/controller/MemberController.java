@@ -39,6 +39,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import kr.spring.houseBoard.vo.HouseBoardVO;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.util.AuthCheckException;
@@ -54,12 +55,13 @@ public class MemberController {
 	@Autowired
 	private JavaMailSender mailSender;	//자바 메일 전송 객체 생성
 	
-	// 자바빈(VO) 초기화
+	// Member 자바빈(VO) 초기화
 	 @ModelAttribute
 	 public MemberVO initCommand() {
+		 
 	    return new MemberVO();
 	 }
-	
+		 
 	
 	// 회원가입 - 회원가입 폼 호출
 	@RequestMapping("/member/registerUser.do")
@@ -87,7 +89,7 @@ public class MemberController {
 	}
 	
 	
-	// 회원가입 - 이메일 인증 난수 생성 및 메일 발송 컨트롤러
+	// 회원가입 - 이메일 인증 난수 생성 및 메일 발송 컨트롤러.
 	@GetMapping("/member/mailCheck.do")
 	@ResponseBody	// ajax처리를 위한 어노테이션
     public String sendMail(String email) throws Exception{		// ModelAttribute 생략
@@ -288,8 +290,8 @@ public class MemberController {
 			if(check) {
 				//인증 성공, 로그인 처리
 				session.setAttribute("user_num", member.getMem_num());
-				session.setAttribute("user_id", member.getMem_id());
 				session.setAttribute("user_auth", member.getMem_auth());
+				session.setAttribute("user_nickname", member.getNickname());
 				session.setAttribute("user_photo", member.getProfile());
 					
 				return "redirect:/main/main.do";
@@ -378,7 +380,7 @@ public class MemberController {
 	}
 	
 	// 회원정보 수정 - 프로필 사진 변경
-	@PostMapping("member/updateMyPhoto.do")
+	@PostMapping("/member/updateMyPhoto.do")
 	@ResponseBody
 	public Map<String,String> processProfile(MemberVO memberVO, HttpSession session){
 		Map<String,String> map = new HashMap<String,String>();
@@ -397,6 +399,26 @@ public class MemberController {
 		}
 		
 		return map;
+	}
+	
+	// 마이페이지 - 내가 쓴 글 목록
+	@GetMapping("/member/myBoard.do")
+	public String myBoardView(HttpSession session, Model model) {
+	
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		
+		MemberVO member = memberService.selectMember(user_num);
+		logger.debug("<<회원 내가 쓴 글>> : " + member);
+		
+		HouseBoardVO houseBoardVO = memberService.selectMyBoard(user_num);
+		
+		
+		logger.debug("<<회원 내가 쓴 글>> : " + member);
+		
+		model.addAttribute("member", member);
+		model.addAttribute("houseBoard", houseBoardVO);
+		
+		return "myBoardView";	// 타일스 식별자
 	}
 	
 	//----------------- 회원가입 이메일 인증 8자리 난수 생성 부분

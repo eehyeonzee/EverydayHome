@@ -60,7 +60,7 @@
 		<tr>
 			<td>${houseBoard.house_num}</td>
 			<td><a href="detail.do?house_num=${houseBoard.house_num}">${houseBoard.house_title}</a></td>
-			<td>${houseBoard.mem_id}</td>
+			<td>${user_nickname}</td>
 			<td>${houseBoard.house_reg_date}</td>
 			<td>${houseBoard.house_hits}</td>
 		</tr>

@@ -191,21 +191,21 @@ height: 40px;
 								<ul class="dropdownbar">
 									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/houseBoard/write.do">사진올리기</a></li>
 									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="#">상품리뷰쓰기</a></li>
-									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/serviceBoard/serviceBoardList.do">고객센터질문하기</a></li>
+									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="#">고객센터질문하기</a></li>
 								</ul>
 							</li>
 						</ul>
 					</div>
 				</nav>
 			</c:if>
-			<c:if test="${!empty user_num && user_num==2}">
+			<c:if test="${!empty user_num && user_auth==2}">
 				<nav class="nav-right">
 					<a class="navrightitem" href="#">장바구니</a> 
 					<div class="nav-right-menu">
 						<ul>
-							<li class="navrightmenuli"><a class="navmenuitem" href="#" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">마이페이지</a>
+							<li class="navrightmenuli"><a class="navmenuitem" href="${pageContext.request.contextPath}/member/myPage.do" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">마이페이지</a>
 								<ul class="dropdownbar">
-									<li class="navrightmenuli"><a class="navmenuitem" href="${pageContext.request.contextPath}/member/myPage.do" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">마이페이지</a>
+									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/myPage.do">마이페이지</a>
 									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="#">나의쇼핑</a></li>
 									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="#">판매자신청</a></li>
 									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.spring.houseBoard.vo.HouseBoardVO;
 import kr.spring.member.dao.MemberMapper;
 import kr.spring.member.vo.MemberVO;
 
@@ -40,6 +41,7 @@ public class MemberServiceImpl implements MemberService {
 		memberVO.setCoupon_count(memberMapper.selectGetCouponCount(mem_num));	// 쿠폰번호 저장
 		memberVO.setFollower_count(memberMapper.selectGetFollowCount(mem_num));	// 팔로우 수 저장
 		memberVO.setFollow_count(memberMapper.selectGetFollowerCount(mem_num));	// 팔로워 수 저장
+		memberVO.setHouse_board_count(memberMapper.selectGetHouseBoardCount(mem_num)); // 작성글 수 저장
 		
 		return memberVO;
 	}
@@ -51,6 +53,12 @@ public class MemberServiceImpl implements MemberService {
 	public void updateMember(MemberVO member) {
 		memberMapper.updateMember(member);
 		
+	}
+	@Override
+	public HouseBoardVO selectMyBoard(Integer mem_num) {
+		HouseBoardVO houseBoardVO = new HouseBoardVO();
+		memberMapper.selectMyBoard(mem_num);
+		return houseBoardVO;
 	}
 	
 }
