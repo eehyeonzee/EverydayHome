@@ -54,7 +54,7 @@ public class CartController {
 		logger.debug("<<count>>:" + list.size());
 		return mav;
 	}
-	
+	//장바구니 버튼 폼 cartVO로 넘겨야함
 	//장바구니 추가
 	@RequestMapping("cart/cartInsert.do")
 	public String cartInsert(@ModelAttribute CartVO cart, HttpSession session) {
@@ -78,6 +78,7 @@ public class CartController {
 		cartService.cartDelete(cart_num);
 		return "redirect:cartList.do";
 	}
+	
 	//장바구니 수정
 	@RequestMapping("cart/cartUpdate.do")
 	public String cartUpdate(@RequestParam int[] cart_quan, @RequestParam int[] prod_num, HttpSession session) {
