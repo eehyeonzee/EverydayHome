@@ -15,9 +15,14 @@
 			  		  REPLACE(REPLACE(b.house_title,'<','&lt;'),'>','&gt;') house_title,
 			  		  ]]>
 			  		  b.house_hits,
+			  		  b.house_recom,
 			  		  b.house_reg_date,
 			  		  b.mem_num,
-			  		  m.nickname
+			  		  m.house_thumbnail,
+			  		  m.thumbnail_filename,
+			  		  m.nickname,
+			  		  m.profile,
+			  		  m.profile_filename
 			  		FROM house_board b JOIN mem_detail m ON b.mem_num = m.mem_num
 			  		<where>
 			  			<if test="keyword != '' and keyfield == 1">

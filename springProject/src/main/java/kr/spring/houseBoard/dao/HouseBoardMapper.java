@@ -26,8 +26,6 @@ public interface HouseBoardMapper {
 	public void insertHBoard(HouseBoardVO houseBoard); // 글쓰기
 	@Select("SELECT * FROM house_board b JOIN mem_detail m ON b.mem_num = m.mem_num WHERE b.house_num = #{house_num}")
 	public HouseBoardVO selectHBoard(Integer house_num); // 글 상세
-	@Select("SELECT * FROM house_board b JOIN mem_detail m ON b.mem_num = m.mem_num WHERE b.mem_num = #{mem_num}")
-	public HouseBoardVO selectMyBoard(Integer mem_num);	 // 마이페이지 글 상세
 	@Update("UPDATE house_board SET house_hits=house_hits+1 WHERE house_num = #{house_num}")
 	public void updateHBoardHits(Integer house_num); // 조회수
 	public void updateHBoard(HouseBoardVO houseBoard); // 글 수정
