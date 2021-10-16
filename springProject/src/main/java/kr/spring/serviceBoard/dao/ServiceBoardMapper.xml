@@ -4,4 +4,44 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 <mapper namespace="kr.spring.serviceBoard.dao.ServiceBoardMapper">
 
+	<select id="selectRowCount" parameterType="map" resultType="integer">
+		SELECT
+		  COUNT(*)
+		FROM service_board b JOIN member m ON b.mem_num = m.mem_num
+		<where>
+        	<if test="keyword != '' and keyfield == 0">
+        		b.service_keyword LIKE '%' || #{keyword} || '%'
+        	</if>
+        	<if test="keyword != '' and keyfield == 1">
+        		b.service_keyword LIKE '%' || #{keyword} || '%'
+        	</if>
+        	<if test="keyword != '' and keyfield == 2">
+        		b.service_keyword LIKE '%' || #{keyword} || '%'
+        	</if>
+        	<if test="keyword != '' and keyfield == 3">
+        		b.service_keyword LIKE '%' || #{keyword} || '%'
+        	</if>
+        	<if test="keyword != '' and keyfield == 4">
+        		b.service_keyword LIKE '%' || #{keyword} || '%'
+        	</if>
+        	<if test="keyword != '' and keyfield == 5">
+        		b.service_keyword LIKE '%' || #{keyword} || '%'
+        	</if>
+        	<if test="keyword != '' and keyfield == 6">
+        		b.service_keyword LIKE '%' || #{keyword} || '%'
+        	</if>
+        	<if test="keyword != '' and keyfield == 7">
+        		b.service_keyword LIKE '%' || #{keyword} || '%'
+        	</if>
+        	<if test="keyword != '' and keyfield == 8">
+        		b.service_keyword LIKE '%' || #{keyword} || '%'
+        	</if>
+        	<if test="keyword != '' and keyfield == 9">
+        		b.service_keyword LIKE '%' || #{keyword} || '%'
+        	</if>
+        	<if test="keyword != '' and keyfield == 10">
+        		b.service_keyword LIKE '%' || #{keyword} || '%'
+        	</if>
+        </where>
+	</select>
 </mapper>

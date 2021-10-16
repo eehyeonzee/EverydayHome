@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- 
+<%--
  * 작성일 : 2021. 10. 10.
  * 작성자 : 나윤경
- * 설명 : 
+ * 설명 : 고객센터 게시판 목록
  * 수정일 : 
---%>
+ --%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +18,33 @@
 <body>
 <div class="page-main">
    <h2>게시판 목록</h2>
+    <form id="search_form" action="serviceBoardList.do" method="get">
+   		<ul class="search">
+			<li>
+				<select name="keyfield" id="keyfield">
+					<option value="0">유형</option>
+					<option value="1">회원 정보 문의</option>
+					<option value="2">쿠폰/포인트 문의</option>
+					<option value="3">주문/결제 관련 문의</option>
+					<option value="4">취소/환불 관련 문의</option>
+					<option value="5">배송 관련 문의</option>
+					<option value="6">주문 전 상품 정보 문의</option>
+					<option value="7">서비스 개선 제안</option>
+					<option value="8">시스템 오류 제보</option>
+					<option value="9">불편 신고</option>
+					<option value="10">기타 문의</option>
+				</select>
+			</li>
+			<li>
+				<input type="search" name="keyword" id="keyword">
+			</li>
+			<li>
+				<input type="submit" value="찾기">
+				<input type="button" value="목록" onclick="location.href='qnaList.do'">
+			</li>
+		</ul>
+   </form> 
+   
    <div class="align-right">
       <input type="button" value="글쓰기" onclick="location.href='serviceBoardInsert.do'">
    </div>

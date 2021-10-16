@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,27 +28,29 @@ public class CartController {
 	public CartVO initCommand() {
 		return new CartVO();
 	}
+	private static final Logger logger = LoggerFactory.getLogger(CartController.class);
 	
 	//장바구니 목록
 	@RequestMapping("cart/cartList.do")
-	public ModelAndView cartList(HttpSession session, ModelAndView mav) {
+	public ModelAndView cartList(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		
+		logger.debug("<<user_num>>" + user_num);
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		List<CartVO> list = cartService.cartList(user_num);
-		
 		int sumMoney = cartService.sumMoney(user_num);
 		//장바구니 전체 금액에 따라 배송비 구분
 		//배송료 10만원 이상 =>무료 미만 => 2500원
 		int fee = sumMoney >= 100000 ? 0 : 2500;
-		map.put("list", list);
-		map.put("count", list.size());
 		map.put("sumMoney",sumMoney);
 		map.put("fee", fee);
 		map.put("allSum", sumMoney+fee);
-		mav.setViewName("cart/cartList");
-		mav.addObject("map","map");
+		map.put("list",list);
+		map.put("count",list.size());
+		mav.addObject("map",map);
+		mav.setViewName("cartList");
+		logger.debug("<<count>>:" + list.size());
 		return mav;
 	}
 	

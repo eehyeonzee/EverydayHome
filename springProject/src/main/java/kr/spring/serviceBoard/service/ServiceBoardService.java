@@ -14,7 +14,8 @@ import kr.spring.serviceBoard.vo.ServiceBoardVO;
  */
 public interface ServiceBoardService {
 	public void serviceBoardInsert(ServiceBoardVO serviceboard);
-	public int getServiceBoardCount();
+	//public int getServiceBoardCount();
+	public int selectRowCount(Map<String, Object> map);
 	public List<ServiceBoardVO> getServiceBoardList(Map<String,Object> map);
 	public ServiceBoardVO getServiceBoard(int service_num);
 	//public void serviceBoardUpdate(ServiceBoardVO serviceboard);

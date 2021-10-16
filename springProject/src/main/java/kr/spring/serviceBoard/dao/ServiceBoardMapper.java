@@ -14,11 +14,13 @@ public interface ServiceBoardMapper {
 
 	@Insert("INSERT INTO service_board (service_num, service_title, service_nickname, service_content, service_email, service_keyword, service_filename, service_file, mem_num)"
 			+ "VALUES (service_board_seq.nextval, #{service_title}, #{service_nickname}, #{service_content}, #{service_email},"
-			+ "#{service_keyword}, #{service_filename},#{service_file},${mem_num})")
+			+ "#{service_keyword}, #{service_filename},#{service_file},#{mem_num})")
 	public void serviceBoardInsert(ServiceBoardVO serviceboard);
 	
-	@Select("SELECT COUNT(*) FROM service_board")
-	public int getServiceBoardCount();
+	//@Select("SELECT COUNT(*) FROM service_board")
+	//public int getServiceBoardCount();
+	
+	public int selectRowCount(Map<String,Object> map);
 	
 	@Select("SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM service_board ORDER BY service_num DESC)a) WHERE rnum >= #{start} AND rnum <= #{end}")
 	public List<ServiceBoardVO> getServiceBoardList(Map<String, Object> map);

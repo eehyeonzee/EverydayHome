@@ -11,9 +11,9 @@ import kr.spring.cart.vo.CartVO;
 
 public interface CartMapper {
 
-	@Insert("INSERT INTO cart(cart_num,prod_num,mem_num,cart_quan)values(cart_seq.nextval,#{prod_num},#{user_num},#{amount}")
+	@Insert("INSERT INTO cart(cart_num,prod_num,mem_num,cart_quan)values(cart_seq.nextval,#{prod_num},#{mem_num},#{cart_quan}")
 	public void cartInsert(CartVO cartVO); //장바구니 추가
-	@Select("SELECT c.cart_num AS cartnum, c.mem_num AS memnum, p.prod_num AS prodnum, m.mem_name AS mem_name, p.prod_name AS prodname, c.cart_quan, p.product_price AS productprice,(product_price * cart_quan) money FROM mem_detail m, product p, cart c WHERE m.mem_num = c.mem_num AND p.prod_num = c.prod_num AND c.mem_num = #{mem_num} ORDER BY c.cart_num")
+	@Select("SELECT c.cart_num AS cart_num, c.mem_num AS mem_num, p.prod_num AS prod_num, m.mem_name AS mem_name, p.prod_name AS prod_name, c.cart_quan, p.prod_price AS prod_price,(prod_price * cart_quan) money FROM mem_detail m, product p, cart c WHERE m.mem_num = c.mem_num AND p.prod_num = c.prod_num AND c.mem_num = #{mem_num} ORDER BY c.cart_num")
 	public List<CartVO> cartList(int mem_num); //장바구니 목록
 	@Delete("DELETE FROM cart WHERE cart_num = #{cart_num}")
 	public void cartDelete(int cart_num); //장바구니 삭제

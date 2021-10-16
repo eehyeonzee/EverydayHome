@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -21,12 +23,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.qna.service.QnaService;
 import kr.spring.qna.vo.QnaVO;
+import kr.spring.serviceBoard.service.ServiceBoardService;
+import kr.spring.serviceBoard.vo.ServiceBoardVO;
 import kr.spring.util.PagingUtil;
 
 @Controller
 public class QnaController {
 		//로그 처리 (로그 대상 지정)
 		private static final Logger log = LoggerFactory.getLogger(QnaController.class);
+		private int rowCount = 20;
+		private int pageCount = 10;
+		
+		@Autowired
+		private ServiceBoardService serviceBoardService;
 		
 		@Autowired
 		private QnaService qnaService;
@@ -58,10 +67,48 @@ public class QnaController {
 		}
 
 		
-		//게시판 목록
+		//qnaServiceList 게시판 목록
+		@RequestMapping("/qna/qnaServiceList.do")
+		public ModelAndView getQnaServiceList(
+			@RequestParam(value="pageNum", defaultValue="1")int currentPage) {
+			
+			log.debug("<<currentPage>>: " + currentPage);
+			
+			//총 레코드 수
+			int count = qnaService.getQnaServiceCount();
+			
+			//페이지 처리
+			PagingUtil page = new PagingUtil(currentPage, count, 10, 10, "qnaServiceList.do");
+			
+			//목록 호출
+			List<QnaVO> list = null;
+			if(count>0) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("start", page.getStartCount());
+				map.put("end", page.getEndCount());
+				
+				list = qnaService.getQnaServiceList(map);
+			}
+			
+			ModelAndView mav = new ModelAndView();
+			
+			//뷰 이름 설정
+			mav.setViewName("/qna/qnaServiceList");
+			
+			//데이터 저장
+			mav.addObject("count",count);
+			mav.addObject("list", list);
+			mav.addObject("pagingHtml", page.getPagingHtml());
+			
+			return mav;
+			
+		}
+		
+		
+		//qnaList 게시판 목록
 		@RequestMapping("/qna/qnaList.do")
 		public ModelAndView getQnaList(
-			@RequestParam(value="pageNum", defaultValue="1")int currentPage) {
+				@RequestParam(value="pageNum", defaultValue="1")int currentPage) {
 			
 			log.debug("<<currentPage>>: " + currentPage);
 			
@@ -80,9 +127,7 @@ public class QnaController {
 				
 				list = qnaService.getQnaList(map);
 			}
-			
 			ModelAndView mav = new ModelAndView();
-			
 			//뷰 이름 설정
 			mav.setViewName("qnaList");
 			
@@ -94,6 +139,11 @@ public class QnaController {
 			return mav;
 			
 		}
+		
+		
+		
+		
+		
 		
 		/*
 		//글 상세
@@ -145,5 +195,108 @@ public class QnaController {
 			return "redirect:/qna/qnaList.do";
 		}
 		
+
+		//serviceBoard---------------------------------------------
+		//자바빈 초기화
+		@ModelAttribute
+		public ServiceBoardVO initCommand1() {
+			return new ServiceBoardVO();
+		}
 		
+		@GetMapping("/qna/serviceBoardInsert.do")
+		//글쓰기 폼 호출
+		public String serviceBoardInsertForm() {
+			log.debug("<<글쓰기 폼 호출>>");
+			
+			return "qna/serviceBoardInsertForm";
+		}
+		//글쓰기 처리
+		@PostMapping("/qna/serviceBoardInsert.do")
+		public String submit(@Valid ServiceBoardVO serviceboard, BindingResult result,
+				HttpSession session, HttpServletRequest request) {
+			//유효성 체크 결과 오류가 있으면 폼 호출
+			if(result.hasErrors()) {
+				return serviceBoardInsertForm();
+			}
+			//회원번호를 세팅
+			serviceboard.setMem_num((Integer)session.getAttribute("user_num"));
+			//글쓰기
+			serviceBoardService.serviceBoardInsert(serviceboard);
+			
+			return "redirect:/qna/qnaList.do";
+		}
+		
+		
+		
+		//게시판 목록
+		@RequestMapping("/qna/serviceBoardList.do")
+		public ModelAndView getServiceBoardList(
+				@RequestParam(value="pageNum",defaultValue="1") int currentPage,
+				@RequestParam(value="keyfield",defaultValue="") String keyfield,
+				@RequestParam(value="keyword",defaultValue="") String keyword) {
+			
+			Map<String,Object> map = new HashMap<String,Object>();
+			map.put("keyfield", keyfield);
+			map.put("keyword", keyword);
+			
+			log.debug("<<currentPage>>: " + currentPage);
+			
+			//글의 총갯수 또는 검색된 글의 갯수
+			int count = serviceBoardService.selectRowCount(map);
+			
+			//총 레코드 수
+			//int count = serviceBoardService.getServiceBoardCount();
+			
+			//페이지 처리
+			PagingUtil page = new PagingUtil(keyfield,keyword,currentPage,count,rowCount,pageCount, "serviceBoardList.do");
+			
+			//목록 호출
+			List<ServiceBoardVO> list = null;
+			if(count>0) {
+				map.put("start", page.getStartCount());
+				map.put("end", page.getEndCount());
+				
+				list = serviceBoardService.getServiceBoardList(map);
+			}
+			
+			ModelAndView mav = new ModelAndView();
+			
+			//뷰 이름 설정
+			mav.setViewName("qna/serviceBoardList");
+			
+			//데이터 저장
+			mav.addObject("count",count);
+			mav.addObject("list", list);
+			mav.addObject("pagingHtml", page.getPagingHtml());
+			
+			return mav;
+			
+		}
+		//글 상세
+		@RequestMapping("/qna/serviceBoardDetail.do")
+		public ModelAndView serviceBoardDetail(@RequestParam int service_num) {
+			ServiceBoardVO serviceboard = serviceBoardService.getServiceBoard(service_num);
+			//HTML 태그 불허
+			//serviceboard.setService_title(StringUtil.useNoHtml(serviceboard.getService_title()));
+			//HTML 태그 불허, 줄바꿈 허용
+			//serviceboard.setService_content(StringUtil.useBrNoHtml(serviceboard.getService_content()));
+									//뷰 이름					//속성명		//속성값
+			return new ModelAndView("qna/serviceBoardDetail","serviceboard",serviceboard);
+		}
+		
+		//이미지 출력
+		@RequestMapping("/qna/imageView.do")
+		public ModelAndView viewImage(@RequestParam int service_num) {
+			
+		ServiceBoardVO serviceboard = serviceBoardService.getServiceBoard(service_num);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("imageView");
+		                //속성명         속성값(byte[]의 데이터)     
+		mav.addObject("imageFile", serviceboard.getService_file());
+		mav.addObject("filename", serviceboard.getService_filename());
+				
+		return mav;
+	}
 }
+

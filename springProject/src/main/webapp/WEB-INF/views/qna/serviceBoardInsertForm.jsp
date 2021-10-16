@@ -20,6 +20,7 @@
 	<h2>이메일 문의 하기</h2>
 	<hr size="1" noshade width="100%">
 	<form:form action="serviceBoardInsert.do" modelAttribute="serviceBoardVO" enctype="multipart/form-data">
+		<form:hidden path="mem_num"/>
 		<ul>
 			<li><!-- 문의 유형 선택 카테고리 -->
 				<label for="service_keyword"></label>
@@ -45,22 +46,17 @@
 			</li>
 			<li>
 				<label for="service_nickname">닉네임</label>
-				<c:if test="${empty mem_num }">
+				<c:if test="${empty user_num }">
 					<input type="text" class="form-control" name="service_nickname" id="service_nickname" maxlength="10" placeholder="닉네임을 입력하세요"> 
 				</c:if>
-				<c:if test="${!empty mem_num }">
-					<input type="text" class="form-control" name="service_nickname" id="service_nickname" maxlength="12" value="${nickname }" readonly>
+				<c:if test="${!empty user_num }">
+					<input type="text" class="form-control" name="service_nickname" id="service_nickname" maxlength="12" value="${user_nickname }" readonly>
 				</c:if>
 				<form:errors path="service_nickname" cssClass="error-color"/>
 			</li>
 			<li>
 				<label for="service_email">이메일</label>
-				<c:if test="${empty mem_num }">
 					<input type="text" class="form-control" name="service_email" id="service_email" maxlength="30" placeholder="이메일을 입력하세요"> 
-				</c:if>
-				<c:if test="${!empty mem_num }">
-					<input type="text" class="form-control" name="service_email" id="service_email" maxlength="30" value="${email }" readonly>
-				</c:if>
 				<form:errors path="service_email" cssClass="error-color"/>
 			</li>
 			<li>
@@ -72,22 +68,12 @@
 				<label for="upload">이미지 파일</label>
 				<input type="file" name="upload" id="upload" accept="image/gif,image/png,image/jpeg">
 			</li>
- 			<%-- <li><!-- 파일 선택 -->
-				<label for="service_file">파일</label>
-				<form:input path="service_file"/>
-				<form:errors path="service_file" cssClass="error-color"/>
-				<div id="file_choice" style="diplay:none;">
-				<input type="file" id="upload" accept = "image/gif, image/png, image/jpeg">
-				<input type="button" value="전송" id="file_submit">
-				<input type="button" value="취소" id="file_reset">
-				</div>
-			</li>  --%>
 		</ul>
 
 		<!-- 버튼 -->
 		<div class="align-center">
 			<form:button>전송</form:button>
-			<input type="button" value="목록" onclick="location.href='serviceBoardList.do'">
+			<input type="button" value="목록" onclick="location.href='qnaList.do'">
 		</div>
 		</form:form>
 </div>
