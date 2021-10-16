@@ -31,7 +31,7 @@
 	<img src = "${pageContext.request.contextPath}/resources/images/gift.png">
 	</c:if>
 	${storeVO.prod_name}
-	${storeVO.prod_price}
+	${storeVO.prod_price}원
 	<c:if test = "${!empty storeVO.prod_option1}">
 	<select id = "product">
 		<option value = "" id = "selec_option">${storeVO.selec_product}</option>
@@ -42,19 +42,23 @@
 	</select>
 	</c:if>
 	<c:if test = "${!empty storeVO.prod_img}">
-	<img src = "contentImageView.do?prod_num=${storeVO.prod_num}">
+	<img src = "contentImageView.do?prod_num=${storeVO.prod_num}"><br><br><br>
 	</c:if>
 	<div>
 		<c:if test = "${!empty storeVO.prod_option1}">
 			<script type = "text/javascript">
 				$(document).ready(function() {
+					$('select').val('');
+					$('#quantity').hide();
+					$('#quantity').val('0');
 					
-					$('#product').click(function() {
-						var result = '';
+					$('#product').change(function() {
+					  	var result = '';
 						var price = 0;						
+
 						var productOption = $('#product option:selected').text();
 						var productPrice = $('#product option:selected').val();
-						
+												
 						if($('#product').val() != '') {
 							result += productOption + " ";
 							price += parseInt(productPrice);
@@ -63,24 +67,44 @@
 						if(price != 0) {
 							$('#result').text(result);
 							$('#price').text(price + '원');
+							
+							if(result != '') {
+								$('#quantity').show();
+							}
 						}
 						
 						if($('#product').val() == '') {
 							$('#result').text('');
 							$('#price').text('');
+							$('#quantity').hide();
 						}
-					});
+						
+						$('#quantity').change(function() {							
+							var last_price = 0;
+							var quantity = $('#quantity').val();
+							
+							last_price = quantity * price;
+							
+							$('#last_price').text(last_price + '원');
+						});
+						
+					});					
 				});
 			</script>
 		</c:if>
 		<div>
 			<span id = "result"></span>
 			<span id = "price"></span>
-			<div id = "result-next">
+			<div  class = "quantity">
+				<input type = "number" id = "quantity">
 			</div>
 		</div>
 		<div>
-			<span id = "last_price">0원</span>
+			<span id = "last_price"></span>
+		</div>
+		<div>
+			<input type = "button" value = "장바구니">
+			<input type = "button" value = "구매하기">
 		</div>
 	</div>
 </div>
