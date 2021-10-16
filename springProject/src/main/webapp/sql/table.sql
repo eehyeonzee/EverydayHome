@@ -67,3 +67,5 @@ ALTER TABLE product add product_option8 VARCHAR2(150) null;
 ALTER TABLE product add product_option9 VARCHAR2(150) null;
 ALTER TABLE product add product_option10 VARCHAR2(150) null;
 
+-- 21.10.17 02:50 댓글 테이블 컬럼명 변경
+ALTER TABLE comments RENAME COLUMN comm_modi TO comm_mod_date;
