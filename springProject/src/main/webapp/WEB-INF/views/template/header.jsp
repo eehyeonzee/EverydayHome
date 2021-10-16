@@ -155,6 +155,7 @@ height: 40px;
 			<div class="nav-left">
 				<a class="logo" href="${pageContext.request.contextPath}/main/main.do" style="font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">매일의 집</a>
 			</div>
+			<!-- 기본매뉴 -->
 			<nav class="nav-menu">
 				<ul>
 					<li class="navmenuli"><a class="navmenuitem" href="#" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">커뮤니티</a>
@@ -175,6 +176,7 @@ height: 40px;
 						</ul>
 				</ul>
 			</nav>
+			<!-- 비회원 -->
 			<c:if test="${empty user_num}">
 				<nav class="nav-right">
 				<form id="search" action="#" method="get">
@@ -198,9 +200,10 @@ height: 40px;
 					</div>
 				</nav>
 			</c:if>
+			<!-- 일반회원 -->
 			<c:if test="${!empty user_num && user_auth==2}">
 				<nav class="nav-right">
-					<a class="navrightitem" href="#">장바구니</a> 
+					<a class="navrightitem" href="${pageContext.request.contextPath}/cart/cartList.do">장바구니</a> 
 					<div class="nav-right-menu">
 						<ul>
 							<li class="navrightmenuli"><a class="navmenuitem" href="${pageContext.request.contextPath}/member/myPage.do" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">마이페이지</a>
@@ -227,7 +230,7 @@ height: 40px;
 					</div>
 				</nav>
 			</c:if>
-			
+			<!-- 판매자회원 -->
 					<c:if test="${!empty user_num && user_auth == 3}">
 						<nav class="nav-right">
 					<div class="nav-right-menu">

@@ -62,6 +62,7 @@
 				<beans:value>/WEB-INF/tiles-def/notice.xml</beans:value>
 				<beans:value>/WEB-INF/tiles-def/qna.xml</beans:value>
 				<beans:value>/WEB-INF/tiles-def/event.xml</beans:value>
+				<beans:value>/WEB-INF/tiles-def/cart.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>
