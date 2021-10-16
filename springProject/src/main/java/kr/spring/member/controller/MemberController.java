@@ -8,6 +8,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.regex.Pattern;
@@ -44,12 +45,17 @@ import kr.spring.houseBoard.vo.HouseBoardVO;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.util.AuthCheckException;
+import kr.spring.util.PagingUtil;
 
 @Controller
 public class MemberController {
 	
 	// 로그 지정
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+	
+	// 게시물, 페이지 카운트 지정
+	private int rowCount = 3;
+	private int pageCount = 5;
 	
 	@Autowired
 	private MemberService memberService;
@@ -407,22 +413,44 @@ public class MemberController {
 	
 	// 마이페이지 - 내가 쓴 글 목록
 	@GetMapping("/member/myBoard.do")
-	public String myBoardView(HttpSession session, Model model) {
-	
+	public ModelAndView myBoardView(HttpSession session,
+									@RequestParam(value="pageNum", defaultValue="1") int currentPage) {
+		
+		// 세션에서 회원번호 받아오기
 		Integer user_num = (Integer)session.getAttribute("user_num");
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		// 글의 총 개수 또는 검색된 글의 개수
+		int count = houseBoardService.selectMyBoardRowCount(user_num);
+				
+		logger.debug("<<count>> : " + count);
+		
+		// 페이지 처리
+		PagingUtil page = new PagingUtil(currentPage,count,rowCount,pageCount,"myBoard.do");
+		
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
 		
 		MemberVO member = memberService.selectMember(user_num);
 		logger.debug("<<회원 내가 쓴 글>> : " + member);
 		
-		//HouseBoardVO houseBoardVO = houseBoardService.selectMyBoard(user_num);
+		List<HouseBoardVO> list = null;
+		if(count > 0) {
+			list = houseBoardService.selectMyBoardList(map);
+		}
 		
 		
 		logger.debug("<<회원 내가 쓴 글>> : " + member);
 		
-		model.addAttribute("member", member);
-		//model.addAttribute("houseBoard", houseBoardVO);
+		// 전달 객체
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("myBoardView"); // 타일스 식별자
+		mav.addObject("count", count);
+		mav.addObject("list", list);
+		mav.addObject("pagingHtml", page.getPagingHtml());
+		mav.addObject("member", member);
 		
-		return "myBoardView";	// 타일스 식별자
+		return mav;
 	}
 	
 	//----------------- 회원가입 이메일 인증 8자리 난수 생성 부분

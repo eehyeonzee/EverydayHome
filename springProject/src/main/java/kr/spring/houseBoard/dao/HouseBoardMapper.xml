@@ -4,6 +4,42 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 <mapper namespace="kr.spring.houseBoard.dao.HouseBoardMapper">
 	<select id="selectHBoardList" parameterType="map" resultType="houseBoardVO">
+      SELECT
+        *
+      FROM (SELECT
+            a.*,
+            rownum rnum
+           FROM (SELECT
+                   b.house_num,
+                   <![CDATA[
+                   REPLACE(REPLACE(b.house_title,'<','&lt;'),'>','&gt;') house_title,
+                   ]]>
+                   b.house_hits,
+                   b.house_reg_date,
+                   b.mem_num,
+                   m.nickname
+                 FROM house_board b JOIN mem_detail m ON b.mem_num = m.mem_num
+                 <where>
+                    <if test="keyword != '' and keyfield == 1">
+                       b.house_title LIKE '%' || #{keyword} || '%'
+                    </if>
+                    <if test="keyword != '' and keyfield == 2">
+                       m.nickname LIKE '%' || #{keyword} || '%'
+                    </if>
+                    <if test="keyword != '' and keyfield == 3">
+                       b.house_content LIKE '%' || #{keyword} || '%'
+                    </if>
+                    <if test="keyword != '' and keyfield == 4">
+                       b.house_title LIKE '%' || #{keyword} || '%' or
+                       b.house_content LIKE '%' || #{keyword} || '%'
+                    </if>
+                 </where>
+               ORDER BY b.house_num DESC)a)
+      <![CDATA[
+      WHERE rnum >= #{start} AND rnum <= #{end}
+      ]]>
+   </select>
+	<select id="selectMyBoardList" parameterType="map" resultType="houseBoardVO">
 		SELECT
 		  *
 		FROM (SELECT
@@ -18,27 +54,15 @@
 			  		  b.house_recom,
 			  		  b.house_reg_date,
 			  		  b.mem_num,
-			  		  m.house_thumbnail,
-			  		  m.thumbnail_filename,
+			  		  b.house_thumbnail,
+			  		  b.thumbnail_filename,
 			  		  m.nickname,
 			  		  m.profile,
 			  		  m.profile_filename
 			  		FROM house_board b JOIN mem_detail m ON b.mem_num = m.mem_num
-			  		<where>
-			  			<if test="keyword != '' and keyfield == 1">
-			  				b.house_title LIKE '%' || #{keyword} || '%'
-			  			</if>
-			  			<if test="keyword != '' and keyfield == 2">
-			  				m.nickname LIKE '%' || #{keyword} || '%'
-			  			</if>
-			  			<if test="keyword != '' and keyfield == 3">
-			  				b.house_content LIKE '%' || #{keyword} || '%'
-			  			</if>
-			  			<if test="keyword != '' and keyfield == 4">
-			  				b.house_title LIKE '%' || #{keyword} || '%' or
-			  				b.house_content LIKE '%' || #{keyword} || '%'
-			  			</if>
-			  		</where>
+					<where>
+						b.mem_num = #{mem_num}
+					</where>
 					ORDER BY b.house_num DESC)a)
 		<![CDATA[
 		WHERE rnum >= #{start} AND rnum <= #{end}

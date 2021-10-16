@@ -65,4 +65,14 @@ public class HouseBoardServiceImpl implements HouseBoardService {
 		houseBoardMapper.deleteFile(house_num);	
 	}
 
+	@Override
+	public List<HouseBoardVO> selectMyBoardList(Map<String, Object> map) {
+		return houseBoardMapper.selectMyBoardList(map);
+	}
+
+	@Override
+	public int selectMyBoardRowCount(Integer mem_num) {
+		return houseBoardMapper.selectMyBoardRowCount(mem_num);
+	}
+
 }
