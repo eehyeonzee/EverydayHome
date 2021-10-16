@@ -6,6 +6,19 @@
  * 설명 : 마이페이지 헤더 리스트
  * 수정일 : 
 --%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+<script type="text/javascript">
+	$(function(){
+		// 프로필 버튼
+		$(".profile_btn").hover(function(){
+			$(this).css("background-color", "#f0e9e9");
+		}, function() {
+		        $(this).css("background-color","white");
+		});
+	});
+</script>
 <div align="left" style="padding-left: 15em;  ">
 <nav class="nav-right">
 	<div class="nav-right-menu">

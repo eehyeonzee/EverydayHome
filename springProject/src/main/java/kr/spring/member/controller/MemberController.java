@@ -54,7 +54,7 @@ public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	// 게시물, 페이지 카운트 지정
-	private int rowCount = 3;
+	private int rowCount = 4;
 	private int pageCount = 5;
 	
 	@Autowired
@@ -430,6 +430,7 @@ public class MemberController {
 		
 		map.put("start", page.getStartCount());
 		map.put("end", page.getEndCount());
+		map.put("mem_num", user_num);
 		
 		MemberVO member = memberService.selectMember(user_num);
 		logger.debug("<<회원 내가 쓴 글>> : " + member);

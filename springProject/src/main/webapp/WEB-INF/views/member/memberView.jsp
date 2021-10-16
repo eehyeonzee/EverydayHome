@@ -7,17 +7,9 @@
  * 설명 : 마이페이지
  * 수정일 : 
 --%>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<%@ include file="/WEB-INF/views/member/myPageHeader.jsp" %>
 <script type="text/javascript">
 	$(function(){
-		// 프로필 버튼
-		$(".profile_btn").hover(function(){
-			$(this).css("background-color", "#f0e9e9");
-		}, function() {
-		        $(this).css("background-color","white");
-		});
-		
-		
 		// 사진 올리기
 		$(".mypage-photo-write").hover(function(){
 			$(this).css("color", "#d9d4d4");
@@ -27,7 +19,6 @@
 		
 	});
 </script>
-<%@ include file="/WEB-INF/views/member/myPageHeader.jsp" %>
 	<div class="mypage-main-content" align="center">
 		<div class="mypage-photo-write-divi">
 		<div align="left">사진 ${member.house_board_count}</div>
