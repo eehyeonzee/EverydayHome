@@ -18,8 +18,14 @@ public interface QnaMapper {
 	@Select("SELECT COUNT(*) FROM qna_list")
 	public int getQnaCount();
 	
+	@Select("SELECT COUNT(*) FROM qna_list")
+	public int getQnaServiceCount();
+	
 	@Select("SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM qna_list ORDER BY qna_num DESC)a) WHERE rnum >= #{start} AND rnum <= #{end}")
 	public List<QnaVO> getQnaList(Map<String, Object> map);
+	
+	@Select("SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM qna_list ORDER BY qna_num DESC)a) WHERE rnum >= #{start} AND rnum <= #{end}")
+	public List<QnaVO> getQnaServiceList(Map<String, Object> map);
 	
 	@Select("SELECT * FROM qna_list WHERE qna_num = #{qna_num}")
 	public QnaVO getQna(int num);
@@ -29,5 +35,6 @@ public interface QnaMapper {
 	
 	@Delete("DELETE FROM qna_list WHERE qna_num = #{qna_num}")
 	public void qnaDelete(int num);
+
 	
 }

@@ -29,10 +29,10 @@ public class ServiceBoardServiceImpl implements ServiceBoardService {
 		serviceBoardMapper.serviceBoardInsert(serviceboard);
 	}
 
-	@Override
-	public int getServiceBoardCount() {
-		return serviceBoardMapper.getServiceBoardCount();
-	}
+	/*
+	 * @Override public int getServiceBoardCount() { return
+	 * serviceBoardMapper.getServiceBoardCount(); }
+	 */
 
 	@Override
 	public List<ServiceBoardVO> getServiceBoardList(Map<String, Object> map) {
@@ -42,6 +42,11 @@ public class ServiceBoardServiceImpl implements ServiceBoardService {
 	@Override
 	public ServiceBoardVO getServiceBoard(int service_num) {
 		return serviceBoardMapper.getServiceBoard(service_num);
+	}
+
+	@Override
+	public int selectRowCount(Map<String, Object> map) {
+		return serviceBoardMapper.selectRowCount(map);
 	}
 
 /*	@Override

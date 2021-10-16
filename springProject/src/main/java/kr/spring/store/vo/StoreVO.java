@@ -20,6 +20,7 @@ public class StoreVO {
 	private String delive_type;			// 배송유형
 	private String selec_product;		// 상품선택
 	private String prod_option1;		// 옵션1
+	@NotEmpty
 	private String prod_content;		// 상품내용
 	private byte[] prod_img;			// 상품이미지
 	private String prod_filename;		// 상품파일명
@@ -33,6 +34,7 @@ public class StoreVO {
 	private int mem_num;				// 회원번호
 	@NotEmpty
 	private String prod_cate;			// 카테고리
+	private String prod_option2;		// 옵션2
 	
 	// 썸네일 BLOB 처리
 	public void setUpload1(MultipartFile upload1)throws IOException {
@@ -161,6 +163,12 @@ public class StoreVO {
 	public void setProd_cate(String prod_cate) {
 		this.prod_cate = prod_cate;
 	}
+	public String getProd_option2() {
+		return prod_option2;
+	}
+	public void setProd_option2(String prod_option2) {
+		this.prod_option2 = prod_option2;
+	}
 	
 	@Override
 	public String toString() {
@@ -169,6 +177,6 @@ public class StoreVO {
 				+ ", prod_option1=" + prod_option1 + ", prod_content=" + prod_content + ", prod_filename="
 				+ prod_filename + ", thumbnail_filename=" + thumbnail_filename + ", prod_quan=" + prod_quan
 				+ ", add_product=" + add_product + ", prod_reg_date=" + prod_reg_date + ", prod_keyword=" + prod_keyword
-				+ ", mem_num=" + mem_num + ", prod_cate=" + prod_cate + "]";
+				+ ", mem_num=" + mem_num + ", prod_cate=" + prod_cate + ", prod_option2=" + prod_option2 + "]";
 	}
 }

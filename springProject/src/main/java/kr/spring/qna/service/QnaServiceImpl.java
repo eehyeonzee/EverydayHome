@@ -47,6 +47,16 @@ public class QnaServiceImpl implements QnaService{
 		qnaMapper.qnaDelete(num);
 	}
 
+	@Override
+	public int getQnaServiceCount() {
+		return qnaMapper.getQnaCount();
+	}
+
+	@Override
+	public List<QnaVO> getQnaServiceList(Map<String, Object> map) {
+		return qnaMapper.getQnaServiceList(map);
+	}
+
 	
 	
 

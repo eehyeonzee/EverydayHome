@@ -66,18 +66,19 @@
 				<form:errors path = "prod_quan" cssClass = "error-color" />
 			</li>
 			<li>
-				<label for = "selec_product">상품선택1</label>
+				<label for = "selec_product">상품선택</label>
 				<form:input path = "selec_product" />
 				<form:errors path = "selec_product" cssClass = "error-color" />
-				<input type = "button" class = "selec_product_plus" value = "+">
-				<input type = "button" class = "selec_product_minus" value = "-">
 			</li>
 			<li>
 				<label for = "prod_option1">상품옵션1</label>
 				<form:input path = "prod_option1" />
 				<form:errors path = "prod_option1" cssClass = "error-color" />
-				<input type = "button" class = "selec_product_plus" value = "+">
-				<input type = "button" class = "selec_product_minus" value = "-">
+			</li>
+			<li>
+				<label for = "prod_option2">상품옵션2</label>
+				<form:input path = "prod_option2" />
+				<form:errors path = "prod_option2" cssClass = "error-color" />
 			</li>
 			<li>
 				<label for = "add_product">추가 상품</label>
