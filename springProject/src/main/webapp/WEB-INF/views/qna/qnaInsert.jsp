@@ -21,9 +21,6 @@
 	<hr size="1" noshade width="100%">
 	<form:form action="qnaInsert.do" modelAttribute="qnaVO">
 	
-	<button id="slideToggle">slideToggle</button>
-	
-	
 		<ul>
 			<li>
 				<label for="qna_category">카테고리</label>
