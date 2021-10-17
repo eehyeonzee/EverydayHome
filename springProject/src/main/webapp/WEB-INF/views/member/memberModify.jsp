@@ -9,6 +9,8 @@
  * 수정일 : 
 --%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"><script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 	$(function() {
@@ -70,7 +72,7 @@
 			}
 		});
 		
-		$(".mem_delete_btn").click(function(){
+		$("#mem_delete_btn").click(function(){
 			var input_passwd = prompt("비밀번호를 입력해주세요.");
 			
 			$.ajax({
@@ -101,41 +103,44 @@
 	});
 </script>
 <!-- 중앙 내용 시작 -->
-<div class="page-main">
-<button style="float: right; cursor: pointer;" class="mem_delete_btn">회원탈퇴</button>
-	<h2>회원정보 수정</h2>
+<input type="button"  value="비밀번호변경" style="float: right; cursor: pointer;" class = "btn btn-outline-dark" onclick="location.href='${pageContext.request.contextPath}/member/memberPasswdUpdate.do'">
+<input type="button"  value="회원탈퇴" style="float: right; cursor: pointer;" class = "btn btn-outline-dark" id="mem_delete_btn">
+<div class = "container-fluid" style = "width:500px; border: 1px solid #d2f1f7; font-family: 'Gowun Dodum', sans-serif; ">
+	<div align = "left">
+			<h3>회원 정보수정</h3>
+	</div>
+	<div class="text-center col-sm-12 my-5">
 	<form:form id="modify_form" action="memberUpdate.do" modelAttribute="memberVO" enctype="multipart/form-data">
-		<ul>
-			<li>
+		<div class = "form-group row">
 				<label for="mem_name">이름</label>
 				<form:input path="mem_name"/>
 				<form:errors path="mem_name" cssClass="error-color"/>
-			</li>
-			<li>
+		</div>
+		<div class = "form-group row">
 				<label for="email">이메일</label>
 				<form:input path="email"/>
 				<form:errors path="email" cssClass="error-color"/>
-			</li>
-			<li>
+		</div>
+		<div class = "form-group row">
 				<label for="email_check">이메일인증</label>
-				<input type="text" id="email_check" size="5" disabled="disabled">
-				<input type="button" id="email_send_button" value="인증번호전송">
-				<input type="button" id="email_check_button" value="인증확인">
-			</li>
-			<li>
+				<input type="text" id="email_check" size="8" disabled="disabled">&nbsp;&nbsp;&nbsp;
+				<input type="button" class = "btn btn-outline-dark" id="email_send_button" value="인증번호전송">&nbsp;&nbsp;&nbsp;
+				<input type="button" class = "btn btn-outline-dark" id="email_check_button" value="인증확인">
+		</div>
+		<div class = "form-group row">
 				<label for="nickname">별명</label>
 				<form:input path="nickname"/>
 				<form:errors path="nickname" cssClass="error-color"/>
-			</li>
-			<li>
+		</div>
+		<div class = "form-group row">
 				<label for="phone">전화번호</label>
 				<form:input path="phone"/>
 				<form:errors path="phone" cssClass="error-color"/>
-			</li>
-			<li>
+		</div>
+		<div class = "form-group row">
 				<label for="zipcope">우편번호</label>
-				<input id="zipcode" name="zipcode" placeholder="우편번호" type="text" value="" maxlength="5" readonly="readonly"/>
-				<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+				<input id="zipcode" name="zipcode" placeholder="우편번호" type="text" value="" maxlength="5" readonly="readonly"/>&nbsp;&nbsp;&nbsp;
+				<input type="button" class = "btn btn-outline-dark" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 				
 				<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
 <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
@@ -191,19 +196,18 @@
     }
 	</script>
 			<form:errors path="zipcode" cssClass="error-color"/>
-			</li>
-			<li>
+			</div>
+			<div class = "form-group row">
 				<label for="address1">주소</label>
 				<input id="address1" name="address1" type="text" value="" maxlength="30" readonly="readonly" placeholder="주소"/>
 				<form:errors path="address1" cssClass="error-color"/>
-			</li>
-			<li>
+			</div>
+			<div class = "form-group row">
 				<label for="address2">나머지주소</label>
 				<form:input path="address2" maxlength="30" placeholder="상세주소"/>
 				<form:errors path="address2" cssClass="error-color"/>
-			</li>
-			<li>&nbsp;</li>
-			<li>
+			</div>
+			<div class = "form-group row">
 				<label for="profile">프로필 이미지</label>
 				<c:if test="${empty memberVO.profile_filename}">
 				<img src="${pageContext.request.contextPath}/resources/images/basic.jpg" width="150" height="150" class="my-photo">
@@ -212,13 +216,13 @@
 				<img src="${pageContext.request.contextPath}/member/photoView.do" width="150" height="150" class="my-photo">
 				</c:if>
 				<div class="align-center" style="padding-left: 10em;">
-					<input type="button" value="수정" id="photo_btn">
+					<input type="button" class = "btn btn-outline-dark" value="수정" id="photo_btn">
 				</div>
 				<br><br>
 				<div id="photo_choice" style="display:none;">
-					<input type="file" id="upload" accept="image/gif,image/png,image/jpeg">
-					<input type="button" value="전송" id="photo_submit">
-					<input type="button" value="취소" id="photo_reset">
+					<input type="file" class = "btn btn-outline-dark" id="upload" accept="image/gif,image/png,image/jpeg">
+					<input type="button" class = "btn btn-outline-dark" value="전송" id="photo_submit">
+					<input type="button" class = "btn btn-outline-dark" value="취소" id="photo_reset">
 				</div>
 				<%-- 이미지 처리 자바스크립트 부분 --%>
 				<script type="text/javascript">
@@ -296,15 +300,16 @@
 					});
 					
 				</script>
-				</li>
-		</ul>
-	
-		<div class="align-center" style="margin-top: 2em;">
-			<form:button>회원정보수정</form:button>
-			<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-		</div>
+				</div>
+				<div class = "form-group row">
+					<div class = "text-center col-sm-10">
+						<form:button class = "btn btn-outline-dark">회원정보수정</form:button>&nbsp;&nbsp;
+						<input type="button" class = "btn btn-outline-dark" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+					</div>
+				</div>
 		
 		
 	</form:form>
+	</div>
 </div>
 <!-- 중앙 내용 끝 -->

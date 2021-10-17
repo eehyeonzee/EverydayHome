@@ -47,6 +47,10 @@ public class MemberVO {
 	   private int recommend_count;	// 좋아요 숫자
 	   private int house_board_count;	// 사진 글 숫자
 	   
+	// 비밀번호 변경시 현재 비밀번호를 저장하는 용도로 사용
+			@Pattern(regexp="^[A-Za-z0-9]{4,12}$")
+			private String now_passwd;
+	   
 	   //============ 비밀번호 일치 여부 체크 ==============//
 	   public boolean isCheckedPassword(String userPasswd) {
 	      if(mem_auth > 1 && passwd.equals(userPasswd)) {
@@ -230,6 +234,14 @@ public class MemberVO {
 		this.house_board_count = house_board_count;
 	}
 
+	public String getNow_passwd() {
+		return now_passwd;
+	}
+
+	public void setNow_passwd(String now_passwd) {
+		this.now_passwd = now_passwd;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberVO [mem_num=" + mem_num + ", mem_id=" + mem_id + ", mem_auth=" + mem_auth + ", mem_name="
@@ -239,8 +251,10 @@ public class MemberVO {
 				+ coupon_name + ", coupon_context=" + coupon_context + ", coupon_count=" + coupon_count
 				+ ", discount_price=" + discount_price + ", nickname=" + nickname + ", follow_count=" + follow_count
 				+ ", follower_count=" + follower_count + ", scrapbook_count=" + scrapbook_count + ", recommend_count="
-				+ recommend_count + ", house_board_count=" + house_board_count + "]";
+				+ recommend_count + ", house_board_count=" + house_board_count + ", now_passwd=" + now_passwd + "]";
 	}
+
+	
 
 	
 
