@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -32,4 +33,9 @@ public interface ReviewMapper {
 	public int reviewFileDelete(int rev_num);//리뷰 파일 삭제
 	@Select("SELECT COUNT(*) FROM order_detail d, orders o WHERE o.order_num = d.order_num AND mem_num = #{mem_num}")
 	public int reviewBuyCount(int mem_num);
+	@Select("select count(*) FROM product_review WHERE mem_num = #{mem_num} AND prod_num= #{prod_num}")
+	public int reviewExist(@Param("mem_num")int mem_num, @Param("prod_num")int prod_num);//리뷰쓴적잇는지 확인
+	@Select("SELECT COUNT(*) FROM orders o, order_detail d WHERE d.order_num=o.order_num AND mem_num =#{mem_num} AND prod_num =#{prod_num}")
+	public int orderExist(@Param("mem_num")int mem_num,@Param("prod_num") int prod_num);
+	
 }

@@ -55,50 +55,25 @@ h2{
 }
 </style>
 <div class="container-fluid">
-<%@ include file="/WEB-INF/views/member/myPageHeader.jsp" %>
  <div class="main-container">
- 	<div class="name-item" align="lift">
- 	<h2 style="font-family: 'Gowun Dodum', sans-serif;">리뷰쓰기</h2>
+ 	<div class="name-item">
+ 	<h2 style="font-family: 'Gowun Dodum', sans-serif;">리뷰목록</h2>
  	</div>
  	<div class="cart-container">
  	<c:if test="${count==0}">
  		<div class="link-item" style="font-family: 'Gowun Dodum', sans-serif;">구매한 내역이 없습니다.</div>
  	</c:if>
  	<c:if test="${count>0}">
- 		<c:forEach var="list" items="${list}" varStatus="i">
- 		<c:if test="${list.Overlap==0}">
- 		<form name="form1" id="form1" method="post" action="reviewWrite.do">
- 			<div class="link-item" onclick="location.href='#'"> 
-			<!-- 이미지 추가 -->
- 			<div class="title">
- 			<p style="font-family: 'Gowun Dodum', sans-serif;">${list.buis_name}</p>
- 			<p style="font-family: 'Gowun Dodum', sans-serif;">${list.prod_name}</p>
- 			</div>
-            <input type="hidden" name="prod_num" value="${list.prod_num}">
- 			<div class="reg_date">
- 			<span style="font-family: 'Gowun Dodum', sans-serif;">
- 			 <fmt:formatNumber pattern="###,###,###" value="${list.prod_price}"/>
- 			 </span>
-			<button type="submit" id="btnUpdate">리뷰쓰기</button>
- 			</div>
- 			</div>
- 		</form>
- 		</c:if>
- 		<c:if test="${list.Overlap>0}">
- 		 			<div class="link-item" onclick="location.href='#'"> 
-			<!-- 이미지 추가 -->
- 			<div class="title">
- 			<p style="font-family: 'Gowun Dodum', sans-serif;">${list.buis_name}</p>
- 			<p style="font-family: 'Gowun Dodum', sans-serif;">${list.prod_name}</p>
- 			</div>
-            <input type="hidden" name="prod_num" value="${list.prod_num}">
- 			<div class="reg_date">
- 			<span style="font-family: 'Gowun Dodum', sans-serif;">
- 			 <fmt:formatNumber pattern="###,###,###" value="${list.prod_price}"/>
- 			 </span>
+ 		<c:forEach var="list" items="${list}" varStatus="n">
+ 		<form:form id="${n.index}" action="reviewCheck.do" modelAttribute="reviewVO" method="post">
+ 		<div class="link-item" onclick="#">
+ 		<div class="title">${list.buis_name}</div><br>
+ 		<div class="title">${list.prod_name}</div>
+ 		<input type="hidden" name="prod_num"value="${list.prod_num}"/>
+ 		<div class="reg_date">${list.prod_price}</div>
+ 		<div class="reg_date"><form:button>리뷰작성</form:button></div>
  		</div>
- 		</div>
- 		</c:if>
+ 		</form:form>
  		</c:forEach>
  	</c:if>
 	</div>

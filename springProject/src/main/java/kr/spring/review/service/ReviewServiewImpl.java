@@ -67,5 +67,15 @@ public class ReviewServiewImpl implements ReviewService {
 		reviewMapper.reviewFileDelete(rev_num);
 	}
 
+	@Override
+	public int reviewExist(int mem_num, int prod_num) {
+		return reviewMapper.reviewExist(mem_num, prod_num);
+	}
+
+	@Override
+	public int orderExist(int mem_num, int prod_num) {
+		return reviewMapper.orderExist(mem_num, prod_num);
+	}
+
 	
 }
