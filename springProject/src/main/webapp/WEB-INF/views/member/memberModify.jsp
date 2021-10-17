@@ -8,12 +8,6 @@
  * 설명 : 
  * 수정일 : 
 --%>
-<style>
-	#mem-delete{
-		float: right;
-	}
-	
-</style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
@@ -75,11 +69,40 @@
 				return false;
 			}
 		});
+		
+		$(".mem_delete_btn").click(function(){
+			var input_passwd = prompt("비밀번호를 입력해주세요.");
+			
+			$.ajax({
+				url:"memberDelete.do",
+				type:"post",
+				data : {input_pass:input_passwd},
+				dataType:"json",
+				cache:false,
+				timeout:30000,
+				success:function(param){
+					if(param.result == 'success'){
+						alert("탈퇴 되었습니다.\n복구를 원하시면 문의를 넣어주세요.");
+						location.href="${pageContext.request.contextPath}/main/main.do";
+					}else if(param.result == 'NotEqualsPasswd'){
+						alert("비밀번호가 불일치합니다.");
+					}else if(param.result == 'logout'){
+						alert("로그인을 해주세요!!");
+						location.href="${pageContext.request.contextPath}/member/login.do";
+					}else{
+						alert("서버 처리중 오류 발생!!")
+					}
+				},
+				error : function(request,status,error){      // 에러메세지 반환
+		               alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
+		        }
+			}); //end if ajax
+		}); //end if click
 	});
 </script>
 <!-- 중앙 내용 시작 -->
 <div class="page-main">
-<div id="mem-delete">회원탈퇴</div>
+<button style="float: right; cursor: pointer;" class="mem_delete_btn">회원탈퇴</button>
 	<h2>회원정보 수정</h2>
 	<form:form id="modify_form" action="memberUpdate.do" modelAttribute="memberVO" enctype="multipart/form-data">
 		<ul>

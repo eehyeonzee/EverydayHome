@@ -362,6 +362,7 @@ public class MemberController {
 	public String modifyForm(HttpSession session, Model model) {
 		Integer user_num = (Integer) session.getAttribute("user_num");
 		
+		// 회원정보 가져오기
 		MemberVO memberVO = memberService.selectMember(user_num);
 		
 		model.addAttribute("memberVO", memberVO);
@@ -408,6 +409,38 @@ public class MemberController {
 			
 			map.put("result", "success");
 		}
+		return map;
+	}
+	
+	// 회원정보 수정 - 회원 탈퇴
+	@PostMapping("/member/memberDelete.do")
+	@ResponseBody
+	public Map<String, String> memberDelete(String input_pass, HttpSession session){
+		Map<String,String> map = new HashMap<String,String>();
+	
+		// 회원 번호 가져오기
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		MemberVO memberVO = memberService.selectMember(user_num); // 회원 정보 가져오기
+		boolean check = false;
+		
+		check = memberVO.isCheckedPassword(input_pass);
+		
+		if(user_num==null) {//로그인이 되지 않은 상태 로그아웃 처리
+			map.put("result", "logout");
+		}
+		
+		if(check) {		// 비밀번호가 일치한 경우
+			// 인증 성공 회원 정보 삭제후 map에 저장
+			memberService.deleteMember(user_num);
+			map.put("result", "success");
+			
+			// 로그인 세션 삭제 (로그아웃)
+			session.invalidate();
+		}else {			// 비밀번호가 일치하지 않은 경우
+			map.put("result", "NotEqualsPasswd");
+		}
+		
+		
 		return map;
 	}
 	
