@@ -37,4 +37,8 @@
     	<put-attribute name="title" value="비밀번호변경"/>
     	<put-attribute name="body" value="/WEB-INF/views/member/memberPasswdUpdate.jsp"/>
     </definition>
+    <definition name="sellerApplication" extends="main">
+    	<put-attribute name="title" value="판매자 신청"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/sellerApplication.jsp"/>
+    </definition>
 </tiles-definitions>

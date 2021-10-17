@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.houseBoard.vo.HouseBoardVO;
 import kr.spring.member.dao.MemberMapper;
+import kr.spring.member.vo.MemberBuisVO;
 import kr.spring.member.vo.MemberVO;
 
 /**
@@ -58,6 +59,11 @@ public class MemberServiceImpl implements MemberService {
 	public void deleteMember(Integer mem_num) {
 		memberMapper.deleteMemberDetail(mem_num);
 		memberMapper.deleteMember(mem_num);
+	}
+	@Override
+	public void insertSeller(MemberBuisVO memberBuisVO) {
+		memberMapper.insertSeller(memberBuisVO);
+		
 	}
 	
 }

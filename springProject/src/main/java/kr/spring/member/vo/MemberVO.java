@@ -47,6 +47,7 @@ public class MemberVO {
 	   private int recommend_count;	// 좋아요 숫자
 	   private int house_board_count;	// 사진 글 숫자
 	   
+	   
 	// 비밀번호 변경시 현재 비밀번호를 저장하는 용도로 사용
 			@Pattern(regexp="^[A-Za-z0-9]{4,12}$")
 			private String now_passwd;
@@ -253,12 +254,5 @@ public class MemberVO {
 				+ ", follower_count=" + follower_count + ", scrapbook_count=" + scrapbook_count + ", recommend_count="
 				+ recommend_count + ", house_board_count=" + house_board_count + ", now_passwd=" + now_passwd + "]";
 	}
-
-	
-
-	
-
-	
-	
 
 }

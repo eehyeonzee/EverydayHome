@@ -1,6 +1,6 @@
 package kr.spring.member.service;
 
-import kr.spring.houseBoard.vo.HouseBoardVO;
+import kr.spring.member.vo.MemberBuisVO;
 import kr.spring.member.vo.MemberVO;
 
 /**
@@ -19,4 +19,5 @@ public interface MemberService {
 	public void updateProfile(MemberVO member);			// 프로필 이미지 업데이트
 	public void updateMember(MemberVO member);			// 회원정보 수정
 	public void deleteMember(Integer mem_num);			// 회원정보 삭제
+	public void insertSeller(MemberBuisVO memberBuisVO);		// 마이페이지 판매자 정보 등록
 }

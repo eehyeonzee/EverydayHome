@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Update;
 
 import kr.spring.houseBoard.vo.HouseBoardVO;
 import kr.spring.houseBoard.vo.HouseBoardVO;
+import kr.spring.member.vo.MemberBuisVO;
 import kr.spring.member.vo.MemberVO;
 
 /**
@@ -44,5 +45,6 @@ public interface MemberMapper {
 	public void deleteMember(Integer mem_num);		// 마이페이지 - 회원 삭제(등급 0 변경)
 	@Delete("DELETE FROM mem_detail WHERE mem_num = #{mem_num}")
 	public void deleteMemberDetail(Integer mem_num);		// 마이페이지 - 회원상세정보 삭제
-	
+	@Insert("INSERT INTO buis_detail (mem_num, buis_num, ceo_name, buis_name, buis_item, opening_date, buis_zipcode, buis_address1, buis_address2) VALUES (#{mem_num}, #{buis_num}, #{ceo_name}, #{buis_name}, #{buis_item}, #{opening_date}, #{buis_zipcode}, #{buis_address1}, #{buis_address2})")
+	public void insertSeller(MemberBuisVO memberBuisVO);		// 마이페이지 판매자 정보 등록
 }

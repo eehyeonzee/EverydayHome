@@ -88,3 +88,14 @@ ALTER TABLE orders ADD pay_price number(14, 0);
 ALTER TABLE orders ADD coupon_num number null;
 ALTER TABLE orders ADD point number(12,0) null;
 ALTER TABLE orders ADD buis_name varchar2(70);
+
+-- 21.10.18. 01:00 판매자 테이블 컬럼 변경 및 고객센터 외래키 제약조건 삭제
+ALTER TABLE service_board DROP CONSTRAINT FK_SERVICE_BOARD_MEM_NUM_MEMBE;
+
+ALTER TABLE buis_detail DROP COLUMN BUIS_EMAIL;
+ALTER TABLE buis_detail DROP COLUMN BUIS_PROFILE;
+ALTER TABLE buis_detail DROP COLUMN PROFILE_FILENAME;
+ALTER TABLE buis_detail DROP COLUMN BUIS_REG_DATE;
+ALTER TABLE buis_detail DROP COLUMN BUIS_PASSWD;
+ALTER TABLE buis_detail add application_state VARCHAR2(10) DEFAULT '1' not null;
+ALTER TABLE buis_detail MODIFY BUIS_NUM VARCHAR2(40);

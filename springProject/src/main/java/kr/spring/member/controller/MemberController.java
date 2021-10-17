@@ -22,6 +22,7 @@ import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -43,6 +44,7 @@ import com.google.gson.JsonParser;
 import kr.spring.houseBoard.service.HouseBoardService;
 import kr.spring.houseBoard.vo.HouseBoardVO;
 import kr.spring.member.service.MemberService;
+import kr.spring.member.vo.MemberBuisVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.util.AuthCheckException;
 import kr.spring.util.PagingUtil;
@@ -73,7 +75,13 @@ public class MemberController {
 	    return new MemberVO();
 	 }
 		 
-	
+	 // Member 자바빈(VO) 초기화
+	 @ModelAttribute
+	 public MemberBuisVO initCommand2() {
+		 
+	    return new MemberBuisVO();
+	 }
+	 
 	// 회원가입 - 회원가입 폼 호출
 	@RequestMapping("/member/registerUser.do")
 	public String form() {
@@ -520,6 +528,35 @@ public class MemberController {
 		
 		return mav;
 	}
+	
+	// 마이페이지 - 판매자 신청 폼 호출
+	@GetMapping("/member/sellerApplication.do")
+	public String sellerApplication() {
+		
+		return "sellerApplication";	// 타일스 식별자
+	}
+	
+	
+	// 마이페이지 - 판매자 신청 폼 처리
+	@PostMapping("/member/sellerApplication.do")
+	public String sellerApplicationProcess(@Valid MemberBuisVO memberBuisVO, 
+														BindingResult result, HttpSession session) {
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		// 유효성 검사 결과 오류가 있으면 폼 호출
+		if(result.hasErrors()) {
+			logger.debug("<<판매자 신청 오류 : >>" + result.toString());
+			return sellerApplication();
+		}
+		memberBuisVO.setMem_num(user_num);
+		logger.debug("<<사업자 신청 정보>> : " + memberBuisVO);
+		// 회원가입
+		memberService.insertSeller(memberBuisVO);
+		return "redirect:/member/myPage.do";
+	}
+	
+	
+	
+	
 	
 	//----------------- 회원가입 이메일 인증 8자리 난수 생성 부분
     private int certCharLength = 8;
