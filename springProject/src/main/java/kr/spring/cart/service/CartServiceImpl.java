@@ -40,8 +40,8 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public int cartCount(int prod_num, int mem_num) {
-		return cartMapper.cartCount(prod_num, mem_num);
+	public int cartCount(CartVO cartVO) {
+		return cartMapper.cartCount(cartVO);
 	}
 
 	@Override

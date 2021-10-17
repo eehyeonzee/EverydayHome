@@ -35,6 +35,14 @@ public class StoreVO {
 	@NotEmpty
 	private String prod_cate;			// 카테고리
 	private String prod_option2;		// 옵션2
+	private String prod_option3;		// 옵션2
+	private String prod_option4;		// 옵션2
+	private String prod_option5;		// 옵션2
+	private String prod_option6;		// 옵션2
+	private String prod_option7;		// 옵션2
+	private String prod_option8;		// 옵션2
+	private String prod_option9;		// 옵션2
+	private String prod_option10;		// 옵션2
 	
 	// 썸네일 BLOB 처리
 	public void setUpload1(MultipartFile upload1)throws IOException {
@@ -169,6 +177,54 @@ public class StoreVO {
 	public void setProd_option2(String prod_option2) {
 		this.prod_option2 = prod_option2;
 	}
+	public String getProd_option3() {
+		return prod_option3;
+	}
+	public void setProd_option3(String prod_option3) {
+		this.prod_option3 = prod_option3;
+	}
+	public String getProd_option4() {
+		return prod_option4;
+	}
+	public void setProd_option4(String prod_option4) {
+		this.prod_option4 = prod_option4;
+	}
+	public String getProd_option5() {
+		return prod_option5;
+	}
+	public void setProd_option5(String prod_option5) {
+		this.prod_option5 = prod_option5;
+	}
+	public String getProd_option6() {
+		return prod_option6;
+	}
+	public void setProd_option6(String prod_option6) {
+		this.prod_option6 = prod_option6;
+	}
+	public String getProd_option7() {
+		return prod_option7;
+	}
+	public void setProd_option7(String prod_option7) {
+		this.prod_option7 = prod_option7;
+	}
+	public String getProd_option8() {
+		return prod_option8;
+	}
+	public void setProd_option8(String prod_option8) {
+		this.prod_option8 = prod_option8;
+	}
+	public String getProd_option9() {
+		return prod_option9;
+	}
+	public void setProd_option9(String prod_option9) {
+		this.prod_option9 = prod_option9;
+	}
+	public String getProd_option10() {
+		return prod_option10;
+	}
+	public void setProd_option10(String prod_option10) {
+		this.prod_option10 = prod_option10;
+	}
 	
 	@Override
 	public String toString() {
@@ -177,6 +233,9 @@ public class StoreVO {
 				+ ", prod_option1=" + prod_option1 + ", prod_content=" + prod_content + ", prod_filename="
 				+ prod_filename + ", thumbnail_filename=" + thumbnail_filename + ", prod_quan=" + prod_quan
 				+ ", add_product=" + add_product + ", prod_reg_date=" + prod_reg_date + ", prod_keyword=" + prod_keyword
-				+ ", mem_num=" + mem_num + ", prod_cate=" + prod_cate + ", prod_option2=" + prod_option2 + "]";
+				+ ", mem_num=" + mem_num + ", prod_cate=" + prod_cate + ", prod_option2=" + prod_option2
+				+ ", prod_option3=" + prod_option3 + ", prod_option4=" + prod_option4 + ", prod_option5=" + prod_option5
+				+ ", prod_option6=" + prod_option6 + ", prod_option7=" + prod_option7 + ", prod_option8=" + prod_option8
+				+ ", prod_option9=" + prod_option9 + ", prod_option10=" + prod_option10 + "]";
 	}
 }

@@ -7,6 +7,50 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
+<script type = "text/javascript">
+	$(document).ready(function() {
+		var option = 1;
+		
+		$('#prod_option2').hide();
+		$('#prod_option3').hide();
+		$('#prod_option4').hide();
+		$('#prod_option5').hide();
+		$('#prod_option6').hide();
+		$('#prod_option7').hide();
+		$('#prod_option8').hide();
+		$('#prod_option9').hide();
+		$('#prod_option10').hide();
+		
+		$('#plus').click(function(e) {
+			option += 1;
+			e.preventDefault();
+			$('#prod_option' + option).show();
+			if(option == 10) {
+				$('#plus').hide();
+			}
+			
+			if(option != 1) {
+				$('#minus').show();
+			}
+		});
+		
+		if(option == 1) {
+			$('#minus').hide();
+		}
+		
+		$('#minus').click(function(e) {
+			e.preventDefault();
+			$('#prod_option' + option).hide();
+			option--;
+			
+			if(option == 1) {
+				$('#minus').hide();
+			}
+			
+			$('#plus').show();
+		});
+	});			
+</script>
 <!-- 내용 시작 -->
 <div class = "container">
 	<h2>상품 등록</h2>
@@ -75,10 +119,54 @@
 				<form:input path = "prod_option1" />
 				<form:errors path = "prod_option1" cssClass = "error-color" />
 			</li>
-			<li>
+			<li id = "prod_option2">
 				<label for = "prod_option2">상품옵션2</label>
 				<form:input path = "prod_option2" />
 				<form:errors path = "prod_option2" cssClass = "error-color" />
+			</li>
+			<li id = "prod_option3">
+				<label for = "prod_option3">상품옵션3</label>
+				<form:input path = "prod_option3" />
+				<form:errors path = "prod_option3" cssClass = "error-color" />
+			</li>
+			<li id = "prod_option4">
+				<label for = "prod_option4">상품옵션4</label>
+				<form:input path = "prod_option4" />
+				<form:errors path = "prod_option4" cssClass = "error-color" />
+			</li>
+			<li id = "prod_option5">
+				<label for = "prod_option5">상품옵션5</label>
+				<form:input path = "prod_option5" />
+				<form:errors path = "prod_option5" cssClass = "error-color" />
+			</li>
+			<li id = "prod_option6">
+				<label for = "prod_option6">상품옵션6</label>
+				<form:input path = "prod_option6" />
+				<form:errors path = "prod_option6" cssClass = "error-color" />
+			</li>
+			<li id = "prod_option7">
+				<label for = "prod_option7">상품옵션7</label>
+				<form:input path = "prod_option7" />
+				<form:errors path = "prod_option7" cssClass = "error-color" />
+			</li>
+			<li id = "prod_option8">
+				<label for = "prod_option8">상품옵션8</label>
+				<form:input path = "prod_option8" />
+				<form:errors path = "prod_option8" cssClass = "error-color" />
+			</li>
+			<li id = "prod_option9">
+				<label for = "prod_option9">상품옵션9</label>
+				<form:input path = "prod_option9" />
+				<form:errors path = "prod_option9" cssClass = "error-color" />
+			</li>
+			<li id = "prod_option10">
+				<label for = "prod_option10">상품옵션10</label>
+				<form:input path = "prod_option10" />
+				<form:errors path = "prod_option10" cssClass = "error-color" />
+			</li>
+			<li>
+				<input type = "button" id = "plus" value = "상품 옵션 추가">
+				<input type = "button" id = "minus" value = "상품 옵션 제거">
 			</li>
 			<li>
 				<label for = "add_product">추가 상품</label>

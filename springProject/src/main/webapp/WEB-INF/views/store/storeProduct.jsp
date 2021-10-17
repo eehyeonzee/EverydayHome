@@ -9,6 +9,7 @@
 
 <nav>${storeVO.prod_cate}</nav>
 <div>
+	<input type = "hidden" value = "${storeVO.prod_num}">
 	<c:if test = "${!empty user_num && user_num == storeVO.mem_num}">
 			<input type = "button" value = "수정" onclick="location.href='updateProduct.do?prod_num=${storeVO.prod_num}'">
 			<input type = "button" value = "삭제" id = "delete_btn">
@@ -49,8 +50,8 @@
 			<script type = "text/javascript">
 				$(document).ready(function() {
 					$('select').val('');
-					$('#quantity').hide();
-					$('#quantity').val('0');
+					$('#quan').hide();
+					$('#quan').val('0');
 					
 					$('#product').change(function() {
 					  	var result = '';
@@ -69,19 +70,19 @@
 							$('#price').text(price + '원');
 							
 							if(result != '') {
-								$('#quantity').show();
+								$('#quan').show();
 							}
 						}
 						
 						if($('#product').val() == '') {
 							$('#result').text('');
 							$('#price').text('');
-							$('#quantity').hide();
+							$('#quan').hide();
 						}
 						
-						$('#quantity').change(function() {							
+						$('#quan').change(function() {							
 							var last_price = 0;
-							var quantity = $('#quantity').val();
+							var quantity = $('#quan').val();
 							
 							last_price = quantity * price;
 							
@@ -96,15 +97,69 @@
 			<span id = "result"></span>
 			<span id = "price"></span>
 			<div  class = "quantity">
-				<input type = "number" id = "quantity">
+				<input type = "number" id = "quan" min = "0">
 			</div>
 		</div>
 		<div>
 			<span id = "last_price"></span>
 		</div>
+		<script type = "text/javascript">
+			$(document).ready(function() {
+				$('#quan').val('0');				
+				$('#quan').change(function() {							
+					var last_price = 0;
+					var quantity = $('#quan').val();
+								
+					last_price = quantity * ${storeVO.prod_price};
+								
+					$('#last_price').text(last_price + '원');
+				});
+			});
+		</script>
 		<div>
-			<input type = "button" value = "장바구니">
+			<input type = "button" id = "btn_cart" value = "장바구니">
 			<input type = "button" value = "구매하기">
 		</div>
+		<script type = "text/javascript">
+			if('#selec_option') {
+				$('#btn_cart').hide();
+			}else {
+				$('#btn_cart').show();
+			}
+			$('#btn_cart').click(function() {
+				var quan = $('#quan').val();
+				$.ajax({
+					type : 'post',
+					url : '${pageContext.request.contextPath}/cart/cartInsert.do',
+					data : {
+						prod_num : ${storeVO.prod_num},
+						user_num : ${user_num},
+						cart_quan : quan
+					},
+					dataType : 'json',
+					cache : false,
+					timeout : 30000,
+					success : function(param) {
+						if(param.result == 'add_success') {
+							var check = confirm('카트에 등록 되었습니다. 카트를 확인해보시겠습니까?');
+							if(check) {
+								location.assign('${pageContext.request.contextPath}/cart/cartList.do');					
+							}
+						}else if(param.result == 'cart_update') {
+							var check = confirm('카트 수량이 변경 되었습니다. 카트를 확인해보시겠습니까?');
+							if(check) {
+								location.assign('${pageContext.request.contextPath}/cart/cartList.do');					
+							}
+						}else {
+							alert('장바구니 오류!');
+						}
+					},
+					error : function() {
+						alert('네트워크 오류!');
+					}
+					
+				});
+			});
+		</script>
 	</div>
 </div>

@@ -69,3 +69,13 @@ ALTER TABLE product add product_option10 VARCHAR2(150) null;
 
 -- 21.10.17 02:50 댓글 테이블 컬럼명 변경
 ALTER TABLE comments RENAME COLUMN comm_modi TO comm_mod_date;
+
+-- 21.10.17 17:30 상품 테이블 칼럼 이름 오류 수정
+ALTER TABLE product RENAME COLUMN product_option3 TO prod_option3;
+ALTER TABLE product RENAME COLUMN product_option4 TO prod_option4;
+ALTER TABLE product RENAME COLUMN product_option5 TO prod_option5;
+ALTER TABLE product RENAME COLUMN product_option6 TO prod_option6;
+ALTER TABLE product RENAME COLUMN product_option7 TO prod_option7;
+ALTER TABLE product RENAME COLUMN product_option8 TO prod_option8;
+ALTER TABLE product RENAME COLUMN product_option9 TO prod_option9;
+ALTER TABLE product RENAME COLUMN product_option10 TO prod_option10;
