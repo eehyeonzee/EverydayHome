@@ -21,6 +21,11 @@ import kr.spring.houseBoard.vo.HouseBoardVO;
 public interface HouseBoardMapper {
 	public List<HouseBoardVO> selectHBoardList(Map<String,Object> map); // 글 목록
 	public int selectRowCount(Map<String,Object> map); // 글의 개수
+	
+	public List<HouseBoardVO> selectMyBoardList(Map<String, Object> map);	// 내가쓴 글 목록
+	@Select("SELECT COUNT(*) FROM house_board b JOIN mem_detail m ON b.mem_num = m.mem_num WHERE m.mem_num=#{mem_num}")
+	public int selectMyBoardRowCount(Integer mem_num); // 내가 쓴 글의 개수
+	
 	@Insert("INSERT INTO house_board (house_num,house_title,house_area,house_type,house_style,house_space,house_content,house_thumbnail,thumbnail_filename,mem_num)"
 			+ " VALUES (house_board_seq.nextval,#{house_title},#{house_area},#{house_type},#{house_style},#{house_space},#{house_content},#{house_thumbnail},#{thumbnail_filename},#{mem_num})")
 	public void insertHBoard(HouseBoardVO houseBoard); // 글쓰기

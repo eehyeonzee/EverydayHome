@@ -15,7 +15,9 @@ import kr.spring.houseBoard.vo.HouseBoardVO;
 
 public interface HouseBoardService {
 	public List<HouseBoardVO> selectHBoardList(Map<String,Object> map); // 글 목록
+	public List<HouseBoardVO> selectMyBoardList(Map<String, Object> map);	// 내가쓴 글 목록
 	public int selectRowCount(Map<String,Object> map); // 글의 개수
+	public int selectMyBoardRowCount(Integer mem_num); // 내가 쓴 글의 개수
 	public void insertHBoard(HouseBoardVO houseBoard); // 글쓰기
 	public HouseBoardVO selectHBoard(Integer house_num); // 글 상세
 	public void updateHBoardHits(Integer house_num); // 조회수
