@@ -19,10 +19,6 @@
 <body>
 <div class="page-main">
    <h2>게시판 목록</h2>
-   
-   <div class="align-right">
-      <input type="button" value="글 등록" onclick="location.href='qnaInsert.do'">
-   </div>
    <c:if test="${count==0 }">
    <div class="result-display">출력할 내용이 없습니다.</div>
    </c:if>

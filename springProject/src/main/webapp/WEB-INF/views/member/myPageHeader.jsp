@@ -63,7 +63,7 @@
 			<li class="navrightmenuli"><a class="navmenuitem" href="${pageContext.request.contextPath}/member/memberUpdate.do" style="font-size: 30px; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">설정</a>
 				<ul class="dropdownbar">
 					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/memberUpdate.do">회원정보수정</a></li>						
-					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="#">비밀번호변경</a></li> 
+					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/memberPasswdUpdate.do">비밀번호변경</a></li> 
 					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="#">추천코드</a></li> 
 				</ul>
 			</li>
@@ -78,10 +78,10 @@
 	<div class="mypage-info-main" align="center">
 	<ul>
 		<li>
-			<c:if test="${empty member.profile_filename }">
+			<c:if test="${empty user_photo }">
 			<img src="${pageContext.request.contextPath }/resources/images/basic.jpg" width="100" height="100" class="my-photo">
 			</c:if>
-			<c:if test="${!empty member.profile_filename }">
+			<c:if test="${!empty user_photo }">
 			<img src="${pageContext.request.contextPath }/member/photoView.do" width="100" height="100" class="my-photo">
 			</c:if>
 		</li>

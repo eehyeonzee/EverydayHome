@@ -362,6 +362,7 @@ public class MemberController {
 	public String modifyForm(HttpSession session, Model model) {
 		Integer user_num = (Integer) session.getAttribute("user_num");
 		
+		// 회원정보 가져오기
 		MemberVO memberVO = memberService.selectMember(user_num);
 		
 		model.addAttribute("memberVO", memberVO);
@@ -408,6 +409,72 @@ public class MemberController {
 			
 			map.put("result", "success");
 		}
+		return map;
+	}
+	
+	// 회원정보 수정 - 비밀번호 변경 폼 호출
+	@GetMapping("/member/memberPasswdUpdate.do")
+	public String memberPasswdUpdateForm() {
+		logger.debug("<<비밀번호 변경 폼 호출>>");
+		
+		return "memberPasswdUpdate";	// 타일스 식별자 호출
+	}
+	
+	// 회원정보 수정 - 비밀번호 변경 처리
+	@PostMapping("/member/memberPasswdUpdate.do")
+	public String submitUpdatePasswd(@Valid MemberVO memberVO, BindingResult result, HttpSession session) {
+		
+		logger.debug("<<비밀번호수정>> : " + memberVO);
+		
+		// 콕 집어서 체크
+		// 유효성 체크 결과 오류가 있으면 폼 호출
+		if(result.hasFieldErrors("now_passwd") || result.hasFieldErrors("passwd")) {
+			return memberPasswdUpdateForm();
+		}
+		
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		MemberVO member = memberService.selectMember(user_num); // 한 건의 레코드 구하기
+		
+		// 폼에서 전송한 현재 비밀번호와 DB에서 받아온 현재 비밀번호 일치 여부 체크
+		// DB에서 읽어온 비밀번호				사용자가 입력한 비밀번호
+		if(!member.getPasswd().equals(memberVO.getNow_passwd())) {
+			// 비밀번호 불일치
+			result.rejectValue("now_passwd", "invalidPassword");
+			return memberPasswdUpdateForm();
+		}
+		
+		return "redirect:/member/myPage.do";
+	}
+	
+	// 회원정보 수정 - 회원 탈퇴
+	@PostMapping("/member/memberDelete.do")
+	@ResponseBody
+	public Map<String, String> memberDelete(String input_pass, HttpSession session){
+		Map<String,String> map = new HashMap<String,String>();
+	
+		// 회원 번호 가져오기
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		MemberVO memberVO = memberService.selectMember(user_num); // 회원 정보 가져오기
+		boolean check = false;
+		
+		check = memberVO.isCheckedPassword(input_pass);
+		
+		if(user_num==null) {//로그인이 되지 않은 상태 로그아웃 처리
+			map.put("result", "logout");
+		}
+		
+		if(check) {		// 비밀번호가 일치한 경우
+			// 인증 성공 회원 정보 삭제후 map에 저장
+			memberService.deleteMember(user_num);
+			map.put("result", "success");
+			
+			// 로그인 세션 삭제 (로그아웃)
+			session.invalidate();
+		}else {			// 비밀번호가 일치하지 않은 경우
+			map.put("result", "NotEqualsPasswd");
+		}
+		
+		
 		return map;
 	}
 	

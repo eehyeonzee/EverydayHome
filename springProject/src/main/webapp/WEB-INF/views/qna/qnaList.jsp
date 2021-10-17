@@ -32,12 +32,12 @@
 <div class="page-main">
    <h2>게시판 목록</h2>
    <div class="align-left">
-   <c:if test="${member_auth != 3}">
+   <c:if test="${user_auth != 4}">
       <input type="button" value="이메일 문의하기" onclick="location.href='serviceBoardInsert.do'">
    </c:if>
    </div>
    <br><br><br>
-   <c:if test="${member_auth == 3 }"> 
+   <c:if test="${user_auth == 4 }"> 
 	   	<input type="button" value="자주묻는 질문 list" onclick="location.href='qnaServiceList.do'">
    		<input type="button" value="이메일 문의 list" onclick="location.href='serviceBoardList.do'"><br><br>
 	</c:if> 
