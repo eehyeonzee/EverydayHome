@@ -15,7 +15,7 @@
     </definition>
     <definition name="qnaServiceList" extends="main">
     	<put-attribute name="title" value="qnaService 게시판 글 목록"/>
-    	<put-attribute name="body" value="/WEB-INF/views/qna/qnaList.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/qna/qnaServiceList.jsp"/>
     </definition>
     <definition name="qnaUpdate" extends="main">
     	<put-attribute name="title" value="qna 게시판 글 수정"/>
