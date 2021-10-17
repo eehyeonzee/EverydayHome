@@ -75,4 +75,8 @@ public class HouseBoardServiceImpl implements HouseBoardService {
 		return houseBoardMapper.selectMyBoardRowCount(mem_num);
 	}
 
+	
+
+
+	
 }

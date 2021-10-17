@@ -15,4 +15,6 @@ public interface ReviewService {
 	public int reviewMyCount(int mem_num);//내 리뷰 총 개수 세기
 	public int reviewStoreCount(int prod_num);//상품 리뷰 총 개수 세기
 	public void reviewFileDelete(int rev_num);//수정시 파일삭제
+	public int reviewExist(int mem_num, int prod_num);
+	public int orderExist(int mem_num, int prod_num);
 }

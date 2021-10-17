@@ -84,8 +84,6 @@ div.mypage-info table{
 	color: #35c5f0
 }
 
-
-
 /*==========페이지 기본 스타일======*/
 .page-main{
 	width:98%;
@@ -271,3 +269,32 @@ div.mypage-info table{
 .emailCheckText{
 	display: none;
 }
+
+/* 링크 아이콘 */
+.link-icon {
+	position: relative;
+	display: inline-block;
+	width: auto;
+	font-size: 14px;
+	font-weight: 500;
+	color: #333;
+	margin-right: 10px;
+	padding-top: 50px;
+}
+.link-icon.twitter {
+	background-image: url(../images/twitter.png);
+	background-repeat: no-repeat;
+	text-decoration: none;
+}
+.link-icon.facebook {
+	background-image: url(../images/facebook.png);
+	background-repeat: no-repeat;
+	text-decoration: none;
+} 
+.link-icon.kakao {
+	background-image: url(../images/kakao.png);
+	background-repeat: no-repeat;
+	text-decoration: none;
+}
+
+

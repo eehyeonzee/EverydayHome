@@ -9,7 +9,8 @@
  * 수정일 : 
 --%>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<%@ include file="/WEB-INF/views/member/myPageHeader.jsp" %>
+<%@ include file="/WEB-INF/views/member/common/myPageHeader.jsp" %>
+<%@ include file="/WEB-INF/views/member/common/myPageProfile.jsp" %>
 <script type="text/javascript">
 	$(function() {
 		// 비밀번호 수정 체크

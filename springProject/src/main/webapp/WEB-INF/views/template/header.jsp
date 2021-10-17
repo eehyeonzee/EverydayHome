@@ -211,7 +211,7 @@ height: 40px;
 								<ul class="dropdownbar">
 									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/myPage.do">마이페이지</a>
 									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="#">나의쇼핑</a></li>
-									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="#">판매자신청</a></li>
+									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/sellerApplication.do">판매자신청</a></li>
 									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
 								</ul>
 							</li>
