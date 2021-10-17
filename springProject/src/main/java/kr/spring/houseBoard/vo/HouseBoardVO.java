@@ -33,11 +33,11 @@ public class HouseBoardVO {
 	private String mem_id; // 회원ID
 	private int mem_auth; // 회원등급
 	private String nickname; // 닉네임
-	private byte[] profile;      // 프로필 사진
-	private String profile_filename;   // 프로필 사진 파일명
+	private byte[] profile; // 프로필 사진
+	private String profile_filename; // 프로필 사진 파일명
 	
 	// === 댓글, 북마크, 팔로우 === //
-	// 댓글
+	private int comm_num; // 댓글 번호
 	private int scrap_num; // 북마크 번호
 	private int follow_num; // 팔로우 번호
 	
@@ -216,8 +216,16 @@ public class HouseBoardVO {
 	public void setProfile_filename(String profile_filename) {
 		this.profile_filename = profile_filename;
 	}
+	
+	public int getComm_num() {
+		return comm_num;
+	}
 
-	// ***(주의)*** 프로퍼티 타입이 byte[]인 것은 항목에서 제외 -> house_thumbnail, house_img
+	public void setComm_num(int comm_num) {
+		this.comm_num = comm_num;
+	}
+	
+	// ***(주의)*** 프로퍼티 타입이 byte[]인 것은 항목에서 제외 -> house_thumbnail, profile
 	@Override
 	public String toString() {
 		return "HouseBoardVO [house_num=" + house_num + ", house_type=" + house_type + ", house_space=" + house_space
@@ -225,11 +233,8 @@ public class HouseBoardVO {
 				+ ", house_content=" + house_content + ", house_hits=" + house_hits + ", house_recom=" + house_recom
 				+ ", house_reg_date=" + house_reg_date + ", house_mod_date=" + house_mod_date + ", thumbnail_filename="
 				+ thumbnail_filename + ", mem_num=" + mem_num + ", mem_id=" + mem_id + ", mem_auth=" + mem_auth
-				+ ", nickname=" + nickname + ", profile_filename=" + profile_filename + ", scrap_num=" + scrap_num
-				+ ", follow_num=" + follow_num + "]";
+				+ ", nickname=" + nickname + ", profile_filename=" + profile_filename + ", comm_num=" + comm_num
+				+ ", scrap_num=" + scrap_num + ", follow_num=" + follow_num + "]";
 	}
-
-	
-	
 	
 }

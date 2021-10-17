@@ -134,6 +134,10 @@ public class HouseBoardController {
 		return new ModelAndView("houseBoardDetail", "houseBoard", houseBoard);
 	}
 	
+	// 글 상세 - 추천(좋아요) 버튼 실행
+	
+	
+	
 	// 이미지 출력
 	@RequestMapping("/houseBoard/imageView.do")
 	public ModelAndView viewImage(@RequestParam int house_num) {
@@ -245,5 +249,29 @@ public class HouseBoardController {
 		
 		return "redirect:/houseBoard/list.do";
 	}
+	
+	// =============== 댓글 =============== //
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

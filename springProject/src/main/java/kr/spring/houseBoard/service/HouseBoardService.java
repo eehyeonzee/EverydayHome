@@ -14,9 +14,10 @@ import kr.spring.houseBoard.vo.HouseBoardVO;
  */
 
 public interface HouseBoardService {
+	// =============== 집들이 게시판 & 내가 쓴 글 =============== //
 	public List<HouseBoardVO> selectHBoardList(Map<String,Object> map); // 글 목록
-	public List<HouseBoardVO> selectMyBoardList(Map<String, Object> map);	// 내가쓴 글 목록
 	public int selectRowCount(Map<String,Object> map); // 글의 개수
+	public List<HouseBoardVO> selectMyBoardList(Map<String, Object> map); // 내가쓴 글 목록
 	public int selectMyBoardRowCount(Integer mem_num); // 내가 쓴 글의 개수
 	public void insertHBoard(HouseBoardVO houseBoard); // 글쓰기
 	public HouseBoardVO selectHBoard(Integer house_num); // 글 상세
@@ -25,4 +26,10 @@ public interface HouseBoardService {
 	public void deleteHBoard(int house_num); // 글 삭제
 	// 썸네일 삭제(업데이트)
 	public void deleteFile(Integer house_num);
+	
+	// =============== 추천 =============== //
+	
+	
+	// =============== 댓글 =============== //
+	
 }
