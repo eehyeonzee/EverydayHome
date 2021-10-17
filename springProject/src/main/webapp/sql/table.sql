@@ -79,3 +79,12 @@ ALTER TABLE product RENAME COLUMN product_option7 TO prod_option7;
 ALTER TABLE product RENAME COLUMN product_option8 TO prod_option8;
 ALTER TABLE product RENAME COLUMN product_option9 TO prod_option9;
 ALTER TABLE product RENAME COLUMN product_option10 TO prod_option10;
+
+
+-- 21.10.17 23:30 결제 테이블 수정
+ALTER TABLE orders ADD prod_num number;
+ALTER TABLE orders ADD pay_quan number(5, 0);
+ALTER TABLE orders ADD pay_price number(14, 0);
+ALTER TABLE orders ADD coupon_num number null;
+ALTER TABLE orders ADD point number(12,0) null;
+ALTER TABLE orders ADD buis_name varchar2(70);
