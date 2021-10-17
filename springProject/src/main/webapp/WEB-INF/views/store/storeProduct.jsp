@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -39,6 +40,30 @@
 		<option value = "${storeVO.prod_price}">${storeVO.prod_option1}</option>
 		<c:if test = "${!empty storeVO.prod_option2}">
 		<option value = "${storeVO.prod_price}">${storeVO.prod_option2}</option>
+		</c:if>
+		<c:if test = "${!empty storeVO.prod_option3}">
+		<option value = "${storeVO.prod_price}">${storeVO.prod_option3}</option>
+		</c:if>
+		<c:if test = "${!empty storeVO.prod_option4}">
+		<option value = "${storeVO.prod_price}">${storeVO.prod_option4}</option>
+		</c:if>
+		<c:if test = "${!empty storeVO.prod_option5}">
+		<option value = "${storeVO.prod_price}">${storeVO.prod_option5}</option>
+		</c:if>
+		<c:if test = "${!empty storeVO.prod_option6}">
+		<option value = "${storeVO.prod_price}">${storeVO.prod_option6}</option>
+		</c:if>
+		<c:if test = "${!empty storeVO.prod_option7}">
+		<option value = "${storeVO.prod_price}">${storeVO.prod_option7}</option>
+		</c:if>
+		<c:if test = "${!empty storeVO.prod_option8}">
+		<option value = "${storeVO.prod_price}">${storeVO.prod_option8}</option>
+		</c:if>
+		<c:if test = "${!empty storeVO.prod_option9}">
+		<option value = "${storeVO.prod_price}">${storeVO.prod_option9}</option>
+		</c:if>
+		<c:if test = "${!empty storeVO.prod_option10}">
+		<option value = "${storeVO.prod_price}">${storeVO.prod_option10}</option>
 		</c:if>
 	</select>
 	</c:if>
@@ -118,47 +143,50 @@
 		</script>
 		<div>
 			<input type = "button" id = "btn_cart" value = "장바구니">
-			<input type = "button" value = "구매하기">
+			<input type = "button" id = "btn_order" value = "구매하기" onclick = "location.href='${pageContext.request.contextPath}/order/orderMain.do'">
 		</div>
 		<script type = "text/javascript">
-			if('#selec_option') {
-				$('#btn_cart').hide();
-			}else {
-				$('#btn_cart').show();
-			}
 			$('#btn_cart').click(function() {
 				var quan = $('#quan').val();
-				$.ajax({
-					type : 'post',
-					url : '${pageContext.request.contextPath}/cart/cartInsert.do',
-					data : {
-						prod_num : ${storeVO.prod_num},
-						user_num : ${user_num},
-						cart_quan : quan
-					},
-					dataType : 'json',
-					cache : false,
-					timeout : 30000,
-					success : function(param) {
-						if(param.result == 'add_success') {
-							var check = confirm('카트에 등록 되었습니다. 카트를 확인해보시겠습니까?');
-							if(check) {
-								location.assign('${pageContext.request.contextPath}/cart/cartList.do');					
+				if($('select').val() != '') {
+					if(quan > 0) {
+						$.ajax({
+							type : 'post',
+							url : '${pageContext.request.contextPath}/cart/cartInsert.do',
+							data : {
+								prod_num : ${storeVO.prod_num},
+								user_num : ${user_num},
+								cart_quan : quan
+							},
+							dataType : 'json',
+							cache : false,
+							timeout : 30000,
+							success : function(param) {
+								if(param.result == 'add_success') {
+									var check = confirm('카트에 등록 되었습니다. 카트를 확인해보시겠습니까?');
+									if(check) {
+										location.assign('${pageContext.request.contextPath}/cart/cartList.do');					
+									}
+								}else if(param.result == 'cart_update') {
+									var check = confirm('카트 수량이 변경 되었습니다. 카트를 확인해보시겠습니까?');
+									if(check) {
+										location.assign('${pageContext.request.contextPath}/cart/cartList.do');					
+									}
+								}else {
+									alert('장바구니 오류!');
+								}
+							},
+							error : function() {
+								alert('네트워크 오류!');
 							}
-						}else if(param.result == 'cart_update') {
-							var check = confirm('카트 수량이 변경 되었습니다. 카트를 확인해보시겠습니까?');
-							if(check) {
-								location.assign('${pageContext.request.contextPath}/cart/cartList.do');					
-							}
-						}else {
-							alert('장바구니 오류!');
-						}
-					},
-					error : function() {
-						alert('네트워크 오류!');
+							
+						});
+					}else {
+						alert('수량을 선택해주세요!');
 					}
-					
-				});
+				}else{
+					alert('${storeVO.selec_product}를 선택해주세요!');
+				}
 			});
 		</script>
 	</div>

@@ -63,6 +63,7 @@
 				<beans:value>/WEB-INF/tiles-def/qna.xml</beans:value>
 				<beans:value>/WEB-INF/tiles-def/event.xml</beans:value>
 				<beans:value>/WEB-INF/tiles-def/cart.xml</beans:value>
+				<beans:value>/WEB-INF/tiles-def/order.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>
@@ -85,12 +86,17 @@
 			<mapping path="/houseBoard/write.do"/>
 			<mapping path="/houseBoard/update.do"/>
 			<mapping path="/houseBoard/delete.do"/>
+			<mapping path="/store/storeRegister.do"/>
+			<mapping path="/store/updateProduct.do"/>
+			<mapping path="/store/productDelete.do"/>
 			<beans:bean class="kr.spring.interceptor.LoginCheckInterceptor"/>
 		</interceptor>
 		<!-- 로그인 회원번호와 작성자 회원번호 일치 여부 체크 -->
 		<interceptor>
 			<mapping path="/houseBoard/update.do"/>
 			<mapping path="/houseBoard/delete.do"/>
+			<mapping path="/store/updateProduct.do"/>
+			<mapping path="/store/productDelete.do"/>
 			<beans:bean class="kr.spring.interceptor.WriterCheckInterceptor"/>
 		</interceptor>
 	</interceptors>
