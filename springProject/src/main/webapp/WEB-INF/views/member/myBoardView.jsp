@@ -7,7 +7,8 @@
  * 설명 : 마이페이지 내가 쓴 글
  * 수정일 : 
 --%>
-<%@ include file="/WEB-INF/views/member/myPageHeader.jsp" %>
+<%@ include file="/WEB-INF/views/member/common/myPageHeader.jsp" %>
+<%@ include file="/WEB-INF/views/member/common/myPageProfile.jsp" %>
 <script type="text/javascript">
 	$(document).ready(function(){
 		// 카드형 게시물 110글자 초과시 ... 처리

@@ -7,7 +7,8 @@
  * 설명 : 마이페이지
  * 수정일 : 
 --%>
-<%@ include file="/WEB-INF/views/member/myPageHeader.jsp" %>
+<%@ include file="/WEB-INF/views/member/common/myPageHeader.jsp" %>
+<%@ include file="/WEB-INF/views/member/common/myPageProfile.jsp" %>
 <script type="text/javascript">
 	$(function(){
 		// 사진 올리기
@@ -34,9 +35,9 @@
 		<div align="left">문의하기</div>
 		<table style="border:1px dashed #b5b7ba;">
 			<tr style="border-style: dotted;">
-			<td style="border:1px dashed #b5b7ba;" class="mypage-photo-write" align="center" onclick="location.href='${pageContext.request.contextPath}/serviceBoard/serviceBoardList.do'">
+			<td style="border:1px dashed #b5b7ba;" class="mypage-photo-write" align="center" onclick="location.href='${pageContext.request.contextPath}/qna/serviceBoardInsert.do'">
 				<span style="font-size: 25px;">+</span>
-				<span style="font-size: 14px;">질문을 올려보세요</span>
+				<span style="font-size: 14px;">고객센터 문의하기</span>
 			</td>			
 			</tr>
 		</table>
