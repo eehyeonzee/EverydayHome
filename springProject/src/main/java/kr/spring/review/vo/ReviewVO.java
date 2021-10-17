@@ -23,10 +23,8 @@ public class ReviewVO {
 	
 	public void setUpload(MultipartFile upload)throws IOException {
 		
-		// MultipartFile -> byte[]
 		setRev_img(upload.getBytes());
 		
-		// 파일 이름
 		setRev_filename(upload.getOriginalFilename());
 	}
 	

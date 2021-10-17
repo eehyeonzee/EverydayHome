@@ -1,5 +1,5 @@
 package kr.spring.review.controller;
-
+/*
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import kr.spring.review.service.ReviewService;
 import kr.spring.review.vo.ReviewVO;
-
 @Controller
+ */
 public class ReviewController {
-
+/*
 	@Autowired
 	private ReviewService reviewService;
 	
@@ -21,7 +21,7 @@ public class ReviewController {
 	}
 	
 	private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
-
+*/
 	//구매목록
 	//리뷰쓰기
 	//리뷰쓴목록

@@ -11,7 +11,7 @@ import kr.spring.review.vo.ReviewVO;
 @Service
 @Transactional
 public class ReviewServiewImpl implements ReviewService {
-
+	//객체주입
 	@Autowired
 		private ReviewMapper reviewMapper;
 
