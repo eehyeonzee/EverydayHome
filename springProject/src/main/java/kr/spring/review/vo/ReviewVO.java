@@ -20,6 +20,11 @@ public class ReviewVO {
 	private String prod_name;
 	private String prod_option;
 	private Date order_date;
+	private int prod_price;
+	
+	//리뷰중복
+	private int overlap;
+	
 	
 	public void setUpload(MultipartFile upload)throws IOException {
 		
@@ -101,13 +106,34 @@ public class ReviewVO {
 		this.order_date = order_date;
 	}
 	
+	
+	public int getOverlap() {
+		return overlap;
+	}
+
+	public void setOverlap(int overlap) {
+		this.overlap = overlap;
+	}
+	
+	
+
+	public int getProd_price() {
+		return prod_price;
+	}
+
+	public void setProd_price(int prod_price) {
+		this.prod_price = prod_price;
+	}
+
 	@Override
 	public String toString() {
 		return "ReviewVO [rev_num=" + rev_num + ", rev_content=" + rev_content + ", rev_grade=" + rev_grade
-				+ ", rev_reg_date=" + rev_reg_date + ", rev_filename=" + rev_filename + ", prod_num=" + prod_num
-				+ ", mem_num=" + mem_num + ", buis_name=" + buis_name + ", prod_name=" + prod_name + ", prod_option="
-				+ prod_option + ", order_date=" + order_date + "]";
+				+ ", rev_reg_date=" + rev_reg_date + ", prod_num=" + prod_num + ", mem_num=" + mem_num + ", buis_name="
+				+ buis_name + ", prod_name=" + prod_name + ", prod_option=" + prod_option + ", order_date=" + order_date
+				+ ", prod_price=" + prod_price + ", overlap=" + overlap + "]";
 	}
+
+
 	
 	
 }
