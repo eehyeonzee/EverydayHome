@@ -15,7 +15,6 @@
 <script type="text/javascript">
 	$(function() {
 		$('#house_recom').html("${houseBoard.house_recom}"); // 추천수
-		// ~~~~~~~~~~~~ 댓글수 ~~~~~~~~~~~~~~
 		
 		// ========== 추천 버튼 ========== //
 		// 추천 버튼 클릭시 추천 또는 제거
@@ -50,35 +49,33 @@
 <script type="text/javascript">
 	// 페이스북
 	function shareFacebook() {
-	    var sendUrl = "localhost:8081/EverydayHome/houseBoard/detail.do?house_num=${houseBoard.house_num}"; // 전달할 URL
-	    window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
+	    var sendUrl = 'localhost:8081/EverydayHome/houseBoard/detail.do?house_num=${houseBoard.house_num}'; // 전달할 URL
+	    window.open('http://www.facebook.com/sharer/sharer.php?u=' + sendUrl);
 	}
-	
 	// 카카오톡
 	function shareKakao() {
  		// 사용할 앱의 JavaScript 키 설정
-		Kakao.init('7b3013c5ef2dfc0c2aa2cedf0278a226');
+		Kakao.init('bb121a537c2b70043cc692b909a3c23f');
 		// 링크 버튼 생성
 		Kakao.Link.createDefaultButton({
 			container: '#btnKakao', // 공유 버튼 ID
 			objectType: 'feed',
 			content: {
-				title: "매일의 집", // 보여질 제목
-				description: "매일 새롭게 올라오는 예쁜 집들을 구경하세요!", // 보여질 설명
-				imageUrl: "localhost:8081/EverydayHome/main/main.do", // 콘텐츠 URL
+				title: '매일의 집', // 보여질 제목
+				description: '매일 새롭게 올라오는 예쁜 집들을 구경하세요!', // 보여질 설명
+				imageUrl: 'localhost:8081/EverydayHome/main/main.do', // 콘텐츠 URL
 				link: {
-				mobileWebUrl: "localhost:8081/EverydayHome/main/main.do",
-				webUrl: "localhost:8081/EverydayHome/main/main.do"
+				mobileWebUrl: 'localhost:8081/EverydayHome/main/main.do',
+				webUrl: 'localhost:8081/EverydayHome/main/main.do'
 				}
 			}
 		});
 	}
-	
 	// 트위터
 	function shareTwitter() {
-	    var sendText = "매일의 집"; // 전달할 텍스트
-	    var sendUrl = "http://localhost:8081/EverydayHome/houseBoard/detail.do?house_num=${houseBoard.house_num}"; // 전달할 URL
-	    window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);
+	    var sendText = '매일의 집'; // 전달할 텍스트
+	    var sendUrl = 'http://localhost:8081/EverydayHome/houseBoard/detail.do?house_num=${houseBoard.house_num}'; // 전달할 URL
+	    window.open('https://twitter.com/intent/tweet?text=' + sendText + '&url=' + sendUrl);
 	}
 </script>
 <!-- 공유 API 끝 -->
