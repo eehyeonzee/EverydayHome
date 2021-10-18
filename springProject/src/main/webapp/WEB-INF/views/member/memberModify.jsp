@@ -105,40 +105,40 @@
 <!-- 중앙 내용 시작 -->
 <input type="button"  value="비밀번호변경" style="float: right; cursor: pointer;" class = "btn btn-outline-dark" onclick="location.href='${pageContext.request.contextPath}/member/memberPasswdUpdate.do'">
 <input type="button"  value="회원탈퇴" style="float: right; cursor: pointer;" class = "btn btn-outline-dark" id="mem_delete_btn">
-<div class = "container-fluid" style = "width:500px; border: 1px solid #d2f1f7; font-family: 'Gowun Dodum', sans-serif; ">
+<div class = "container-fluid" style = "width:700px; border: 1px solid #d2f1f7; font-family: 'Gowun Dodum', sans-serif; ">
 	<div align = "left">
 			<h3>회원 정보수정</h3>
 	</div>
 	<div class="text-center col-sm-12 my-5">
 	<form:form id="modify_form" action="memberUpdate.do" modelAttribute="memberVO" enctype="multipart/form-data">
 		<div class = "form-group row">
-				<label for="mem_name">이름</label>
+				<label class = "col-sm-2 col-form-label" for="mem_name">이름</label>
 				<form:input path="mem_name"/>
 				<form:errors path="mem_name" cssClass="error-color"/>
 		</div>
 		<div class = "form-group row">
-				<label for="email">이메일</label>
+				<label class = "col-sm-2 col-form-label" for="email">이메일</label>
 				<form:input path="email"/>
 				<form:errors path="email" cssClass="error-color"/>
 		</div>
 		<div class = "form-group row">
-				<label for="email_check">이메일인증</label>
+				<label class = "col-sm-2 col-form-label" for="email_check">이메일인증</label>
 				<input type="text" id="email_check" size="8" disabled="disabled">&nbsp;&nbsp;&nbsp;
 				<input type="button" class = "btn btn-outline-dark" id="email_send_button" value="인증번호전송">&nbsp;&nbsp;&nbsp;
 				<input type="button" class = "btn btn-outline-dark" id="email_check_button" value="인증확인">
 		</div>
 		<div class = "form-group row">
-				<label for="nickname">별명</label>
+				<label class = "col-sm-2 col-form-label" for="nickname">별명</label>
 				<form:input path="nickname"/>
 				<form:errors path="nickname" cssClass="error-color"/>
 		</div>
 		<div class = "form-group row">
-				<label for="phone">전화번호</label>
+				<label class = "col-sm-2 col-form-label" for="phone">전화번호</label>
 				<form:input path="phone"/>
 				<form:errors path="phone" cssClass="error-color"/>
 		</div>
 		<div class = "form-group row">
-				<label for="zipcope">우편번호</label>
+				<label class = "col-sm-2 col-form-label" for="zipcope">우편번호</label>
 				<input id="zipcode" name="zipcode" placeholder="우편번호" type="text" value="" maxlength="5" readonly="readonly"/>&nbsp;&nbsp;&nbsp;
 				<input type="button" class = "btn btn-outline-dark" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 				
@@ -198,17 +198,17 @@
 			<form:errors path="zipcode" cssClass="error-color"/>
 			</div>
 			<div class = "form-group row">
-				<label for="address1">주소</label>
+				<label class = "col-sm-2 col-form-label" for="address1">주소</label>
 				<input id="address1" name="address1" type="text" value="" maxlength="30" readonly="readonly" placeholder="주소"/>
 				<form:errors path="address1" cssClass="error-color"/>
 			</div>
 			<div class = "form-group row">
-				<label for="address2">나머지주소</label>
+				<label class = "col-sm-2 col-form-label" for="address2">나머지주소</label>
 				<form:input path="address2" maxlength="30" placeholder="상세주소"/>
 				<form:errors path="address2" cssClass="error-color"/>
 			</div>
 			<div class = "form-group row">
-				<label for="profile">프로필 이미지</label>
+				<label class = "col-sm-2 col-form-label" for="profile">프로필 사진</label>
 				<c:if test="${empty memberVO.profile_filename}">
 				<img src="${pageContext.request.contextPath}/resources/images/basic.jpg" width="150" height="150" class="my-photo">
 				</c:if>
@@ -300,7 +300,7 @@
 					});
 					
 				</script>
-				</div>
+				</div><br>
 				<div class = "form-group row">
 					<div class = "text-center col-sm-10">
 						<form:button class = "btn btn-outline-dark">회원정보수정</form:button>&nbsp;&nbsp;

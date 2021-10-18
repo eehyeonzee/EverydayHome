@@ -58,6 +58,8 @@ public class MemberController {
 	// 게시물, 페이지 카운트 지정
 	private int rowCount = 4;
 	private int pageCount = 5;
+	private int mem_rowCount = 15;
+	private int mem_pageCount = 5;
 	
 	@Autowired
 	private MemberService memberService;
@@ -557,14 +559,106 @@ public class MemberController {
 	
 	// 관리자 페이지 - 전체회원 조회
 	@GetMapping("/member/memberList.do")
-	public ModelAndView memberListForm(HttpSession session,
-			@RequestParam(value="pageNum", defaultValue="1") int currentPage) {
+	public ModelAndView memberListForm(@RequestParam(value="pageNum", defaultValue="1") int currentPage) {
 				
+		// 세션에서 회원번호 받아오기
+		Map<String,Object> map = new HashMap<String,Object>();
 		
+		// 글의 총 개수 또는 검색된 글의 개수
+		int count = memberService.selectMemberCount();
+						
+		logger.debug("<<count>> : " + count);
+				
+		// 페이지 처리
+		PagingUtil page = new PagingUtil(currentPage,count,mem_rowCount,mem_pageCount,"memberList.do");
+				
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
+				
+		List<MemberVO> list = null;
+		if(count > 0) {
+			list = memberService.selectMemberList(map);
+		}
+				
+				
+		logger.debug("<<전체 회원 조회>> : " + list);
+				
+		// 전달 객체
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("memberAllList"); // 타일스 식별자
+		mav.addObject("count", count);
+		mav.addObject("list", list);
+		mav.addObject("pagingHtml", page.getPagingHtml());
+				
+		return mav;
+	}
+	
+	// 관리자 페이지 - 회원 정지
+	@PostMapping("/member/stopAdminMember.do")
+	@ResponseBody
+	public Map<String, String> memberStop(@RequestParam String output) {
+		String[] stopChecked = output.split(",");
+		Map<String,String> mapAjax = new HashMap<String,String>();
 		
+		for(String mem_num : stopChecked) {
+			memberService.updateMemberStop(Integer.parseInt(mem_num));
+			
+			mapAjax.put("result", "success");
+		}
 		
-		//return "memberAllList";
-		return null;
+		return mapAjax;
+		
+	}
+	
+	// 관리자 페이지 - 일반 회원 변경
+	@PostMapping("/member/upAdminMember.do")
+	@ResponseBody
+	public Map<String, String> memberStopCancel(@RequestParam String output) {
+		String[] stopChecked = output.split(",");
+		Map<String,String> mapAjax = new HashMap<String,String>();
+		
+		for(String mem_num : stopChecked) {
+			memberService.updateMemberStopCancel(Integer.parseInt(mem_num));
+			
+			mapAjax.put("result", "success");
+		}
+		
+		return mapAjax;
+		
+	}
+	
+	// 관리자 페이지 - 판매자 등급 변경
+	@PostMapping("/member/upSellerMember.do")
+	@ResponseBody
+	public Map<String, String> memberUpdateSeller(@RequestParam String output) {
+		String[] stopChecked = output.split(",");
+		Map<String,String> mapAjax = new HashMap<String,String>();
+		
+		for(String mem_num : stopChecked) {
+			memberService.updateMemberSellerAuth(Integer.parseInt(mem_num));
+			
+			mapAjax.put("result", "success");
+		}
+		
+		return mapAjax;
+		
+	}
+	
+	
+	// 관리자 페이지 - 회원 탈퇴
+	@PostMapping("/member/deleteAdminMember.do")
+	@ResponseBody
+	public Map<String, String> adminMemberDelete(@RequestParam String output) {
+		String[] stopChecked = output.split(",");
+		Map<String,String> mapAjax = new HashMap<String,String>();
+		
+		for(String mem_num : stopChecked) {
+			memberService.deleteMember(Integer.parseInt(mem_num));
+			
+			mapAjax.put("result", "success");
+		}
+		
+		return mapAjax;
 		
 	}
 	

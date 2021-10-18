@@ -83,6 +83,11 @@ div.mypage-info table{
 	text-decoration: none;
 	color: #35c5f0
 }
+.admin-page-h2{
+	text-align:left;
+	margin : 70px 0px 50px 130px;
+	font-family: 'Gowun Dodum', sans-serif;
+}
 
 /*==========페이지 기본 스타일======*/
 .page-main{
