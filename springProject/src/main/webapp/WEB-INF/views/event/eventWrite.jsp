@@ -77,7 +77,7 @@ min-height: 500px;
 				</script>
 			</li>
  			<li class="li-content">
-				<label for="upload">이미지 파일</label>
+				<label for="upload">썸네일 파일</label>
 				<input type="file" name="upload" id="upload" accept="image/gif,image/png,image/jpeg">
 			</li>
 		</ul>

@@ -19,7 +19,7 @@ $(function() {
 	$("#email_send_button").click(function(){	// 인증번호전송 버튼 클릭시
 		
 		var service_email = $("#service_email").val();	// 입력 이메일
-		
+		var service_reply = $("#service_reply").val();
 		// 이메일 전송 ajax 작성
 		$.ajax({
 			type : "GET",
@@ -40,7 +40,6 @@ $(function() {
 <title>고객센터 게시판 디테일</title>
 </head>
 <body>
-
 	<h2>${serviceboard.service_title }</h2>
 	<ul>
 		<li>글번호: ${serviceboard.service_num }</li>
@@ -48,9 +47,6 @@ $(function() {
 		</li>
 		<li>문의 유형: ${serviceboard.service_keyword }</li>
 		<li>제목: ${serviceboard.service_title }</li>
-		<li>
-			
-		</li>
 	</ul>
 			
 	<hr width="100%" size="1" noshade="noshade">
@@ -63,9 +59,8 @@ $(function() {
 		<img src="imageView.do?service_num=${serviceboard.service_num }" style="max-width:500px">
 	</div>
 	</c:if>
-	<input type="text" id="service_reply" value="${serviceboard.service_content }" readonly>
+	답변 내용 작성<input type="text" id="service_reply">
 	<input type="submit" id="email_send_button" value="이메일전송">
-	
 	
 	<div class="align-center">
 		<input type="button" value="목록" onclick="location.href='serviceBoardList.do'">
