@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import kr.spring.houseBoard.vo.HCommentVO;
 import kr.spring.houseBoard.vo.HouseBoardVO;    
 
 /**
@@ -23,7 +24,7 @@ public interface HouseBoardMapper {
 		public List<HouseBoardVO> selectHBoardList(Map<String,Object> map); // 글 목록
 		public int selectRowCount(Map<String,Object> map); // 글의 개수
 		public List<HouseBoardVO> selectMyBoardList(Map<String, Object> map);   // 내가 쓴 글 목록
-		@Select("SELECT COUNT(*) FROM house_board b JOIN mem_detail m ON b.mem_num = m.mem_num WHERE m.mem_num=#{mem_num}")
+		@Select("SELECT COUNT(*) FROM house_board b JOIN mem_detail m ON b.mem_num = m.mem_num WHERE m.mem_num = #{mem_num}")
 		public int selectMyBoardRowCount(Integer mem_num); // 내가 쓴 글의 개수
 		@Insert("INSERT INTO house_board (house_num,house_title,house_area,house_type,house_style,house_space,house_content,house_thumbnail,thumbnail_filename,mem_num)"
 				+ " VALUES (house_board_seq.nextval,#{house_title},#{house_area},#{house_type},#{house_style},#{house_space},#{house_content},#{house_thumbnail},#{thumbnail_filename},#{mem_num})")
@@ -40,7 +41,7 @@ public interface HouseBoardMapper {
 		public void deleteFile(Integer house_num);
 		
 		// =============== 추천 =============== //
-		@Insert("INSERT INTO recommend (house_num, mem_num) VALUES (#{house_num}, #{mem_num})")
+		@Insert("INSERT INTO recommend (house_num, mem_num) VALUES (#{house_num},#{mem_num})")
 		public void saveHeart(HouseBoardVO houseBoard); // 테이블에 추천수 저장
 		
 		@Update("UPDATE house_board SET house_recom = house_recom+1 WHERE house_num = #{house_num}")
@@ -55,8 +56,16 @@ public interface HouseBoardMapper {
 		public void removeHeart(Integer house_num); // 테이블에서 추천수 제거
 
 		// =============== 댓글 =============== //
+		public List<HCommentVO> selectListComm(Map<String,Object> map);
+		public int selectRowCountComm(Map<String,Object> map);
+		@Insert("INSERT INTO comments (comm_num,comm_content,house_num,mem_num) VALUES (comments_seq.nextval,#{comm_content},#{house_num},#{mem_num})")
+		public void insertComm(HCommentVO hComment);
+		public void updateComm(HCommentVO hComment);
+		public void deleteComm(Integer comm_num);
+		// 부모글 삭제시 댓글이 존재하면 부모글 삭제 전 댓글 삭제
+		@Delete("DELETE FROM comments WHERE house_num = #{house_num}")
+		public void deleteCommByHouseNum(Integer house_num);
 		
-
 }
 
 

@@ -12,6 +12,7 @@
 <script type="text/javascript" src="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/videoAdapter.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<!-- 추천 및 스크랩 자바스크립트 시작 -->
 <script type="text/javascript">
 	$(function() {
 		$('#house_recom').html("${houseBoard.house_recom}"); // 추천수
@@ -29,7 +30,7 @@
 				timeout: 30000,
 				success: function(param) { // param으로 데이터 전송받음
 					if(param.result == 'logout') {
-						alert('로그인 후 사용하세요');
+						alert('로그인 후 사용하세요🚀');
 					}else if(param.duplication == 0) {
 						console.log('Cool function is called 🚀')
 						$('#house_recom').text(param.heartCount);
@@ -40,15 +41,15 @@
 						$('#btn_heart').css('background-color', '#ffffff');
 					}
 				},
-				error : function(request,status,error){      // 에러메세지 반환
-					alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
-	              }
+				error : function(request,status,error) { // 에러메시지 반환
+					alert("🤯 code = " + request.status + " message = " + request.responseText + " error = " + error);
 				}
 			}); // end of ajax
 		});	
 	});
 </script>
-<!-- 공유 API 시작 -->
+<!-- 추천 및 스크랩 자바스크립트 끝 -->
+<!-- 공유 API 자바스크립트 시작 -->
 <script type="text/javascript">
 	// 페이스북
 	function shareFacebook() {
@@ -81,7 +82,81 @@
 	    window.open('https://twitter.com/intent/tweet?text=' + sendText + '&url=' + sendUrl);
 	}
 </script>
-<!-- 공유 API 끝 -->
+<!-- 공유 API 자바스크립트 끝 -->
+<!-- 댓글 자바스크립트 시작 -->
+<script type="text/javascript">
+	$(function() {
+		var currentPage
+		var count;
+		var rowCount;
+		
+		// 댓글 목록
+		function selectData(pageNum, house_num) {
+			
+		}
+		
+		// 다음 댓글 보기 버튼 클릭시 데이터 추가
+		
+		// 댓글 등록
+		$('#comm_form').submit(function(event) { // 기본 이벤트 제거하기 위해 이벤트 객체를 받음
+			if($('#comm_content').val().trim() == '') {
+				alert('내용을 입력하세요');
+				$('#comm_content').val('').focus();
+				return false;
+			}
+			
+			var data = $(this).serialize();
+			// 등록
+			$.ajax({
+				type: 'post',
+				data: data, // 키(data) : 변수(data(전달))
+				url: 'writeComm.do',
+				dataType: 'json',
+				cache: false,
+				timeout: 30000,
+				success: function(param) {
+					if(param.result == 'logout') {
+						alert('로그인 후 작성하세요');
+					}else if(param.result == 'success') {
+						// 폼 초기화
+						initForm(); // 따로 만들어줘야 함
+						// 댓글 작성이 성공하면 새로 삽입한 글을 포함하여 첫번째 페이지의 게시글들을 다시 호출
+						selectData(1,$('#house_num').val());
+					}else {
+						alert('등록 오류🤯');
+					}
+				},
+				error : function(request,status,error) { // 에러메시지 반환
+					alert("🤯 code = " + request.status + " message = " + request.responseText + " error = " + error);
+				}
+			});
+			// 기본 이벤트 제거
+			event.preventDefault();
+		});
+		
+		// 댓글 작성 폼 초기화
+		function initForm() {
+			$('textarea').val('');
+			$('#comm_first .letter-count').text('300/300'); // class 후손선택자
+		}
+		
+		// textarea에 내용 입력시 글자수 체크
+		
+		// 댓글 수정 버튼 클릭시 수정폼 노출
+		
+		// 수정폼에서 취소 버튼 클릭시 폼 초기화
+		
+		// 댓글 수정 폼 초기화
+		
+		// 댓글 수정
+		
+		// 댓글 삭제
+		
+		// 초기 데이터(목록) 호출
+		selectData(1,$('#house_num').val());
+	});
+</script>
+<!-- 댓글 자바스크립트 끝 -->
 <!-- 중앙 내용 시작 -->
 <div class="page-main">
 	<!-- 해당 게시글 상세 내용 시작 -->
@@ -156,7 +231,7 @@
 			<input type="hidden" name="mem_num" value="${user_num}" id="mem_num">
 			<textarea rows="3" cols="50" name="comm_content" id="comm_content" class="comm-content" placeholder="칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)"
 				<c:if test="${empty user_num}">disabled="disabled"</c:if>
-				><c:if test="${empty user_num}">로그인해야 작성할 수 있습니다</c:if></textarea><!-- 닫는 태그 내리지(띄어쓰지) 말자! 공백으로 인식함 -->
+				><c:if test="${empty user_num}">로그인 후 작성하세요</c:if></textarea><!-- 닫는 태그 내리지(띄어쓰지) 말자! 공백으로 인식함 -->
 			<c:if test="${!empty user_num}">
 			<div id="comm_first">
 				<span class="letter-count">300/300</span>

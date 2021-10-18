@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.houseBoard.dao.HouseBoardMapper;
+import kr.spring.houseBoard.vo.HCommentVO;
 import kr.spring.houseBoard.vo.HouseBoardVO;
 
 /**
@@ -25,6 +26,7 @@ public class HouseBoardServiceImpl implements HouseBoardService {
 	@Autowired
 	private HouseBoardMapper houseBoardMapper;
 	
+	// 게시판
 	@Override
 	public List<HouseBoardVO> selectHBoardList(Map<String, Object> map) {
 		return houseBoardMapper.selectHBoardList(map);
@@ -56,7 +58,9 @@ public class HouseBoardServiceImpl implements HouseBoardService {
 	}
 
 	@Override
-	public void deleteHBoard(int house_num) {
+	public void deleteHBoard(Integer house_num) {
+		// 댓글이 존재하면 댓글을 먼저 삭제한 뒤 부모글 삭제
+		houseBoardMapper.deleteCommByHouseNum(house_num);
 		houseBoardMapper.deleteHBoard(house_num);
 	}
 
@@ -64,7 +68,8 @@ public class HouseBoardServiceImpl implements HouseBoardService {
 	public void deleteFile(Integer house_num) {
 		houseBoardMapper.deleteFile(house_num);	
 	}
-
+	
+	// 마이페이지 - 내가 쓴 글
 	@Override
 	public List<HouseBoardVO> selectMyBoardList(Map<String, Object> map) {
 		return houseBoardMapper.selectMyBoardList(map);
@@ -74,9 +79,31 @@ public class HouseBoardServiceImpl implements HouseBoardService {
 	public int selectMyBoardRowCount(Integer mem_num) {
 		return houseBoardMapper.selectMyBoardRowCount(mem_num);
 	}
-
 	
+	// 댓글
+	@Override
+	public List<HCommentVO> selectListComm(Map<String, Object> map) {
+		return houseBoardMapper.selectListComm(map);
+	}
 
+	@Override
+	public int selectRowCountComm(Map<String, Object> map) {
+		return houseBoardMapper.selectRowCountComm(map);
+	}
 
-	
+	@Override
+	public void insertComm(HCommentVO hComment) {
+		houseBoardMapper.insertComm(hComment);
+	}
+
+	@Override
+	public void updateComm(HCommentVO hComment) {
+		houseBoardMapper.updateComm(hComment);
+	}
+
+	@Override
+	public void deleteComm(Integer comm_num) {
+		houseBoardMapper.deleteComm(comm_num);
+	}
+
 }

@@ -1,6 +1,7 @@
 package kr.spring.houseBoard.controller;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.houseBoard.service.HouseBoardService;
+import kr.spring.houseBoard.vo.HCommentVO;
 import kr.spring.houseBoard.vo.HouseBoardVO;
 import kr.spring.util.PagingUtil;
 import kr.spring.util.StringUtil;
@@ -250,8 +252,65 @@ public class HouseBoardController {
 		return "redirect:/houseBoard/list.do";
 	}
 	
-	// =============== 댓글 =============== //
-
+	// =============== 댓글(ajax) =============== //
+	@RequestMapping("/houseBoard/writeComm.do")
+	@ResponseBody
+	public Map<String,String> writeComm(HCommentVO hCommentVO, HttpSession session) {
+		
+		logger.debug("<<댓글 등록>> : " + hCommentVO);
+		
+		Map<String,String> map = new HashMap<String,String>();
+		
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		if(user_num == null) {
+			// 로그인 안 됨
+			map.put("result", "logout");
+			
+		}else {
+			// 로그인 됨
+			// 댓글 등록
+			houseBoardService.insertComm(hCommentVO);
+			map.put("result", "success");
+		}
+		
+		return map;
+	}
+	
+	// 댓글 목록(ajax)
+	@RequestMapping("/houseBoard/listComm.do")
+	@ResponseBody
+	public Map<String,Object> getList(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
+									  @RequestParam int house_num,
+									  HttpSession session) {
+		logger.debug("<<currentPage>> : " + currentPage);
+		logger.debug("<<house_num>> : " + house_num);
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("house_num", house_num); // 하나의 객체에 데이터 담아서 보냄
+		
+		// 총 글의 개수
+		int count = houseBoardService.selectRowCountComm(map);
+		
+		PagingUtil page = new PagingUtil(currentPage,count,rowCount,pageCount,null); // url 명시x
+		
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
+		
+		List<HCommentVO> list = null;
+		if(count > 0) {
+			list = houseBoardService.selectListComm(map);
+		}else {
+			list = Collections.emptyList(); // count가 0일 때 빈 리스트 전달
+		}
+		
+		Map<String,Object> mapJson = new HashMap<String,Object>();
+		mapJson.put("count", count);
+		mapJson.put("rowCount", rowCount);
+		mapJson.put("list", list);
+		
+		return map;
+	}
+	
 }
 
 

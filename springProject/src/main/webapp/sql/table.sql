@@ -99,3 +99,9 @@ ALTER TABLE buis_detail DROP COLUMN BUIS_REG_DATE;
 ALTER TABLE buis_detail DROP COLUMN BUIS_PASSWD;
 ALTER TABLE buis_detail add application_state VARCHAR2(10) DEFAULT '1' not null;
 ALTER TABLE buis_detail MODIFY BUIS_NUM VARCHAR2(40);
+
+-- 21.10.18 20:20 댓글 테이블 데이터 크기 및 기본값 변경
+ALTER TABLE comments MODIFY comm_content VARCHAR2(900);
+ALTER TABLE comments MODIFY comm_reg_date DATE DEFAULT sysdate;
+ALTER TABLE comments MODIFY comm_mod_date DATE DEFAULT sysdate;
+

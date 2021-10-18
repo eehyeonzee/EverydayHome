@@ -3,6 +3,7 @@ package kr.spring.houseBoard.service;
 import java.util.List;
 import java.util.Map;
 
+import kr.spring.houseBoard.vo.HCommentVO;
 import kr.spring.houseBoard.vo.HouseBoardVO;
 
 /**
@@ -23,7 +24,7 @@ public interface HouseBoardService {
 	public HouseBoardVO selectHBoard(Integer house_num); // 글 상세
 	public void updateHBoardHits(Integer house_num); // 조회수
 	public void updateHBoard(HouseBoardVO houseBoard); // 글 수정
-	public void deleteHBoard(int house_num); // 글 삭제
+	public void deleteHBoard(Integer house_num); // 글 삭제
 	// 썸네일 삭제(업데이트)
 	public void deleteFile(Integer house_num);
 	
@@ -31,5 +32,9 @@ public interface HouseBoardService {
 	
 	
 	// =============== 댓글 =============== //
-	
+	public List<HCommentVO> selectListComm(Map<String,Object> map);
+	public int selectRowCountComm(Map<String,Object> map);
+	public void insertComm(HCommentVO hComment);
+	public void updateComm(HCommentVO hComment);
+	public void deleteComm(Integer comm_num);
 }

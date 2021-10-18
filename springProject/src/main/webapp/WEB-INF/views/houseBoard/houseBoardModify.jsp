@@ -184,11 +184,11 @@ $(function() {
 											}else if(param.result == 'success') {
 												$('#file_detail').hide();
 											}else {
-												alert('파일삭제 오류 발생');
+												alert('파일삭제 오류🤯');
 											}
 										},
-										error: function() {
-											alert('네트워크 오류 발생');
+										error : function(request,status,error) { // 에러메시지 반환
+											alert("🤯 code = " + request.status + " message = " + request.responseText + " error = " + error);
 										}
 									});
 								}
