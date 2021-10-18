@@ -32,7 +32,7 @@ public class ReviewController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
 	//구매목록
-	@RequestMapping("/member/myBuyList.do")
+	@RequestMapping("review/myBuyList.do")
 	public ModelAndView mybuylist(HttpSession session) {
 		ModelAndView mav= new ModelAndView();
 		Integer user_num = (Integer)session.getAttribute("user_num");
@@ -54,7 +54,7 @@ public class ReviewController {
 	}
 	
 	//리뷰 폼 호출
-	@PostMapping("/member/reviewCheck.do")
+	@PostMapping("review/reviewCheck.do")
 	@ResponseBody
 	public String reviewCheck(@ModelAttribute("review") ReviewVO review ,HttpSession session){
 		
@@ -76,12 +76,12 @@ public class ReviewController {
 				return "3";
 			}
 	}
-	@GetMapping("member/reviewWrite.do")
+	@GetMapping("review/reviewWrite.do")
 	public String reviewWriteform() {
 		return "reviewForm";
 	}
 	//리뷰쓰기
-	@PostMapping("member/reviewWrite.do")
+	@PostMapping("review/reviewWrite.do")
 	public String reviewWrite(@ModelAttribute ReviewVO review, HttpSession session) {
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		review.setMem_num(user_num);
@@ -90,7 +90,7 @@ public class ReviewController {
 		return "redirect:myReviewList.do";
 	}
 	//리뷰쓴목록
-	@RequestMapping("member/myReviewList.do")
+	@RequestMapping("review/myReviewList.do")
 	public ModelAndView myReviewList(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		Integer user_num = (Integer)session.getAttribute("user_num");
@@ -103,7 +103,7 @@ public class ReviewController {
 	}
 	//리뷰수정
 	//리뷰삭제하기
-	@GetMapping("member/reviewDelete.do")
+	@GetMapping("review/reviewDelete.do")
 	public String delete(@RequestParam int rev_num) {
 		reviewService.reviewDelete(rev_num);
 		return "redirect:myReviewList.do";

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
@@ -7,6 +10,7 @@
 <!-- 메인 시작 -->
 <!-- main 스타일 적용 -->
 <style>
+
 .main {
 	display: flex;
 	justify-content: center;
@@ -121,7 +125,7 @@ text-align : center;
 }
 .bestdesc {
 	flex: 1 1 auto;
-	padding: 1em;
+	padding: 5px;
 	background: white;
 }
 
@@ -165,7 +169,7 @@ text-align : center;
 }
 .populardesc {
 	flex: 1 1 auto;
-	padding: 1em;
+	padding: 5px;
 	background: white;
 }
 
@@ -206,7 +210,7 @@ text-align : center;
 }
 .storydesc {
 	flex: 1 1 auto;
-	padding: 1em;
+	padding: 5px;
 	background: white;
 }
 
@@ -227,6 +231,19 @@ text-align : center;
 		width: 33.33333%;
 	}
 }
+
+	
+.cateul {
+    float: right;
+    position: relative;
+    left: -50%;
+}
+.cateli{
+    float: left;
+    position: relative;
+    left: 50%;
+    margin: 0 auto;
+}
 </style>
 
 <script type="text/javascript">
@@ -246,15 +263,16 @@ text-align : center;
 		});
 		
 	$('.mainimgwrapper').hover(function() {
-		  $("#mainimg1").css("transform", "scale(1.1)"),$("#mainimgbutton").css("color","black");
+		  $("#mainimg1").css("transform", "scale(1.1)"),$("#mainimgbutton").css("color","blue");
 		}, function(){
-		  $("#mainimg1").css("transform", "scale(1)"),$("#mainimgbutton").css("color","pink");
+		  $("#mainimg1").css("transform", "scale(1)"),$("#mainimgbutton").css("color","");
 		});
 	});
 
 </script>
 <div class="main">
 	<div class="main-container">
+<!-- 메인 이미지 박스 -->		
 		<div class="main-item">
 			<div class="mainimgwrapper" style="height:560px;width:1084px;">
 			<div class="main-img" id="main-img" style="overflow: hidden;">
@@ -266,6 +284,8 @@ text-align : center;
 			</div>
 		</div>
 		<div class="main-item">
+<!-- 메인 이미지박스 -->
+<!-- 캐러셀 시작 -->
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -290,9 +310,10 @@ text-align : center;
     <span class="sr-only">Next</span>
   </a>
 </div>
-<div class="test" id="test">테스트</div>
+<!-- 캐러셀끝 -->
+<!-- 스토리 부분 최신순 미리보기 시작 -->
 		</div>
-		<div class="main-item" style="margin-top : 20px;">매일의 스토리
+		<div class="main-item">매일의 스토리
 			<section class="everydaystory">
 			<ul class="storyul">
 				<li class="storyli">
@@ -316,6 +337,8 @@ text-align : center;
 			</ul>
 		</section>
 		</div>
+<!-- 스토리최신순 미리보기 끝 -->
+<!-- 두번째 쭐 오른쪽 바로가기 -->
 		<div class="main-item" id="main-item-link">
 			<div class="main-story">
 			<div class="main-story-link" onclick="location.href='#';">
@@ -338,7 +361,23 @@ text-align : center;
 			</div>
 			</div>
 		</div>
-		<div class="main-item">카테고리</div>
+<!-- 두번째 줄 오른쪽 바로가기끝 -->
+<!-- 카테고리 이미지 시작 -->
+		<div class="main-item" style="text-align :center; font-size:20px; font-weight:bold;">매일의 집의 카테고리<br>
+	
+			<ul class="cateul">
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category1.png"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category2.png"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category3.png"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category4.png"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category5.png"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category6.png"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category7.png"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category8.png"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category9.png"></a></li>
+			</ul>
+		</div>
+<!-- 카테고리 이미지 끝 -->		
 		<!-- 매일의 인기사진 시작 -->
 		<div class="main-item">매일의 인기사진
 			<section class="popular">

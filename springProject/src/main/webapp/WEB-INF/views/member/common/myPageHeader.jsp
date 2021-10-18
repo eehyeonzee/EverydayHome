@@ -53,9 +53,9 @@
 	</div>
 	<div class="nav-right-menu">
 		<ul style="display: inline-block;">
-			<li class="navrightmenuli"><a class="navmenuitem" href="${pageContext.request.contextPath}/member/myBuyList.do" style="font-size: 30px; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">나의리뷰</a>
+			<li class="navrightmenuli"><a class="navmenuitem" href="${pageContext.request.contextPath}/review/myBuyList.do" style="font-size: 30px; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">나의리뷰</a>
 				<ul class="dropdownbar">
-					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/myBuyList.do">리뷰쓰기</a></li>						
+					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/review/myBuyList.do">리뷰쓰기</a></li>						
 					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="#">내가 작성한 리뷰</a></li> 
 				</ul>
 			</li>
@@ -110,9 +110,9 @@
 	</div>
 	<div class="nav-right-menu">
 		<ul style="display: inline-block;">
-			<li class="navrightmenuli"><a class="navmenuitem" href="${pageContext.request.contextPath}/member/myBuyList.do" style="font-size: 30px; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">나의리뷰</a>
+			<li class="navrightmenuli"><a class="navmenuitem" href="${pageContext.request.contextPath}/review/myBuyList.do" style="font-size: 30px; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">나의리뷰</a>
 				<ul class="dropdownbar">
-					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/myBuyList.do">리뷰쓰기</a></li>						
+					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/review/myBuyList.do">리뷰쓰기</a></li>						
 					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="#">내가 작성한 리뷰</a></li> 
 				</ul>
 			</li>
