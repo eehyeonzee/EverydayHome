@@ -27,9 +27,10 @@
 		팔로우 : ${member.follow_count} | 팔로워 : ${member.follower_count}
 		<br><br> 
 		<div class="align-center">
-				<input type="button" value="설정" id="modify_btn" onclick="location.href='memberUpdate.do'">
+				<input class = "btn btn-outline-dark" type="button" value="수정" id="modify_btn" onclick="location.href='memberUpdate.do'">
 			</div>
 		<hr>
+		<c:if test="${!empty user_num && (user_auth == 2 ||  user_auth == 3)}">
 		<div class="mypage-info">
 			<table  style="border:1px dashed #b5b7ba;">
 				<tr>
@@ -50,4 +51,5 @@
 				</tr>
 			</table>
 		</div>
+		</c:if>
 	</div>

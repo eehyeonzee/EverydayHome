@@ -54,7 +54,7 @@ public class MemberVO {
 	   
 	   //============ 비밀번호 일치 여부 체크 ==============//
 	   public boolean isCheckedPassword(String userPasswd) {
-	      if(mem_auth > 1 && passwd.equals(userPasswd)) {
+	      if(mem_auth > 0 && passwd.equals(userPasswd)) {
 	         return true;
 	      }
 	      return false;

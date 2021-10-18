@@ -41,4 +41,8 @@
     	<put-attribute name="title" value="판매자 신청"/>
     	<put-attribute name="body" value="/WEB-INF/views/member/sellerApplication.jsp"/>
     </definition>
+    <definition name="memberAllList" extends="main">
+    	<put-attribute name="title" value="회원 전체 조회"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/memberList.jsp"/>
+    </definition>
 </tiles-definitions>

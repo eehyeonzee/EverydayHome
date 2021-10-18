@@ -1,5 +1,8 @@
 package kr.spring.member.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
@@ -47,4 +50,6 @@ public interface MemberMapper {
 	public void deleteMemberDetail(Integer mem_num);		// 마이페이지 - 회원상세정보 삭제
 	@Insert("INSERT INTO buis_detail (mem_num, buis_num, ceo_name, buis_name, buis_item, opening_date, buis_zipcode, buis_address1, buis_address2) VALUES (#{mem_num}, #{buis_num}, #{ceo_name}, #{buis_name}, #{buis_item}, #{opening_date}, #{buis_zipcode}, #{buis_address1}, #{buis_address2})")
 	public void insertSeller(MemberBuisVO memberBuisVO);		// 마이페이지 판매자 정보 등록
+
+	public List<MemberVO> selectMemberList(Map<String, Object> map);	// 판매자 페이지 - 회원 정보 전체 출력
 }

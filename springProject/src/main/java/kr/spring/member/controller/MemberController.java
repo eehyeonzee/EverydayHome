@@ -555,7 +555,18 @@ public class MemberController {
 	}
 	
 	
-	
+	// 관리자 페이지 - 전체회원 조회
+	@GetMapping("/member/memberList.do")
+	public ModelAndView memberListForm(HttpSession session,
+			@RequestParam(value="pageNum", defaultValue="1") int currentPage) {
+				
+		
+		
+		
+		//return "memberAllList";
+		return null;
+		
+	}
 	
 	
 	//----------------- 회원가입 이메일 인증 8자리 난수 생성 부분

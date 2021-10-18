@@ -199,6 +199,28 @@ height: 40px;
 					</div>
 				</nav>
 			</c:if>
+			<!-- 정지회원 -->
+			<c:if test="${!empty user_num && user_auth==1}">
+				<nav class="nav-right">
+						<c:if test="${empty user_photo }">
+						<img src="${pageContext.request.contextPath }/resources/images/basic.jpg" width="33" height="33" class="my-photo">
+						</c:if>
+						<c:if test="${!empty user_photo }">
+						<img src="${pageContext.request.contextPath }/member/photoView.do" width="33" height="33" class="my-photo">
+						</c:if>
+					<span class="navrightitem">${user_nickname} 님은 <b style="color: red;">정지회원입니다.</b></span>
+					<div class="nav-right-menu">
+						<ul>
+							<li class="navrightmenuli"><a class="navmenuitem" href="#" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">마이페이지</a>
+								<ul class="dropdownbar">
+									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/myPage.do">마이페이지</a></li>
+									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</c:if>
 			<!-- 일반회원 -->
 			<c:if test="${!empty user_num && user_auth==2}">
 				<nav class="nav-right">
@@ -276,15 +298,14 @@ height: 40px;
 						<img src="${pageContext.request.contextPath }/resources/images/crown.gif" width="37" height="37" class="my-photo">
 						</c:if>
 						<c:if test="${!empty user_photo }">
-						<img src="${pageContext.request.contextPath }/member/photoView.do" width="37" height="7" class="my-photo">
+						<img src="${pageContext.request.contextPath }/member/photoView.do" width="37" height="37" class="my-photo">
 						</c:if>
 						<span class="navrightitem">관리자</span>
 					<div class="nav-right-menu">
 						<ul>
-							<li class="navrightmenuli"><a class="navmenuitem" href="#" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">판매자페이지</a>
+							<li class="navrightmenuli"><a class="navmenuitem" href="${pageContext.request.contextPath}/member/myPage.do" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">관리자페이지</a>
 								<ul class="dropdownbar">
-									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/myPage.do">마이페이지</a></li>
-									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="#">나의물건</a></li>
+									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/myPage.do">관리자페이지</a></li>
 									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
 								</ul>
 							</li>
@@ -294,8 +315,8 @@ height: 40px;
 						<ul>
 							<li class="navrightmenuli"><a class="navmenuitem" href="#" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">등록</a>
 								<ul class="dropdownbar">
-									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/serviceBoard/serviceBoardInsert.do">고객센터질문하기</a></li>
-									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/store/storeRegister.do">상품 등록</a></li>
+									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/event/eventWrite.do">이벤트등록</a></li>
+									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/notice/noticeWrite.do">공지등록</a></li>
 								</ul>
 							</li>
 						</ul>
