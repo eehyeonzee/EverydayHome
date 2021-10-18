@@ -2,6 +2,7 @@ package kr.spring.review.vo;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.Arrays;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,9 +22,8 @@ public class ReviewVO {
 	private String prod_option;
 	private Date order_date;
 	private int prod_price;
-	
-	//리뷰중복
-	private int overlap;
+	private byte[] thumbnail_img;
+	private String thumbnail_filename;
 	
 	
 	public void setUpload(MultipartFile upload)throws IOException {
@@ -31,6 +31,13 @@ public class ReviewVO {
 		setRev_img(upload.getBytes());
 		
 		setRev_filename(upload.getOriginalFilename());
+	}
+	
+	public void setUpload2(MultipartFile upload2)throws IOException{
+		//MultipartFile -> byte[]
+		setThumbnail_img(upload2.getBytes());
+		//파일명 구하기
+		setThumbnail_filename(upload2.getOriginalFilename());
 	}
 	
 	public int getRev_num() {
@@ -106,16 +113,21 @@ public class ReviewVO {
 		this.order_date = order_date;
 	}
 	
-	
-	public int getOverlap() {
-		return overlap;
+	public byte[] getThumbnail_img() {
+		return thumbnail_img;
 	}
 
-	public void setOverlap(int overlap) {
-		this.overlap = overlap;
+	public void setThumbnail_img(byte[] thumbnail_img) {
+		this.thumbnail_img = thumbnail_img;
 	}
-	
-	
+
+	public String getThumbnail_filename() {
+		return thumbnail_filename;
+	}
+
+	public void setThumbnail_filename(String thumbnail_filename) {
+		this.thumbnail_filename = thumbnail_filename;
+	}
 
 	public int getProd_price() {
 		return prod_price;
@@ -128,12 +140,11 @@ public class ReviewVO {
 	@Override
 	public String toString() {
 		return "ReviewVO [rev_num=" + rev_num + ", rev_content=" + rev_content + ", rev_grade=" + rev_grade
-				+ ", rev_reg_date=" + rev_reg_date + ", prod_num=" + prod_num + ", mem_num=" + mem_num + ", buis_name="
-				+ buis_name + ", prod_name=" + prod_name + ", prod_option=" + prod_option + ", order_date=" + order_date
-				+ ", prod_price=" + prod_price + ", overlap=" + overlap + "]";
+				+ ", rev_reg_date=" + rev_reg_date + ", rev_img=" + Arrays.toString(rev_img) + ", rev_filename="
+				+ rev_filename + ", prod_num=" + prod_num + ", mem_num=" + mem_num + ", buis_name=" + buis_name
+				+ ", prod_name=" + prod_name + ", prod_option=" + prod_option + ", order_date=" + order_date
+				+ ", prod_price=" + prod_price + ", thumbnail_filename=" + thumbnail_filename + "]";
 	}
 
-
-	
 	
 }
