@@ -718,6 +718,14 @@ public class MemberController {
 	}
 	
 	
+	// 관리자 페이지 - 판매자 신청내역 조회
+//	@GetMapping("/member/sellerApplyList.do")
+//	public ModelAndView sellerApplyListForm() {
+//		
+//		return "d";
+//	}
+	
+	
 	//----------------- 회원가입 이메일 인증 8자리 난수 생성 부분
     private int certCharLength = 8;
     
