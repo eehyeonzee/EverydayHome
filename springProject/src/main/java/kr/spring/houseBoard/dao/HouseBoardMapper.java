@@ -45,25 +45,17 @@ public interface HouseBoardMapper {
 		
 		@Update("UPDATE house_board SET house_recom = house_recom+1 WHERE house_num = #{house_num}")
 		public void plusHeart(Integer house_num); // 추천하기 (+1)
-		@Update("UPDATE house_board SET house_recom = house_recom-1 WHERE house_num = #{house_num}")
-		public void minusHeart(Integer house_num); // 추천 취소 (-1)
-		
 		@Select("SELECT house_recom FROM house_board WHERE house_num = #{house_num}")
 		public int selectHeartCount(Integer house_num); // 추천수 불러오기
 		@Select("SELECT COUNT(*) FROM recommend WHERE house_num = #{house_num} AND mem_num = #{mem_num}")
-		public int heartDuplicationCheck(Integer house_num); // 추천수 중복 체크
-		
+		public int heartOverlapCheck(Integer house_num); // 추천수 중복 체크
+		@Update("UPDATE house_board SET house_recom = house_recom-1 WHERE house_num = #{house_num}")
+		public void minusHeart(Integer house_num); // 추천 취소 (-1)
 		@Delete("DELETE FROM recommend WHERE house_num = #{house_num} AND mem_num = #{mem_num}")
 		public void removeHeart(Integer house_num); // 테이블에서 추천수 제거
 
 		// =============== 댓글 =============== //
-		/*
-		 * public List<HCommentsVO> selectHCommentsList(Map<String,Object> map); // 댓글
-		 * 목록 public int selectHCommentsCount(Map<String,Object> map); // 댓글 개수 public
-		 * void insertHcomments(HCommentsVO hComments); // 댓글 쓰기 public void
-		 * updateHComments(HCommentsVO hComments); // 댓글 수정 public void
-		 * deleteHComments(Integer comm_num);
-		 */
+		
 
 }
 

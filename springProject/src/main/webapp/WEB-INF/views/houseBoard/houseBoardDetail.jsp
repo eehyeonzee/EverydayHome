@@ -31,15 +31,18 @@
 					if(param.result == 'logout') {
 						alert('로그인 후 사용하세요');
 					}else if(param.duplication == 0) {
+						console.log('Cool function is called 🚀')
 						$('#house_recom').text(param.heartCount);
 						$('#btn_heart').css('background-color', '#fd7575');
 					}else {
+						console.log('Cool function is called 🚀')
 						$('#house_recom').text(param.heartCount);
 						$('#btn_heart').css('background-color', '#ffffff');
 					}
 				},
-				error: function() {
-					alert('네트워크 오류 발생');
+				error : function(request,status,error){      // 에러메세지 반환
+					alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
+	              }
 				}
 			}); // end of ajax
 		});	
@@ -91,7 +94,7 @@
 		<li>최근수정일 : ${houseBoard.house_mod_date}</li>
 		<li>${houseBoard.house_area}｜${houseBoard.house_type}｜${houseBoard.house_style}｜${houseBoard.house_space}</li>
 	</ul>
-	<hr size="1" width="100%" noshade="noshade">
+	<hr size="1" width="100%" noshade>
 	<c:if test="${!empty houseBoard.thumbnail_filename}">
 	<div class="align-center">
 		<img src="imageView.do?house_num=${houseBoard.house_num}" style="max-width:500px">
@@ -145,6 +148,33 @@
 	</div>
 	<!-- 수정｜삭제｜목록 버튼 끝 -->
 	<!-- 댓글 시작 -->
+	<span class="comm-title">댓글 ${count}</span>
+	<div id="comm_div">
+		<p>
+		<form id="comm_form">
+			<input type="hidden" name="house_num" value="${houseBoard.house_num}" id="house_num">
+			<input type="hidden" name="mem_num" value="${user_num}" id="mem_num">
+			<textarea rows="3" cols="50" name="comm_content" id="comm_content" class="comm-content" placeholder="칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)"
+				<c:if test="${empty user_num}">disabled="disabled"</c:if>
+				><c:if test="${empty user_num}">로그인해야 작성할 수 있습니다</c:if></textarea><!-- 닫는 태그 내리지(띄어쓰지) 말자! 공백으로 인식함 -->
+			<c:if test="${!empty user_num}">
+			<div id="comm_first">
+				<span class="letter-count">300/300</span>
+			</div>
+			<div id="comm_second" class="align-right">
+				<input type="submit" value="등록">
+			</div>
+			</c:if>
+		</form>
+	</div>
+	<!-- 댓글 목록 출력 -->
+	<div id="output"></div>
+	<div class="paging-button" style="display:none;">
+		<input type="button" value="더보기">
+	</div>
+	<div id="loading" style="display:none;">
+		<img src="${pageContext.request.contextPath}/resources/images/ajax-loader.gif">
+	</div>
 	<!-- 댓글 끝 -->
 </div>
 <!-- 중앙 내용 끝 -->
