@@ -169,11 +169,6 @@
 				<input type = "button" id = "minus" value = "상품 옵션 제거">
 			</li>
 			<li>
-				<label for = "add_product">추가 상품</label>
-				<form:input path = "add_product" />
-				<form:errors path = "add_product" cssClass = "error-color" />
-			</li>
-			<li>
 				<label for = "upload1">썸네일 이미지</label>
 				<input type = "file" name = "upload1" id = "upload1" accept = "image/gif,image/png,image/jpeg">
 			</li>

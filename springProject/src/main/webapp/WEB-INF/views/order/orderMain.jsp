@@ -16,13 +16,28 @@
 </ul>
 <h3>배송지</h3>
 <ul>
-	<li>받는 사람 <input type = "text" id = "receiver_name"></li>
+	<li>받는 사람 <input type = "text" id = "receiver_name"><input type = "button" id = "equal" value = "위와 동일하게 채우기"></li>
 	<li>연락처 <input type = "text" id = "receiver_phone"></li>
 	<li>주소 <input type = "text" id = "order_zipcode" value = "${memberVO.zipcode}"> 카카오 주소</li>
 	<li><input type = "text" id = "order_address1" value = "${memberVO.address1}"></li>
 	<li><input type = "text" id = "order_address2" value = "${memberVO.address2}"></li>
 </ul>
+<script type = "text/javascript">
+	$(document).ready(function() {
+		$('#receiver_name').val('');
+		$('#receiver_phone').val('');
+		
+		$('#equal').click(function() {
+			var receiver_name = $('#name').val();
+			var receiver_phone = $('#phone').val();
+			$('#receiver_name').val(receiver_name);
+			$('#receiver_phone').val(receiver_phone);
+		});
+	});
+</script>
 <h3>상품 정보</h3>
 <ul>
-	<li></li>
+	<li>판매자명 : </li>
+	<li>상품명 : ${storeVO.prod_name}</li>
+	<li>상품 가격 : ${storeVO.prod_price}</li>
 </ul>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix = "form" uri = "http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,9 +9,25 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 
-<nav>${storeVO.prod_cate}</nav>
 <div>
-	<input type = "hidden" value = "${storeVO.prod_num}">
+<c:if test = "${storeVO.prod_cate == 'furniture'}">가구</c:if>
+<c:if test = "${storeVO.prod_cate == 'fabric'}">패브릭</c:if>
+<c:if test = "${storeVO.prod_cate == 'lamp'}">조명</c:if>
+<c:if test = "${storeVO.prod_cate == 'electonic'}">가전</c:if>
+<c:if test = "${storeVO.prod_cate == 'kitchen'}">주방용품</c:if>
+<c:if test = "${storeVO.prod_cate == 'deco'}">데코/취미</c:if>
+<c:if test = "${storeVO.prod_cate == 'storage'}">수납/정리</c:if>
+<c:if test = "${storeVO.prod_cate == 'daily_necessities'}">생활용품</c:if>
+<c:if test = "${storeVO.prod_cate == 'necessities'}">생필품</c:if>
+<c:if test = "${storeVO.prod_cate == 'tool_diy'}">공구/DIY</c:if>
+<c:if test = "${storeVO.prod_cate == 'interior'}">인테리어시공</c:if>
+<c:if test = "${storeVO.prod_cate == 'pet'}">반려동물</c:if>
+<c:if test = "${storeVO.prod_cate == 'camping'}">캠핑용품</c:if>
+<c:if test = "${storeVO.prod_cate == 'indoor'}">실내운동</c:if>
+<c:if test = "${storeVO.prod_cate == 'baby_pro'}">유아/아동</c:if>
+<c:if test = "${storeVO.prod_cate == 'rental'}">렌탈</c:if>
+</div>
+<div>
 	<c:if test = "${!empty user_num && user_num == storeVO.mem_num}">
 			<input type = "button" value = "수정" onclick="location.href='updateProduct.do?prod_num=${storeVO.prod_num}'">
 			<input type = "button" value = "삭제" id = "delete_btn">
@@ -25,6 +42,8 @@
 			</script>
 	</c:if>
 </div>
+<form:form id = "order_form" action = "${pageContext.request.contextPath}/order/orderMain.do" modelAttribute = "storeVO" method = "get">
+	<form:hidden path = "prod_num" value = "${storeVO.prod_num}" />
 <div>
 	<c:if test = "${!empty storeVO.thumbnail_img}">
 	<img src = "imageView.do?prod_num=${storeVO.prod_num}" style = "width:240px; height:240px; max-width:240px; max-height:240px;"><br>
@@ -32,43 +51,42 @@
 	<c:if test = "${empty storeVO.thumbnail_img}">
 	<img src = "${pageContext.request.contextPath}/resources/images/gift.png">
 	</c:if>
-	${storeVO.prod_name}
-	${storeVO.prod_price}원
+	${storeVO.prod_name}<br>
+	가격 : ${storeVO.prod_price}원<br>
+	배송비 : ${storeVO.delive_price}원<br>
+	배송방법 : ${storeVO.delive_type}<br>
 	<c:if test = "${!empty storeVO.prod_option1}">
 	<select id = "product">
 		<option value = "" id = "selec_option">${storeVO.selec_product}</option>
-		<option value = "${storeVO.prod_price}">${storeVO.prod_option1}</option>
+		<option value = "${storeVO.prod_price}" id = "selec_option">${storeVO.prod_option1}</option>
 		<c:if test = "${!empty storeVO.prod_option2}">
-		<option value = "${storeVO.prod_price}">${storeVO.prod_option2}</option>
+		<option value = "${storeVO.prod_price}" id = "selec_option">${storeVO.prod_option2}</option>
 		</c:if>
 		<c:if test = "${!empty storeVO.prod_option3}">
-		<option value = "${storeVO.prod_price}">${storeVO.prod_option3}</option>
+		<option value = "${storeVO.prod_price}" id = "selec_option">${storeVO.prod_option3}</option>
 		</c:if>
 		<c:if test = "${!empty storeVO.prod_option4}">
-		<option value = "${storeVO.prod_price}">${storeVO.prod_option4}</option>
+		<option value = "${storeVO.prod_price}" id = "selec_option">${storeVO.prod_option4}</option>
 		</c:if>
 		<c:if test = "${!empty storeVO.prod_option5}">
-		<option value = "${storeVO.prod_price}">${storeVO.prod_option5}</option>
+		<option value = "${storeVO.prod_price}" id = "selec_option">${storeVO.prod_option5}</option>
 		</c:if>
 		<c:if test = "${!empty storeVO.prod_option6}">
-		<option value = "${storeVO.prod_price}">${storeVO.prod_option6}</option>
+		<option value = "${storeVO.prod_price}" id = "selec_option">${storeVO.prod_option6}</option>
 		</c:if>
 		<c:if test = "${!empty storeVO.prod_option7}">
-		<option value = "${storeVO.prod_price}">${storeVO.prod_option7}</option>
+		<option value = "${storeVO.prod_price}" id = "selec_option">${storeVO.prod_option7}</option>
 		</c:if>
 		<c:if test = "${!empty storeVO.prod_option8}">
-		<option value = "${storeVO.prod_price}">${storeVO.prod_option8}</option>
+		<option value = "${storeVO.prod_price}" id = "selec_option">${storeVO.prod_option8}</option>
 		</c:if>
 		<c:if test = "${!empty storeVO.prod_option9}">
-		<option value = "${storeVO.prod_price}">${storeVO.prod_option9}</option>
+		<option value = "${storeVO.prod_price}" id = "selec_option">${storeVO.prod_option9}</option>
 		</c:if>
 		<c:if test = "${!empty storeVO.prod_option10}">
-		<option value = "${storeVO.prod_price}">${storeVO.prod_option10}</option>
+		<option value = "${storeVO.prod_price}" id = "selec_option">${storeVO.prod_option10}</option>
 		</c:if>
-	</select>
-	</c:if>
-	<c:if test = "${!empty storeVO.prod_img}">
-	<img src = "contentImageView.do?prod_num=${storeVO.prod_num}"><br><br><br>
+	</select><br>
 	</c:if>
 	<div>
 		<c:if test = "${!empty storeVO.prod_option1}">
@@ -125,12 +143,19 @@
 				<input type = "number" id = "quan" min = "0">
 			</div>
 		</div>
+		<c:if test = "${!empty storeVO.prod_img}">
+		<img src = "contentImageView.do?prod_num=${storeVO.prod_num}"><br><br><br>
+		</c:if>
+		<div>
+			${storeVO.prod_content}
+		</div>
 		<div>
 			<span id = "last_price"></span>
 		</div>
 		<script type = "text/javascript">
 			$(document).ready(function() {
-				$('#quan').val('0');				
+				$('#quan').val('0');
+				
 				$('#quan').change(function() {							
 					var last_price = 0;
 					var quantity = $('#quan').val();
@@ -143,11 +168,15 @@
 		</script>
 		<div>
 			<input type = "button" id = "btn_cart" value = "장바구니">
-			<input type = "button" id = "btn_order" value = "구매하기" onclick = "location.href='${pageContext.request.contextPath}/order/orderMain.do'">
+			<form:button id = "btn_order">구매하기</form:button>
 		</div>
 		<script type = "text/javascript">
 			$('#btn_cart').click(function() {
 				var quan = $('#quan').val();
+				if(quan > ${storeVO.prod_quan}) {
+					alert('재고가 부족합니다.');
+					return false;
+				}
 				if($('select').val() != '') {
 					if(quan > 0) {
 						$.ajax({
@@ -182,12 +211,24 @@
 							
 						});
 					}else {
-						alert('수량을 선택해주세요!');
+						alert('수량을 입력해주세요!');
+						return false;
 					}
 				}else{
 					alert('${storeVO.selec_product}를 선택해주세요!');
+					return false;
 				}
 			});
+			
+			$('#btn_order').click(function() {
+				var quan = $('#quan').val();
+				var price = $('#last_price');
+				if(quan > ${storeVO.prod_quan}) {
+					alert('재고가 부족합니다.');
+					return false;
+				}
+			}
 		</script>
 	</div>
 </div>
+</form:form>

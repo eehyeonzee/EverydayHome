@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -39,29 +40,27 @@ public class OrderController {
 	
 	// 주문 메인 호출
 	@GetMapping("/order/orderMain.do")
-	public String orderPage() {
+	public String orderPage(OrderVO order, MemberVO member, StoreVO storeVO, HttpSession session, Model model, @ModelAttribute("order_quan") String order_quan) {
+		
 		logger.debug("<<주문 페이지 호출>>");
 		
-		// 타일스 식별자
-		return "orderMain";
-	}
-	
-	// 주문 테이블에 주문 내용 삽입
-	
-	@RequestMapping(value = "/order/orderMain.do", method = RequestMethod.POST)
-	public String orderInsert(StoreVO storeVO, HttpSession session, Model model, @ModelAttribute("order_quan") String order_quan) {
-		 
-		MemberVO member = (MemberVO)session.getAttribute("user_num"); 
+		member.setMem_num((Integer)session.getAttribute("user_num"));
+		order.setMem_num(member.getMem_num());
+		
+		logger.debug("<<회원 정보>> : " + member.getMem_num());
+		
 		member = memberService.selectMember(member.getMem_num());
 		storeVO = storeService.selectProduct(storeVO.getProd_num());
 		  
 		logger.debug("<<주문 내용 삽입 멤버 정보>> : " + member);
 		logger.debug("<<주문 내용 삽입 상품 정보>> : " + storeVO);
 		 
-		model.addAttribute("memberInfo", member); model.addAttribute("productInfo", storeVO); 
+		model.addAttribute("memberVO", member);
+		model.addAttribute("storeVO", storeVO); 
 		model.addAttribute("order_quan", order_quan);
-		 
-		return "/order/orderMain"; 
+		
+		// 타일스 식별자
+		return "orderMain";
 	}
-
+	
 }
