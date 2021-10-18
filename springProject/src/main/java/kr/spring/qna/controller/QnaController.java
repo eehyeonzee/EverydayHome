@@ -225,8 +225,11 @@ public class QnaController {
 			if(result.hasErrors()) {
 				return serviceBoardInsertForm();
 			}
-			//회원번호를 세팅
-			serviceboard.setMem_num((Integer)session.getAttribute("user_num"));
+			Integer user_num = (Integer)session.getAttribute("user_num");
+			if(user_num!=null) {
+				//회원번호를 세팅
+				serviceboard.setMem_num(user_num);
+			}
 			//글쓰기
 			serviceBoardService.serviceBoardInsert(serviceboard);
 			
@@ -309,22 +312,14 @@ public class QnaController {
 		//이메일 전송
 		@GetMapping("/qna/mailCheck.do")
 		@ResponseBody	//ajax처리를 위한 어노테이션
-		public void sendMail(String service_email)throws Exception{
+		public void sendMail(String service_email, String service_reply)throws Exception{
 			
 			/* 뷰(View)로부터 넘어온 데이터 확인 */
 	        log.info("이메일 데이터 전송 확인");
 	        log.info("이메일 : " + service_email);
 	        
 	        String title = "Re: 매일의 홈에 문의 주셔서 감사합니다.";	
-	        String content = "안녕하세요. 항상 매일의 홈에 관심을 갖고 이용해 주셔서 감사드립니다." +
-	        		"<br><br>" +
-	        		"요청하신 사항은 담당 부서로 전달하도록 하겠습니다."+
-	        		"<br><br>" +
-	        		"앞으로 이용에 불편함이 없도록 노력하는 매일의 홈이 되겠습니다."+
-	        		"<br><br>" +
-	        		"오늘도 좋은 하루 보내시길 바랍니다."+
-	        		"<br><br>" +
-	        		"감사합니다.";
+	        String content = "문의 내용 확인하였습니다" +service_reply;
 	        
 	        String fromEmail = "springtest1010@gmail.com";
 	        String toEmail = service_email;

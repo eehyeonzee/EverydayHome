@@ -9,18 +9,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class EventVO {
 
-	private int event_num;
+	private int event_num;				//이벤트 번호
 	@NotEmpty
-	private String event_title;
+	private String event_title;			//제목
 	@NotEmpty
-	private String event_content;
-	private String event_type; //널가능
-	private int event_hits; //널가능 기본값 0 
-	private Date event_reg_date; //널가능 기본값 sysdate
-	private Date event_modi; // 널가능 기본값 sysdate
-	private byte[] event_photo; //널가능
-	private String event_filename;//널가능
-	private int mem_num;
+	private String event_content;		//내용
+	private String event_type; 			//분류 널가능
+	private int event_hits; 			//조회수 널가능 기본값 0 
+	private Date event_reg_date; 		//작성일 널가능 기본값 sysdate
+	private Date event_modi; 			//수정일 널가능 기본값 sysdate
+	private byte[] event_photo; 		//사진(blob) 널가능
+	private String event_filename;		//사진 파일 이름 널가능
+	private int mem_num;				//회원 번호
 	
 	public void setUpload(MultipartFile upload)throws IOException{
 		//MultipartFile -> byte[]

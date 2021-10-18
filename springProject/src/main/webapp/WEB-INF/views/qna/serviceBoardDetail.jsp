@@ -40,16 +40,17 @@ $(function() {
 <title>고객센터 게시판 디테일</title>
 </head>
 <body>
-<div class="page-main">
+
 	<h2>${serviceboard.service_title }</h2>
 	<ul>
 		<li>글번호: ${serviceboard.service_num }</li>
-		<li>작성자 이메일:
-			<input type="text" id="service_email" value="${serviceboard.service_email }" readonly>
-			<input type="button" id="email_send_button" value="이메일전송">
+		<li>작성자 이메일: <input type="text" id="service_email" value="${serviceboard.service_email }" readonly>
 		</li>
 		<li>문의 유형: ${serviceboard.service_keyword }</li>
 		<li>제목: ${serviceboard.service_title }</li>
+		<li>
+			
+		</li>
 	</ul>
 			
 	<hr width="100%" size="1" noshade="noshade">
@@ -62,9 +63,12 @@ $(function() {
 		<img src="imageView.do?service_num=${serviceboard.service_num }" style="max-width:500px">
 	</div>
 	</c:if>
+	<input type="text" id="service_reply" value="${serviceboard.service_content }" readonly>
+	<input type="submit" id="email_send_button" value="이메일전송">
+	
+	
 	<div class="align-center">
 		<input type="button" value="목록" onclick="location.href='serviceBoardList.do'">
 	</div>
-</div>
 </body>
 </html>

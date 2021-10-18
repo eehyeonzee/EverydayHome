@@ -54,6 +54,12 @@ h2{
  	<h2 style="font-family: 'Gowun Dodum', sans-serif;">이벤트</h2>
  	</div>
  	<div class="link-container">
+ 		<c:if test="${user_auth==4}">
+ 		 <div class="write-button"> 		
+ 		<a href="${pageContext.request.contextPath}/event/eventWrite.do">이벤트 작성</a>
+ 		</div>
+ 		</c:if>
+ 	
  		<c:if test="${count==0}">
  		<div class="link-item" style="font-family: 'Gowun Dodum', sans-serif;">출력할 내용이 없습니다</div>
  		</c:if>
@@ -72,11 +78,6 @@ h2{
  		<div class="paging">
  			<span>${pagingHtml}</span>
  		</div>
- 		<c:if test="${user_auth==4}">
- 		 <div class="write-button"> 		
- 		<a href="${pageContext.request.contextPath}/event/eventWrite.do">공지 쓰기</a>
- 		</div>
- 		</c:if>
  	</div>
  </div>
  </div>

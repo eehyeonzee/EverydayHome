@@ -21,8 +21,17 @@
 		<form:hidden path="qna_num"/>
 		<ul>
 			<li>
-				<label for="qna_category">분류</label>
-				<form:input path="qna_category"/>
+				<label for="qna_category">카테고리</label>
+				<select name="qna_category" id="qna_category">
+					<option value="">카테고리</option>
+					<option value="주문/결제">주문/결제</option>
+					<option value="배송관련">배송관련</option>
+					<option value="취소/환불">취소/환불</option>
+					<option value="반품/교환">반품/교환</option>
+					<option value="증빙서류발급">증빙서류발급</option>
+					<option value="회원정보변경">회원정보변경</option>
+					<option value="서비스/기타">서비스/기타</option>
+				</select>
 				<form:errors path="qna_category" cssClass="error-color"/>
 			</li>
 			<li>

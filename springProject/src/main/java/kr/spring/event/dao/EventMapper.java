@@ -1,6 +1,7 @@
 package kr.spring.event.dao;
 
 import java.util.List;
+
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
@@ -8,9 +9,11 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import kr.spring.event.vo.ECommentVO;
 import kr.spring.event.vo.EventVO;
 
 public interface EventMapper {
+	//부모글
 	@Insert("INSERT INTO event (event_num,event_title,event_content,event_type,event_hits,event_reg_date,event_modi,mem_num,event_filename,event_photo) VALUES(event_seq.nextval,#{event_title},#{event_content},'1',1,SYSDATE,SYSDATE,#{mem_num},#{event_filename},#{event_photo})")
 	public void eventWrite(EventVO eventVO);
 	@Select("select count(*) from event")
@@ -27,4 +30,16 @@ public interface EventMapper {
 	public int eventGetHits(int event_num);
 	@Update("UPDATE event SET event_filename = '', event_photo = '' WHERE event_num = #{event_num}")
 	public void deleteFile(Integer event_num);
+	
+	//댓글
+	public List<ECommentVO> selectListEComment(Map<String, Object>map);
+	public int selectRowCountComment(Map<String, Object>map);
+	@Insert("INSERT INTO comments (comm_num, comm_content, event_num, mem_num) VALUES (comments_seq.nextval,#{comm_content},#{event_num},#{mem_num})")
+	public void insertEComment(ECommentVO eComment);
+	public void updateEComment(ECommentVO eComment);
+	public void deleteEComment(Integer comm_num);
+	//부모글 삭제시 댓글이 존재하면 부모글 삭제 전 댓글 삭제
+	@Delete("DELETE FROM comments WHERE event_num=#{event_num}")
+	public void deleteECommentByEventNum(Integer event_num);
+
 }

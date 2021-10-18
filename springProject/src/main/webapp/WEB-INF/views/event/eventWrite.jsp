@@ -50,7 +50,7 @@ min-height: 500px;
     <div class="container">
     <div class="main-container">
 	<h2>이벤트 등록</h2>
-	<form:form action="eventUpdate.do" modelAttribute="eventVO" enctype="multipart/form-data">
+	<form:form action="eventWrite.do" modelAttribute="eventVO" enctype="multipart/form-data">
 		<ul>
 			<li class="li-title">
 				<label for="event_title">제목</label>
