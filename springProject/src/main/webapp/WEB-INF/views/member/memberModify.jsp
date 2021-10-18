@@ -5,7 +5,7 @@
 <%-- 
  * 작성일 : 2021. 10. 13.
  * 작성자 : 오상준
- * 설명 : 
+ * 설명 :  회원정보 수정
  * 수정일 : 
 --%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>

@@ -11,6 +11,14 @@
          FROM (SELECT 
          			* 
                FROM member m LEFT JOIN mem_detail d ON m.mem_num=d.mem_num
+               <where>
+                   <if test="keyword != '' and keyfield == 1">
+                      m.mem_id like '%' || #{keyword} || '%'
+                   </if>
+                   <if test="keyword != '' and keyfield == 2">
+                      d.mem_name like '%' || #{keyword} || '%'
+                   </if>
+                </where>
                ORDER BY m.mem_num DESC)a)
 	<![CDATA[
 	WHERE rnum >= #{start} AND rnum <= #{end}

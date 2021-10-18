@@ -45,4 +45,8 @@
     	<put-attribute name="title" value="회원 전체 조회"/>
     	<put-attribute name="body" value="/WEB-INF/views/member/memberList.jsp"/>
     </definition>
+    <definition name="adminMemberUpdate" extends="main">
+    	<put-attribute name="title" value="관리자 - 회원정보수정"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/adminMemberUpdate.jsp"/>
+    </definition>
 </tiles-definitions>

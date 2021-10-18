@@ -249,7 +249,7 @@
 			<br>
 			<div class = "form-group row">
 				<div class = "text-center col-sm-10">
-					<form:button class = "btn btn-outline-dark">전송</form:button>
+					<form:button class = "btn btn-outline-dark">가입</form:button>
 					<input class = "btn btn-outline-dark" type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 				</div>
 			</div>

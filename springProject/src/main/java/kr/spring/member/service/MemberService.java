@@ -34,4 +34,5 @@ public interface MemberService {
 	public void updateMemberStop(Integer mem_num);			// 관리자 페이지 - 회원 정지
 	public void updateMemberStopCancel(Integer mem_num);	// 관리자 페이지 - 회원 정지 해제
 	public void updateMemberSellerAuth(Integer mem_num);	// 관리자 페이지 - 회원등급 판매자 변경
+	public void updateMemberPasswdReset(Integer mem_num);	// 관리자 페이지 - 회원 비밀번호 초기화
 }

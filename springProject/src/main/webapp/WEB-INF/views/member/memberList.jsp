@@ -7,15 +7,21 @@
  * 설명 : 전체회원조회
  * 수정일 : 
 --%>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"><script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<%@ include file="/WEB-INF/views/member/common/myPageHeader.jsp" %>
 <script type ="text/javascript">
 	$(document).ready(function() {
+		// 검색 유효성 체크
+		$("#search_form").submit(function(){
+			if($("#keyword").val().trim() == ""){
+				alert("검색어를 입력하세요!!");
+				$("#keyword").val("").focus();
+				return false;	// 서밋은 false 클릭은 ;
+			}
+		});
+		
 		$('input[type=checkbox]:checked').prop("checked", false);
 		
-		$('#stop_btn').click(function() {
+		$('#stop_btn').click(function() {		// 회원정지 클릭시
 		   	var output = '';
 		   
 			$('input[type=checkbox]:checked').each(function(index,item){
@@ -53,9 +59,9 @@
 		    			$('input[type=checkbox]:checked').prop("checked", false);
 		    		}
 		    	}
-		});
+		});	// 회원정지 끝
 		
-		$('#up_btn').click(function() {
+		$('#up_btn').click(function() {	// 일반회원 등급변경 클릭시
 		   	var output = '';
 		   
 			$('input[type=checkbox]:checked').each(function(index,item){
@@ -93,9 +99,9 @@
 		    			$('input[type=checkbox]:checked').prop("checked", false);
 		    		}
 		      	}
-		});
+		}); //일반회원 등급변경 끝
 		
-		$('#seller_btn').click(function() {
+		$('#seller_btn').click(function() {		// 판매자 회원 변경 클릭시
 		   	var output = '';
 		   
 			$('input[type=checkbox]:checked').each(function(index,item){
@@ -133,9 +139,9 @@
 		    			$('input[type=checkbox]:checked').prop("checked", false);
 		    		}
 		      	}
-		});
+		});		// 판매자 회원 변경 끝
 		
-		$('#delete_btn').click(function() {
+		$('#delete_btn').click(function() {			// 회원탈퇴 클릭시
 		   	var output = '';
 		   
 			$('input[type=checkbox]:checked').each(function(index,item){
@@ -172,24 +178,56 @@
 	    				$('input[type=checkbox]:checked').prop("checked", false);
 	    			}
 	    		}
-		});
+		});	// 회원탈퇴 끝
 		
-		$('#search_form').submit(function() {
-			if($('#keyword').val().trim() == '') {
-				alert('검색어를 입력하세요!');
-				$('#keyword').val('').focus();
-				return false;
-			}
-		});
+		$('#resetPasswd_btn').click(function() {			// 비밀번호 초기화 클릭시
+		   	var output = '';
+		   
+			$('input[type=checkbox]:checked').each(function(index,item){
+			    if(index !=0 ){
+			    	output += ',';
+			    }
+					output += $(this).val();
+			  	});
+				var cnt = 0;
+		  		cnt = output;
+	      		if(cnt == 0){
+	         		alert("선택한 회원이 없습니다!");
+	         		return false;
+	      		}else{
+	    			if(confirm("선택한 회원의 비밀번호를 변경 하시겠습니까?")){
+		   
+						$.ajax({
+							url: 'resetPasswdMember.do',
+						   	type: 'post',
+						   	data: {output : output},
+						   	dataType : 'json',
+							cache : false,
+							timeout : 30000,
+						    success: function(param) {
+						    	alert('비밀번호 초기화 완료!');
+						    	location.reload();
+						    	$('input[type=checkbox]:checked').prop("checked", false);
+						    },
+						    error : function() {
+						    	alert('네트워크 오류!');
+						    }
+						});
+	    			}else {
+	    				$('input[type=checkbox]:checked').prop("checked", false);
+	    			}
+	    		}
+		});	// 비밀번호 초기화 끝
+		
 	});
 	
 </script>
 
 <c:if test="${!empty user_num && user_auth == 4}">
-<div class = "container-fluid contents-wrap" style = "width:90%">
+<div class = "container-fluid contents-wrap" style = "width:95%">
 	<div class="text-center col-sm-30 my-5">
 		<div align = "left">
-			<h2 class="admin-page-h2">관리자 페이지</h2>
+			<h2 class="admin-page-h2">관리자 - 전체 회원 조회</h2>
 		</div>
 	<c:if test = "${count == 0}">
 	<div class = "text-center">
@@ -203,7 +241,8 @@
 			<input type = "button" class = "btn btn-outline-dark" value = "회원 정지" id = "stop_btn">
 			<input type = "button" class = "btn btn-outline-dark" value = "일반회원 등급변경" id = "up_btn">
 			<input type = "button" class = "btn btn-outline-dark" value = "판매자 등급변경" id = "seller_btn">
-			<input type = "button" class = "btn btn-outline-dark" value = "회원 탈퇴" id = "delete_btn"> 
+			<input type = "button" class = "btn btn-outline-dark" value = "회원 탈퇴" id = "delete_btn">
+			<input type = "button" class = "btn btn-outline-dark" value = "비밀번호 초기화" id = "resetPasswd_btn">
 		</div>
 		<br>
 	<table class="table table-sm">
@@ -219,6 +258,7 @@
 				<th scope="col">가입일</th>
 				<th scope="col">회원 등급</th>
 				<th scope="col">선택</th>
+				<th scope="col">수정</th>
 			</tr>
 			<c:forEach var = "member" items = "${list}">
 			<tr>
@@ -243,6 +283,9 @@
 				    	<input type = "checkbox" aria-label="Checkbox for following text input" value = "${member.mem_num}">
 				    </c:if>
 				</td>
+				<td>
+					<c:if test="${member.mem_auth != 4 && member.mem_auth != 0}"><input type="button" value="회원수정" onclick="location.href='${pageContext.request.contextPath}/member/adminMemberUpdate.do?mem_num=${member.mem_num}'"></c:if>
+				</td>
 			</tr>
 			</c:forEach>
 		</table>
@@ -253,16 +296,21 @@
 	</div>
 	<div align="center" style="background-color: #f5f5ff; width :100%; height: 100%;">
 	<br>  
-	<form action="adminMemberView.do" method="get" id="search_form">
-		<select name="keyfield">
-			<option value="1">아이디</option>
-			<option value="2">이름</option>
-			<option value="3">이메일</option>
-		</select>
-		<input type="search" name="keyword" id = "keyword" style="height: 28px;" placeholder="검색어를 입력하세요.">
-		<input type="submit" value="검색">
+	<form action="memberList.do" method="get" id="search_form">
+	<div class=" col-lg-5">
+		<input style="float: right;  position: relative; right: 84px;  bottom : 1px; height: 36px;" type="submit" class = "btn btn-outline-dark" value="검색">
+		<div class=" col-lg-6">
+		<input class="form-control input-lg" type="search" name="keyword" id = "keyword" style="height: 30px;" placeholder="검색어를 입력하세요."><br>
+		<div class=" col-sm-7">
+				<select style="position: relative; right: 185px; bottom : 55px; height: 36px;" class="form-control input-sm" name="keyfield">
+					<option value="1">아이디</option>
+					<option value="2">이름</option>
+				</select>
+		</div>
+		</div>
+	</div>
+	<input style="float: right; position: relative; right: 17px; bottom : 55px;" type="button" class = "btn btn-outline-dark" value="목록" onclick="location.href='${pageContext.request.contextPath}/member/memberList.do'">
 	</form>
-		<br>
 	</div>
 </div>
 	

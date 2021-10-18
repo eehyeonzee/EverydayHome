@@ -58,7 +58,7 @@ public class MemberController {
 	// 게시물, 페이지 카운트 지정
 	private int rowCount = 4;
 	private int pageCount = 5;
-	private int mem_rowCount = 15;
+	private int mem_rowCount = 13;
 	private int mem_pageCount = 5;
 	
 	@Autowired
@@ -381,7 +381,7 @@ public class MemberController {
 	}
 	
 	// 회원정보수정 - 수정 데이터 처리
-	@PostMapping("/member/memberUpdate.do")
+	@PostMapping(value = {"/member/memberUpdate.do" , "/member/adminMemberUpdate.do"})	// 다중매핑 사용
 	public String submitUpdate(@Valid MemberVO memberVO, BindingResult result, HttpSession session) {
 				
 		logger.debug("<<회원정보수정>> : " + memberVO);
@@ -391,14 +391,25 @@ public class MemberController {
 			logger.debug("<<회원정보수정 에러>> : " + result.toString());
 			return "memberModify";
 		}
-				
+		
+		boolean adminCheck = false;
+		
 		Integer user_num = (Integer)session.getAttribute("user_num");
+		if(memberVO.getMem_num() != 0) {	// 관리자 회원정보 수정시 mem_num이 넘어옴 (개인 회원정보 수정은 안넘어옴)
+			user_num = (memberVO.getMem_num());
+			adminCheck = true;			// 관리자 체크 false일 경우 회원 개인
+		}
+		
 		memberVO.setMem_num(user_num);
 				
 		// 회원정보수정
 		memberService.updateMember(memberVO);
-				
-		return "redirect:/member/myPage.do";
+		
+		if(adminCheck == false) {		// 회원인경우 마이페이지 호출
+			return "redirect:/member/myPage.do";
+		}else {							// 관리자인 경우 회원리스트 호출
+			return "redirect:/member/memberList.do";
+		}
 	}
 	
 	// 회원정보 수정 - 프로필 사진 변경
@@ -408,6 +419,14 @@ public class MemberController {
 		Map<String,String> map = new HashMap<String,String>();
 		
 		Integer user_num = (Integer)session.getAttribute("user_num");
+		
+		if(memberVO.getMem_num() != 0) {	// 관리자 회원정보 수정시 mem_num이 넘어옴 (개인 회원정보 수정은 안넘어옴)
+			user_num = (memberVO.getMem_num());
+		}
+		
+		logger.debug("<<user_num>> : " + user_num);
+		logger.debug("<<jmem_num>> : " + memberVO.getMem_num());
+		
 		if(user_num==null) {//로그인이 되지 않은 상태
 			map.put("result", "logout");
 		}else {//로그인 된 상태
@@ -559,18 +578,22 @@ public class MemberController {
 	
 	// 관리자 페이지 - 전체회원 조회
 	@GetMapping("/member/memberList.do")
-	public ModelAndView memberListForm(@RequestParam(value="pageNum", defaultValue="1") int currentPage) {
+	public ModelAndView memberListForm(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
+									  @RequestParam(value="keyfield",defaultValue = "") String keyfield,
+						              @RequestParam(value="keyword",defaultValue = "1") String keyword) {
 				
 		// 세션에서 회원번호 받아오기
 		Map<String,Object> map = new HashMap<String,Object>();
-		
+		map.put("keyfield", keyfield);
+	    map.put("keyword", keyword);
+	    
 		// 글의 총 개수 또는 검색된 글의 개수
 		int count = memberService.selectMemberCount();
 						
 		logger.debug("<<count>> : " + count);
 				
 		// 페이지 처리
-		PagingUtil page = new PagingUtil(currentPage,count,mem_rowCount,mem_pageCount,"memberList.do");
+		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage,count,mem_rowCount,mem_pageCount,"memberList.do");
 				
 		map.put("start", page.getStartCount());
 		map.put("end", page.getEndCount());
@@ -592,6 +615,20 @@ public class MemberController {
 				
 		return mav;
 	}
+	
+	// 관리자 페이지 - 회원 수정
+	@GetMapping("/member/adminMemberUpdate.do")
+	public String adminMemberUpdate(@RequestParam int mem_num,
+								Model model) {
+		
+		// 회원정보 가져오기
+		MemberVO memberVO = memberService.selectMember(mem_num);
+		
+		model.addAttribute("memberVO", memberVO);
+		
+		return "adminMemberUpdate";	// 타일스 섫정
+	}
+	
 	
 	// 관리자 페이지 - 회원 정지
 	@PostMapping("/member/stopAdminMember.do")
@@ -654,6 +691,24 @@ public class MemberController {
 		
 		for(String mem_num : stopChecked) {
 			memberService.deleteMember(Integer.parseInt(mem_num));
+			
+			mapAjax.put("result", "success");
+		}
+		
+		return mapAjax;
+		
+	}
+	
+	
+	// 관리자 페이지 - 회원 비밀번호 초기화
+	@PostMapping("/member/resetPasswdMember.do")
+	@ResponseBody
+	public Map<String, String> resetPasswdMember(@RequestParam String output) {
+		String[] stopChecked = output.split(",");
+		Map<String,String> mapAjax = new HashMap<String,String>();
+		
+		for(String mem_num : stopChecked) {
+			memberService.updateMemberPasswdReset(Integer.parseInt(mem_num));
 			
 			mapAjax.put("result", "success");
 		}

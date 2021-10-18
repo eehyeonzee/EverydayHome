@@ -51,13 +51,15 @@ public interface MemberMapper {
 	@Insert("INSERT INTO buis_detail (mem_num, buis_num, ceo_name, buis_name, buis_item, opening_date, buis_zipcode, buis_address1, buis_address2) VALUES (#{mem_num}, #{buis_num}, #{ceo_name}, #{buis_name}, #{buis_item}, #{opening_date}, #{buis_zipcode}, #{buis_address1}, #{buis_address2})")
 	public void insertSeller(MemberBuisVO memberBuisVO);		// 마이페이지 판매자 정보 등록
 
-	public List<MemberVO> selectMemberList(Map<String, Object> map);	// 판매자 페이지 - 회원 정보 전체 출력
+	public List<MemberVO> selectMemberList(Map<String, Object> map);	// 관리자 페이지 - 회원 정보 전체 출력
 	@Select("SELECT count(*) FROM member m JOIN mem_detail d ON m.mem_num=d.mem_num")
-	public int selectMemberCount();			// 판매자 페이지 - 회원 전체 수 구하기
+	public int selectMemberCount();			// 관리자 페이지 - 회원 전체 수 구하기
 	@Update("UPDATE member SET mem_auth = 1 WHERE mem_num=#{mem_num}")
-	public void updateMemberStop(Integer mem_num);			// 판매자 페이지 - 회원 정지
+	public void updateMemberStop(Integer mem_num);			// 관리자 페이지 - 회원 정지
 	@Update("UPDATE member SET mem_auth = 2 WHERE mem_num=#{mem_num}")
-	public void updateMemberStopCancel(Integer mem_num);	// 판매자 페이지 - 회원 정지 해제
+	public void updateMemberStopCancel(Integer mem_num);	// 관리자 페이지 - 회원 정지 해제
 	@Update("UPDATE member SET mem_auth = 3 WHERE mem_num=#{mem_num}")
-	public void updateMemberSellerAuth(Integer mem_num);	// 판매자 페이지 - 회원등급 판매자 변경
+	public void updateMemberSellerAuth(Integer mem_num);	// 관리자 페이지 - 회원등급 판매자 변경
+	@Update("UPDATE mem_detail SET passwd = '123456789a' WHERE mem_num=#{mem_num}")
+	public void updateMemberPasswdReset(Integer mem_num);	// 관리자 페이지 - 회원 비밀번호 초기화
 }

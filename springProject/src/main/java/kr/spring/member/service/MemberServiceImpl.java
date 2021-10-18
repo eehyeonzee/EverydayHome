@@ -91,5 +91,10 @@ public class MemberServiceImpl implements MemberService {
 		memberMapper.updateMemberSellerAuth(mem_num);
 		
 	}
+	@Override
+	public void updateMemberPasswdReset(Integer mem_num) {
+		memberMapper.updateMemberPasswdReset(mem_num);
+		
+	}
 	
 }
