@@ -1,7 +1,6 @@
 package kr.spring.order.dao;
 
 import org.apache.ibatis.annotations.Insert;
-
 import kr.spring.order.vo.OrderVO;
 
 public interface OrderMapper {
