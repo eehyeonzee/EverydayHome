@@ -87,5 +87,10 @@ public class ReviewServiewImpl implements ReviewService {
 		return reviewMapper.productDetail(prod_num);
 	}
 
+	@Override
+	public void deleteFile(int rev_num) {
+		reviewMapper.deleteFile(rev_num);
+	}
+
 	
 }

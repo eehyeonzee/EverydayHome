@@ -83,7 +83,7 @@ margin : 20px 0px 0px 0px;
 	<div class="main-container">
 		<!-- 상품을 사용하고 느끼신 소감을 적어주세요! -->
 		<div class="message mt-5 pt-5">
-		<h5 style="text-align: center;">상품을 사용하시고 느끼신 소감을 적어주세요!</h5>
+		<h5 style="text-align: center;">리뷰를 수정합니다</h5>
 		</div>
 		<form:form id="user_review" action="reviewWrite.do" modelAttribute="reviewVO" enctype="multipart/form-data">
 		<input type = "hidden" name="mem_num" value = "${mem_num}">
@@ -107,10 +107,43 @@ margin : 20px 0px 0px 0px;
 		<li class="li-content mt-4"  style="text-align:center;">
 				<label for="upload">이미지 파일</label>
 				<input type="file" name="upload" id="upload" accept="image/gif,image/png,image/jpeg">
-			</li>
+				<c:if test="${!empty list.rev_filename}">
+				<br>
+				<span id="file_detail">(${eventVO.event_filename}) 파일이 등록되어 있습니다.
+				다시 업로드하면 기존 파일은 삭제됩니다.</span>
+				<input type="button" value="파일삭제" id="file_del">
+									<script type="text/javascript">
+						$(function() {
+							$('#file_del').click(function() {
+								var choice = confirm('삭제하시겠습니까?');
+								if(choice) { // true
+									$.ajax({
+										data: {rev_num:${list.rev_num}},
+										type: 'post',
+										url: 'deleteFile.do',
+										dataType: 'json',
+										cache: false,
+										timeout: 30000,
+										success: function(param) {
+											if(param.result == 'success') {
+												$('#file_detail').hide();
+											}else {
+												alert('파일삭제 오류 발생');
+											}
+										},
+										error: function() {
+											alert('네트워크 오류 발생');
+										}
+									});
+								}
+							});
+						});
+					</script>
+				</c:if>	
+		</li>
 		</ul>
 		<div class="submit-button mt-5" style="text-align:right; margin-right:200px;">
-			<input type="submit" value="등록">
+			<input type="submit" value="수정">
 		</div>
 		</form:form>
 	</div>

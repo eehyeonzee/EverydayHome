@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.review.service.ReviewService;
@@ -125,27 +126,51 @@ public class ReviewController {
 		Integer mem_num = (Integer)session.getAttribute("user_num");
 		int count = reviewService.reviewMyCount(mem_num);
 		List<ReviewVO> list = reviewService.reviewList(mem_num);
-		
+		Map<Object,String> ratingOptions = new HashMap<Object,String>();
+		ratingOptions.put(0, "☆☆☆☆☆");
+		ratingOptions.put(1, "★☆☆☆☆");
+		ratingOptions.put(2, "★★☆☆☆");
+		ratingOptions.put(3, "★★★☆☆");
+		ratingOptions.put(4, "★★★★☆");
+		ratingOptions.put(5, "★★★★★");
+		mav.addObject("ratingOptions", ratingOptions);
 		mav.addObject("count",count);
 		mav.addObject("list",list);
 		mav.setViewName("reviewList");
 		return mav;
 
 	}
-	//리뷰수정
+	//리뷰수정 폼소환
+	@GetMapping("/review/reviewUpdate.do")
+	public String updateForm(@RequestParam int rev_num, Model model, HttpSession session) {
+		ReviewVO reviewVO = reviewService.reviewDetail(rev_num);
+		Integer mem_num = (Integer)session.getAttribute("user_num");
+		model.addAttribute("reviewVO",reviewVO);
+		model.addAttribute("mem_num",mem_num);
+		Map<Object,String> ratingOptions = new HashMap<Object,String>();
+		ratingOptions.put(0, "☆☆☆☆☆");
+		ratingOptions.put(1, "★☆☆☆☆");
+		ratingOptions.put(2, "★★☆☆☆");
+		ratingOptions.put(3, "★★★☆☆");
+		ratingOptions.put(4, "★★★★☆");
+		ratingOptions.put(5, "★★★★★");
+		model.addAttribute("ratingOptions", ratingOptions);
+		logger.debug("<<받아오는 정보>>:"+reviewVO);
+		return "reviewForm";
+
+	}
 	//리뷰삭제하기
 	@GetMapping("/review/reviewDelete.do")
 	public String delete(@RequestParam int rev_num) {
 		reviewService.reviewDelete(rev_num);
-		return "redirect:myReviewList.do";
+		return "redirect:reviewList.do";
 	}
 	
-	//상품상세페이지에서 리뷰보기
 	//이미지출력
 	@GetMapping("/review/imageView.do")
-	public ModelAndView viewImage(@RequestParam int review_num) {
+	public ModelAndView viewImage(@RequestParam int rev_num) {
 		
-		ReviewVO review =reviewService.reviewDetail(review_num);
+		ReviewVO review =reviewService.reviewDetail(rev_num);
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("imageView");
@@ -156,5 +181,26 @@ public class ReviewController {
 		return mav;
 	}
 	//글 수정시 이미지삭제
-	//리뷰 삭제하기
+	@RequestMapping("/review/deleteFile.do")
+	@ResponseBody
+	public Map<String,String> processFile(int rev_num, HttpSession session) {
+		
+		Map<String,String> map = new HashMap<String, String>();
+		
+		Integer mem_num = (Integer)session.getAttribute("user_num");
+		
+			reviewService.deleteFile(rev_num);
+	
+		map.put("result", "success");
+		return map;
+	}
+	
 }
+//남은 일
+//수정,이미지수정하기
+//상품상세페이지에서 리뷰 볼 수있게하기 평균점수나오게 하도록하기도 하기.
+//수요일 디자인 손보기
+//목요일 메인보기
+//금요일 버그 수정하기
+//토요일 uml그리기 <<2시간예상
+//일요일 못한거있으면 하는날

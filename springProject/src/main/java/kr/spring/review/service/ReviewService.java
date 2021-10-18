@@ -19,4 +19,5 @@ public interface ReviewService {
 	public int reviewExist(int mem_num, int prod_num);
 	public int orderExist(int mem_num, int prod_num);
 	public ReviewVO productDetail(int prod_num);
+	public void deleteFile(int rev_num);
 }

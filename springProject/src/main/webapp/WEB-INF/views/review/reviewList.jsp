@@ -31,7 +31,7 @@ width:1138px;
 .title{
 	font-size:18px;
 	weight:800;
-	padding: 10px 10px 10px 10px;
+	padding: 0x 10px 0px 10px;
 	text-align:left;
 
 }
@@ -54,6 +54,7 @@ h2{
 	margin : 40px 100px 0px 30px;
 }
 </style>
+<!-- 제품정보도 받아올 수 있도록 sql수정하기 -->
 <div class="container-fluid">
  <div class="main-container">
  	<div class="name-item">
@@ -65,16 +66,24 @@ h2{
  	</c:if>
  	<c:if test="${count>0}">
  		<c:forEach var="list" items="${list}" varStatus="n">
- 		<form:form action="reviewUpdate.do" modelAttribute="reviewVO" method="post">
  		<input type = "hidden" name="mem_num" value = "${mem_num}">
 		<input type = "hidden" name="prod_num" value = "${prod_num}">
  		<div class="link-item" onclick="#">
-		<div class="rating"><c:forEach var="rating" items="rev_grade" varStatus="status" begin="1" end="${list.rev_grade}">★</c:forEach></div>
- 		<div class="title">${list.rev_content}</div><br>
+ 		<div class="content" style="font-size:12px;"> ${list.buis_name}</div>
+ 		<div class="title"> ${list.prod_name}</div><br>
+		<div class="rating">별점 : <c:forEach var="var" items="${ratingOptions}" varStatus="status" begin="1" end="${list.rev_grade}">★</c:forEach></div>
+ 		<div class="content">${list.rev_content}</div>
  		<input type="hidden" name="prod_num"value="${list.prod_num}"/>
- 		<div class="reg_date"><form:button>리뷰수정</form:button></div>
+ 		<c:if test="${!empty list.rev_filename}">
+ 		<div class="file-item mt-4 mb-4" style="text-align:center">
+		<img src="imageView.do?rev_num=${list.rev_num}" style="max-width:500px">
+		</div>
+ 		</c:if>
+ 		<div class="reg_date">
+ 		<a href="${pageContext.request.contextPath}/review/reviewUpdate.do?rev_num=${list.rev_num}" onclick="return confirm('리뷰를 수정하시겠습니까?');">수정</a><br>
+ 		<a href="${pageContext.request.contextPath}/review/reviewDelete.do?rev_num=${list.rev_num}" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+		</div>
  		</div>
- 		</form:form>
  		</c:forEach>
  	</c:if>
 	</div>
