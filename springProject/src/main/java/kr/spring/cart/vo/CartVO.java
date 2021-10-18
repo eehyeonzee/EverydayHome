@@ -1,5 +1,9 @@
 package kr.spring.cart.vo;
 
+import java.io.IOException;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class CartVO {
 	private int cart_num;
 	private int prod_num;
@@ -9,8 +13,17 @@ public class CartVO {
 	private String prod_name;
 	private int prod_price;
 	private int money;
+	//이미지
+	private byte[] thumbnail_img;
+	private String thumbnail_filename;
 
 	
+	public void setUpload(MultipartFile upload)throws IOException{
+		//MultipartFile -> byte[]
+		setThumbnail_img(upload.getBytes());
+		//파일명 구하기
+		setThumbnail_filename(upload.getOriginalFilename());
+	}
 	public String getMem_name() {
 		return mem_name;
 	}
@@ -59,13 +72,25 @@ public class CartVO {
 	public void setCart_quan(int cart_quan) {
 		this.cart_quan = cart_quan;
 	}
+	public byte[] getThumbnail_img() {
+		return thumbnail_img;
+	}
+	public void setThumbnail_img(byte[] thumbnail_img) {
+		this.thumbnail_img = thumbnail_img;
+	}
+	public String getThumbnail_filename() {
+		return thumbnail_filename;
+	}
+	public void setThumbnail_filename(String thumbnail_filename) {
+		this.thumbnail_filename = thumbnail_filename;
+	}
 	@Override
 	public String toString() {
 		return "CartVO [cart_num=" + cart_num + ", prod_num=" + prod_num + ", mem_num=" + mem_num + ", cart_quan="
 				+ cart_quan + ", mem_name=" + mem_name + ", prod_name=" + prod_name + ", prod_price=" + prod_price
-				+ ", money=" + money + "]";
+				+ ", money=" + money + ", thumbnail_filename=" + thumbnail_filename + "]";
 	}
-	
+
 
 	
 }

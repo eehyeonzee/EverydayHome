@@ -61,8 +61,10 @@ h2{
  		<c:if test="${map.count>0}">
 		<form name="form1" id="form1" method="post" action="cartUpdate.do">
 			<c:forEach var="row" items="${map.list}" varStatus="i">
+			<c:if test="${empty row.thumbnail_filename}">
 			<!-- 상세페이지링크연결 -->
 			<div class="link-item" onclick="location.href='#'"> 
+			<a href="storeDetail.do?prod_num=${row.prod_num}"><img src = "${pageContext.request.contextPath}/resources/images/gift.png" style = "width:240px; height:240px; max-width:240px; max-height:240px;"></a><br>
 			<!-- 이미지 추가 -->
  			<div class="title">
  			<p style="font-family: 'Gowun Dodum', sans-serif;">${row.prod_name}</p>
@@ -75,7 +77,27 @@ h2{
  			 </span>
  			 <a href="${pageContext.request.contextPath}/cart/cartDelete.do?cart_num=${row.cart_num}">삭제</a>
  			</div>
- 		</div>
+ 			</div>
+ 			</c:if>
+ 			<c:if test="${!empty row.thumbnail_filename}">
+			<!-- 상세페이지링크연결 -->
+			<div class="link-item"> 
+			<!-- 이미지 추가 -->
+			<a href="storeDetail.do?prod_num=${row.prod_num}"><img src = "imageView.do?prod_num=${row.prod_num}" style = "width:240px; height:240px; max-width:240px; max-height:240px; display: float;"></a><br>
+			
+ 			<div class="title">
+ 			<p style="font-family: 'Gowun Dodum', sans-serif;">${row.prod_name}</p>
+ 			</div>
+            <input type="number" style="width: 40px" name="cart_quan" value="${row.cart_quan}" min="1" max="10">
+            <input type="hidden" name="prod_num" value="${row.prod_num}">
+ 			<div class="reg_date">
+ 			<span style="font-family: 'Gowun Dodum', sans-serif;">
+ 			 <fmt:formatNumber pattern="###,###,###" value="${row.prod_price}"/>
+ 			 </span>
+ 			 <a href="${pageContext.request.contextPath}/cart/cartDelete.do?cart_num=${row.cart_num}">삭제</a>
+ 			</div>
+ 			</div>
+ 			</c:if>
 		</c:forEach>
 		<hr>
 		 장바구니 금액 합계 : <fmt:formatNumber pattern="###,###,###" value="${map.sumMoney}"/><br>

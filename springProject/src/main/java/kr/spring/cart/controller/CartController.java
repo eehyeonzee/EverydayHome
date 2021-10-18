@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.cart.service.CartService;
 import kr.spring.cart.vo.CartVO;
+import kr.spring.event.vo.EventVO;
 
 @Controller
 public class CartController {
@@ -58,29 +58,19 @@ public class CartController {
 	//장바구니 버튼 폼 cartVO로 넘겨야함 cartVO 필요한거 : 개수 , 제품 번호 
 	//장바구니 추가
 	@RequestMapping("cart/cartInsert.do")
-	@ResponseBody
-	public Map<String, String> cartInsert(CartVO cart, HttpSession session) {
-		
-		Map<String, String> map = new HashMap<String, String>();
-		
-		cart.setMem_num((Integer)session.getAttribute("user_num"));
-		
-		logger.debug("<<mem_num이 저장 되었는지 확인>> : " + cart.getMem_num());
-		
+	public String cartInsert(@ModelAttribute CartVO cart, HttpSession session) {
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		cart.setMem_num(user_num);
 		//장바구니에 지금 추가하려는 상품이 있는지 확인
-		int count = cartService.cartCount(cart);
-		
-		logger.debug("<<카트 카운트 확인>> : " + count);
+		int count = cartService.cartCount(cart.getProd_num(),user_num);
 		// 카운트가 
-		if(count == 0) {
+		if(count ==0) {
 			//없으면 insert
 			cartService.cartInsert(cart);
-			map.put("result", "add_success");
 		}else {
 			cartService.CurrentUpdate(cart);
-			map.put("result", "cart_update");
 		}
-		return map;
+		return "redirect:cartList.do";
 		//장바구니에 추가되었습니다. 장바구니로 가시겠습니까? 하면 장바구니로 가게하고 취소를 누르면 그 페이지 그대로 남아있도록하기.
 	}
 	//장바구니 삭제
@@ -103,7 +93,22 @@ public class CartController {
 			cartService.cartUpdate(cart);
 			logger.debug ("<<cartUpdate>>: " +cart);
 		}
-		
 		return "redirect:cartList.do";
 	}
-}
+		//장바구니 이미지 출력
+	@GetMapping("cart/imageView.do")
+	public ModelAndView viewImage(@RequestParam int prod_num) {
+			
+		CartVO cart =cartService.cartImg(prod_num);
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("imageView");
+		                //속성명         속성값(byte[]의 데이터)     
+		mav.addObject("imageFile", cart.getThumbnail_img());
+		mav.addObject("filename", cart.getThumbnail_filename());
+			
+		return mav;
+		}
+		
+	}
+

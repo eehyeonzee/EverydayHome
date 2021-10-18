@@ -40,13 +40,19 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public int cartCount(CartVO cartVO) {
-		return cartMapper.cartCount(cartVO);
+	public int cartCount(int prod_num, int mem_num) {
+		return cartMapper.cartCount(prod_num, mem_num);
 	}
 
 	@Override
 	public void CurrentUpdate(CartVO cartVO) {
 		cartMapper.CurrentUpdate(cartVO);
+	}
+
+	@Override
+	public CartVO cartImg(int prod_num) {
+		return cartMapper.cartImg(prod_num);
+		
 	}
 
 
