@@ -25,5 +25,55 @@
 	]]>
 	</select>
 	
-
+	<select id="selectMemberCount" parameterType="map" resultType="integer">
+		SELECT 
+		 count(*) 
+		FROM member m JOIN mem_detail d ON m.mem_num=d.mem_num
+		 <where>
+            <if test="keyword != '' and keyfield == 1">
+               m.mem_id like '%' || #{keyword} || '%'
+            </if>
+            <if test="keyword != '' and keyfield == 2">
+               d.mem_name like '%' || #{keyword} || '%'
+            </if>
+         </where>
+	</select>
+	
+	<select id="selectMemberBuisList" parameterType="map" resultType="memberBuisVO">
+		SELECT 
+		*
+		FROM(SELECT a.*, 
+					rownum rnum
+		     FROM (SELECT 
+		     			*
+		           FROM buis_detail d JOIN member m ON d.mem_num=m.mem_num
+		           <where>
+                   <if test="keyword != '' and keyfield == 1">
+                      d.buis_name like '%' || #{keyword} || '%'
+                   </if>
+                   <if test="keyword != '' and keyfield == 2">
+                      d.ceo_name like '%' || #{keyword} || '%'
+                   </if>
+                   	  AND application_state = 1
+                	</where>
+		           ORDER BY d.buis_count)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+	<select id="selectMemberBuisCount" parameterType="map" resultType="integer">
+		SELECT
+		 COUNT(*) 
+		FROM buis_detail d JOIN member m ON d.mem_num=m.mem_num 
+		<where>
+         <if test="keyword != '' and keyfield == 1">
+            d.buis_name like '%' || #{keyword} || '%'
+         </if>
+         <if test="keyword != '' and keyfield == 2">
+            d.ceo_name like '%' || #{keyword} || '%'
+         </if>
+         	AND application_state = 1
+      </where>   
+	</select>
 </mapper>

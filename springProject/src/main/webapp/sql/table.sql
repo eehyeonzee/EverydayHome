@@ -105,3 +105,23 @@ ALTER TABLE comments MODIFY comm_content VARCHAR2(900);
 ALTER TABLE comments MODIFY comm_reg_date DATE DEFAULT sysdate;
 ALTER TABLE comments MODIFY comm_mod_date DATE DEFAULT sysdate;
 
+-- 21.10.19 03 30 사업자 테이블 삭제 후 재생성 (순서대로 실행)
+DROP TABLE BUIS_DETAIL;
+CREATE TABLE buis_detail
+(
+    buis_count           NUMBER          NOT NULL, 
+    buis_num             NUMBER          NOT NULL, 
+    mem_num              NUMBER          NOT NULL, 
+    ceo_name             VARCHAR2(25)    NOT NULL, 
+    buis_name            VARCHAR2(70)    NOT NULL, 
+    opening_date         DATE            NOT NULL, 
+    buis_item            VARCHAR2(70)    NOT NULL, 
+    buis_zipcode         VARCHAR2(20)    NULL, 
+    buis_address1        VARCHAR2(90)    NULL, 
+    buis_address2        VARCHAR2(90)    NULL, 
+    application_state    VARCHAR2(10)    DEFAULT '1' NULL, 
+    CONSTRAINT buis_num PRIMARY KEY (buis_count, buis_num, mem_num)
+);
+
+CREATE SEQUENCE buis_detail_SEQ START WITH 1 INCREMENT BY 1;
+

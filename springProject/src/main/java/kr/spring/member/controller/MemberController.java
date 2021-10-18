@@ -582,13 +582,13 @@ public class MemberController {
 									  @RequestParam(value="keyfield",defaultValue = "") String keyfield,
 						              @RequestParam(value="keyword",defaultValue = "1") String keyword) {
 				
-		// 세션에서 회원번호 받아오기
+		// map 생성
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("keyfield", keyfield);
 	    map.put("keyword", keyword);
 	    
 		// 글의 총 개수 또는 검색된 글의 개수
-		int count = memberService.selectMemberCount();
+		int count = memberService.selectMemberCount(map);
 						
 		logger.debug("<<count>> : " + count);
 				
@@ -719,12 +719,74 @@ public class MemberController {
 	
 	
 	// 관리자 페이지 - 판매자 신청내역 조회
-//	@GetMapping("/member/sellerApplyList.do")
-//	public ModelAndView sellerApplyListForm() {
-//		
-//		return "d";
-//	}
+	@GetMapping("/member/sellerApplyList.do")
+	public ModelAndView sellerApplyListForm(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
+										 @RequestParam(value="keyfield",defaultValue = "") String keyfield,
+							             @RequestParam(value="keyword",defaultValue = "1") String keyword) {
+		// map 생성
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("keyfield", keyfield);
+	    map.put("keyword", keyword);
+			    
+		// 판매자 신청 글의 총 개수 또는 검색된 글의 개수
+		int count = memberService.selectMemberBuisCount(map);								
+		logger.debug("<<count>> : " + count);
+						
+		// 페이지 처리
+		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage,count,mem_rowCount,mem_pageCount,"sellerApplyList.do");
+						
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
+						
+		List<MemberBuisVO> list = null;
+		if(count > 0) {
+			list = memberService.selectMemberBuisList(map);		// 판매 신청 리스트
+		}
+						
+						
+		logger.debug("<<전체 판매 신청 리스트>> : " + list);
+						
+		// 전달 객체
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("sellerApplyList"); // 타일스 식별자
+		mav.addObject("count", count);
+		mav.addObject("list", list);
+		mav.addObject("pagingHtml", page.getPagingHtml());
+						
+		return mav;
+	}
 	
+	// 관리자 페이지 - 판매자 등록
+	@PostMapping("/member/memberRegistSeller.do")
+	@ResponseBody
+	public Map<String, String> sellerRegistMember(@RequestParam String output) {
+		String[] stopChecked = output.split(",");
+		Map<String,String> mapAjax = new HashMap<String,String>();
+		
+		for(String mem_num : stopChecked) {
+			memberService.updateSellerMember(Integer.parseInt(mem_num));		// 바꿀부분
+			
+			mapAjax.put("result", "success");
+		}
+		
+		return mapAjax;
+	}
+	
+	// 관리자 페이지 - 판매자 등록 취소
+	@PostMapping("/member/memberCancelSeller.do")
+	@ResponseBody
+	public Map<String, String> sellerCancelMember(@RequestParam String output) {
+		String[] stopChecked = output.split(",");
+		Map<String,String> mapAjax = new HashMap<String,String>();
+		
+		for(String mem_num : stopChecked) {
+			memberService.deleteSellerMember(Integer.parseInt(mem_num));		// 바꿀부분
+			
+			mapAjax.put("result", "success");
+		}
+		
+		return mapAjax;
+	}
 	
 	//----------------- 회원가입 이메일 인증 8자리 난수 생성 부분
     private int certCharLength = 8;

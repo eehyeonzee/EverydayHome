@@ -284,7 +284,7 @@
 				    </c:if>
 				</td>
 				<td>
-					<c:if test="${member.mem_auth != 4 && member.mem_auth != 0}"><input type="button" value="회원수정" onclick="location.href='${pageContext.request.contextPath}/member/adminMemberUpdate.do?mem_num=${member.mem_num}'"></c:if>
+					<c:if test="${member.mem_auth != 4 && member.mem_auth != 0}"><input class = "btn btn-outline-dark" type="button" value="회원수정" onclick="location.href='${pageContext.request.contextPath}/member/adminMemberUpdate.do?mem_num=${member.mem_num}'"></c:if>
 				</td>
 			</tr>
 			</c:forEach>

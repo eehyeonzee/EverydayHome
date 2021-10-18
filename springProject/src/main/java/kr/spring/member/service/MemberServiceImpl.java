@@ -73,8 +73,8 @@ public class MemberServiceImpl implements MemberService {
 		return memberMapper.selectMemberList(map);
 	}
 	@Override
-	public int selectMemberCount() {
-		return memberMapper.selectMemberCount();
+	public int selectMemberCount(Map<String, Object> map) {
+		return memberMapper.selectMemberCount(map);
 	}
 	@Override
 	public void updateMemberStop(Integer mem_num) {
@@ -96,5 +96,24 @@ public class MemberServiceImpl implements MemberService {
 		memberMapper.updateMemberPasswdReset(mem_num);
 		
 	}
+	@Override
+	public List<MemberBuisVO> selectMemberBuisList(Map<String, Object> map) {
+		return memberMapper.selectMemberBuisList(map);
+	}
+	@Override
+	public int selectMemberBuisCount(Map<String, Object> map) {
+		return memberMapper.selectMemberBuisCount(map);
+	}
+	@Override
+	public void updateSellerMember(Integer mem_num) {
+		memberMapper.updateSellerMemberState(mem_num);
+		memberMapper.updateMemberSellerAuth(mem_num);
+	}
+	@Override
+	public void deleteSellerMember(Integer mem_num) {
+		memberMapper.deleteSellerMember(mem_num);
+		
+	}
+	
 	
 }

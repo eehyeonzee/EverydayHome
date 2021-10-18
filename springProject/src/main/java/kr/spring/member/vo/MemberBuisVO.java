@@ -5,7 +5,11 @@ import javax.validation.constraints.Size;
 
 public class MemberBuisVO {
 	   private int mem_num;      // 회원번호
+	   private String mem_id;	// 회원 아이디
+	   private int mem_auth;	// 회원 등급
+	   
 	 // 판매자 회원 부분
+	   private int buis_count;		// 판매자회원 번호
 	   @NotEmpty
 	   private String buis_num;		// 사업자 번호
 	   @NotEmpty
@@ -27,6 +31,25 @@ public class MemberBuisVO {
 	public int getMem_num() {
 		return mem_num;
 	}
+	
+	public String getMem_id() {
+		return mem_id;
+	}
+
+
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
+	}
+
+
+	public int getMem_auth() {
+		return mem_auth;
+	}
+	public void setMem_auth(int mem_auth) {
+		this.mem_auth = mem_auth;
+	}
+
+
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
 	}
@@ -84,12 +107,15 @@ public class MemberBuisVO {
 	public void setApplication_state(String application_state) {
 		this.application_state = application_state;
 	}
+
 	@Override
 	public String toString() {
-		return "MemberBuisVO [mem_num=" + mem_num + ", buis_num=" + buis_num + ", ceo_name=" + ceo_name + ", buis_name="
-				+ buis_name + ", opening_date=" + opening_date + ", buis_item=" + buis_item + ", buis_zipcode="
-				+ buis_zipcode + ", buis_address1=" + buis_address1 + ", buis_address2=" + buis_address2
-				+ ", application_state=" + application_state + "]";
+		return "MemberBuisVO [mem_num=" + mem_num + ", mem_id=" + mem_id + ", mem_auth=" + mem_auth + ", buis_num="
+				+ buis_num + ", ceo_name=" + ceo_name + ", buis_name=" + buis_name + ", opening_date=" + opening_date
+				+ ", buis_item=" + buis_item + ", buis_zipcode=" + buis_zipcode + ", buis_address1=" + buis_address1
+				+ ", buis_address2=" + buis_address2 + ", application_state=" + application_state + "]";
 	}
+	
+	
 	   
 }

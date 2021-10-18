@@ -144,7 +144,7 @@
 				<ul class="dropdownbar">
 					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/myPage.do">관리자 정보</a></li>						
 					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/memberList.do">전체 회원 조회</a></li>
-					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/sellerApplyList.do">">판매자 신청내역 조회</a></li>
+					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/sellerApplyList.do">판매자 신청내역 조회</a></li>
 					
 				</ul>
 			</li>

@@ -27,12 +27,17 @@ public interface MemberService {
 	public void insertSeller(MemberBuisVO memberBuisVO);		// 마이페이지 판매자 정보 등록
 		
 	// 판매자 페이지
-	public List<MemberVO> selectMemberList(Map<String, Object> map);	// 판매자 페이지 - 회원 정보 전체 출력
+	
 	
 	// 관리자 페이지
-	public int selectMemberCount();							// 관리자 페이지 - 회원 전체 수 구하기
+	public List<MemberVO> selectMemberList(Map<String, Object> map);			// 관리자 페이지 - 회원 정보 전체 출력
+	public List<MemberBuisVO> selectMemberBuisList(Map<String, Object> map);	// 관리자 페이지 - 판매자 신청 내역 조회	
+	public int selectMemberCount(Map<String, Object> map);						// 관리자 페이지 - 회원 전체 수 구하기
+	public int selectMemberBuisCount(Map<String, Object> map);					// 관리자 페이지 - 판매자 신청 전체 수 구하기
 	public void updateMemberStop(Integer mem_num);			// 관리자 페이지 - 회원 정지
 	public void updateMemberStopCancel(Integer mem_num);	// 관리자 페이지 - 회원 정지 해제
 	public void updateMemberSellerAuth(Integer mem_num);	// 관리자 페이지 - 회원등급 판매자 변경
 	public void updateMemberPasswdReset(Integer mem_num);	// 관리자 페이지 - 회원 비밀번호 초기화
+	public void updateSellerMember(Integer mem_num);	// 관리자 페이지 - 판매자 신청 등록 (사업자테이블 상태 변경) (회원 등급 변경)
+	public void deleteSellerMember(Integer mem_num);		// 관리자 페이지 - 판매자 신청 취소 (사업자 테이블 해당 ROW 삭제)
 }

@@ -12,6 +12,20 @@
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type ="text/javascript">
+	$(document).ready(function() {
+		$("#application_form").submit(function(){
+			if(confirm("판매자 신청을 하시겠습니까?")){
+				alert("신청이 완료되었습니다.");	
+			}else{
+				alert("취소되었습니다.");
+				return false;
+			}
+		});
+		
+	});
+
+</script>
 <!-- 중앙 내용 시작 -->
 <div class = "container-fluid" style = "width:700px; border: 1px solid #d2f1f7; font-family: 'Gowun Dodum', sans-serif; ">
 	<div align = "left">
