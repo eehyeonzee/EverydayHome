@@ -202,7 +202,12 @@ height: 40px;
 			<!-- 일반회원 -->
 			<c:if test="${!empty user_num && user_auth==2}">
 				<nav class="nav-right">
-					<img src="${pageContext.request.contextPath }/member/photoView.do" width="33" height="33" class="my-photo">
+						<c:if test="${empty user_photo }">
+						<img src="${pageContext.request.contextPath }/resources/images/basic.jpg" width="33" height="33" class="my-photo">
+						</c:if>
+						<c:if test="${!empty user_photo }">
+						<img src="${pageContext.request.contextPath }/member/photoView.do" width="33" height="33" class="my-photo">
+						</c:if>
 					<span class="navrightitem">${user_nickname} 님</span>
 					<a class="navrightitem" href="${pageContext.request.contextPath}/cart/cartList.do">장바구니</a> 
 					<div class="nav-right-menu">
@@ -234,7 +239,12 @@ height: 40px;
 			<!-- 판매자회원 -->
 					<c:if test="${!empty user_num && user_auth == 3}">
 						<nav class="nav-right">
+						<c:if test="${empty user_photo }">
+						<img src="${pageContext.request.contextPath }/resources/images/basic.jpg" width="33" height="33" class="my-photo">
+						</c:if>
+						<c:if test="${!empty user_photo }">
 						<img src="${pageContext.request.contextPath }/member/photoView.do" width="33" height="33" class="my-photo">
+						</c:if>
 						<span class="navrightitem">${user_nickname} 님</span>
 					<div class="nav-right-menu">
 						<ul>
@@ -262,7 +272,12 @@ height: 40px;
 		<!-- 관리자 -->
 				<c:if test="${!empty user_num && user_auth == 4}">
 						<nav class="nav-right">
-						<img src="${pageContext.request.contextPath }/member/photoView.do" width="33" height="33" class="my-photo">
+						<c:if test="${empty user_photo }">
+						<img src="${pageContext.request.contextPath }/resources/images/crown.gif" width="37" height="37" class="my-photo">
+						</c:if>
+						<c:if test="${!empty user_photo }">
+						<img src="${pageContext.request.contextPath }/member/photoView.do" width="37" height="7" class="my-photo">
+						</c:if>
 						<span class="navrightitem">관리자</span>
 					<div class="nav-right-menu">
 						<ul>
