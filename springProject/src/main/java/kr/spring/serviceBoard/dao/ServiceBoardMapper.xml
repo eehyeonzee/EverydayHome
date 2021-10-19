@@ -28,7 +28,7 @@
 		            		b.service_keyword LIKE '%' || #{keyword} || '%'
 		            	</if>
 		            	<if test="keyword != '' and keyfield == 2">
-		            		m.service_keyword LIKE '%' || #{keyword} || '%'
+		            		b.service_keyword LIKE '%' || #{keyword} || '%'
 		            	</if>
 		            	<if test="keyword != '' and keyfield == 3">
 		            		b.service_keyword LIKE '%' || #{keyword} || '%'

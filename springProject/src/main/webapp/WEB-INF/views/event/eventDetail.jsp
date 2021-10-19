@@ -71,14 +71,14 @@ function shareTwitter() {
 					
 					$(param.list).each(function(index,item){
 						var output = '<div class="item">';
-						output += '<h4>' + item.id + '</h4>';
+						output += '<h4>' + item.nickname + '</h4>';
 						output += '<div class="sub-item">';
-						output +='   <p>' + item.re_content.replace(/</gi,'&lt;').replace(/>/gi,'&gt;') + '</p>';
-						output += item.re_date;
+						output +='   <p>' + item.comm_content.replace(/</gi,'&lt;').replace(/>/gi,'&gt;') + '</p>';
+						output += item.comm_reg_date;
 						if($('#mem_num').val()==item.mem_num){
 							//로그인한 회원 번호가 댓글 작성자 회원 번호와 같으면
-							output += ' <input type="button" data-num="'+item.re_num+'" data-mem="'+item.mem_num+'" value="수정" class="modify-btn">';
-							output += ' <input type="button" data-num="'+item.re_num+'" data-mem="'+item.mem_num+'" value="삭제" class="delete-btn">';
+							output += ' <input type="button" data-num="'+item.comm_num+'" data-mem="'+item.mem_num+'" value="수정" class="modify-btn">';
+							output += ' <input type="button" data-num="'+item.comm_num+'" data-mem="'+item.mem_num+'" value="삭제" class="delete-btn">';
 						}
 						output += '  <hr size="1" noshade>';
 						output += '</div>';
@@ -165,10 +165,10 @@ function shareTwitter() {
 				remain += '/300';
 				if($(this).attr('nickname') == 'comm_content'){
 					//등록폼 글자수
-					$('#re_first .letter-count').text(remain);
+					$('#comm_first .letter-count').text(remain);
 				}else{
 					//수정폼 글자수
-					$('#mre_first .letter-count').text(remain);
+					$('#mcomm_first .letter-count').text(remain);
 				}
 			}
 		});
@@ -214,7 +214,7 @@ function shareTwitter() {
 			$('#mcomm_first .letter-count').text(remain);		
 		});
 		//수정폼에서 취소 버튼 클릭시 수정폼 초기화
-		$(document).on('click','.re-reset',function(){
+		$(document).on('click','.comm-reset',function(){
 			initModifyForm();
 		});
 		//댓글 수정 폼 초기화
@@ -268,6 +268,10 @@ function shareTwitter() {
 		
 		//댓글 삭제
 		$(document).on('click','.delete-btn',function(){
+			//확인 / 취소 선택창
+			var check = confirm('삭제하시겠습니까?');
+			if(check){
+				
 			//댓글 번호
 			var comm_num = $(this).attr('data-num');
 			//작성자 회원 번호
@@ -292,10 +296,13 @@ function shareTwitter() {
 						alert('댓글 삭제시 오류 발생');
 					}
 				},
-				error:function(){
-					alert('네트워크 오류 발생');
+				error:function(request,status,error){		// 에러메세지 반환
+					alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
 				}
 			});
+			}else{
+				
+			}
 			
 		});
 		//초기 데이터(목록) 호출
@@ -381,12 +388,12 @@ padding : 40px 8px 0px 100px;
  	
  	<!-- 댓글 시작 -->
  	<hr size="1" width="100%" noshade="noshade">
- 	<span class="comm-title">댓글 ${count}</span>
 	<div id="comment_div">
+	 	<span class="comm-title">댓글 달기</span>
 		<form id="comm_form">
 			<input type="hidden" name="event_num" value="${event.event_num }" id="event_num">
 			<input type="hidden" name="mem_num" value="${user_num }" id="mem_num">
-			<textarea rows="3" cols="50" name="comm_content" id="comm_content" class="comm-content" placeholder="칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)"
+			<textarea rows="3" cols="50" name="comm_content" id="comm_content" class="commp-content" placeholder="칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)"
 				<c:if test="${empty user_num }">disabled="disabled"</c:if>
 				><c:if test="${empty user_num }">로그인 해야 작성할 수 있습니다.</c:if></textarea>
 			<c:if test="${!empty user_num }">

@@ -20,22 +20,19 @@
     <form id="search_form" action="serviceBoardList.do" method="get">
    		<ul class="search">
 			<li>
-				<select name="keyfield" id="keyfield">
-					<option value="0">유형</option>
-					<option value="1">회원 정보 문의</option>
-					<option value="2">쿠폰/포인트 문의</option>
-					<option value="3">주문/결제 관련 문의</option>
-					<option value="4">취소/환불 관련 문의</option>
-					<option value="5">배송 관련 문의</option>
-					<option value="6">주문 전 상품 정보 문의</option>
-					<option value="7">서비스 개선 제안</option>
-					<option value="8">시스템 오류 제보</option>
-					<option value="9">불편 신고</option>
-					<option value="10">기타 문의</option>
+				<select name="keyword" id="keyword">
+					<option value="">전체</option>
+					<option value="회원 정보 문의">회원 정보 문의</option>
+					<option value="쿠폰/포인트 문의">쿠폰/포인트 문의</option>
+					<option value="주문/결제 관련 문의">주문/결제 관련 문의</option>
+					<option value="취소/환불 관련 문의">취소/환불 관련 문의</option>
+					<option value="배송 관련 문의">배송 관련 문의</option>
+					<option value="주문 전 상품 정보 문의">주문 전 상품 정보 문의</option>
+					<option value="서비스 개선 제안">서비스 개선 제안</option>
+					<option value="시스템 오류 제보">시스템 오류 제보</option>
+					<option value="불편 신고">불편 신고</option>
+					<option value="기타 문의">기타 문의</option>
 				</select>
-			</li>
-			<li>
-				<input type="search" name="keyword" id="keyword">
 			</li>
 			<li>
 				<input type="submit" value="찾기">

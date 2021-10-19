@@ -1,5 +1,7 @@
 package kr.spring.event.vo;
 
+import kr.spring.util.DurationFromNow;
+
 public class ECommentVO {
 
 	private int comm_num;			//댓글 번호
@@ -18,14 +20,16 @@ public class ECommentVO {
 	public String getComm_reg_date() {
 		return comm_reg_date;
 	}
+	//날짜 표시 형식을 변경(예 5초전)
 	public void setComm_reg_date(String comm_reg_date) {
-		this.comm_reg_date = comm_reg_date;
+		this.comm_reg_date = DurationFromNow.getTimeDiffLabel(comm_reg_date);
 	}
 	public String getComm_mod_date() {
 		return comm_mod_date;
 	}
+	//날짜 표시 형식을 변경(예 5초전)
 	public void setComm_mod_date(String comm_mod_date) {
-		this.comm_mod_date = comm_mod_date;
+		this.comm_mod_date = DurationFromNow.getTimeDiffLabel(comm_mod_date);
 	}
 	public String getComm_content() {
 		return comm_content;
