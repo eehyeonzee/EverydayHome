@@ -18,14 +18,14 @@ public interface StoreMapper {
 			+ "prod_option7, prod_option8, prod_option9, prod_option10, "
 			+ "prod_content, prod_img, "
 			+ "prod_filename, thumbnail_img, thumbnail_filename, prod_quan, "
-			+ "add_product, prod_keyword, mem_num, prod_cate) "
+			+ "prod_keyword, mem_num, prod_cate) "
 			+ "VALUES(product_seq.nextval, #{prod_name}, #{prod_price}, #{delive_price}, "
 			+ "#{delive_type}, #{selec_product}, #{prod_option1}, #{prod_option2}, "
 			+ "#{prod_option3}, #{prod_option4}, #{prod_option5}, #{prod_option6}, "
 			+ "#{prod_option7}, #{prod_option8}, #{prod_option9}, #{prod_option10}, "
 			+ "#{prod_content}, #{prod_img}, "
 			+ "#{prod_filename}, #{thumbnail_img}, #{thumbnail_filename}, #{prod_quan}, "
-			+ "#{add_product}, #{prod_keyword}, #{mem_num}, #{prod_cate})")
+			+ "#{prod_keyword}, #{mem_num}, #{prod_cate})")
 	public void productRegister(StoreVO storeVO);
 	public List<StoreVO> selectList(Map<String, Object> map);
 	public int selectRowCount(Map<String, Object> map);

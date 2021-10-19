@@ -96,8 +96,6 @@
 		<interceptor>
 			<mapping path="/houseBoard/update.do"/>
 			<mapping path="/houseBoard/delete.do"/>
-			<mapping path="/store/updateProduct.do"/>
-			<mapping path="/store/productDelete.do"/>
 			<beans:bean class="kr.spring.interceptor.WriterCheckInterceptor"/>
 		</interceptor>
 	</interceptors>

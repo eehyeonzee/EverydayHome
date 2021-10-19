@@ -40,4 +40,5 @@
 	<li>판매자명 : </li>
 	<li>상품명 : ${storeVO.prod_name}</li>
 	<li>상품 가격 : ${storeVO.prod_price}</li>
+	<li>수량 : ${quan}</li>
 </ul>

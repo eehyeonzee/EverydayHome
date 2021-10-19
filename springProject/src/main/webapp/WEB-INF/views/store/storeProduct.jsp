@@ -139,9 +139,8 @@
 		<div>
 			<span id = "result"></span>
 			<span id = "price"></span>
-			<div  class = "quantity">
-				<input type = "number" id = "quan" min = "0">
-			</div>
+			<form:label path = "quan">수량 </form:label>
+			<input type = "number" id = "quan" min = "0">
 		</div>
 		<c:if test = "${!empty storeVO.prod_img}">
 		<img src = "contentImageView.do?prod_num=${storeVO.prod_num}"><br><br><br>
