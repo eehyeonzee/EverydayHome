@@ -98,6 +98,12 @@
 			<mapping path="/houseBoard/delete.do"/>
 			<beans:bean class="kr.spring.interceptor.WriterCheckInterceptor"/>
 		</interceptor>
+		<!-- 상품 등록 및 수정 로그인한 회원 체크 -->
+		<interceptor>
+			<mapping path="/store/updateProduct.do"/>
+			<mapping path="/store/productDelete.do"/>
+			<beans:bean class="kr.spring.interceptor.ProductRegisterCheckInterceptor"/>
+		</interceptor>
 	</interceptors>
 	
 </beans:beans>
