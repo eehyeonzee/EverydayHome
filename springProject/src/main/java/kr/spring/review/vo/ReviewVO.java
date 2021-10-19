@@ -140,7 +140,7 @@ public class ReviewVO {
 	@Override
 	public String toString() {
 		return "ReviewVO [rev_num=" + rev_num + ", rev_content=" + rev_content + ", rev_grade=" + rev_grade
-				+ ", rev_reg_date=" + rev_reg_date + ", rev_img=" + Arrays.toString(rev_img) + ", rev_filename="
+				+ ", rev_reg_date=" + rev_reg_date + ", rev_filename="
 				+ rev_filename + ", prod_num=" + prod_num + ", mem_num=" + mem_num + ", buis_name=" + buis_name
 				+ ", prod_name=" + prod_name + ", prod_option=" + prod_option + ", order_date=" + order_date
 				+ ", prod_price=" + prod_price + ", thumbnail_filename=" + thumbnail_filename + "]";

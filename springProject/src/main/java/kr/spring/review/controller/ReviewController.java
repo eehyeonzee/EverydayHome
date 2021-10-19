@@ -6,12 +6,14 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,6 +57,7 @@ public class ReviewController {
 		mav.setViewName("myBuyList");
 		
 		return mav;
+	
 	}
 	
 	//리뷰 폼 호출
@@ -74,16 +77,20 @@ public class ReviewController {
 				if(orderCheck == 0) {
 					model.addAttribute("message", "구매정보가 없습니다..");
 					model.addAttribute("url", request.getContextPath() + "/store/storeCategory.do"); 
+					
 					return "common/resultView";
 				}//주문한적없음
 				model.addAttribute("prod_num","prod_num");
 				model.addAttribute("message", "리뷰작성하시겠습니까?");
 				model.addAttribute("url", request.getContextPath() + "/review/reviewForm.do?prod_num="+prod_num); 
+				
 				return "common/resultView";
 			}else {//리뷰쓴적있음
 				model.addAttribute("message", "작성한 리뷰를 확인하시겠습니까?");
 				model.addAttribute("url", request.getContextPath() + "/review/reviewList.do"); 
+			
 				return "common/resultView";
+			
 			}
 	}
 	//리뷰작성폼 호출 별점도 호출
@@ -105,6 +112,7 @@ public class ReviewController {
 		ratingOptions.put(5, "★★★★★");
 		model.addAttribute("ratingOptions", ratingOptions);
 		logger.debug("<<제품번호>>:"+reviewVO);
+		
 		return "reviewForm";
 	}
 	//리뷰쓰기
@@ -117,6 +125,7 @@ public class ReviewController {
 			
 			model.addAttribute("message", "리뷰가 작성되었습니다.");
 			model.addAttribute("url", request.getContextPath() + "/review/myBuyList.do"); 
+		
 			return "common/resultView";
 	}
 	//리뷰쓴목록
@@ -137,6 +146,7 @@ public class ReviewController {
 		mav.addObject("count",count);
 		mav.addObject("list",list);
 		mav.setViewName("reviewList");
+	
 		return mav;
 
 	}
@@ -156,12 +166,28 @@ public class ReviewController {
 		ratingOptions.put(5, "★★★★★");
 		model.addAttribute("ratingOptions", ratingOptions);
 		logger.debug("<<받아오는 정보>>:"+reviewVO);
-		return "reviewForm";
+	
+		return "reviewUpdate";
 
 	}
+
+	//리뷰수정
+	@PostMapping("/review/reviewUpdate.do")
+	public String update(@Valid ReviewVO reviewVO, Model model, HttpServletRequest request,BindingResult result ) {
+		
+		logger.debug("수정"+ reviewVO);
+		reviewService.reviewUpdate(reviewVO);
+		model.addAttribute("message", "리뷰가 수정되었습니다..");
+		model.addAttribute("url", request.getContextPath() + "/review/reviewList.do"); 
+	
+		return "common/resultView";
+	
+	}
+	
 	//리뷰삭제하기
 	@GetMapping("/review/reviewDelete.do")
 	public String delete(@RequestParam int rev_num) {
+	
 		reviewService.reviewDelete(rev_num);
 		return "redirect:reviewList.do";
 	}
@@ -179,25 +205,26 @@ public class ReviewController {
 		mav.addObject("filename", review.getRev_filename());
 		
 		return mav;
+ 
 	}
 	//글 수정시 이미지삭제
 	@RequestMapping("/review/deleteFile.do")
 	@ResponseBody
 	public Map<String,String> processFile(int rev_num, HttpSession session) {
 		
+		logger.debug("<<deleteFile>>:"+rev_num);
 		Map<String,String> map = new HashMap<String, String>();
-		
-		Integer mem_num = (Integer)session.getAttribute("user_num");
-		
-			reviewService.deleteFile(rev_num);
+		reviewService.deleteFile(rev_num);
 	
 		map.put("result", "success");
+	
 		return map;
+	
 	}
 	
 }
 //남은 일
-//수정,이미지수정하기
+//수정,이미지수정하기 << 수정페이지 텍스트 위치 깨짐, 이미지 안뜸
 //상품상세페이지에서 리뷰 볼 수있게하기 평균점수나오게 하도록하기도 하기.
 //수요일 디자인 손보기
 //목요일 메인보기

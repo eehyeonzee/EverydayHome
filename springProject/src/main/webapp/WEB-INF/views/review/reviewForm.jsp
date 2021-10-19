@@ -70,11 +70,9 @@ margin : 20px 0px 0px 0px;
  		<h4 style="font-family: 'Gowun Dodum', sans-serif; text-align : center;">제품정보</h4>
  		<div class="link-item" style="font-family: 'Gowun Dodum', sans-serif;"></div>
  		<div class="link-item" onclick="#">
- 			<div style="text-align:center; font-size:14px; margin-bottom:-40px;'">${reviewVO.buis_name}</div><br>
+ 			<div style="text-align:center; font-size:14px;'">${reviewVO.buis_name}</div><br>
  			<div class="title" style="text-align:center;">${reviewVO.prod_name}</div>
- 			<input type="hidden" name="prod_num"value="${reviewVO.prod_num}"/>
  			<div class="reg_date">${reviewVO.prod_price}원</div>
- 			<!-- 이미지 보이게 하기 -->
  		</div>
 	</div>
 </div>

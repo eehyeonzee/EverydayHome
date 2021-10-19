@@ -26,8 +26,8 @@ public class ReviewServiewImpl implements ReviewService {
 	}
 
 	@Override
-	public ReviewVO reviewUpdate(ReviewVO review) {
-		return reviewMapper.reviewUpdate(review);
+	public void reviewUpdate(ReviewVO review) {
+		reviewMapper.reviewUpdate(review);
 	}
 
 	@Override

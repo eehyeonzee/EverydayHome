@@ -70,9 +70,8 @@ margin : 20px 0px 0px 0px;
  		<h4 style="font-family: 'Gowun Dodum', sans-serif; text-align : center;">제품정보</h4>
  		<div class="link-item" style="font-family: 'Gowun Dodum', sans-serif;"></div>
  		<div class="link-item" onclick="#">
- 			<div style="text-align:center; font-size:14px; margin-bottom:-40px;'">${reviewVO.buis_name}</div><br>
+ 			<div style="text-align:center; font-size:14px;'">${reviewVO.buis_name}</div><br>
  			<div class="title" style="text-align:center;">${reviewVO.prod_name}</div>
- 			<input type="hidden" name="prod_num"value="${reviewVO.prod_num}"/>
  			<div class="reg_date">${reviewVO.prod_price}원</div>
  			<!-- 이미지 보이게 하기 -->
  		</div>
@@ -85,9 +84,8 @@ margin : 20px 0px 0px 0px;
 		<div class="message mt-5 pt-5">
 		<h5 style="text-align: center;">리뷰를 수정합니다</h5>
 		</div>
-		<form:form id="user_review" action="reviewWrite.do" modelAttribute="reviewVO" enctype="multipart/form-data">
-		<input type = "hidden" name="mem_num" value = "${mem_num}">
-		<input type = "hidden" name="prod_num" value = "${prod_num}">
+		<form:form action="reviewUpdate.do" modelAttribute="reviewVO" enctype="multipart/form-data">
+		<form:hidden path="rev_num"/>
 		<ul>
 		<li class="li-title">
 			<div class="star mt-5"  style="text-align:center; margin-right:600px;">
@@ -107,18 +105,18 @@ margin : 20px 0px 0px 0px;
 		<li class="li-content mt-4"  style="text-align:center;">
 				<label for="upload">이미지 파일</label>
 				<input type="file" name="upload" id="upload" accept="image/gif,image/png,image/jpeg">
-				<c:if test="${!empty list.rev_filename}">
+				<c:if test="${!empty reviewVO.rev_filename}">
 				<br>
-				<span id="file_detail">(${eventVO.event_filename}) 파일이 등록되어 있습니다.
+				<span id="file_detail">${reviewVO.rev_filename} 파일이 등록되어 있습니다.
 				다시 업로드하면 기존 파일은 삭제됩니다.</span>
 				<input type="button" value="파일삭제" id="file_del">
-									<script type="text/javascript">
+				<script type="text/javascript">
 						$(function() {
 							$('#file_del').click(function() {
 								var choice = confirm('삭제하시겠습니까?');
 								if(choice) { // true
 									$.ajax({
-										data: {rev_num:${list.rev_num}},
+										data: {rev_num:${reviewVO.rev_num}},
 										type: 'post',
 										url: 'deleteFile.do',
 										dataType: 'json',

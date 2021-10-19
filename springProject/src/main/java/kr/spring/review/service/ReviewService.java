@@ -7,7 +7,7 @@ import kr.spring.review.vo.ReviewVO;
 public interface ReviewService {
 	public void reviewInsert(ReviewVO review);//리뷰등록
 	public ReviewVO reviewDetail(int rev_num);//리뷰읽기
-	public ReviewVO reviewUpdate(ReviewVO review);//리뷰수정
+	public void reviewUpdate(ReviewVO review);//리뷰수정
 	public void reviewDelete(int rev_num); //리뷰삭제
 	public List<ReviewVO> reviewbuyList(int mem_num); //구매한 제품 리스트 
 	public List<ReviewVO> reviewList(int mem_num);//리뷰리스트
