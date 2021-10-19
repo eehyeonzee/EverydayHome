@@ -29,7 +29,6 @@ import org.springframework.web.multipart.MultipartFile;
 	private String service_keyword;		//키워드(유형)
 	private String service_filename;	//파일명
 	private byte[] service_file;		//파일
-	private int mem_num;				//회원번호
 	
 	// ========== 이미지 BLOB 처리 ========== //
 	public void setUpload(MultipartFile upload) throws IOException {
@@ -104,22 +103,14 @@ import org.springframework.web.multipart.MultipartFile;
 		this.service_file = service_file;
 	}
 
-	public int getMem_num() {
-		return mem_num;
-	}
-
-	public void setMem_num(int mem_num) {
-		this.mem_num = mem_num;
-	}
-
 	// ***(주의)*** 프로퍼티 타입이 byte[]인 것은 항목에서 제외해야 함
 	@Override
 	public String toString() {
 		return "ServiceBoardVO [service_num=" + service_num + ", service_title=" + service_title + ", service_nickname="
 				+ service_nickname + ", service_content=" + service_content + ", service_email=" + service_email
-				+ ", service_keyword=" + service_keyword + ", service_filename=" + service_filename + ", mem_num="
-				+ mem_num + "]";
+				+ ", service_keyword=" + service_keyword + ", service_filename=" + service_filename + "]";
 	}
+
 	
 	
 	

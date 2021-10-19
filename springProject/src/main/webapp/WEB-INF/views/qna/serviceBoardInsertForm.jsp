@@ -20,7 +20,6 @@
 	<h2>이메일 문의 하기</h2>
 	<hr size="1" noshade width="100%">
 	<form:form action="serviceBoardInsert.do" modelAttribute="serviceBoardVO" enctype="multipart/form-data">
-		<form:hidden path="mem_num"/>
 		<ul>
 			<li><!-- 문의 유형 선택 카테고리 -->
 				<label for="service_keyword"></label>

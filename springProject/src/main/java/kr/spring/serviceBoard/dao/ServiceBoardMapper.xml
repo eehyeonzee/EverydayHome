@@ -10,52 +10,51 @@
 		        a.*,
 		        rownum rnum
 		      FROM (SELECT 
-		              b.service_num,
+		               service_num,
 		              <![CDATA[
-		              REPLACE(REPLACE(b.service_title,'<','&lt;'),'>','&gt;') service_title,
-		              REPLACE(REPLACE(b.service_keyword,'<','&lt;'),'>','&gt;') service_keyword,
+		              REPLACE(REPLACE( service_title,'<','&lt;'),'>','&gt;') service_title,
+		              REPLACE(REPLACE( service_keyword,'<','&lt;'),'>','&gt;') service_keyword,
 		              ]]>
-		              b.service_nickname,
-		              b.service_content,
-		              b.service_email,
-		              b.mem_num
-		            FROM service_board b JOIN member m ON b.mem_num = m.mem_num
+		               service_nickname,
+		               service_content,
+		               service_email
+		            FROM service_board 
 		            <where>
 		            	<if test="keyword != '' and keyfield == 0">
-		            		b.service_keyword LIKE '%' || #{keyword} || '%'
+		            		 service_keyword LIKE '%' || #{keyword} || '%'
 		            	</if>
 		            	<if test="keyword != '' and keyfield == 1">
-		            		b.service_keyword LIKE '%' || #{keyword} || '%'
+		            		 service_keyword LIKE '%' || #{keyword} || '%'
 		            	</if>
 		            	<if test="keyword != '' and keyfield == 2">
-		            		b.service_keyword LIKE '%' || #{keyword} || '%'
+		            		 service_keyword LIKE '%' || #{keyword} || '%'
 		            	</if>
 		            	<if test="keyword != '' and keyfield == 3">
-		            		b.service_keyword LIKE '%' || #{keyword} || '%'
+		            		 service_keyword LIKE '%' || #{keyword} || '%'
 		            	</if>
 		            	<if test="keyword != '' and keyfield == 4">
-		            		b.service_keyword LIKE '%' || #{keyword} || '%'
+		            		 service_keyword LIKE '%' || #{keyword} || '%'
 		            	</if>
 		            	<if test="keyword != '' and keyfield == 5">
-		            		b.service_keyword LIKE '%' || #{keyword} || '%'
+		            		 service_keyword LIKE '%' || #{keyword} || '%'
 		            	</if>
 		            	<if test="keyword != '' and keyfield == 6">
-		            		b.service_keyword LIKE '%' || #{keyword} || '%'
+		            		 service_keyword LIKE '%' || #{keyword} || '%'
 		            	</if>
 		            	<if test="keyword != '' and keyfield == 7">
-		            		b.service_keyword LIKE '%' || #{keyword} || '%'
+		            		 service_keyword LIKE '%' || #{keyword} || '%'
 		            	</if>
 		            	<if test="keyword != '' and keyfield == 8">
-		            		b.service_keyword LIKE '%' || #{keyword} || '%'
+		            		 service_keyword LIKE '%' || #{keyword} || '%'
 		            	</if>
 		            	<if test="keyword != '' and keyfield == 9">
-		            		b.service_keyword LIKE '%' || #{keyword} || '%'
+		            		 service_keyword LIKE '%' || #{keyword} || '%'
 		            	</if>
 		            	<if test="keyword != '' and keyfield == 10">
-		            		b.service_keyword LIKE '%' || #{keyword} || '%'
+		            		 service_keyword LIKE '%' || #{keyword} || '%'
 		            	</if>
 		            </where>
-		            ORDER BY b.service_num DESC)a)
+		            ORDER BY  service_num DESC)a)
 		<![CDATA[
 		WHERE rnum >= #{start} AND rnum <= #{end}  
 		]]>
@@ -65,40 +64,40 @@
 	<select id="selectRowCount" parameterType="map" resultType="integer">
 		SELECT
 		  COUNT(*)
-		FROM service_board b JOIN member m ON b.mem_num = m.mem_num
+		FROM service_board
 		<where>
         	<if test="keyword != '' and keyfield == 0">
-        		b.service_keyword LIKE '%' || #{keyword} || '%'
+        		 service_keyword LIKE '%' || #{keyword} || '%'
         	</if>
         	<if test="keyword != '' and keyfield == 1">
-        		b.service_keyword LIKE '%' || #{keyword} || '%'
+        		 service_keyword LIKE '%' || #{keyword} || '%'
         	</if>
         	<if test="keyword != '' and keyfield == 2">
-        		b.service_keyword LIKE '%' || #{keyword} || '%'
+        		 service_keyword LIKE '%' || #{keyword} || '%'
         	</if>
         	<if test="keyword != '' and keyfield == 3">
-        		b.service_keyword LIKE '%' || #{keyword} || '%'
+        		 service_keyword LIKE '%' || #{keyword} || '%'
         	</if>
         	<if test="keyword != '' and keyfield == 4">
-        		b.service_keyword LIKE '%' || #{keyword} || '%'
+        		 service_keyword LIKE '%' || #{keyword} || '%'
         	</if>
         	<if test="keyword != '' and keyfield == 5">
-        		b.service_keyword LIKE '%' || #{keyword} || '%'
+        		 service_keyword LIKE '%' || #{keyword} || '%'
         	</if>
         	<if test="keyword != '' and keyfield == 6">
-        		b.service_keyword LIKE '%' || #{keyword} || '%'
+        		 service_keyword LIKE '%' || #{keyword} || '%'
         	</if>
         	<if test="keyword != '' and keyfield == 7">
-        		b.service_keyword LIKE '%' || #{keyword} || '%'
+        		 service_keyword LIKE '%' || #{keyword} || '%'
         	</if>
         	<if test="keyword != '' and keyfield == 8">
-        		b.service_keyword LIKE '%' || #{keyword} || '%'
+        		 service_keyword LIKE '%' || #{keyword} || '%'
         	</if>
         	<if test="keyword != '' and keyfield == 9">
-        		b.service_keyword LIKE '%' || #{keyword} || '%'
+        		 service_keyword LIKE '%' || #{keyword} || '%'
         	</if>
         	<if test="keyword != '' and keyfield == 10">
-        		b.service_keyword LIKE '%' || #{keyword} || '%'
+        		 service_keyword LIKE '%' || #{keyword} || '%'
         	</if>
         </where>
 	</select>

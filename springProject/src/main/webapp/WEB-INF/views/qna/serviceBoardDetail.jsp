@@ -59,10 +59,8 @@ $(function() {
 		<img src="imageView.do?service_num=${serviceboard.service_num }" style="max-width:500px">
 	</div>
 	</c:if>
-	<form>
 	답변 내용 작성<input type="text" id="service_reply">
 	<input type="submit" id="email_send_button" value="이메일전송">
-	</form>
 	<div class="align-center">
 		<input type="button" value="목록" onclick="location.href='serviceBoardList.do'">
 	</div>
