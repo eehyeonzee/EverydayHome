@@ -47,6 +47,8 @@ import kr.spring.houseBoard.vo.HouseBoardVO;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberBuisVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.serviceBoard.service.ServiceBoardService;
+import kr.spring.serviceBoard.vo.ServiceBoardVO;
 import kr.spring.util.AuthCheckException;
 import kr.spring.util.PagingUtil;
 
@@ -69,7 +71,16 @@ public class MemberController {
 	private HouseBoardService houseBoardService;
 	
 	@Autowired
+	private ServiceBoardService serviceBoardService;
+	
+	@Autowired
 	private JavaMailSender mailSender;	//자바 메일 전송 객체 생성
+	
+	// ServiceBoardVO 자바빈 초기화
+	@ModelAttribute
+	public ServiceBoardVO initCommand3() {
+		return new ServiceBoardVO();
+	}
 	
 	// Member 자바빈(VO) 초기화
 	 @ModelAttribute
@@ -78,7 +89,7 @@ public class MemberController {
 	    return new MemberVO();
 	 }
 		 
-	 // Member 자바빈(VO) 초기화
+	 // MemberBuis 자바빈(VO) 초기화
 	 @ModelAttribute
 	 public MemberBuisVO initCommand2() {
 		 
@@ -470,17 +481,68 @@ public class MemberController {
 	
 	//마이페이지 호출
 	@GetMapping("/member/myPage.do")
-	public String myPageMain(HttpSession session, Model model) {
-		Integer user_num = (Integer)session.getAttribute("user_num");
+	public ModelAndView myPageMain(HttpSession session, Model model) {
+		// SQL문 실행을 위한 변수 지정
+		String keyfield = "";
+		String keyword = "1";
 		
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		// map 생성
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		
+		// 판매자 신청 글의 총 개수 또는 검색된 글의 개수
+		int count = memberService.selectMemberBuisCount(map);								
+		logger.debug("<<count>> : " + count);
+		
+		// 10개만 뽑아오기 위한 SQL WHERE 절 지정
+		map.put("start", 1);
+		map.put("end", 10);
+		
+		List<MemberBuisVO> list = null;
+		if(count > 0) {
+			list = memberService.selectMemberBuisList(map);		// 판매 신청 리스트
+		}
+		
+		// 이메일 문의 맞춤 map 생성
+		Map<String,Object> qnamap = new HashMap<String,Object>();
+		qnamap.put("keyfield", "0");
+		qnamap.put("keyword", "");
+		qnamap.put("start", 1);
+		qnamap.put("end", 10);
+		
+		// 이메일 문의 글의 총 개수 구하기
+		int qnacount = serviceBoardService.selectRowCount(qnamap);
+		
+		//목록 호출
+		List<ServiceBoardVO> qnalist = null;
+		if(qnacount>0) {
+			qnalist = serviceBoardService.getServiceBoardList(qnamap);
+		}
+		qnalist = serviceBoardService.getServiceBoardList(qnamap);
+		// 회원 정보 객체에 담기
 		MemberVO member = memberService.selectMember(user_num);
 		
+		logger.debug("<<전체 판매 신청 리스트>> : " + list);
 		logger.debug("<<회원 상세정보>> : " + member);
+		logger.debug("<<이메일 문의 글 총 개수>> : " + qnacount);
+		logger.debug("<<이메일 문의내역>> : " + qnalist);
 		
-		model.addAttribute("member", member);
+		// 전달 객체
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("memberView"); // 타일스 식별자
 		
-		return "memberView";	// 타일스 식별자
+		// Model(컨테이너)에 데이터 담기
+		mav.addObject("count", count);
+		mav.addObject("list", list);
+		mav.addObject("qnacount", qnacount);
+		mav.addObject("qnalist", qnalist);
+		mav.addObject("member", member);
+
+		return mav;
 	}
+	
 	
 	//프로필 사진 출력
 	@RequestMapping("/member/photoView.do")
