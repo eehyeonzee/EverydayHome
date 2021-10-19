@@ -44,34 +44,35 @@
 		</ul>
    </form> 
    
-   <div class="align-right">
-      <input type="button" value="글쓰기" onclick="location.href='serviceBoardInsert.do'">
-   </div>
-   <c:if test="${count==0 }">
+     <c:if test="${count==0 }">
    <div class="result-display">출력할 내용이 없습니다.</div>
    </c:if>
    <c:if test="${count > 0 }">
    <table>
    		<tr>
    			<th>문의번호</th>
+   			<th>키워드</th>
    			<th>닉네임</th>
    			<th>제목</th>
    			<th>내용</th>
    			<th>이메일</th>
-   			<th>키워드</th>
    		</tr>
    		<c:forEach var="serviceboard" items="${list }">
    		<tr>
    			<td>${serviceboard.service_num}</td>
+   			<td>${serviceboard.service_keyword}</td>
    			<td>${serviceboard.service_nickname}</td>
-   			<td><a href="serviceBoardDetail.do?service_num=${serviceboard.service_num}">${serviceboard.service_title}</a></td>
+   			<td><a href="${pageContext.request.contextPath}/qna/serviceBoardDetail.do?service_num=${serviceboard.service_num}">${serviceboard.service_title}</a></td>
    			<td>${serviceboard.service_content}</td>
    			<td>${serviceboard.service_email}</td>
-   			<td>${serviceboard.service_keyword}</td>
    		</tr>
    		</c:forEach>
    </table>
+   		
    <div class="align-center">${pagingHtml}</div>
+   <div class="align-center">
+		<input type="button" value="홈으로" onclick="location.href='qnaList.do'">
+	</div>
    </c:if>
 </div>
 </body>

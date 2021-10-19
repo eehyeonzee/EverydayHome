@@ -319,6 +319,7 @@ public class QnaController {
 			/* 뷰(View)로부터 넘어온 데이터 확인 */
 		       log.info("이메일 데이터 전송 확인");
 		       log.info("이메일 : " + service_email);
+		       log.info("내용 : " + service_reply);
 		       
 		       String title = "Re: 매일의 홈에 문의 주셔서 감사합니다.";	
 		       String content = "문의 내용 확인하였습니다" +service_reply;

@@ -12,6 +12,7 @@
 		      FROM (SELECT 
 		              b.service_num,
 		              <![CDATA[
+		              REPLACE(REPLACE(b.service_title,'<','&lt;'),'>','&gt;') service_title,
 		              REPLACE(REPLACE(b.service_keyword,'<','&lt;'),'>','&gt;') service_keyword,
 		              ]]>
 		              b.service_nickname,

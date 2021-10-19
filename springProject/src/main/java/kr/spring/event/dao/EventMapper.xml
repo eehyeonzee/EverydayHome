@@ -6,7 +6,7 @@
 	
 	<!-- 댓글 목록 -->
 	
-	 <!-- <select id="selectListEComment" parameterType="map" resultType="eCommentVO">
+	 <select id="selectListEComment" parameterType="map" resultType="eCommentVO">
 		SELECT
 		   *
 		FROM (SELECT
@@ -26,8 +26,7 @@
 		<![CDATA[
 		WHERE rnum >= #{start} AND rnum <= #{end}
 		]]>
-	</select> --> 
-
+	</select>
 	
 	<!-- 댓글 총 개수 -->
 	<select id="selectRowCountComment" parameterType="map" resultType="integer">
