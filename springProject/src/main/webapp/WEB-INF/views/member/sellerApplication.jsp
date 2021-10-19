@@ -15,13 +15,37 @@
 <script type ="text/javascript">
 	$(document).ready(function() {
 		$("#application_form").submit(function(){
+			
+			// 개업일 유효성 체크
+			var strStart_date = $('#opening_date').val();
+			
 			if(confirm("판매자 신청을 하시겠습니까?")){
-				alert("신청이 완료되었습니다.");	
+				var startDate = new Date(strStart_date);
+				var startYyyy = startDate.getFullYear();
+				var startmm = startDate.getMonth() + 1;
+				var startDd = startDate.getDate();
+				var startDay = new Date(startYyyy, startmm, startDd);
+				
+				var now = new Date();         		  // 현재 날짜
+				var nowYyyy = now.getFullYear();
+				var nowmm = now.getMonth() + 1;       // 1월 == 0
+				var nowDd = now.getDate();
+				var nowDate = new Date(nowYyyy, nowmm, nowDd);   
+				
+				// 생년월일이 시스템 상 날짜 보다 나중 날짜를 입력 못하게 함
+				
+				if(nowDate.getTime() < startDay.getTime()) {
+					alert('생년월일을 다시 입력해주세요!');
+					$('#opening_date').focus();
+					return false;
+				}
 			}else{
 				alert("취소되었습니다.");
 				return false;
 			}
 		});
+		
+		
 		
 	});
 

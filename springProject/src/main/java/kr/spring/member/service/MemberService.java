@@ -18,13 +18,14 @@ import kr.spring.member.vo.MemberVO;
 
 public interface MemberService {
 
-	public void insertMember(MemberVO member);					// 회원가입 트랜잭션 실행
-	public MemberVO selectCheckMember(String mem_id);			// 회원가입 아이디 중복 체크
-	public MemberVO selectMember(Integer mem_num);				// 마이페이지 - 회원정보 호출
-	public void updateProfile(MemberVO member);					// 프로필 이미지 업데이트
-	public void updateMember(MemberVO member);					// 회원정보 수정
-	public void deleteMember(Integer mem_num);					// 회원정보 삭제
-	public void insertSeller(MemberBuisVO memberBuisVO);		// 마이페이지 판매자 정보 등록
+	public void insertMember(MemberVO member);						// 회원가입 트랜잭션 실행
+	public MemberVO selectCheckMember(String mem_id);				// 회원가입 아이디 중복 체크
+	public MemberVO selectMember(Integer mem_num);					// 마이페이지 - 회원정보 호출
+	public void updateProfile(MemberVO member);						// 프로필 이미지 업데이트
+	public void updateMember(MemberVO member);						// 회원정보 수정
+	public void deleteMember(Integer mem_num);						// 회원정보 삭제
+	public void insertSeller(MemberBuisVO memberBuisVO);			// 마이페이지 판매자 정보 등록
+	public List<MemberVO> SelectIdSearch(Map<String, Object> map);	// 아이디 찾기
 		
 	// 판매자 페이지
 	
@@ -38,6 +39,6 @@ public interface MemberService {
 	public void updateMemberStopCancel(Integer mem_num);	// 관리자 페이지 - 회원 정지 해제
 	public void updateMemberSellerAuth(Integer mem_num);	// 관리자 페이지 - 회원등급 판매자 변경
 	public void updateMemberPasswdReset(Integer mem_num);	// 관리자 페이지 - 회원 비밀번호 초기화
-	public void updateSellerMember(Integer mem_num);	// 관리자 페이지 - 판매자 신청 등록 (사업자테이블 상태 변경) (회원 등급 변경)
+	public void updateSellerMember(Integer mem_num);		// 관리자 페이지 - 판매자 신청 등록 (사업자테이블 상태 변경) (회원 등급 변경)
 	public void deleteSellerMember(Integer mem_num);		// 관리자 페이지 - 판매자 신청 취소 (사업자 테이블 해당 ROW 삭제)
 }

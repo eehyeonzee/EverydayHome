@@ -45,7 +45,19 @@
 		FROM(SELECT a.*, 
 					rownum rnum
 		     FROM (SELECT 
-		     			*
+		     			d.BUIS_COUNT,
+                        d.BUIS_NUM,
+                        d.MEM_NUM,
+                        d.CEO_NAME,
+                        d.BUIS_NAME,
+                        TO_CHAR(d.OPENING_DATE,'YYYY-MM-DD') OPENING_DATE,
+                        d.BUIS_ITEM,
+                        d.BUIS_ZIPCODE,
+                        d.BUIS_ADDRESS1,
+                        d.BUIS_ADDRESS2,
+                        d.APPLICATION_STATE,                
+                        m.mem_id,
+                        m.mem_auth
 		           FROM buis_detail d JOIN member m ON d.mem_num=m.mem_num
 		           <where>
                    <if test="keyword != '' and keyfield == 1">

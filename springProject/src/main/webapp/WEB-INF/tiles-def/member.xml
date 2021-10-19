@@ -13,6 +13,14 @@
     	<put-attribute name="title" value="로그인"/>
     	<put-attribute name="body" value="/WEB-INF/views/member/login.jsp"/>
     </definition>
+    <definition name="memberIdSearch" extends="main">
+    	<put-attribute name="title" value="아이디 찾기"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/idSearch.jsp"/>
+    </definition>
+    <definition name="memberIdSearchResult" extends="main">
+    	<put-attribute name="title" value="아이디 찾기 - 결과"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/idSearchResult.jsp"/>
+    </definition>
     <definition name="memberView" extends="main">
     	<put-attribute name="title" value="마이페이지"/>
     	<put-attribute name="body" value="/WEB-INF/views/member/memberView.jsp"/>

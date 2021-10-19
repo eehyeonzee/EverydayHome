@@ -114,6 +114,10 @@ public class MemberServiceImpl implements MemberService {
 		memberMapper.deleteSellerMember(mem_num);
 		
 	}
+	@Override
+	public List<MemberVO> SelectIdSearch(Map<String, Object> map) {
+		return memberMapper.SelectIdSearch(map);
+	}
 	
 	
 }

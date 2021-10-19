@@ -53,6 +53,16 @@ public class MemberBuisVO {
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
 	}
+	
+	
+	public int getBuis_count() {
+		return buis_count;
+	}
+
+	public void setBuis_count(int buis_count) {
+		this.buis_count = buis_count;
+	}
+
 	public String getBuis_num() {
 		return buis_num;
 	}
@@ -110,11 +120,14 @@ public class MemberBuisVO {
 
 	@Override
 	public String toString() {
-		return "MemberBuisVO [mem_num=" + mem_num + ", mem_id=" + mem_id + ", mem_auth=" + mem_auth + ", buis_num="
-				+ buis_num + ", ceo_name=" + ceo_name + ", buis_name=" + buis_name + ", opening_date=" + opening_date
-				+ ", buis_item=" + buis_item + ", buis_zipcode=" + buis_zipcode + ", buis_address1=" + buis_address1
-				+ ", buis_address2=" + buis_address2 + ", application_state=" + application_state + "]";
+		return "MemberBuisVO [mem_num=" + mem_num + ", mem_id=" + mem_id + ", mem_auth=" + mem_auth + ", buis_count="
+				+ buis_count + ", buis_num=" + buis_num + ", ceo_name=" + ceo_name + ", buis_name=" + buis_name
+				+ ", opening_date=" + opening_date + ", buis_item=" + buis_item + ", buis_zipcode=" + buis_zipcode
+				+ ", buis_address1=" + buis_address1 + ", buis_address2=" + buis_address2 + ", application_state="
+				+ application_state + "]";
 	}
+
+	
 	
 	
 	   

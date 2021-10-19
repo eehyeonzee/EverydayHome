@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -328,6 +329,47 @@ public class MemberController {
 		}
 	}
 	
+	// 아이디 찾기 - 폼 호출
+	@GetMapping("/member/idSearch.do")
+	public String idSearchForm() {
+		logger.debug("<<아이디 찾기 진입>>");
+		
+		return "memberIdSearch";
+	}
+	
+	// 아이디 찾기 - 데이터 처리
+	@PostMapping("/member/idSearchResult.do")
+	public ModelAndView idSearchProcess(MemberVO memberVO,BindingResult result) {
+		
+		logger.debug("<<아이디 찾기>> : " + memberVO);
+		
+		// 전송된 데이터를 가지고 DB에 저장된 이름과 전화번호 가지고 와서 비교하기
+		// map 생성
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("mem_name", memberVO.getMem_name());
+		map.put("phone", memberVO.getPhone());
+											
+		int count = 0; 
+		
+		List<MemberVO> list = null;
+		list = memberService.SelectIdSearch(map); // list에 id 담기				
+		if(list == null) count = 0; // 리스트가 null 이라면 count 0으로 지정 있을 경우 1
+		if(list != null) count = 1; // 리스트가 null 이라면 count 0으로 지정 있을 경우 1
+		
+		
+		logger.debug("<<전체 판매 신청 리스트>> : " + list);
+								
+		// 전달 객체
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("memberIdSearchResult"); // 타일스 식별자
+		mav.addObject("count", count);
+		mav.addObject("list", list);
+								
+		return mav;
+	}
+	
+	// 로그인 - 비밀번호 찾기
+	
 	//로그아웃
 	@RequestMapping("/member/logout.do")
 	public String processLogout(HttpSession session) {
@@ -563,6 +605,7 @@ public class MemberController {
 	public String sellerApplicationProcess(@Valid MemberBuisVO memberBuisVO, 
 														BindingResult result, HttpSession session) {
 		Integer user_num = (Integer)session.getAttribute("user_num");
+		
 		// 유효성 검사 결과 오류가 있으면 폼 호출
 		if(result.hasErrors()) {
 			logger.debug("<<판매자 신청 오류 : >>" + result.toString());
