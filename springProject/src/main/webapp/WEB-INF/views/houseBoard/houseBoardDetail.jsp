@@ -20,7 +20,6 @@
 		// ========== 추천 버튼 ========== //
 		var house_num = $('#house_num').val();
 		
-		alert(house_num);
 		// 추천 버튼 클릭시 추천 또는 제거
 		$(document).on('click','.heart-btn',function() {
 			$.ajax({
