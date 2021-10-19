@@ -227,9 +227,9 @@ public class QnaController {
 			if(result.hasErrors()) {
 				return serviceBoardInsertForm();
 			}
+			//회원번호를 세팅
 			Integer user_num = (Integer)session.getAttribute("user_num");
 			if(user_num!=null) {
-				//회원번호를 세팅
 				serviceboard.setMem_num(user_num);
 			}
 			//글쓰기
