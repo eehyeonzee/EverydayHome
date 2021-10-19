@@ -1,6 +1,7 @@
 package kr.spring.serviceBoard.vo;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -22,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 	private String service_nickname;	//닉네임
 	@NotEmpty
 	private String service_content;		//내용
+	private String service_reply;		//답변 내용
 	@Email
 	@NotEmpty
 	private String service_email;		//이메일
@@ -103,14 +105,30 @@ import org.springframework.web.multipart.MultipartFile;
 		this.service_file = service_file;
 	}
 
+	
+	public String getService_reply() {
+		return service_reply;
+	}
+
+	public void setService_reply(String service_reply) {
+		this.service_reply = service_reply;
+	}
+
 	// ***(주의)*** 프로퍼티 타입이 byte[]인 것은 항목에서 제외해야 함
 	@Override
 	public String toString() {
 		return "ServiceBoardVO [service_num=" + service_num + ", service_title=" + service_title + ", service_nickname="
-				+ service_nickname + ", service_content=" + service_content + ", service_email=" + service_email
-				+ ", service_keyword=" + service_keyword + ", service_filename=" + service_filename + "]";
+				+ service_nickname + ", service_content=" + service_content + ", service_reply=" + service_reply
+				+ ", service_email=" + service_email + ", service_keyword=" + service_keyword + ", service_filename="
+				+ service_filename + ", getService_num()=" + getService_num() + ", getService_title()="
+				+ getService_title() + ", getService_nickname()=" + getService_nickname() + ", getService_content()="
+				+ getService_content() + ", getService_email()=" + getService_email() + ", getService_keyword()="
+				+ getService_keyword() + ", getService_filename()=" + getService_filename() + ", getService_file()="
+				+ Arrays.toString(getService_file()) + ", getService_reply()=" + getService_reply() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 
+	
 	
 	
 	

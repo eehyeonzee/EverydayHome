@@ -262,71 +262,97 @@ public class EventController {
 		return map;
 	}
 	//댓글 목록(ajax)
-		@RequestMapping("/event/listComment.do")
-		@ResponseBody
-		public Map<String, Object> getList(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
-										  @RequestParam int event_num,
-										  HttpSession session){
-				
-			logger.debug("<<currentPage>>: " + currentPage);
-			logger.debug("<<event_num>>: " + event_num);
+	@RequestMapping("/event/listComment.do")
+	@ResponseBody
+	public Map<String, Object> getList(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
+									  @RequestParam int event_num,
+									  HttpSession session){
 			
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("event_num", event_num);
-			
-			//총 글의 개수
-			int count = eventService.selectRowCountComment(map);
-			
-			PagingUtil page = new PagingUtil(currentPage, count, rowCount, pageCount, null);
-			map.put("start", page.getStartCount());
-			map.put("end", page.getEndCount());
-			
-			List<ECommentVO> list = null;
-			if(count>0) {
-				list = eventService.selectListEComment(map);
-			}else {
-				list = Collections.emptyList();
-			}
-			Map<String, Object> mapJson = new HashMap<String, Object>();
-			mapJson.put("count", count);
-			mapJson.put("rowCount", rowCount);
-			mapJson.put("list", list);
-			
-			
-			
-			return mapJson;
-		}
+		logger.debug("<<currentPage>>: " + currentPage);
+		logger.debug("<<event_num>>: " + event_num);
 		
-		//댓글 삭제
-		@RequestMapping("/board/deleteComment.do")
-		@ResponseBody
-		public Map<String,String> deleteComment(@RequestParam int comm_num,
-				                              @RequestParam int mem_num,
-				                              HttpSession session){
-			
-			logger.debug("<<comm_num>> : " + comm_num);
-			logger.debug("<<mem_num>> : " + mem_num);
-			
-			Map<String,String> map = new HashMap<String,String>();
-			
-			Integer user_num = (Integer)session.getAttribute("user_num");
-			if(user_num == null) {
-				//로그인이 되어있지 않음
-				map.put("result", "logout");
-			}else if(user_num != null && user_num==mem_num) {
-				//로그인이 되어 있고 로그인한 아이디와 작성자 아이디가 일치
-				eventService.deleteEComment(comm_num);
-				map.put("result", "success");
-			}else {
-				//로그인 아이디와 작성자 아이디 불일치
-				map.put("result", "wrongAccess");
-			}
-			return map;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("event_num", event_num);
+		
+		//총 글의 개수
+		int count = eventService.selectRowCountComment(map);
+		
+		PagingUtil page = new PagingUtil(currentPage, count, rowCount, pageCount, null);
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
+		
+		List<ECommentVO> list = null;
+		if(count>0) {
+			list = eventService.selectListEComment(map);
+		}else {
+			list = Collections.emptyList();
 		}
-	
-	
-	
-	
+		Map<String, Object> mapJson = new HashMap<String, Object>();
+		mapJson.put("count", count);
+		mapJson.put("rowCount", rowCount);
+		mapJson.put("list", list);
+		
+		
+		
+		return mapJson;
+	}
+		
+	//댓글 삭제
+	@RequestMapping("/event/deleteComment.do")
+	@ResponseBody
+	public Map<String,String> deleteComment(@RequestParam int comm_num,
+			                              @RequestParam int mem_num,
+			                              HttpSession session){
+		
+		logger.debug("<<comm_num>> : " + comm_num);
+		logger.debug("<<mem_num>> : " + mem_num);
+		
+		Map<String,String> map = new HashMap<String,String>();
+		
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		if(user_num == null) {
+			//로그인이 되어있지 않음
+			map.put("result", "logout");
+		}else if(user_num != null && user_num==mem_num) {
+			//로그인이 되어 있고 로그인한 아이디와 작성자 아이디가 일치
+			eventService.deleteEComment(comm_num);
+			map.put("result", "success");
+		}else {
+			//로그인 아이디와 작성자 아이디 불일치
+			map.put("result", "wrongAccess");
+		}
+		return map;
+	}
+/*
+	//댓글 수정
+	@RequestMapping("/event/updateComment.do")
+	@ResponseBody
+	public Map<String,String> updateComment(ECommentVO eCommentVO,
+											HttpSession session,
+											HttpServletRequest request,
+											@RequestParam int comm_num,
+			                                @RequestParam int mem_num){
+		
+		logger.debug("<<댓글 수정>> : " + eCommentVO);
+		
+		Map<String,String> map = new HashMap<String,String>();
+		
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		if(user_num == null) {
+			//로그인이 되어있지 않음
+			map.put("result", "logout");
+		}else if(user_num != null && user_num==mem_num) {
+			//로그인이 되어 있고 로그인한 아이디와 작성자 아이디가 일치
+			eventService.updateEComment(eCommentVO);
+			map.put("result", "success");
+		}else {
+			//로그인 아이디와 작성자 아이디 불일치
+			map.put("result", "wrongAccess");
+		}
+		return map;
+	}
+*/
+
 }
 //카테고리 추가해야함 카테고리 추가후 mapper에 있는 sql수정필요 ==> 현재 다 1로 해둠
 //리스트에서 이미지파일 썸네일처럼 미리보기 추가해야함

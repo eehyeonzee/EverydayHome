@@ -20,46 +20,37 @@ public class EventServiceImpl implements EventService{
 	@Override
 	public void eventWrite(EventVO event) {
 		eventMapper.eventWrite(event);
-		
 	}
 
 	@Override
 	public int eventTotalCount() {
 		return eventMapper.eventTotalCount();
 	}
-
-
 	@Override
 	public EventVO eventDetail(int event_num) {
 		return eventMapper.eventDetail(event_num);
 	}
-
 	@Override
 	public void eventUpdate(EventVO event) {
 		eventMapper.eventUpdate(event);
 	}
-
 	@Override
 	public void eventDelete(int event_num) {
 		//댓글이 존재하면 댓글을 우선 삭제하고 부모글을 삭제
 		eventMapper.deleteECommentByEventNum(event_num);
 		eventMapper.eventDelete(event_num);
 	}
-
 	@Override
 	public List<EventVO> eventGetList(Map<String, Object> map) {
 		return eventMapper.eventGetList(map);
 	}
-
 	@Override
 	public int eventGetHits(int event_num) {
 		return eventMapper.eventGetHits(event_num);
 	}
-
 	@Override
 	public void deleteFile(Integer event_num) {
 		eventMapper.deleteFile(event_num);
-		
 	}
 	
 	//------------------댓글-------------------
@@ -68,22 +59,18 @@ public class EventServiceImpl implements EventService{
 	public List<ECommentVO> selectListEComment(Map<String, Object> map) {
 		return eventMapper.selectListEComment(map);
 	}
-
 	@Override
 	public int selectRowCountComment(Map<String, Object> map) {
 		return eventMapper.selectRowCountComment(map);
 	}
-
 	@Override
 	public void insertEComment(ECommentVO eComment) {
 		eventMapper.insertEComment(eComment);
 	}
-
 	@Override
 	public void updateEComment(ECommentVO eComment) {
 		eventMapper.updateEComment(eComment);
 	}
-
 	@Override
 	public void deleteEComment(Integer comm_num) {
 		eventMapper.deleteEComment(comm_num);

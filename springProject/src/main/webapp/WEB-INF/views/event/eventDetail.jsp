@@ -104,14 +104,11 @@ function shareTwitter() {
 			});
 			
 		}
-		
 		//다음 댓글 보기 버튼 클릭시 데이터 추가
 		$('.paging-button input').click(function(){
 			var pageNum = currentPage + 1;
 			selectData(pageNum,$('#event_num').val());
 		});
-		
-		
 		//댓글 등록
 		$('#comm_form').submit(function(event){
 			if($('#comm_content').val().trim()==''){
@@ -163,7 +160,7 @@ function shareTwitter() {
 			}else{//300자 이하인 경우
 				var remain = 300 - inputLength;
 				remain += '/300';
-				if($(this).attr('nickname') == 'comm_content'){
+				if($(this).attr('id') == 'comm_content'){
 					//등록폼 글자수
 					$('#comm_first .letter-count').text(remain);
 				}else{
@@ -222,7 +219,7 @@ function shareTwitter() {
 			$('.sub-item').show();
 			$('#mcomm_form').remove();
 		}
-		/*
+		
 		//댓글 수정
 		$(document).on("submit","#mcomm_form", function(event){
 			if($("#mcomm_content").val().trim() == ""){
@@ -264,46 +261,43 @@ function shareTwitter() {
 			// 기본 이벤트 제거하는 부분    이거는 꼭 넣어주어야 한다. 이게 빠지면 서밋이 되버림
 			event.preventDefault();
 		});
-		*/
+		
 		
 		//댓글 삭제
 		$(document).on('click','.delete-btn',function(){
 			//확인 / 취소 선택창
 			var check = confirm('삭제하시겠습니까?');
 			if(check){
+				//댓글 번호
+				var comm_num = $(this).attr('data-num');
+				//작성자 회원 번호
+				var mem_num = $(this).attr('data-mem');
 				
-			//댓글 번호
-			var comm_num = $(this).attr('data-num');
-			//작성자 회원 번호
-			var mem_num = $(this).attr('data-mem');
-			
-			$.ajax({
-				type:'post',
-				url:'deleteComment.do',
-				data:{comm_num:comm_num,mem_num:mem_num},
-				dataType:'json',
-				cache:false,
-				timeout:30000,
-				success:function(param){
-					if(param.result == 'logout'){
-						alert('로그인해야 삭제할 수 있습니다.');
-					}else if(param.result == 'success'){
-						alert('삭제 완료!');
-						selectData(1,$('#event_num').val());
-					}else if(param.result == 'wrongAccess'){
-						alert('타인의 글을 삭제할 수 없습니다.');
-					}else{
-						alert('댓글 삭제시 오류 발생');
+				$.ajax({
+					type:'post',
+					url:'deleteComment.do',
+					data:{comm_num:comm_num,mem_num:mem_num},
+					dataType:'json',
+					cache:false,
+					timeout:30000,
+					success:function(param){
+						if(param.result == 'logout'){
+							alert('로그인해야 삭제할 수 있습니다.');
+						}else if(param.result == 'success'){
+							alert('삭제 완료!');
+							selectData(1,$('#event_num').val());
+						}else if(param.result == 'wrongAccess'){
+							alert('타인의 글을 삭제할 수 없습니다.');
+						}else{
+							alert('댓글 삭제시 오류 발생');
+						}
+					},
+					error:function(request,status,error){		// 에러메세지 반환
+						alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
 					}
-				},
-				error:function(request,status,error){		// 에러메세지 반환
-					alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
-				}
-			});
-			}else{
-				
+				});
+				}else{
 			}
-			
 		});
 		//초기 데이터(목록) 호출
 		selectData(1,$('#event_num').val());

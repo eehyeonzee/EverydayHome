@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+<script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 .name-item{
 	align-items: center;
@@ -77,7 +79,7 @@ h2{
  		</div>
  		</c:if>
  	
- 		<c:if test="${count==0}">
+ <%-- 		<c:if test="${count==0}">
  		<div class="link-item" style="font-family: 'Gowun Dodum', sans-serif;">출력할 내용이 없습니다</div>
  		</c:if>
  		<c:if test="${count>0}">
@@ -91,12 +93,12 @@ h2{
  			</div>
  		</div>
  		</c:forEach>
- 		</c:if>
+ 		</c:if> --%>
  		 
-<%--  		
-		카드시작
+  		
+		<!-- 카드시작 -->
       <div class="row my-5 ml-5 mr-5">
-      등록된 게시물이 없는 경우
+      <!-- 등록된 게시물이 없는 경우 -->
       <c:if test="${ count == 0 }">
       		<div align="center">
       			등록된 게시물이 없습니다.
@@ -105,7 +107,7 @@ h2{
       
       
       <!-- 카드 부분 -->
-      게시물이 있는 경우
+      <!-- 게시물이 있는 경우 -->
         <c:if test="${ count > 0 }">
         <!-- 반복문 시작 -->
         	<c:forEach var="list" items="${ list }">
@@ -118,11 +120,11 @@ h2{
 	            <div class="card-header">
 	             <b style="font-size: 17px">관리자</b>
 	            </div>
-	            사진파일이 없는 경우
+	            <!-- 사진파일이 없는 경우 -->
 	            <c:if test="${ empty list.event_filename }">
-	            	<img src="${pageContext.request.contextPath}/images/basic.jpg" style="height: 270px;" />
+	            	<img src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="height: 270px;" />
 	            </c:if>
-	            사진파일이 있는 경우
+	            <!-- 사진파일이 있는 경우 -->
 	            <c:if test="${ !empty list.event_filename }">
 	            	<img src="${pageContext.request.contextPath}/upload/${ list.event_filename }" style="height: 270px;" />
 	            </c:if>
@@ -141,7 +143,7 @@ h2{
 	    <!-- 반복문 끝 -->
         </c:if>
         <!-- 카드끝 -->
- 		 --%>
+ 		 
  		
  		<div class="paging">
  			<span>${pagingHtml}</span>
@@ -149,3 +151,4 @@ h2{
  	</div>
  </div>
  </div>
+</div>
