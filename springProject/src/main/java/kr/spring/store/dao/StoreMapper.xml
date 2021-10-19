@@ -54,8 +54,7 @@
             <if test = "thumbnail_filename != ''"> 
             thumbnail_img = #{thumbnail_img}, thumbnail_filename = #{thumbnail_filename}, 
             </if>
-            prod_quan = #{prod_quan},
-			add_product = #{add_product}, prod_keyword = #{prod_keyword}, prod_cate = #{prod_cate}
+            prod_quan = #{prod_quan}, prod_keyword = #{prod_keyword}, prod_cate = #{prod_cate}
          WHERE prod_num = #{prod_num}
   	</update>
 </mapper>
