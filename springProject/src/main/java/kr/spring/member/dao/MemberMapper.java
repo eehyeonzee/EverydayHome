@@ -20,6 +20,7 @@ import kr.spring.member.vo.MemberVO;
  * @작성자       : 오상준
  * @프로그램 설명 : 회원 DAO 부분
  */
+
 public interface MemberMapper {
 	@Select("SELECT member_seq.nextval FROM dual")	
 	public int seleceMem_num();							// 회원번호 시퀀스 생성
@@ -51,12 +52,15 @@ public interface MemberMapper {
 	public void updateMemberPasswd(MemberVO member); // 마이페이지 - 회원 비밀번호 변경
 	
 	@Update("UPDATE member SET mem_auth=0 WHERE mem_num = #{mem_num}")
-	public void deleteMember(Integer mem_num);		// 마이페이지 - 회원 삭제(등급 0 변경)
+	public void deleteMember(Integer mem_num);			// 마이페이지 - 회원 삭제(등급 0 변경)
 	@Delete("DELETE FROM mem_detail WHERE mem_num = #{mem_num}")
 	public void deleteMemberDetail(Integer mem_num);		// 마이페이지 - 회원상세정보 삭제
 	@Insert("INSERT INTO buis_detail (buis_count, mem_num, buis_num, ceo_name, buis_name, buis_item, opening_date, buis_zipcode, buis_address1, buis_address2) VALUES (buis_detail_seq.nextval, #{mem_num}, #{buis_num}, #{ceo_name}, #{buis_name}, #{buis_item}, #{opening_date}, #{buis_zipcode}, #{buis_address1}, #{buis_address2})")
 	public void insertSeller(MemberBuisVO memberBuisVO);		// 마이페이지 판매자 정보 등록
-
+	@Select("select count(*) from buis_detail where mem_num = #{mem_num}")
+	public int selectCountSeller(Integer mem_num);		// 마이페이지 판매자 신청 및 등록 내역 체크
+	
+	
 	public List<MemberVO> selectMemberList(Map<String, Object> map);	// 관리자 페이지 - 회원 정보 전체 출력
 	public int selectMemberCount(Map<String, Object> map);			// 관리자 페이지 - 회원 전체 수 구하기
 	@Update("UPDATE member SET mem_auth = 1 WHERE mem_num=#{mem_num}")
