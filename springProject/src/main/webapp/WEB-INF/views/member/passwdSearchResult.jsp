@@ -4,7 +4,7 @@
 <%-- 
  * 작성일 : 2021. 10. 19.
  * 작성자 : 오상준
- * 설명 : 아이디 찾기 결과
+ * 설명 : 비밀번호 찾기 결과 창
  * 수정일 : 
 --%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
@@ -15,32 +15,19 @@
 	<div align = "left">
 		<h3>아이디 찾기 결과</h3>
 	</div>
-	<%-- 아이디찾기 실패시 --%>
-	<c:if test = "${count == 0}">
-	<div class = "text-center">
-		정보가 일치하지 않습니다.
-	</div>
-	</c:if>
-	<%-- 아이디 찾기 성공시 --%>
-	<c:if test = "${count > 0}">
-		
+	<%-- 비밀번호 찾기 성공시 --%>
 		<br>
 	<table class="table table-sm">
 			<tr>
-				<th scope="col"><div align="center">회원님의 아이디는</div></th>
+				<th scope="col"><div align="center">${id} 님의 비밀번호 찾기 결과</div></th>
 			</tr>
-			<c:forEach var = "member" items = "${list}">
 			<tr>
 				<td align="center"> 
-				<div align="center" style="font-weight:bold; font-size:24px; background-color: #f5f5ff; width :60%; height: 60%;">
-				${member.mem_id}</div></td>
-			</tr>
-			</c:forEach>
-			<tr>
-				<th scope="col"><div align="center">입니다.</div></th>
+				<div align="center" style="font-size:18px; background-color: #f5f5ff; width :60%; height: 60%;">
+				 <b style="font-size: 24px;">${id}</b>님!! 입력하신 이메일 <b style="font-size: 24px; color: red;">(${email})</b>로 <br>임시 비밀번호를 보내드렸습니다!!<br>
+				언제나 저희 매일의 홈을 이용해주셔서 감사합니다.</div></td>
 			</tr>
 		</table>
-	</c:if>
 	<div class = "text-right">
 			<input type = "button" class = "btn btn-outline-dark" value = "뒤로 가기" onclick = "history.go(-1);">
 			<input type = "button" class = "btn btn-outline-dark" value = "홈으로" onclick = "location.href='${pageContext.request.contextPath}/main/main.do'">

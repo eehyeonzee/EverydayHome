@@ -4,51 +4,43 @@
 <%-- 
  * 작성일 : 2021. 10. 19.
  * 작성자 : 오상준
- * 설명 : 아이디 찾기 폼
+ * 설명 : 비밀번호 찾기 폼
  * 수정일 : 
 --%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<script type ="text/javascript">
-	$(document).ready(function() {
-		// submit 버튼 클릭시 유효성 체크
-		$("#idSearch_form").submit(function(){
-			if($("#mem_name").val().trim() == ""){		// 이름 입력 체크
-				alert("이름을 입력하세요!!");
-				$("#mem_name").val("").focus();
-				return false;	// 서밋은 false 클릭은 ;
-			}
-			if($("#phone").val().trim() == ""){		// 전화번호 입력 체크
-				alert("전화번호를 입력하세요!!");
-				$("#phone").val("").focus();
-				return false;	// 서밋은 false 클릭은 ;
-			}
-		});
-	});
-</script>
 <div class = "container-fluid" style = "width:700px; font-family: 'Gowun Dodum', sans-serif; ">
 	<div align = "left">
-			<h3>아이디 찾기</h3>
+			<h3>비밀번호 찾기</h3>
 	</div>
 	<div class="text-center col-sm-14 my-5">
-	<form:form id="idSearch_form" action="idSearchResult.do" modelAttribute="memberVO">
+	<form:form id="passwdSearch_form" action="passwdSearchResult.do" modelAttribute="memberVO">
+		<form:errors element="div" align="left" cssClass="error-color"/>
 		<div class = "form-group row">
-				<label class = "col-sm-2 col-form-label" for="mem_name">가입시 입력 이름</label>
-				<form:input class = "col-sm-4 form-control" path="mem_name"/>
+				<label class = "col-sm-2 col-form-label" for=mem_id>아이디</label>
+				<form:input class = "col-sm-4 form-control" path="mem_id" placeholder="Ex)4자이상 12자이하"/>
+				<form:errors path="mem_id" cssClass="error-color"/>
 		</div>
 		<div class = "form-group row">
-				<label class = "col-sm-2 col-form-label" for="phone">가입시 입력 전화번호</label>
-				<form:input class = "col-sm-4 form-control" path="phone"/>
+				<label class = "col-sm-2 col-form-label" for="phone">전화번호</label>
+				<form:input class = "col-sm-4 form-control" path="phone" placeholder="Ex)010-1234-5678"/>
+				<form:errors path="phone" cssClass="error-color"/>
+		</div>
+		<div class = "form-group row">	
+				<label class = "col-sm-2 col-form-label" for="email">이메일&nbsp;</label>
+				<form:input class = "col-sm-4 form-control" path="email" placeholder="Ex)everyHome@every.com"/>
+				<form:errors path="email" cssClass="error-color"/>
 		</div>
 		<div class = "form-group row" style="padding-left: 3em;">
-			<form:button class = "btn btn-outline-info">아이디 찾기</form:button>&nbsp;
-			<input type = "button" class = "btn btn-outline-info" value = "비밀번호찾기" onclick = "location.href='${pageContext.request.contextPath}/member/passwdSearch.do'">&nbsp;
+			<form:button class = "btn btn-outline-info">비밀번호 찾기</form:button>&nbsp;
+			<input type = "button" class = "btn btn-outline-info" value = "아이디찾기" onclick = "location.href='${pageContext.request.contextPath}/member/idSearch.do'">&nbsp;
 			<input type = "button" class = "btn btn-outline-dark" value = "로그인으로" onclick = "location.href='${pageContext.request.contextPath}/member/login.do'">&nbsp;
 			<input type = "button" class = "btn btn-outline-dark" value = "회원가입으로" onclick = "location.href='${pageContext.request.contextPath}/member/registerUser.do'">
 		</div>
+	</div>
 	</form:form><br>
 	
-	</div>
 </div>
+

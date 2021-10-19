@@ -27,7 +27,7 @@ public interface MemberMapper {
 	public void insertMember(MemberVO member);			// 회원(member)테이블에 생성
 	@Insert("INSERT INTO mem_detail (mem_num,mem_name,passwd,phone,email,zipcode,address1,address2,nickname) VALUES (#{mem_num}, #{mem_name}, #{passwd}, #{phone}, #{email}, #{zipcode}, #{address1}, #{address2}, #{nickname})")
 	public void insertMember_datail(MemberVO member);	// 회원가입 - 회원 상세 테이블
-	@Select("SELECT m.mem_num,m.mem_id,m.mem_auth,d.passwd,d.profile,d.email, d.nickname FROM member m LEFT OUTER JOIN mem_detail d ON m.mem_num=d.mem_num WHERE m.mem_id=#{mem_id}")
+	@Select("SELECT m.mem_num,m.mem_id,m.mem_auth,d.passwd,d.profile,d.email, d.nickname, d.phone FROM member m LEFT OUTER JOIN mem_detail d ON m.mem_num=d.mem_num WHERE m.mem_id=#{mem_id}")
 	public MemberVO selectCheckMember(String mem_id);	// 회원가입 중복체크 - 회원존재 여부 체크
 	
 	@Select("SELECT m.mem_id FROM member m JOIN mem_detail d ON m.mem_num=d.mem_num WHERE d.mem_name = #{mem_name} AND d.phone = #{phone}")
@@ -44,9 +44,11 @@ public interface MemberMapper {
 	@Select("SELECT count(*) FROM house_board WHERE mem_num = #{mem_num}")
 	public int selectGetHouseBoardCount(Integer mem_num);	// 마이페이지 - 작성글 수 구하기
 	@Update("UPDATE mem_detail SET profile=#{profile},profile_filename=#{profile_filename} WHERE mem_num=#{mem_num}") // 프로필 이미지 업데이트
-	public void updateProfile(MemberVO member);		// 마이페이지 - 프로필 사진 업데이트
+	public void updateProfile(MemberVO member);		 // 마이페이지 - 프로필 사진 업데이트
 	@Update("UPDATE mem_detail SET mem_name = #{mem_name}, nickname = #{nickname}, phone = #{phone}, email = #{email}, zipcode = #{zipcode}, address1 = #{address1}, address2 = #{address2} WHERE mem_num = #{mem_num}")
-	public void updateMember(MemberVO member);		// 마이페이지 - 회원 정보 수정
+	public void updateMember(MemberVO member);		 // 마이페이지 - 회원 정보 수정
+	@Update("UPDATE mem_detail SET passwd = #{passwd} WHERE mem_num=#{mem_num}")
+	public void updateMemberPasswd(MemberVO member); // 마이페이지 - 회원 비밀번호 변경
 	
 	@Update("UPDATE member SET mem_auth=0 WHERE mem_num = #{mem_num}")
 	public void deleteMember(Integer mem_num);		// 마이페이지 - 회원 삭제(등급 0 변경)

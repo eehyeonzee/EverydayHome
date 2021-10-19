@@ -118,6 +118,10 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberVO> SelectIdSearch(Map<String, Object> map) {
 		return memberMapper.SelectIdSearch(map);
 	}
+	@Override
+	public void updateMemberPasswd(MemberVO member) {
+		memberMapper.updateMemberPasswd(member);
+	}
 	
 	
 }

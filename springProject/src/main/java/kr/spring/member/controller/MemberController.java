@@ -131,7 +131,7 @@ public class MemberController {
         		"매일의 홈 이메일 인증번호 인증번호는 : <b style='font-size : 13px; color: red;'>" + emailCheckCode + "</b>입니다." +
         		"<br><br>" +
         		"해당 인증 번호를 확인란에 입력해주세요.";
-        String fromEmail = "springtest1010@gmail.com";
+        String fromEmail = "매일의 홈 <springtest1010@gmail.com>";
         String toEmail = email;
         
         try {
@@ -153,8 +153,8 @@ public class MemberController {
             mailHelper.setSubject(title);
             mailHelper.setText(content, true);	// 단순한 텍스트만 사용
             // true는 html을 사용하겠다는 의미.
-            
             // html 불허용 : mailHelper.setText(content);
+
             mailSender.send(mail);		// 메일 전송
             
         } catch(Exception e) {
@@ -368,6 +368,95 @@ public class MemberController {
 		return mav;
 	}
 	
+	// 비밀번호 찾기 - 폼호출
+	@GetMapping("/member/passwdSearch.do")
+	public String passwdSerchForm() {
+		logger.debug("<<비밀번호 찾기 진입>>");
+		
+		return "memberPasswdSearch";	// 타일스 식별자
+	}
+	
+	// 비밀번호 찾기 - 데이터 처리
+	@PostMapping("/member/passwdSearchResult.do")
+	public ModelAndView passwdSerchResult(@Valid MemberVO memberVO,BindingResult result) {
+		
+		logger.debug("<<비밀번호 찾기 홈처리 데이터 확인>> : " + memberVO);
+		ModelAndView mav = new ModelAndView();
+		//유효성 체크 결과 오류가 있으면 폼 호출
+		//id와 passwd 필드만 체크
+		if(result.hasFieldErrors("mem_id") || result.hasFieldErrors("phone") || result.hasFieldErrors("email")) {
+			mav.setViewName("memberPasswdSearch");
+			return mav;
+		}
+			
+		//로그인 체크(id,phone,email 일치 여부 체크)
+		try {
+			// 새로운 자바빈 객체에 담기								// 입력된 ID
+			MemberVO member = memberService.selectCheckMember(memberVO.getMem_id());	// 입력된 ID를 토대로 회원 정보 담기	
+			// 입력 아이디 넣어서 생성 존재하지 않다면 null
+			
+			boolean check = false;
+				
+			if(member!=null) {	//아이디 일치한 경우 이메일과 전화번호 인증 작업
+				if(member.getEmail().equals(memberVO.getEmail()) && member.getPhone().equals(memberVO.getPhone())) {
+					// 입력한 email과 phone가 DB에 저장된 회원 정보(email, phone)와 같은 경우
+					check = true;
+					
+				}
+			}
+			
+			if(check) {	//인증 성공, 로그인 처리
+				// JAVA Random 객체를 사용하여 숫자 + 문자 8자리 난수 생성
+		       String emailCheckCode = excuteGenerate();
+		       logger.info("인증번호 : " + emailCheckCode);
+		     try {  
+		       // 이메일 내용 작성
+		       String title = "매일의 홈 비밀번호 찾기 이메일 입니다.";	
+			   String content = "홈페이지를 방문해주셔서 정말 감사합니다." +
+			       		"<br><br>" +
+			       		"회원님의 임시 비밀번호는 : <b style='font-size : 13px; color: red;'>" + emailCheckCode + "</b>입니다." +
+			       		"<br><br>" +
+			       		"해당 비밀번호로 로그인 후 비밀번호 변경을 반드시 해주세요!! 감사합니다.";
+			    String fromEmail = "매일의 홈 <springtest1010@gmail.com>";
+			    String toEmail = memberVO.getEmail();
+		        
+			    MimeMessage mail = mailSender.createMimeMessage();
+		        MimeMessageHelper mailHelper = new MimeMessageHelper(mail,"UTF-8");
+		         
+		        mailHelper.setFrom(fromEmail);		// 보내는이
+		        mailHelper.setTo(toEmail);			// 메일 받는이
+		        mailHelper.setSubject(title);		// 메일 제목
+		        mailHelper.setText(content, true);	// 단순한 텍스트만 사용
+		         
+		        mailSender.send(mail);		// 메일 전송
+			    
+		        // View 및 Model 설정
+		        mav.addObject("id", memberVO.getMem_id());
+		        mav.addObject("email", memberVO.getEmail());
+		        mav.setViewName("memberPasswdSearchResult");
+		        
+		        // 회원 비밀번호 변경
+		        member.setPasswd(emailCheckCode); 		// 생성한 난수 코드 비밀번호 지정
+				memberService.updateMemberPasswd(member);
+		        
+				return mav;
+			} catch(Exception e) {
+				result.reject("invalidSearchPassword");
+				mav.setViewName("memberPasswdSearch");
+				return mav;
+	        }
+		     	
+			}else {
+				//인증 실패
+				throw new AuthCheckException();
+			}
+		}catch(AuthCheckException e) {
+				//인증 실패로 메시지 생성 및 로그인 폼 호출
+			result.reject("invalidSearchPassword");
+			mav.setViewName("memberPasswdSearch");
+			return mav;
+	}
+}
 	// 로그인 - 비밀번호 찾기
 	
 	//로그아웃
@@ -513,6 +602,10 @@ public class MemberController {
 			result.rejectValue("now_passwd", "invalidPassword");
 			return memberPasswdUpdateForm();
 		}
+		
+		// 비밀번호 변경
+		memberVO.setMem_num(user_num);
+		memberService.updateMemberPasswd(memberVO);
 		
 		return "redirect:/member/myPage.do";
 	}
