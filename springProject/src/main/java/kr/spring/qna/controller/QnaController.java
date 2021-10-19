@@ -313,55 +313,47 @@ public class QnaController {
 		
 		//이메일 전송
 		@GetMapping("/qna/mailCheck.do")
-		@PostMapping("/qna/mailCheck.do")
-		public String sendMail(String service_email,String service_reply, HttpServletRequest request, Model model) throws Exception{
+		@ResponseBody	//ajax처리를 위한 어노테이션
+		public void sendMail(String service_email, String service_reply)throws Exception{
 			
 			/* 뷰(View)로부터 넘어온 데이터 확인 */
-			log.info("이메일 데이터 전송 확인");
-			log.info("이메일 : " + service_email);
-			
-			
-			//View에 표시할 메시지
-			model.addAttribute("message","이메일 전송완료!!");
-			//이동할 경로
-			model.addAttribute("url", request.getContextPath()+"/qna/serviceBoardList.do");
-			
-			String title = "Re: 매일의 홈에 문의 주셔서 감사합니다.";	
-			String content = "문의 내용 확인하였습니다" + service_reply;
-			
-			String fromEmail = "springtest1010@gmail.com";
-			String toEmail = service_email;
-			
-			
-			try {
-				MimeMessage mail = mailSender.createMimeMessage();
-				MimeMessageHelper mailHelper = new MimeMessageHelper(mail,"UTF-8");
-				
-				/*
-				 * Multipart 기능을 사용하기 위해서는 아래의 코드로 사용 가능 
-				 * MimeMessageHelper mailHelper = new MimeMessageHelper(mail,true,"UTF-8");
-				 * true는 멀티파트 메세지를 사용하겠다는 의미
-				 */
-				
-				mailHelper.setFrom(fromEmail);	// 보내는이
-				// 빈에 아이디 설정한 것은 단순히 smtp 인증을 받기 위해 사용 따라서 보내는이(setFrom())반드시 필요
-				// 보내는이와 메일주소를 수신하는이가 볼때 모두 표기 되게 원하신다면 아래의 코드를 사용
-				//mailHelper.setFrom("보내는이 이름 <보내는이 아이디@도메인주소>");
-				mailHelper.setTo(toEmail);
-				mailHelper.setSubject(title);
-				mailHelper.setText(content, true);	// 단순한 텍스트만 사용
-				// true는 html을 사용하겠다는 의미.
-				
-				// html 불허용 : mailHelper.setText(content);
-				mailSender.send(mail);		// 메일 전송
-				
-			} catch(Exception e) {
-				e.printStackTrace();
-			}
-			
-			return "redirect:/qna/serviceBoardList.do";
-		}
-		
-		
-}
+		       log.info("이메일 데이터 전송 확인");
+		       log.info("이메일 : " + service_email);
+		       
+		       String title = "Re: 매일의 홈에 문의 주셔서 감사합니다.";	
+		       String content = "문의 내용 확인하였습니다" +service_reply;
+		       
+		       String fromEmail = "springtest1010@gmail.com";
+		       String toEmail = service_email;
+			        
+			        
+		       try {
+		           MimeMessage mail = mailSender.createMimeMessage();
+		           MimeMessageHelper mailHelper = new MimeMessageHelper(mail,"UTF-8");
+		           
+		           
+		           /*
+		            * Multpart 기능을 사용하기 위해서는 아래의 코드로 사용 가능 
+		            * MimeMessageHelper mailHelper = new MimeMessageHelper(mail,true,"UTF-8");
+		            * true는 멀티파트 메세지를 사용하겠다는 의미
+		            */
+		           
+		           mailHelper.setFrom(fromEmail);	// 보내는이
+		           // 빈에 아이디 설정한 것은 단순히 smtp 인증을 받기 위해 사용 따라서 보내는이(setFrom())반드시 필요
+		           // 보내는이와 메일주소를 수신하는이가 볼때 모두 표기 되게 원하신다면 아래의 코드를 사용
+		           //mailHelper.setFrom("보내는이 이름 <보내는이 아이디@도메인주소>");
+		           mailHelper.setTo(toEmail);
+		           mailHelper.setSubject(title);
+		           mailHelper.setText(content, true);	// 단순한 텍스트만 사용
+		           // true는 html을 사용하겠다는 의미.
+		           
+		           // html 불허용 : mailHelper.setText(content);
+		           mailSender.send(mail);		// 메일 전송
+		           
+		       } catch(Exception e) {
+		           e.printStackTrace();
+		       }
+		       
+		   }
 
+}

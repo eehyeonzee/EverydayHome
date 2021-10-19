@@ -37,6 +37,7 @@ public interface EventMapper {
 	@Insert("INSERT INTO comments (comm_num, comm_content, event_num, mem_num) VALUES (comments_seq.nextval,#{comm_content},#{event_num},#{mem_num})")
 	public void insertEComment(ECommentVO eComment);
 	public void updateEComment(ECommentVO eComment);
+	@Delete("DELETE FROM comments WHERE comm_num=#{comm_num}")
 	public void deleteEComment(Integer comm_num);
 	//부모글 삭제시 댓글이 존재하면 부모글 삭제 전 댓글 삭제
 	@Delete("DELETE FROM comments WHERE event_num=#{event_num}")

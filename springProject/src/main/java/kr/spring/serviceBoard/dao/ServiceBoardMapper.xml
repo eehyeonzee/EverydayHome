@@ -3,6 +3,63 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 <mapper namespace="kr.spring.serviceBoard.dao.ServiceBoardMapper">
+<select id="getServiceBoardList" parameterType="map" resultType="serviceBoardVO">
+		SELECT
+		  *
+		FROM (SELECT 
+		        a.*,
+		        rownum rnum
+		      FROM (SELECT 
+		              b.service_num,
+		              <![CDATA[
+		              REPLACE(REPLACE(b.service_keyword,'<','&lt;'),'>','&gt;') service_keyword,
+		              ]]>
+		              b.service_nickname,
+		              b.service_content,
+		              b.service_email,
+		              b.mem_num
+		            FROM service_board b JOIN member m ON b.mem_num = m.mem_num
+		            <where>
+		            	<if test="keyword != '' and keyfield == 0">
+		            		b.service_keyword LIKE '%' || #{keyword} || '%'
+		            	</if>
+		            	<if test="keyword != '' and keyfield == 1">
+		            		b.service_keyword LIKE '%' || #{keyword} || '%'
+		            	</if>
+		            	<if test="keyword != '' and keyfield == 2">
+		            		m.service_keyword LIKE '%' || #{keyword} || '%'
+		            	</if>
+		            	<if test="keyword != '' and keyfield == 3">
+		            		b.service_keyword LIKE '%' || #{keyword} || '%'
+		            	</if>
+		            	<if test="keyword != '' and keyfield == 4">
+		            		b.service_keyword LIKE '%' || #{keyword} || '%'
+		            	</if>
+		            	<if test="keyword != '' and keyfield == 5">
+		            		b.service_keyword LIKE '%' || #{keyword} || '%'
+		            	</if>
+		            	<if test="keyword != '' and keyfield == 6">
+		            		b.service_keyword LIKE '%' || #{keyword} || '%'
+		            	</if>
+		            	<if test="keyword != '' and keyfield == 7">
+		            		b.service_keyword LIKE '%' || #{keyword} || '%'
+		            	</if>
+		            	<if test="keyword != '' and keyfield == 8">
+		            		b.service_keyword LIKE '%' || #{keyword} || '%'
+		            	</if>
+		            	<if test="keyword != '' and keyfield == 9">
+		            		b.service_keyword LIKE '%' || #{keyword} || '%'
+		            	</if>
+		            	<if test="keyword != '' and keyfield == 10">
+		            		b.service_keyword LIKE '%' || #{keyword} || '%'
+		            	</if>
+		            </where>
+		            ORDER BY b.service_num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}  
+		]]>
+	</select>
+
 
 	<select id="selectRowCount" parameterType="map" resultType="integer">
 		SELECT

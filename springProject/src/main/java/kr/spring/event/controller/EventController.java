@@ -294,6 +294,33 @@ public class EventController {
 			
 			
 			
+			return mapJson;
+		}
+		
+		//댓글 삭제
+		@RequestMapping("/board/deleteComment.do")
+		@ResponseBody
+		public Map<String,String> deleteComment(@RequestParam int comm_num,
+				                              @RequestParam int mem_num,
+				                              HttpSession session){
+			
+			logger.debug("<<comm_num>> : " + comm_num);
+			logger.debug("<<mem_num>> : " + mem_num);
+			
+			Map<String,String> map = new HashMap<String,String>();
+			
+			Integer user_num = (Integer)session.getAttribute("user_num");
+			if(user_num == null) {
+				//로그인이 되어있지 않음
+				map.put("result", "logout");
+			}else if(user_num != null && user_num==mem_num) {
+				//로그인이 되어 있고 로그인한 아이디와 작성자 아이디가 일치
+				eventService.deleteEComment(user_num);
+				map.put("result", "success");
+			}else {
+				//로그인 아이디와 작성자 아이디 불일치
+				map.put("result", "wrongAccess");
+			}
 			return map;
 		}
 	

@@ -22,7 +22,7 @@ public interface ServiceBoardMapper {
 	
 	public int selectRowCount(Map<String,Object> map);
 	
-	@Select("SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM service_board ORDER BY service_num DESC)a) WHERE rnum >= #{start} AND rnum <= #{end}")
+	//@Select("SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM service_board ORDER BY service_num DESC)a) WHERE rnum >= #{start} AND rnum <= #{end}")
 	public List<ServiceBoardVO> getServiceBoardList(Map<String, Object> map);
 	
 	@Select("SELECT * FROM service_board b JOIN member m ON b.mem_num=m.mem_num WHERE b.service_num = #{service_num}")
