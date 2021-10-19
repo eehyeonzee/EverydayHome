@@ -80,7 +80,7 @@ min-height: 500px;
 			</li>
 			</li>
 			<li>
-				<label for="upload">이미지 파일</label>
+				<label for="upload">썸네일 파일</label>
 				<input type="file" name="upload" id="upload" accept="image/gif,image/png,image/jpeg">
 				<c:if test="${!empty eventVO.event_filename}">
 					<br>
@@ -101,8 +101,8 @@ min-height: 500px;
 										cache: false,
 										timeout: 30000,
 										success: function(param) {
-											if(param.result == 'wrongauth') {
-												alert('올바르지않은권한!');
+											if(param.result == 'logout') {
+												alert('로그인 후 사용하세요');
 											}else if(param.result == 'success') {
 												$('#file_detail').hide();
 											}else {

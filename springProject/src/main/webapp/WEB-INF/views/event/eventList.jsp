@@ -48,6 +48,20 @@ h2{
 	margin : 40px 100px 0px 30px;
 }
 </style>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		// 카드형 게시물 110글자 초과시 ... 처리
+		$('.box').each(function(){
+			var content = $(this).children('.content');
+			var content_txt = content.text();
+			var content_txt_short = content_txt.substring(0,110)+"...";
+			if(content_txt.length >= 110){
+				content.html(content_txt_short);
+            }
+        });
+	});
+</script>
 <div class="container"> 
  <div class="main-container">
  	<div class="name-item" align="center">
@@ -60,7 +74,7 @@ h2{
  		</div>
  		</c:if>
  	
- 		<c:if test="${count==0}">
+<%--  		<c:if test="${count==0}">
  		<div class="link-item" style="font-family: 'Gowun Dodum', sans-serif;">출력할 내용이 없습니다</div>
  		</c:if>
  		<c:if test="${count>0}">
@@ -75,10 +89,61 @@ h2{
  		</div>
  		</c:forEach>
  		</c:if>
+ 		 --%>
+ 		
+		<%-- 카드시작 --%>
+      <div class="row my-5 ml-5 mr-5">
+      <%-- 등록된 게시물이 없는 경우 --%>
+      <c:if test="${ count == 0 }">
+      		<div align="center">
+      			등록된 게시물이 없습니다.
+      		</div>
+      </c:if>
+      
+      
+      <!-- 카드 부분 -->
+      <%-- 게시물이 있는 경우 --%>
+        <c:if test="${ count > 0 }">
+        <!-- 반복문 시작 -->
+        	<c:forEach var="list" items="${ list }">
+	       	<div class="col-3">
+	            <b>No. ${ list.event_num }</b> 
+	            <span style="float: right; font-size: 14px;">
+	            <b style="font-size: 14px; color: red;"></b> 조회 ${ list.event_hits }
+	            </span>
+	          <div class="card" style="height: 540px;">
+	            <div class="card-header">
+	             <b style="font-size: 17px">관리자</b>
+	            </div>
+	            <%-- 사진파일이 없는 경우 --%>
+	            <c:if test="${ empty list.event_filename }">
+	            	<img src="${pageContext.request.contextPath}/images/basic.jpg" style="height: 270px;" />
+	            </c:if>
+	            <%-- 사진파일이 있는 경우 --%>
+	            <c:if test="${ !empty list.event_filename }">
+	            	<img src="${pageContext.request.contextPath}/upload/${ list.event_filename }" style="height: 270px;" />
+	            </c:if>
+	            <div class="card-body">
+	              <h5 class="card-title"><a href="eventDetail.do?event_num=${ list.event_num }" class="btn btn-outline-dark">${ list.event_title }</a></h5>
+		           <div class="box">   
+		              <div class="content">
+		              		<p class="card-text">${ list.event_content }</p>
+		              </div>
+		           </div>
+		           <br>
+	            </div>
+	          </div>
+	        </div>
+	        </c:forEach>
+	    <!-- 반복문 끝 -->
+        </c:if>
+        <!-- 카드끝 -->
+ 		
+ 		
  		<div class="paging">
  			<span>${pagingHtml}</span>
  		</div>
  	</div>
  </div>
  </div>
- 
+ </div>

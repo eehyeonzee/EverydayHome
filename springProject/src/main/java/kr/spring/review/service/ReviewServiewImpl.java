@@ -77,5 +77,20 @@ public class ReviewServiewImpl implements ReviewService {
 		return reviewMapper.orderExist(mem_num, prod_num);
 	}
 
+	@Override
+	public int reviewBuyCount(int mem_num) {
+		return reviewMapper.reviewBuyCount(mem_num);
+	}
+
+	@Override
+	public ReviewVO productDetail(int prod_num) {
+		return reviewMapper.productDetail(prod_num);
+	}
+
+	@Override
+	public void deleteFile(int rev_num) {
+		reviewMapper.deleteFile(rev_num);
+	}
+
 	
 }

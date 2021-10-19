@@ -3,6 +3,41 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<!--  공유 API 시작 -->
+<script type="text/javascript">
+//페이스북
+function shareFacebook() {
+    var sendUrl = 'localhost:8081/EverydayHome/event/eventDetail.do?event_num=${event.event_num}'; // 전달할 URL
+    window.open('http://www.facebook.com/sharer/sharer.php?u=' + sendUrl);
+}
+// 카카오톡
+function shareKakao() {
+		// 사용할 앱의 JavaScript 키 설정
+	Kakao.init('bb121a537c2b70043cc692b909a3c23f');
+	// 링크 버튼 생성
+	Kakao.Link.createDefaultButton({
+		container: '#btnKakao', // 공유 버튼 ID
+		objectType: 'feed',
+		content: {
+			title: '매일의 집', // 보여질 제목
+			description: '매일 새롭게 올라오는 예쁜 집들을 구경하세요!', // 보여질 설명
+			imageUrl: 'localhost:8081/EverydayHome/main/main.do', // 콘텐츠 URL
+			link: {
+			mobileWebUrl: 'localhost:8081/EverydayHome/main/main.do',
+			webUrl: 'localhost:8081/EverydayHome/main/main.do'
+			}
+		}
+	});
+}
+// 트위터
+function shareTwitter() {
+    var sendText = '매일의 집'; // 전달할 텍스트
+    var sendUrl = 'http://localhost:8081/EverydayHome/event/eventDetail.do?event_num=${event.event_num}'; // 전달할 URL
+    window.open('https://twitter.com/intent/tweet?text=' + sendText + '&url=' + sendUrl);
+}
+</script>
+<!-- 공유 API  끝 -->
+
 <script type="text/javascript">
 
 	$(function(){
@@ -66,10 +101,6 @@
 	});
 </script>
 
-<script>
-Kakao.init('f4e504e4b5cdc1dd1e665e04d1d5dc9f');
-Kakao.isInitialized();
-</script>
 <style>
 .main-container{
 width:1000px;
@@ -97,25 +128,11 @@ padding : 40px 8px 0px 100px;
 
 }
 </style>
-<!-- 공유하기 API -->
-<script type="text/javascript">
-  function kakaoshare() {
-	  var content = document.getElementById("content").innerHTML;
-	  console.log("값:"+content);
-    Kakao.Link.sendDefault({
-      objectType: 'text',
-      text:
-		content,
-      link: {
-        mobileWebUrl: 'https://developers.kakao.com',
-        webUrl: 'https://developers.kakao.com',
-      },
-    })
-  }
-</script>
+
 
  <div class="container">
 <div class="main-container"> 
+	<!-- 게시글 내용 시작 -->
  	<div class="title-item" align="center">
  		<h2  id="title" style="font-family: 'Gowun Dodum', sans-serif;">${event.event_title}</h2>
  	</div>
@@ -125,22 +142,40 @@ padding : 40px 8px 0px 100px;
  	<div class="hits-item" align="center">
  		<p style="font-family: 'Gowun Dodum', sans-serif;">hits : ${event.event_hits}  |  작성자 : 관리자</p>
  	</div>
- 	<c:if test="${!empty event.event_filename}">
+ 	<!-- 썸네일 시작 -->
+ 	<hr size="1" width="100%" noshade>
+	<c:if test="${!empty event.event_filename}">
+	<div class="align-center">
+		<img src="imageView.do?event_num=${event.event_num}" style="max-width:500px">
+	</div>
+	</c:if>
+ 	<!-- 썸네일 끝 -->
+	
+ 	<%-- <c:if test="${!empty event.event_filename}">
 		<div class="file-item">
 			<img src="imageView.do?event_num=${event.event_num}" style="max-width:500px">
 	</div>
-	</c:if>
+	</c:if> --%>
  	<div class="content-item" align="center">
  		<p id="content" style="font-family: 'Gowun Dodum', sans-serif;">${event.event_content}</p>
  	</div>
+	<!-- 게시글 내용 끝 -->
+ 	<!-- SNS 공유하기 버튼 시작 -->
+	<div align="right">
+		<a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();">　　　</a><!-- 페이스북 -->
+		<a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();">　　　</a><!-- 카카오톡 -->
+		<a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();">　　　</a><!-- 트위터 -->
+	</div>
+	<!-- SNS 공유 API 버튼 끝 -->
+ 	<!-- 버튼 시작 -->
  	<div class="icon-item" align="center">
 	 	<a href="${pageContext.request.contextPath}/event/eventList.do">목록으로 돌아가기</a>
-	 	<button type="button" onclick="kakaoshare()">공유하기 </button>
 	 	<c:if test="${user_auth==4}">
 		 	<a href="${pageContext.request.contextPath}/event/eventUpdate.do?event_num=${event.event_num}">수정</a>
 			<a href="${pageContext.request.contextPath}/event/eventDelete.do?event_num=${event.event_num}" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
 		</c:if>
  	</div>
+ 	<!-- 버튼 끝 -->
  	
  	<!-- 댓글 시작 -->
  	<hr size="1" width="100%" noshade="noshade">
