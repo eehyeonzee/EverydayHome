@@ -43,7 +43,8 @@ public class StoreVO {
 	private String prod_option8;		// 옵션2
 	private String prod_option9;		// 옵션2
 	private String prod_option10;		// 옵션2
-	private int quan;				// 주문 수량
+	private int quan;					// 주문 수량
+	private String buis_name;			// 사업자 이름
 	
 	// 썸네일 BLOB 처리
 	public void setUpload1(MultipartFile upload1)throws IOException {
@@ -65,6 +66,12 @@ public class StoreVO {
 	}
 	
 	
+	public String getBuis_name() {
+		return buis_name;
+	}
+	public void setBuis_name(String buis_name) {
+		this.buis_name = buis_name;
+	}
 	public int getQuan() {
 		return quan;
 	}
@@ -244,6 +251,7 @@ public class StoreVO {
 				+ ", mem_num=" + mem_num + ", prod_cate=" + prod_cate + ", prod_option2=" + prod_option2
 				+ ", prod_option3=" + prod_option3 + ", prod_option4=" + prod_option4 + ", prod_option5=" + prod_option5
 				+ ", prod_option6=" + prod_option6 + ", prod_option7=" + prod_option7 + ", prod_option8=" + prod_option8
-				+ ", prod_option9=" + prod_option9 + ", prod_option10=" + prod_option10 + ", quan=" + quan + "]";
+				+ ", prod_option9=" + prod_option9 + ", prod_option10=" + prod_option10 + ", quan=" + quan
+				+ ", buis_name=" + buis_name + "]";
 	}
 }

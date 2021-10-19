@@ -31,7 +31,7 @@ import kr.spring.util.StringUtil;
 public class StoreController {
 
 	private static final Logger logger = LoggerFactory.getLogger(StoreController.class);
-	private int rowCount = 20;
+	private int rowCount = 12;
 	private int pageCount = 10;
 	
 	@Autowired
