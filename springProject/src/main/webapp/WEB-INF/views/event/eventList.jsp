@@ -126,7 +126,9 @@ h2{
 	            </c:if>
 	            <!-- 사진파일이 있는 경우 -->
 	            <c:if test="${ !empty list.event_filename }">
-	            	<img src="${pageContext.request.contextPath}/upload/${ list.event_filename }" style="height: 270px;" />
+		            <img src="${pageContext.request.contextPath }/event/photoView.do?event_num=${list.event_filename}" width="100" height="100" class="my-photo">
+	            	<%-- <img src="${pageContext.request.contextPath}/resources/image_upload/${ list.event_filename }" style="height: 270px; width: 175px;" /> --%>
+	            	<%-- <img src="${pageContext.request.contextPath}/upload/${ list.event_filename }" style="height: 270px;" /> --%>
 	            </c:if>
 	            <div class="card-body">
 	              <h5 class="card-title"><a href="eventDetail.do?event_num=${ list.event_num }" class="btn btn-outline-dark">${ list.event_title }</a></h5>

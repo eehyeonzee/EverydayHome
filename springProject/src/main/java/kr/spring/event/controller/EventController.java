@@ -353,6 +353,21 @@ public class EventController {
 	}
 */
 
+	//썸네일 사진 출력
+   @RequestMapping("/event/photoView.do")
+   public ModelAndView viewImage(HttpSession session, int event_num) {
+         
+      EventVO eventVO = eventService.eventDetail(event_num);
+      
+      ModelAndView mav = new ModelAndView();
+      mav.setViewName("imageView");
+      mav.addObject("imageFile", eventVO.getEvent_photo());
+      mav.addObject("filename", eventVO.getEvent_filename());
+         
+      return mav;
+   }
+	
+	
 }
 //카테고리 추가해야함 카테고리 추가후 mapper에 있는 sql수정필요 ==> 현재 다 1로 해둠
 //리스트에서 이미지파일 썸네일처럼 미리보기 추가해야함
