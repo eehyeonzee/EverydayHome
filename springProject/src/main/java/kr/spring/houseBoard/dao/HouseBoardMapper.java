@@ -1,5 +1,6 @@
 package kr.spring.houseBoard.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import kr.spring.houseBoard.vo.HCommentVO;
+import kr.spring.houseBoard.vo.HMarkVO;
 import kr.spring.houseBoard.vo.HouseBoardVO;    
 
 /**
@@ -39,38 +41,36 @@ public interface HouseBoardMapper {
 		// 썸네일 삭제(업데이트)
 		@Update("UPDATE house_board SET house_thumbnail = '', thumbnail_filename = '' WHERE house_num = #{house_num}")
 		public void deleteFile(Integer house_num);
-		
-		// =============== 추천 =============== //
-		@Insert("INSERT INTO recommend (house_num, mem_num) VALUES (#{house_num},#{mem_num})")
-		public void saveHeart(HouseBoardVO houseBoard); // 테이블에 추천수 저장
-		
-		@Update("UPDATE house_board SET house_recom = house_recom+1 WHERE house_num = #{house_num}")
-		public void plusHeart(Integer house_num); // 추천하기 (+1)
-		@Select("SELECT house_recom FROM house_board WHERE house_num = #{house_num}")
-		public int selectHeartCount(Integer house_num); // 추천수 불러오기
-		@Select("SELECT COUNT(*) FROM recommend WHERE house_num = #{house_num} AND mem_num = #{mem_num}")
-		public int heartOverlapCheck(Integer house_num); // 추천수 중복 체크
-		@Update("UPDATE house_board SET house_recom = house_recom-1 WHERE house_num = #{house_num}")
-		public void minusHeart(Integer house_num); // 추천 취소 (-1)
-		@Delete("DELETE FROM recommend WHERE house_num = #{house_num} AND mem_num = #{mem_num}")
-		public void removeHeart(Integer house_num); // 테이블에서 추천수 제거
-
+			
 		// =============== 댓글 =============== //
-		public List<HCommentVO> selectListComm(Map<String,Object> map);
-		public int selectRowCountComm(Map<String,Object> map);
+		public List<HCommentVO> selectListComm(Map<String,Object> map); // 댓글 목록
+		public int selectRowCountComm(Map<String,Object> map); // 댓글 개수
 		@Insert("INSERT INTO comments (comm_num,comm_content,house_num,mem_num) VALUES (comments_seq.nextval,#{comm_content},#{house_num},#{mem_num})")
-		public void insertComm(HCommentVO hComment);
-		public void updateComm(HCommentVO hComment);
-		public void deleteComm(Integer comm_num);
+		public void insertComm(HCommentVO hComment); // 댓글 등록
+		@Update("UPDATE comments SET comm_content = #{comm_content}, comm_mod_date = SYSDATE WHERE comm_num = #{comm_num}")
+		public void updateComm(HCommentVO hComment); // 댓글 수정
+		@Delete("DELETE FROM comments WHERE comm_num = #{comm_num}")
+		public void deleteComm(Integer comm_num); // 댓글 삭제
 		// 부모글 삭제시 댓글이 존재하면 부모글 삭제 전 댓글 삭제
 		@Delete("DELETE FROM comments WHERE house_num = #{house_num}")
 		public void deleteCommByHouseNum(Integer house_num);
 		
+		// =============== 추천 =============== //
+		@Select("SELECT COUNT(*) FROM recommend WHERE house_num = #{house_num}")
+		public int countHeart(Integer house_num); // 추천수 조회
+		@Select("SELECT mem_num FROM recommend WHERE house_num = #{house_num} AND mem_num = #{mem_num}")
+		public String checkHeart(HMarkVO hMark); // 추천 중복 체크
+		@Insert("INSERT INTO recommend (house_num, mem_num) VALUES (#{house_num},#{mem_num})")
+		public void insertHeart(HMarkVO hMark); // 테이블에 추천수 저장
+		@Delete("DELETE FROM recommend WHERE house_num = #{house_num} AND mem_num = #{mem_num}")
+		public void deleteHeart(HMarkVO hMark); // 테이블에서 추천수 제거
+		
+		// @Update("UPDATE house_board SET house_recom = house_recom+1 WHERE house_num = #{house_num}")
+		// public void plusHeart(Integer house_num); // 추천수 +1 증가
+		// @Update("UPDATE house_board SET house_recom = house_recom-1 WHERE house_num = #{house_num}")
+		// public void minusHeart(Integer house_num); // 추천수 -1 감소
+		
+		// =============== 스크랩 =============== //
+		
 }
-
-
-
-
-
-
 

@@ -115,10 +115,11 @@
 					   b.comm_num,
 					   b.comm_content,
 					   TO_CHAR(b.comm_reg_date, 'YYYY-MM-DD HH24:MI:SS') comm_reg_date,
-					   TO_CHAR(b.comm_mod_date, 'YYYY-MM-DD HH24:MI:SS') comm_mod_date,
+		   			   TO_CHAR(b.comm_mod_date, 'YYYY-MM-DD HH24:MI:SS') comm_mod_date,
 					   b.house_num,
 					   b.mem_num,
-					   m.nickname
+					   m.nickname,
+					   m.profile
 			  		FROM comments b JOIN mem_detail m ON b.mem_num = m.mem_num
 			  		WHERE b.house_num = #{house_num}
 			  		ORDER BY b.comm_num DESC)a)

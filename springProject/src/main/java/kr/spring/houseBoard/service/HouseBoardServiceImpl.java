@@ -1,5 +1,6 @@
 package kr.spring.houseBoard.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.houseBoard.dao.HouseBoardMapper;
 import kr.spring.houseBoard.vo.HCommentVO;
+import kr.spring.houseBoard.vo.HMarkVO;
 import kr.spring.houseBoard.vo.HouseBoardVO;
 
 /**
@@ -26,7 +28,7 @@ public class HouseBoardServiceImpl implements HouseBoardService {
 	@Autowired
 	private HouseBoardMapper houseBoardMapper;
 	
-	// 게시판
+	// ========== 게시판 ========== //
 	@Override
 	public List<HouseBoardVO> selectHBoardList(Map<String, Object> map) {
 		return houseBoardMapper.selectHBoardList(map);
@@ -69,7 +71,7 @@ public class HouseBoardServiceImpl implements HouseBoardService {
 		houseBoardMapper.deleteFile(house_num);	
 	}
 	
-	// 마이페이지 - 내가 쓴 글
+	// ========== 마이페이지 - 내가 쓴 글 ========== //
 	@Override
 	public List<HouseBoardVO> selectMyBoardList(Map<String, Object> map) {
 		return houseBoardMapper.selectMyBoardList(map);
@@ -80,7 +82,7 @@ public class HouseBoardServiceImpl implements HouseBoardService {
 		return houseBoardMapper.selectMyBoardRowCount(mem_num);
 	}
 	
-	// 댓글
+	// ========== 댓글 ========== //
 	@Override
 	public List<HCommentVO> selectListComm(Map<String, Object> map) {
 		return houseBoardMapper.selectListComm(map);
@@ -105,5 +107,26 @@ public class HouseBoardServiceImpl implements HouseBoardService {
 	public void deleteComm(Integer comm_num) {
 		houseBoardMapper.deleteComm(comm_num);
 	}
+	
+	// ========== 추천 ========== //
+	@Override
+	public int countHeart(Integer house_num) {
+		return houseBoardMapper.countHeart(house_num);
+	}
 
+	@Override
+	public String checkHeart(HMarkVO hMark) {
+		return houseBoardMapper.checkHeart(hMark);
+	}
+
+	@Override
+	public void insertHeart(HMarkVO hMark) {
+		houseBoardMapper.insertHeart(hMark);
+	}
+
+	@Override
+	public void deleteHeart(HMarkVO hMark) {
+		houseBoardMapper.deleteHeart(hMark);
+	}
+	
 }

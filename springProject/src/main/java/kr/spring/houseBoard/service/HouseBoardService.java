@@ -1,9 +1,15 @@
 package kr.spring.houseBoard.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
+
 import kr.spring.houseBoard.vo.HCommentVO;
+import kr.spring.houseBoard.vo.HMarkVO;
 import kr.spring.houseBoard.vo.HouseBoardVO;
 
 /**
@@ -28,13 +34,18 @@ public interface HouseBoardService {
 	// 썸네일 삭제(업데이트)
 	public void deleteFile(Integer house_num);
 	
-	// =============== 추천 =============== //
-	
-	
 	// =============== 댓글 =============== //
-	public List<HCommentVO> selectListComm(Map<String,Object> map);
-	public int selectRowCountComm(Map<String,Object> map);
-	public void insertComm(HCommentVO hComment);
-	public void updateComm(HCommentVO hComment);
-	public void deleteComm(Integer comm_num);
+	public List<HCommentVO> selectListComm(Map<String,Object> map); // 댓글 목록
+	public int selectRowCountComm(Map<String,Object> map); // 댓글 개수
+	public void insertComm(HCommentVO hComment); // 댓글 등록
+	public void updateComm(HCommentVO hComment); // 댓글 수정
+	public void deleteComm(Integer comm_num); // 댓글 삭제
+	
+	// =============== 추천 =============== //
+	public int countHeart(Integer house_num); // 추천수 조회
+	public String checkHeart(HMarkVO hMark); // 추천 중복 체크
+	public void insertHeart(HMarkVO hMark); // 테이블에 추천수 저장
+	public void deleteHeart(HMarkVO hMark); // 테이블에서 추천수 제거
+	
+	
 }
