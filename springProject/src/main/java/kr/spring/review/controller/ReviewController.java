@@ -1,5 +1,6 @@
 package kr.spring.review.controller;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,10 +25,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.review.service.ReviewService;
 import kr.spring.review.vo.ReviewVO;
+import kr.spring.util.PagingUtil;
 
 
 @Controller
 public class ReviewController {
+	
+	private int rowCount = 10;
+	private int pageCount = 10;
+	
 	@Autowired
 	private ReviewService reviewService;
 	
@@ -221,10 +227,43 @@ public class ReviewController {
 		return map;
 	
 	}
-	
+	//상품상세페이지 댓글목록
+	@RequestMapping("/store/reviewList.do")
+	@ResponseBody
+	public Map<String,Object> getList(
+			      @RequestParam(value="pageNum",defaultValue="1") int currentPage,
+			      @RequestParam int prod_num){
+		
+		logger.debug("<<currentPage>> : " + currentPage);
+		logger.debug("<<prod_num>> : " + prod_num);
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("prod_num", prod_num);
+		
+		//총 글의 갯수
+		int count =reviewService.reviewStoreCount(prod_num);
+		
+		PagingUtil page = new PagingUtil(currentPage,count,rowCount,pageCount, null);
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
+		
+		List<ReviewVO> list = null;
+		if(count > 0) {
+			list = reviewService.reviewListStore(prod_num);
+			logger.debug("<<리뷰정보>>:"+list);
+		}else {
+			list = Collections.emptyList();
+		}
+
+		Map<String,Object> mapJson = new HashMap<String,Object>();
+		mapJson.put("count", count);
+		mapJson.put("rowCount", 10);
+		mapJson.put("list", list);
+		
+		return mapJson;
+	}
 }
 //남은 일
-//수정,이미지수정하기 << 수정페이지 텍스트 위치 깨짐, 이미지 안뜸
 //상품상세페이지에서 리뷰 볼 수있게하기 평균점수나오게 하도록하기도 하기.
 //수요일 디자인 손보기
 //목요일 메인보기

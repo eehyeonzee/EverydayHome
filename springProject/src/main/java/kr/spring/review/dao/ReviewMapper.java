@@ -16,6 +16,8 @@ public interface ReviewMapper {
 	public void reviewInsert(ReviewVO review);//리뷰등록
 	@Select("SELECT r.rev_num, r.rev_content, r.rev_grade, r.rev_grade, r.rev_img, r.rev_filename, r.prod_num, p.prod_name, p.prod_price,p.thumbnail_img, p.thumbnail_filename, b.buis_name  FROM product_review r, product p, buis_detail b WHERE p.mem_num=b.mem_num AND r.prod_num = p.prod_num AND rev_num = ${rev_num}")
 	public ReviewVO reviewDetail(@Param("rev_num")int rev_num);//리뷰읽기
+	@Select("SELECT rev_filename, rev_img  FROM product_review WHERE rev_num = ${rev_num}")
+	public ReviewVO reviewImgStore(@Param("rev_num")int rev_num);//리뷰읽기
 	@Update("UPDATE product_review SET rev_content = #{rev_content}, rev_grade=#{rev_grade}, rev_filename =#{rev_filename}, rev_img = #{rev_img} WHERE rev_num = #{rev_num}")
 	public void reviewUpdate(ReviewVO review);//리뷰수정
 	@Delete("DELETE FROM product_review WHERE rev_num = #{rev_num}")
@@ -24,8 +26,8 @@ public interface ReviewMapper {
 	public List<ReviewVO> reviewbuyList(@Param("mem_num")int mem_num);
 	@Select("SELECT r.rev_num, r.rev_content, r.rev_grade, r.rev_grade, r.rev_img, r.rev_filename, r.prod_num, p.prod_name, p.prod_price, p.thumbnail_img, p.thumbnail_filename, b.buis_name FROM product_review r, product p, buis_detail b WHERE p.mem_num = b.mem_num AND p.prod_num = r.prod_num AND r.mem_num = ${mem_num}")
 	public List<ReviewVO> reviewList(@Param("mem_num")int mem_num);//리뷰리스트
-	@Select("SELECT * FROM product_review WHERE prod_num =#{prod_num}")
-	public List<ReviewVO> reviewListStore(int prod_num);//리뷰 스토어에서 보게하기
+	@Select("SELECT r.rev_num, r.rev_content, r.rev_grade,TO_CHAR(r.rev_reg_date,'YYYY-MM-DD')as rev_reg_date, r.rev_img, r.rev_filename, r.prod_num, r.mem_num, m.mem_name FROM product_review r, mem_detail m WHERE m.mem_num=r.mem_num AND prod_num =${prod_num}")
+	public List<ReviewVO> reviewListStore(@Param("prod_num")int prod_num);//리뷰 스토어에서 보게하기
 	@Select("SELECT count(*) FROM product_review WHERE mem_num=#{mem_num}")
 	public int reviewMyCount(int mem_num);//내 리뷰 총 개수 세기
 	@Select("SELECT count(*) FROM product_review WHERE prod_num=#{prod_num}")

@@ -231,3 +231,39 @@
 	</div>
 </div>
 </form:form>
+<!-- 리뷰부분 시작 -->
+<!-- 리뷰 총합 -->
+<div class="review-star mt-5">
+	<div class="container" style="border:1px solid gray">
+	<div class="star-name mt-2 mb-3" style="font-size:20px; text-align:center;">평균평점 : ${rev_grade} <div style="color:red;"><c:forEach var="var" items="${ratingOptions}" varStatus="status" begin="1" end="${rev_grade_round}">★</c:forEach></div>
+	<hr>리뷰개수 : ${rev_count} </div>
+	</div>
+</div>
+<!-- 리뷰 보기 -->
+<div class="review-list mt-5">
+	<div class="container">
+		<c:if test="${rev_count==0}">
+			<div class="reviewlist" style="border:1px solid;">작성한 리뷰가 없습니다.</div>
+		</c:if>
+		<c:if test="${rev_count>0}">
+			<c:forEach var="reviewVO" items="${reviewVO}" varStatus="n">
+			<div class="reviewList" style="text-align:center;">리뷰 리스트</div>
+			<hr>
+			<div class="rev-content">
+			<div class="mem_name" style="font-size:21px;">ㅣ${reviewVO.mem_name}</div>
+			<div class="rev_grade"><c:forEach var="var" items="${ratingOptions}" varStatus="status" begin="1" end="${reviewVO.rev_grade}">★</c:forEach></div>
+			<br><div class="rev_content">${reviewVO.rev_content}</div>
+			<div class="rev_reg_date" style="text-align:right">작성일 : ${reviewVO.rev_reg_date}</div>
+			
+			<c:if test="${!empty reviewVO.rev_filename}">
+			<div class="file-item mt-5 mb-5" style="text-align:center">
+			<img src="reviewImageView.do?rev_num=${reviewVO.rev_num}" style="max-width:500px">
+			</div>
+			</c:if>
+			</div>
+			<hr>
+			</c:forEach>
+		</c:if>
+	</div>
+</div>
+<!-- 리뷰부분 끝 -->

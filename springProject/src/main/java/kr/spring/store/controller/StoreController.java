@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.spring.review.service.ReviewService;
+import kr.spring.review.vo.ReviewVO;
 import kr.spring.store.service.StoreService;
 import kr.spring.store.vo.StoreVO;
 import kr.spring.util.PagingUtil;
@@ -42,7 +44,14 @@ public class StoreController {
 	public StoreVO initCommand() {
 		return new StoreVO();
 	}
-	
+	//하단리뷰 - 신혜지
+	@ModelAttribute
+	public ReviewVO initCommain() {
+		return new ReviewVO();
+	}
+	@Autowired
+	private ReviewService reviewService;
+	//하단 리뷰 -신혜지
 	// 스토어 메인 호출
 	@GetMapping("/store/storeMain.do")
 	public String storeMain() {
@@ -133,7 +142,12 @@ public class StoreController {
 	public ModelAndView process(@RequestParam int prod_num) {
 		
 		StoreVO storeVO = storeService.selectProduct(prod_num);
-		
+		//하단리뷰용
+		int rev_grade = storeService.staravg(prod_num);
+		int rev_grade_round = Math.round(rev_grade);
+		int rev_count =reviewService.reviewStoreCount(prod_num);
+		List<ReviewVO> reviewVO = reviewService.reviewListStore(prod_num);
+		//하단리뷰용
 		// HTML 태그 불허
 		storeVO.setProd_name(StringUtil.useNoHtml(storeVO.getProd_name()));
 		
@@ -145,10 +159,43 @@ public class StoreController {
 
 		mav.addObject("imageFile", storeVO.getProd_img());
 		mav.addObject("filename", storeVO.getProd_filename());
-		
-		return new ModelAndView("storeProduct", "storeVO", storeVO);
+		mav.addObject("rev_grade", rev_grade);
+		//용복님 이부분 새로 addObject 선언 안되게 return new로 되어있어서 제가바꿧어요
+		ModelAndView mav2 = new ModelAndView();
+		mav2.setViewName("storeProduct");
+		mav2.addObject("storeVO", storeVO);
+		//바꾼부분
+		//별점
+		mav2.addObject("rev_grade", rev_grade);
+		mav2.addObject("rev_grade_round", rev_grade_round);
+		mav2.addObject("rev_count", rev_count);
+		Map<Object,String> ratingOptions = new HashMap<Object,String>();
+		ratingOptions.put(0, "☆☆☆☆☆");
+		ratingOptions.put(1, "★☆☆☆☆");
+		ratingOptions.put(2, "★★☆☆☆");
+		ratingOptions.put(3, "★★★☆☆");
+		ratingOptions.put(4, "★★★★☆");
+		ratingOptions.put(5, "★★★★★");
+		mav2.addObject("ratingOptions",ratingOptions);
+		mav2.addObject("reviewVO", reviewVO);
+		//바뀐부분 끝
+		return mav2;
 	}
-	
+	//리뷰부분 이미지 
+	@GetMapping("/store/reviewImageView.do")
+	public ModelAndView reviewImageContent(@RequestParam int rev_num) {
+			
+		ReviewVO reviewVO = reviewService.reviewImgStore(rev_num);
+			
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("imageView");
+			
+		mav.addObject("imageFile", reviewVO.getRev_img());
+		mav.addObject("filename", reviewVO.getRev_filename());
+			
+		return mav;
+	}
+	//리뷰부분 이미지 끝
 	// 썸네일 이미지 표시
 	@RequestMapping("/store/contentImageView.do")
 	public ModelAndView viewImageContent(@RequestParam int prod_num) {

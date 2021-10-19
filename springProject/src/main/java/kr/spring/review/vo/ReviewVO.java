@@ -10,11 +10,13 @@ public class ReviewVO {
 	private int rev_num;
 	private String rev_content;
 	private int rev_grade;
-	private Date rev_reg_date;
+	private String rev_reg_date;
 	private byte[] rev_img;
 	private String rev_filename;
 	private int prod_num;
 	private int mem_num;
+	private int mem_name;
+	private String star;
 	
 	//제품정보
 	private String buis_name;
@@ -58,10 +60,10 @@ public class ReviewVO {
 	public void setRev_grade(int rev_grade) {
 		this.rev_grade = rev_grade;
 	}
-	public Date getRev_reg_date() {
+	public String getRev_reg_date() {
 		return rev_reg_date;
 	}
-	public void setRev_reg_date(Date rev_reg_date) {
+	public void setRev_reg_date(String rev_reg_date) {
 		this.rev_reg_date = rev_reg_date;
 	}
 	public byte[] getRev_img() {
@@ -146,5 +148,22 @@ public class ReviewVO {
 				+ ", prod_price=" + prod_price + ", thumbnail_filename=" + thumbnail_filename + "]";
 	}
 
+	public int getMem_name() {
+		return mem_name;
+	}
+
+	public void setMem_name(int mem_name) {
+		this.mem_name = mem_name;
+	}
+
+	public String getStar() {
+		return star;
+	}
+
+	public void setStar(String star) {
+		this.star = star;
+	}
+
+	
 	
 }

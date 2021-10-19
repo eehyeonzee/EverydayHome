@@ -92,5 +92,10 @@ public class ReviewServiewImpl implements ReviewService {
 		reviewMapper.deleteFile(rev_num);
 	}
 
+	@Override
+	public ReviewVO reviewImgStore(int prod_num) {
+		return reviewMapper.reviewImgStore(prod_num);
+	}
+
 	
 }
