@@ -108,7 +108,8 @@ margin : 20px 0px 0px 0px;
 			</li>
 		</ul>
 		<div class="submit-button mt-5" style="text-align:right; margin-right:200px;">
-			<input type="submit" value="등록">
+			<input type="submit" value="등록" class="btn btn-info">
+			<input type="button" value="목록으로"  class="btn btn-success" onclick="location.href='${pageContext.request.contextPath}/review/reviewList.do'">
 		</div>
 		</form:form>
 	</div>

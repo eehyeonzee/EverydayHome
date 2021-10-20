@@ -33,7 +33,7 @@ public class ReviewController {
 	
 	private int rowCount = 10;
 	private int pageCount = 10;
-	
+
 	@Autowired
 	private ReviewService reviewService;
 	
@@ -152,6 +152,7 @@ public class ReviewController {
 		mav.addObject("count",count);
 		mav.addObject("list",list);
 		mav.setViewName("reviewList");
+		logger.debug("<<받아오는 정보>>"+list);
 	
 		return mav;
 
@@ -209,6 +210,21 @@ public class ReviewController {
 		                //속성명         속성값(byte[]의 데이터)     
 		mav.addObject("imageFile", review.getRev_img());
 		mav.addObject("filename", review.getRev_filename());
+		
+		return mav;
+ 
+	}
+	
+	@GetMapping("/review/prodView.do")
+	public ModelAndView prodImage(@RequestParam int rev_num) {
+		
+		ReviewVO review =reviewService.reviewImgStore(rev_num);
+		logger.debug("<이미지>"+review);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("imageView");
+		                //속성명         속성값(byte[]의 데이터)     
+		mav.addObject("imageFile", review.getThumbnail_img());
+		mav.addObject("filename", review.getThumbnail_filename());
 		
 		return mav;
  

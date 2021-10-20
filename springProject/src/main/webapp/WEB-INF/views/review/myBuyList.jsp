@@ -23,11 +23,6 @@ width : 100%;
 margin : 0 auto;
 width:1138px;
 }
-.link-item{
-	border-bottom : 1px solid #dbdbdb;
-	width : 900px;
-	margin : 0 auto;
-}
 .title{
 	font-size:18px;
 	weight:800;
@@ -55,14 +50,14 @@ h2{
  	</div>
  	<div class="cart-container">
  	<c:if test="${count==0}">
- 		<div class="link-item" style="font-family: 'Gowun Dodum', sans-serif;">구매한 내역이 없습니다.</div>
+ 		<h5 class="link-item" style="font-family: 'Gowun Dodum', sans-serif; text-align:center;">구매한 내역이 없습니다.</h5>
  	</c:if>
  	<c:if test="${count>0}">
  		<c:forEach var="list" items="${list}" varStatus="n">
  		<form:form id="${n.index}" action="reviewCheck.do" modelAttribute="reviewVO" method="post">
  		<div class="link-item" onclick="#">
- 		<div class="title" style="font-size:15px;">${list.buis_name}</div>
- 		<div class="title"><h5>${list.prod_name}</h5></div>
+ 		<div class="title" style="font-size:15px;">판매샵 : ${list.buis_name}</div>
+ 		<div class="title"><h5>제품명 : ${list.prod_name}</h5></div>
  		<input type="hidden" name="prod_num"value="${list.prod_num}"/>
  		<div class="reg_date"><h6><fmt:formatNumber pattern="###,###,###" value="${list.prod_price}"/> 원</h6></div>
  		<div class="iftag" style="text-align:right; padding-right:20px;">
