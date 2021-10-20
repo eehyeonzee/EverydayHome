@@ -125,3 +125,7 @@ CREATE TABLE buis_detail
 
 CREATE SEQUENCE buis_detail_SEQ START WITH 1 INCREMENT BY 1;
 
+-- 21.10.20 16:40 집들이 테이블 컬럼 제거
+ALTER TABLE house_board DROP COLUMN house_recom;
+
+

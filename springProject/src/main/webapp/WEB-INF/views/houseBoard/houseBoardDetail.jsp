@@ -67,11 +67,11 @@
 					if(param.result == 'logout') {
 						alert('로그인 후 사용하세요');
 					}else if(param.result == 'success') {
-						alert('추천해주셔서 감사합니다');
+						alert('스크랩이 완료되었습니다');
 						$('#scrap').attr('src','../resources/images/scrapO.png');
 						$('#scrapCount').text(param.countScrap); // span값 변경하기
 					}else {
-						alert('추천이 취소되었습니다');
+						alert('스크랩이 취소되었습니다');
 						$('#scrap').attr('src','../resources/images/scrapX.png');
 						$('#scrapCount').text(param.countScrap);
 					}
@@ -319,7 +319,7 @@
 		}
 		
 		// 댓글 수정
-		$(document).on('submit','mcomm_form',function(event) {
+		$(document).on('submit','#mcomm_form',function(event) { // form submit을 막기 위해 event 객체를 받음
 			if($('#mcomm_content').val().trim() == '') {
 				alert('내용을 입력하세요');
 				$('#comm_content').val('').focus();
@@ -331,9 +331,9 @@
 			
 			// 댓글 수정
 			$.ajax({
-				type: 'post',
 				url: 'updateComm.do',
-				data: form_data,
+				type: 'post',
+				data: form_data, // 오른쪽 form_data(value)는 중괄호 형태의 json 표기법으로 바뀜
 				dataType: 'json',
 				cache: false,
 				timeout: 30000,
@@ -341,9 +341,12 @@
 					if(param.result == 'logout') {
 						alert('로그인 후 사용하세요');
 					}else if(param.result == 'success') {
-						// 등록 누르면 전송x -> 그대로 화면에 읽어와서 표시
+						// 등록 누르면 전송x -> 화면만 갱신
+						// form을 없애기 전에 form에 접근해서 정보를 읽음
 						// 부모로 올라가서 p태그를 찾아 내용을 넣어줌, html태그를 불허용했기 때문에 바꾸는 작업처리 필요
 						$('#mcomm_form').parent().find('p').html($('#mcomm_content').val().replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/gi,'<br>'));
+						// 수정폼 초기화
+						initModifyForm();
 						alert('댓글이 수정되었습니다');
 					}else if(param.result == 'wrongAccess') {
 						alert('타인의 글을 수정할 수 없습니다');

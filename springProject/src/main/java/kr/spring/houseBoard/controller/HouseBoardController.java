@@ -397,10 +397,8 @@ public class HouseBoardController {
 	// 댓글 수정
 	@RequestMapping("/houseBoard/updateComm.do")
 	@ResponseBody
-	public Map<String,String> updateComm(@RequestParam int mem_num,
-			  							 HCommentVO hCommentVO, HttpSession session) {
+	public Map<String,String> updateComm(HCommentVO hCommentVO, HttpSession session) {
 		
-		logger.debug("<<mem_num>> : " + mem_num);
 		logger.debug("<<댓글 수정>> : " + hCommentVO);
 		
 		Map<String,String> map = new HashMap<String,String>();
@@ -410,8 +408,9 @@ public class HouseBoardController {
 		if(user_num == null) {
 			// 로그인 되어있지 않음
 			map.put("result", "logout");
-		}else if(user_num != null && user_num == mem_num) {
+		}else if(user_num != null && user_num == hCommentVO.getMem_num()) {
 			// 로그인 되어있고 로그인한 회원번호와 작성자 회원번호가 일치
+			// 댓글 수정
 			houseBoardService.updateComm(hCommentVO);
 			map.put("result", "success");
 		}else {
