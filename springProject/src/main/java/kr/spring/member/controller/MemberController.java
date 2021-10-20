@@ -749,8 +749,18 @@ public class MemberController {
 	
 	// 마이페이지 - 판매자 신청 폼 호출
 	@GetMapping("/member/sellerApplication.do")
-	public String sellerApplication() {
+	public String sellerApplication(HttpSession session, Model model) {
 		
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		
+					    
+		// 판매자 신청 글의 총 개수 또는 검색된 글의 개수
+		int count = memberService.selectCountSeller(user_num);							
+		logger.debug("<<count>> : " + count);
+		
+		// 회원이 판매자 인지 또는 판매자 신청을 했는지 체크하는 메소드
+		
+		model.addAttribute("count", count);
 		return "sellerApplication";	// 타일스 식별자
 	}
 	
@@ -764,7 +774,7 @@ public class MemberController {
 		// 유효성 검사 결과 오류가 있으면 폼 호출
 		if(result.hasErrors()) {
 			logger.debug("<<판매자 신청 오류 : >>" + result.toString());
-			return sellerApplication();
+			return "sellerApplication";	// 타일스 식별자
 		}
 		memberBuisVO.setMem_num(user_num);
 		logger.debug("<<사업자 신청 정보>> : " + memberBuisVO);

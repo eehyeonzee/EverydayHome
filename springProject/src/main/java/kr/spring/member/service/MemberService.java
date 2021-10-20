@@ -27,6 +27,7 @@ public interface MemberService {
 	public void insertSeller(MemberBuisVO memberBuisVO);			// 마이페이지 판매자 정보 등록
 	public List<MemberVO> SelectIdSearch(Map<String, Object> map);	// 아이디 찾기
 	public void updateMemberPasswd(MemberVO member); 				// 마이페이지 - 회원 비밀번호 변경	
+	public int selectCountSeller(Integer mem_num);					// 마이페이지 판매자 신청 및 등록 내역 체크
 	// 판매자 페이지
 	
 	

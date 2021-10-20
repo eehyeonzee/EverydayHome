@@ -23,8 +23,8 @@ public class HouseBoardVO {
 	private String house_content; // 내용
 	private int house_hits; // 조회수
 	private int house_recom; // 추천수
-	private Date house_reg_date; // 작성일
-	private Date house_mod_date; // 수정일
+	private String house_reg_date; // 작성일
+	private String house_mod_date; // 수정일
 	private byte[] house_thumbnail; // 썸네일 이미지
 	private String thumbnail_filename; // 썸네일 파일명
 	
@@ -121,19 +121,19 @@ public class HouseBoardVO {
 		this.house_recom = house_recom;
 	}
 	
-	public Date getHouse_reg_date() {
+	public String getHouse_reg_date() {
 		return house_reg_date;
 	}
 
-	public void setHouse_reg_date(Date house_reg_date) {
+	public void setHouse_reg_date(String house_reg_date) {
 		this.house_reg_date = house_reg_date;
 	}
 
-	public Date getHouse_mod_date() {
+	public String getHouse_mod_date() {
 		return house_mod_date;
 	}
 
-	public void setHouse_mod_date(Date house_mod_date) {
+	public void setHouse_mod_date(String house_mod_date) {
 		this.house_mod_date = house_mod_date;
 	}
 

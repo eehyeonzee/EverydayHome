@@ -27,7 +27,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.houseBoard.service.HouseBoardService;
 import kr.spring.houseBoard.vo.HCommentVO;
+import kr.spring.houseBoard.vo.HMarkVO;
 import kr.spring.houseBoard.vo.HouseBoardVO;
+import kr.spring.member.service.MemberService;
+import kr.spring.member.vo.MemberVO;
 import kr.spring.util.PagingUtil;
 import kr.spring.util.StringUtil;
 
@@ -51,6 +54,9 @@ public class HouseBoardController {
 	
 	@Autowired
 	private HouseBoardService houseBoardService;
+	
+	@Autowired
+	private MemberService memberService;
 	
 	// 자바빈(VO) 초기화
 	@ModelAttribute
@@ -121,9 +127,16 @@ public class HouseBoardController {
 	
 	// 글 상세
 	@RequestMapping("/houseBoard/detail.do")
-	public ModelAndView process(@RequestParam int house_num) { // 글번호 저장
+	public ModelAndView process(@RequestParam int house_num, HttpSession session) { // 글번호 저장
 		// 해당 글의 조회수 증가
 		houseBoardService.updateHBoardHits(house_num);
+		
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		
+		// 추천 중복 체크 변수
+		int heartCheckNum = 0;
+		int countHeart = 0;
+		
 		// selectHBoard에 글번호 전달
 		HouseBoardVO houseBoard = houseBoardService.selectHBoard(house_num);
 		
@@ -132,13 +145,40 @@ public class HouseBoardController {
 		// HTML 태그 불허, 줄바꿈 허용
 	    // CK에디터 사용시 주석 처리
 	    // houseBoard.setHouse_content(StringUtil.useBrNoHtml(houseBoard.getHouse_content()));
-		//								뷰 이름			속성명		속성값
-		return new ModelAndView("houseBoardDetail", "houseBoard", houseBoard);
+		
+		ModelAndView mav = new ModelAndView();
+		
+		countHeart = houseBoardService.countHeart(house_num);
+		
+	    
+	    if(user_num == null) {
+			// 로그인 되어있지 않음
+	    	heartCheckNum = 0;
+		}else {
+			// 로그인 되어있음
+			// 추천 중복 체크
+			HMarkVO hMark = new HMarkVO();
+			hMark.setHouse_num(house_num);
+			hMark.setMem_num(user_num);
+			
+			String already = houseBoardService.checkHeart(hMark);
+			
+			if(already == null) { // 추천버튼 누른 적 없음
+				
+			}else { // 추천버튼 누른 적 있음
+				heartCheckNum = 1;
+			}
+		}
+	    
+	    mav.setViewName("houseBoardDetail"); // 타일스 식별자
+	    //					속성명			속성값
+	    mav.addObject("heartCheckNum", heartCheckNum);
+	    mav.addObject("countHeart", countHeart);
+	    // Model(컨테이너)에 데이터 담기
+	    mav.addObject("houseBoard", houseBoard);
+	     
+		return mav;
 	}
-	
-	// 글 상세 - 추천(좋아요) 버튼 실행
-	
-	
 	
 	// 이미지 출력
 	@RequestMapping("/houseBoard/imageView.do")
@@ -253,6 +293,7 @@ public class HouseBoardController {
 	}
 	
 	// =============== 댓글(ajax) =============== //
+	// 댓글 등록
 	@RequestMapping("/houseBoard/writeComm.do")
 	@ResponseBody
 	public Map<String,String> writeComm(HCommentVO hCommentVO, HttpSession session) {
@@ -308,29 +349,132 @@ public class HouseBoardController {
 		mapJson.put("rowCount", rowCount);
 		mapJson.put("list", list);
 		
+		// mapJson으로 반환
+		return mapJson;
+	}
+	
+	// 댓글 프로필 사진 출력
+	@RequestMapping("/houseBoard/photoView.do")
+	public ModelAndView viewImage(@RequestParam int house_num, HttpSession session) {
+		
+		MemberVO memberVO = memberService.selectMember(house_num);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("imageView");
+		mav.addObject("imageFile", memberVO.getProfile());
+		mav.addObject("filename", memberVO.getProfile_filename());
+		
+		return mav;
+	}
+	
+	// 댓글 수정
+	@RequestMapping("/houseBoard/updateComm.do")
+	@ResponseBody
+	public Map<String,String> updateComm(@RequestParam int mem_num,
+			  							 HCommentVO hCommentVO, HttpSession session) {
+		
+		logger.debug("<<mem_num>> : " + mem_num);
+		logger.debug("<<댓글 수정>> : " + hCommentVO);
+		
+		Map<String,String> map = new HashMap<String,String>();
+		
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		
+		if(user_num == null) {
+			// 로그인 되어있지 않음
+			map.put("result", "logout");
+		}else if(user_num != null && user_num == mem_num) {
+			// 로그인 되어있고 로그인한 회원번호와 작성자 회원번호가 일치
+			houseBoardService.updateComm(hCommentVO);
+			map.put("result", "success");
+		}else {
+			// 로그인한 회원번호와 작성자 회원번호 불일치
+			map.put("result", "wrongAcess");
+		}
+		
 		return map;
 	}
 	
+	// 댓글 삭제
+	@RequestMapping("/houseBoard/deleteComm.do")
+	@ResponseBody
+	public Map<String,String> deleteComm(@RequestParam int comm_num,
+										 @RequestParam int mem_num,
+										 HttpSession session) {
+		
+		logger.debug("<<comm_num>> : " + comm_num);
+		logger.debug("<<mem_num>> : " + mem_num);
+		
+		Map<String,String> map = new HashMap<String,String>();
+		
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		
+		if(user_num == null) {
+			// 로그인 되어있지 않음
+			map.put("result", "logout");
+		}else if(user_num != null && user_num == mem_num) {
+			// 로그인 되어있고 로그인한 회원번호와 작성자 회원번호가 일치
+			houseBoardService.deleteComm(comm_num);
+			map.put("result", "success");
+		}else {
+			// 로그인한 회원번호와 작성자 회원번호 불일치
+			map.put("result", "wrongAccess");
+		}
+		
+		return map;
+	}
+	
+	// ========== 추천(좋아요) 버튼 ========== //
+	@RequestMapping("/houseBoard/heart.do")
+	@ResponseBody
+	public Map<String,String> heartButton(@RequestParam int house_num,
+										  HttpSession session, HttpServletRequest request) {
+		
+		logger.debug("<<house_num>> : " + house_num);
+		
+		Map<String,String> map = new HashMap<String,String>();
+		
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		
+		logger.debug("<<user_num>> : " + user_num);
+		
+		int countHeart = houseBoardService.countHeart(house_num);
+		
+		if(user_num == null) {
+			// 로그인 되어있지 않음
+			map.put("result", "logout");
+		}else {
+			// 로그인 되어있음
+			// 추천 중복 체크
+			HMarkVO hMark = new HMarkVO();
+			hMark.setHouse_num(house_num);
+			hMark.setMem_num(user_num);
+			
+			String already = houseBoardService.checkHeart(hMark);
+			
+			if(already == null) { // 추천버튼 누른 적 없음
+				// 좋아요
+				// 테이블에 추천수 저장
+				houseBoardService.insertHeart(hMark);
+				countHeart += 1;
+				map.put("result", "success");
+				map.put("countHeart", String.valueOf(countHeart));
+				
+			}else { // 추천버튼 누른 적 있음
+				// 좋아요 취소
+				houseBoardService.deleteHeart(hMark);
+				countHeart -= 1;
+				map.put("result", "cancel");
+				map.put("countHeart", String.valueOf(countHeart));
+			}
+		}
+		
+		return map;
+	}
+	
+	// ========== 스크랩 ========== //
+	
+	
+	
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

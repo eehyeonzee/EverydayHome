@@ -5,7 +5,7 @@
 <%-- 
  * 작성일 : 2021. 10. 18.
  * 작성자 : 오상준
- * 설명 : 
+ * 설명 :  판매자 신청 폼
  * 수정일 : 
 --%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
@@ -14,8 +14,15 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type ="text/javascript">
 	$(document).ready(function() {
+		
+		var applicationCheck = "${count}";
+		
+		if(applicationCheck == 1){
+			alert("판매자 신청 상태이거나 이미 판매자 회원입니다.");
+			history.go(-1);
+		}
+		
 		$("#application_form").submit(function(){
-			
 			// 개업일 유효성 체크
 			var strStart_date = $('#opening_date').val();
 			

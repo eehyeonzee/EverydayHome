@@ -122,6 +122,10 @@ public class MemberServiceImpl implements MemberService {
 	public void updateMemberPasswd(MemberVO member) {
 		memberMapper.updateMemberPasswd(member);
 	}
+	@Override
+	public int selectCountSeller(Integer mem_num) {
+		return memberMapper.selectCountSeller(mem_num);
+	}
 	
 	
 }
