@@ -85,7 +85,7 @@ h2{
 			<div class="container" style="display: flex;"> 
 			<!-- 이미지 추가 -->
 			<div class="imgBox" style="display:flex;">
-			<a href="storeDetail.do?prod_num=${row.prod_num}"><img src = "imageView.do?prod_num=${row.prod_num}" style = "width:240px; height:240px; max-width:240px; max-height:240px; display: float;"></a><br>
+			<a href="${pageContext.request.contextPath}/store/storeDetail.do?prod_num=${row.prod_num}"><img src = "imageView.do?prod_num=${row.prod_num}" style = "width:240px; height:240px; max-width:240px; max-height:240px; display: float;"></a><br>
 			</div>
  			<div class="title" style="display:flex;">
  			<p style="font-family: 'Gowun Dodum', sans-serif;">${row.prod_name}</p>
