@@ -44,4 +44,6 @@ public interface ReviewMapper {
 	public ReviewVO productDetail(@Param("prod_num")int prod_num);
 	@Update("UPDATE product_review SET rev_filename = '', rev_img = '' WHERE rev_num = #{rev_num}")
 	public void deleteFile(@Param("rev_num")int rev_num);
+	@Select("SELECT ROUND(AVG(rev_grade),2) as star FROM product_review WHERE prod_num = #{prod_num}")
+	public Integer staravg(int prod_num);
 }

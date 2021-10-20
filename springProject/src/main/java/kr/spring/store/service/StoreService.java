@@ -14,5 +14,4 @@ public interface StoreService {
 	public void updateProduct(StoreVO storeVO);
 	public void deleteThumbnail(Integer prod_num);
 	public void deleteProduct(Integer prod_num);
-	public int staravg(int prod_num);
 }

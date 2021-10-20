@@ -97,5 +97,10 @@ public class ReviewServiewImpl implements ReviewService {
 		return reviewMapper.reviewImgStore(prod_num);
 	}
 
+	@Override
+	public Integer staravg(int prod_num) {
+		return reviewMapper.staravg(prod_num);
+	}
+
 	
 }

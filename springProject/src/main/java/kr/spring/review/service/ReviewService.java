@@ -21,4 +21,5 @@ public interface ReviewService {
 	public ReviewVO productDetail(int prod_num);
 	public void deleteFile(int rev_num);
 	public ReviewVO reviewImgStore(int prod_num);
+	public Integer staravg(int prod_num);
 }

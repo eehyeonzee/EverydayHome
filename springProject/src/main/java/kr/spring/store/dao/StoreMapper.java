@@ -34,6 +34,4 @@ public interface StoreMapper {
 	public void deleteThumbnail(Integer prod_num);
 	@Delete("DELETE FROM product WHERE prod_num = #{prod_num}")
 	public void deleteBoard(Integer prod_num);
-	@Select("SELECT ROUND(AVG(rev_grade),2) as rev_grade FROM product_review WHERE prod_num = #{prod_num}")
-	public int staravg(int prod_num);
 }
