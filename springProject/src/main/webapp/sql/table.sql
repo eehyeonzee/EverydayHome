@@ -128,4 +128,5 @@ CREATE SEQUENCE buis_detail_SEQ START WITH 1 INCREMENT BY 1;
 -- 21.10.20 16:40 집들이 테이블 컬럼 제거
 ALTER TABLE house_board DROP COLUMN house_recom;
 
-
+--21.10.21 1:10 이벤트 게시판 컬럼 추가
+alter table event add event_day varchar2(50);

@@ -57,6 +57,19 @@ h2{
  <div class="main-container">
  	<div class="name-item" align="center">
  		<h2 style="font-family: 'Gowun Dodum', sans-serif;">이벤트</h2>
+ 		<form id="search_form" action="eventList.do" method="get">
+   		<ul class="search">
+			<li>
+				<select name="keyword" id="keyword">
+					<option value="">전체</option>
+					<option value="진행중">진행중</option>
+					<option value="종료">종료</option>
+				</select>
+				<input type="submit" value="찾기">
+				<input type="button" value="목록" onclick="location.href='eventList.do'">
+			</li>
+		</ul>
+   </form> 
  	</div>
  	<div class="link-container">
  		<c:if test="${user_auth==4}">
@@ -88,14 +101,18 @@ h2{
 	            <div class="card" style="height: 540px;">
 		            <div class="card-body">
 		            	<div align="center" style="cursor: pointer;"  onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=${list.event_num}'">
+		           		<div class="title">
+			 				<p style="font-family: 'Gowun Dodum', sans-serif;">${list.event_title}</p>
+			 			</div>
 		           		<!-- 사진파일이 없는 경우 -->
 			            <c:if test="${ empty list.event_filename }">
 			            	<img src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="height: 270px;" />
 			            </c:if>
 			            <!-- 사진파일이 있는 경우 -->
 			            <c:if test="${ !empty list.event_filename }">
-				            <img src="${pageContext.request.contextPath}/event/eventPhotoView.do?event_num=${list.event_num}" width="1000" height="250" >
+				            <img src="${pageContext.request.contextPath}/event/eventPhotoView.do?event_num=${list.event_num}" width="1200" height="300" >
 			            </c:if>
+			            <p style="font-family: 'Gowun Dodum', sans-serif;">${list.event_type}	|	${list.event_day}</p>
 			           </div>
 		            </div>
 		          </div>

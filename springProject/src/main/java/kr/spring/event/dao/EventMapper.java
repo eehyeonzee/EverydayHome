@@ -14,20 +14,21 @@ import kr.spring.event.vo.EventVO;
 
 public interface EventMapper {
 	//부모글
-	@Insert("INSERT INTO event (event_num,event_title,event_content,event_type,event_hits,event_reg_date,event_modi,mem_num,event_filename,event_photo) VALUES(event_seq.nextval,#{event_title},#{event_content},'1',1,SYSDATE,SYSDATE,#{mem_num},#{event_filename},#{event_photo})")
+	@Insert("INSERT INTO event (event_num,event_title,event_content,event_type,event_day,event_hits,event_reg_date,event_modi,mem_num,event_filename,event_photo) VALUES(event_seq.nextval,#{event_title},#{event_content},#{event_type},#{event_day},1,SYSDATE,SYSDATE,#{mem_num},#{event_filename},#{event_photo})")
 	public void eventWrite(EventVO eventVO);
-	@Select("select count(*) from event")
+	//@Select("select count(*) from event")
 	public int eventTotalCount();
-	@Select("SELECT * FROM event where event_num=#{event_num}")
+	@Select("SELECT * FROM event b JOIN mem_detail m ON b.mem_num=m.mem_num WHERE b.event_num=#{event_num}")
 	public EventVO eventDetail(int event_num);
-	@Update("UPDATE event SET event_title=#{event_title},event_content=#{event_content} WHERE event_num=#{event_num}")
+	@Update("UPDATE event SET event_title=#{event_title},event_content=#{event_content},event_day=#{event_day},event_type=#{event_type} WHERE event_num=#{event_num}")
 	public void eventUpdate(EventVO eventVO);
 	@Delete("DELETE FROM event WHERE event_num=#{event_num}")
 	public void eventDelete(int event_num);
-	@Select("select * FROM (select a.*,rownum rnum FROM (SELECT * FROM event ORDER BY event_reg_date DESC)a)WHERE rnum>= #{start} AND rnum <= #{end}")
+	//@Select("select * FROM (select a.*,rownum rnum FROM (SELECT * FROM event ORDER BY event_reg_date DESC)a)WHERE rnum>= #{start} AND rnum <= #{end}")
 	public List<EventVO> eventGetList(Map<String,Object> map);
 	@Update("UPDATE event SET event_hits=event_hits+1 WHERE event_num=#{event_num}")
 	public int eventGetHits(int event_num);
+	// 썸네일 삭제(업데이트)
 	@Update("UPDATE event SET event_filename = '', event_photo = '' WHERE event_num = #{event_num}")
 	public void deleteFile(Integer event_num);
 	

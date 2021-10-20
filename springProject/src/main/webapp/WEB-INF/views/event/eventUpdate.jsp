@@ -58,6 +58,20 @@ min-height: 500px;
 				<form:input path="event_title"/>
 				<form:errors path="event_title" cssClass="error-color"/>
 			</li>
+			<li>
+				<label for="event_type">카테고리</label>
+				<select name="event_type" id="event_type">
+					<option value="">카테고리</option>
+					<option value="진행중">진행중</option>
+					<option value="종료">종료</option>
+				</select>
+				<form:errors path="event_type" cssClass="error-color"/>
+			</li>
+			<li class="align-right">
+				<label for="event_day">진행날짜</label>
+				<form:input path="event_day"/><br>
+				<form:errors path="event_day" cssClass="error-color"/>
+			</li>
 			<li class="li-content">
 			<li>
 				<form:textarea path="event_content"/>
@@ -77,7 +91,6 @@ min-height: 500px;
 						console.error(error);
 					})
 				</script>
-			</li>
 			</li>
 			<li>
 				<label for="upload">썸네일 파일</label>

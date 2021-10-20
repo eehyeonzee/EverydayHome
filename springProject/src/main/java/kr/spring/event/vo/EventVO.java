@@ -14,6 +14,7 @@ public class EventVO {
 	@NotEmpty
 	private String event_content;		//내용
 	private String event_type; 			//분류 널가능
+	private String event_day; 			//진행 날짜
 	private int event_hits; 			//조회수 널가능 기본값 0 
 	private Date event_reg_date; 		//작성일 널가능 기본값 sysdate
 	private Date event_modi; 			//수정일 널가능 기본값 sysdate
@@ -103,12 +104,19 @@ public class EventVO {
 	public void setProfile_filename(String profile_filename) {
 		this.profile_filename = profile_filename;
 	}
+	
+	public String getEvent_day() {
+		return event_day;
+	}
+	public void setEvent_day(String event_day) {
+		this.event_day = event_day;
+	}
 	@Override
 	public String toString() {
 		return "EventVO [event_num=" + event_num + ", event_title=" + event_title + ", event_content=" + event_content
-				+ ", event_type=" + event_type + ", event_hits=" + event_hits + ", event_reg_date=" + event_reg_date
-				+ ", event_modi=" + event_modi + ", event_filename=" + event_filename + ", mem_num=" + mem_num
-				+ ", profile_filename=" + profile_filename + "]";
+				+ ", event_type=" + event_type + ", event_day=" + event_day + ", event_hits=" + event_hits
+				+ ", event_reg_date=" + event_reg_date + ", event_modi=" + event_modi + ", event_filename="
+				+ event_filename + ", mem_num=" + mem_num + ", profile_filename=" + profile_filename + "]";
 	}
 	
 	

@@ -349,6 +349,7 @@ padding : 40px 8px 0px 100px;
  	</div>
  	<div class="hits-item" align="center">
  		<p style="font-family: 'Gowun Dodum', sans-serif;">hits : ${event.event_hits}  |  작성자 : 관리자</p>
+ 		<p style="font-family: 'Gowun Dodum', sans-serif;">카테고리: ${event.event_type}	|	진행날짜: ${event.event_day}</p>
  	</div>
  	<!-- 썸네일 시작 -->
  	<hr size="1" width="100%" noshade>
@@ -413,11 +414,6 @@ padding : 40px 8px 0px 100px;
 	<div id="loading" style="display:none;">
 		<img src="${pageContext.request.contextPath }/resources/images/ajax-loader.gif">
 	</div>
- 	
- 	
- 	
- 	
- 	
  	
  </div>
  </div>
