@@ -51,6 +51,7 @@ import kr.spring.member.vo.MemberBuisVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.serviceBoard.service.ServiceBoardService;
 import kr.spring.serviceBoard.vo.ServiceBoardVO;
+import kr.spring.store.vo.StoreVO;
 import kr.spring.util.AuthCheckException;
 import kr.spring.util.PagingUtil;
 
@@ -110,6 +111,13 @@ public class MemberController {
 	 public HMarkVO initCommand5() {
 		 
 	    return new HMarkVO();
+	 }
+	 
+	 // StoreVO 객체 초기화
+	 @ModelAttribute
+	 public StoreVO initCommand6() {
+		 
+	    return new StoreVO();
 	 }
 	 
 	// 회원가입 - 회원가입 폼 호출
@@ -599,7 +607,7 @@ public class MemberController {
 	   myMap.put("start", 1);
 	   myMap.put("end", 4);
 	
-	   HouseBoardVO houseBoardVO = memberService.myRecommBoardList(myMap);
+	   HouseBoardVO houseBoardVO = memberService.myRecommScrapBoardList(myMap);
 	   
 	   
 	   ModelAndView mav = new ModelAndView();
@@ -754,14 +762,128 @@ public class MemberController {
 		return map;
 	}
 	
+	// 판매자 페이지 - 나의 물건 및 상품 등록 내역 조회
+	@GetMapping("/member/myProduct.do")
+	public ModelAndView myProductView(HttpSession session,
+			@RequestParam(value="pageNum", defaultValue="1") int currentPage) {
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		// 글의 총 갯수 또는 검색된 글의 갯수
+		int count = memberService.myProductCount(user_num);
+		
+		logger.debug("<<내가 등록한 상품 count>> : " + count);
+		
+		// 페이지 처리
+		PagingUtil page = new PagingUtil(currentPage,count,8,5,"myProduct.do");
+		
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
+		map.put("mem_num", user_num);
+		
+		// 내가 등록한 상품을 담을 리스트 생성
+		List<StoreVO> list = null;
+		
+		if(count > 0) {
+			list = memberService.myProductList(map);
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("myProductView"); // 타일스 식별자
+		mav.addObject("count", count);
+		mav.addObject("list", list);
+		mav.addObject("pagingHtml", page.getPagingHtml());
+		return mav;
+	}
+
+	
 	// 마이페이지 - 내가 스크랩한 글 목록 페이지 호출
 	@GetMapping("/member/myScrap.do")
-	public ModelAndView myScrapBookPage() {
+	public ModelAndView myScrapBookPage(HttpSession session,
+			@RequestParam(value="pageNum", defaultValue="1") int currentPage) {
+		
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		// Mapper에 넣을 데이터 map에 주입하기
+		map.put("mem_num", user_num);
+		int count = memberService.myScrapBookBoardCounts(map);	// 내가 스크랩한 글의 게시글 수 구하기
+		
+		// 페이지 처리
+		PagingUtil page = new PagingUtil(currentPage,count,rowCount,pageCount,"myScrap.do");
+		
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
+		
+		// 내가 추천 누른 글 번호와 게시글을 담을 리스트 생성
+		List<HouseBoardVO> myScrapNumList = new ArrayList<HouseBoardVO>();
+		List<HouseBoardVO> myScrapBoardList = new ArrayList<HouseBoardVO>();
+		
+		// 회원 프로필 정보
+		MemberVO member = memberService.selectMember(user_num);
+		
+		myScrapNumList = memberService.myScrapBooksNum(map);		// 내가 누른 북마크 글의 글번호 저장하기
+		
+		// 게시글 수가 존재한다면
+		if(count > 0) {
+			// for문을 돌려서 글번호를 추출한 뒤 바로 내가 추천 누른 글의 게시글 구하기
+			for(HouseBoardVO board : myScrapNumList) {
+				// 추천 중복 체크 변수
+				int heartCheckNum = 0;
+				
+				// 스크랩 중복 체크 변수
+				int scrapCheckNum = 0;
+				
+				HouseBoardVO mhouseBoardVO = new HouseBoardVO();
+				
+				logger.debug("<<게시글번호 : >>" + board.getHouse_num());
+				
+				// house_num을 담을 map 객체 생성
+				Map<String,Object> myMap = new HashMap<String,Object>();
+				myMap.put("house_num", board.getHouse_num());
+				
+				mhouseBoardVO = memberService.myRecommScrapBoardList(myMap);
+				
+				// 회원 추천 및 스크랩 체크 중복 체크
+				HMarkVO hMark = new HMarkVO();
+				hMark.setHouse_num(board.getHouse_num());
+				hMark.setMem_num(user_num);
+				
+				// 추천 중복 체크
+				String already = houseBoardService.checkHeart(hMark);
+				if(already != null) { // 추천버튼 누른 적 있음
+					heartCheckNum = 1;
+				}
+				
+				// 스크랩 중복 체크
+				String alreadyScrap = houseBoardService.checkScrap(hMark);
+				if(alreadyScrap != null) { // 스크랩버튼 누른 적 있음
+					scrapCheckNum = 1;
+				}
+				
+				// 추천수와 스크랩수, 중복체크 VO에 담기
+				mhouseBoardVO.setHouse_recom(houseBoardService.countHeart(board.getHouse_num()));
+				mhouseBoardVO.setHouse_Scrap(houseBoardService.countScrap(board.getHouse_num()));
+				// 중복체크
+				mhouseBoardVO.setScrapCheckNum(scrapCheckNum);
+				mhouseBoardVO.setHeartCheckNum(heartCheckNum);
+				
+				logger.debug("<<내가 추천한 글 : >>" + mhouseBoardVO);
+				
+				myScrapBoardList.add(mhouseBoardVO);
+			}
+		}
+		
 		
 		// 전달 객체
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("myScrapView"); // 타일스 식별자
-		
+		mav.addObject("count", count);		// 내가 스크랩한 글 목록 전체 수
+		mav.addObject("myScrapBoardList", myScrapBoardList);		// 내가 스크랩한 글 리스트
+		mav.addObject("pagingHtml", page.getPagingHtml());	// 페이징번호
+		mav.addObject("member", member);			// 회원 프로필 정보
 		return mav;
 	}
 	
@@ -771,9 +893,6 @@ public class MemberController {
 								@RequestParam(value="pageNum", defaultValue="1") int currentPage) {
 		
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		
-		
-		
 		
 		Map<String,Object> map = new HashMap<String,Object>();
 		
@@ -816,7 +935,7 @@ public class MemberController {
 				Map<String,Object> myMap = new HashMap<String,Object>();
 				myMap.put("house_num", board.getHouse_num());
 				
-				mhouseBoardVO = memberService.myRecommBoardList(myMap);
+				mhouseBoardVO = memberService.myRecommScrapBoardList(myMap);
 				
 				// 회원 추천 및 스크랩 체크 중복 체크
 				HMarkVO hMark = new HMarkVO();
@@ -1148,6 +1267,8 @@ public class MemberController {
 		
 		return mapAjax;
 	}
+	
+	
 	
 	
 	

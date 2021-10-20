@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import kr.spring.houseBoard.vo.HouseBoardVO;
 import kr.spring.member.vo.MemberBuisVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.store.vo.StoreVO;
 
 /**
  * @Package Name   : kr.spring.member.service
@@ -33,9 +34,16 @@ public interface MemberService {
 	// 마이페이지 - 좋아요 버튼 부분
 	public List<HouseBoardVO> myRecommBoardNum(Map<String, Object> map); 	// 마이페이지 - 내가 추천 누른 글 번호 구하기
 	public int myRecommBoardCount(Map<String, Object> map);					// 마이페이지 - 내가 추천 누른 글의 게시글 수 구하기 (글번호가 일치한 게시물)
-	public HouseBoardVO myRecommBoardList(Map<String, Object> map);			// 마이페이지 - 내가 추천 누른 게시글 구하기 (글번호가 일치한 게시물)
-	// 판매자 페이지
 	
+	public HouseBoardVO myRecommScrapBoardList(Map<String, Object> map);	// 마이페이지 - 내가 추천 및 북마크 누른 게시글 구하기 (글번호가 일치한 게시물)
+	
+	// 마이페이지 - 스크랩 버튼 부분
+	public List<HouseBoardVO> myScrapBooksNum(Map<String, Object> map);		// 마이페이지 - 내가 누른 북마크 글 번호 구하기
+	public int myScrapBookBoardCounts(Map<String, Object> map);				// 마이페이지 - 내가 누른 북마크 글의 게시글 수 구하기
+	
+	// 판매자 페이지
+	public int myProductCount(Integer mem_num);							// 판매자 페이지 - 내가 등록한 상품 전체 수 구하기
+	public List<StoreVO> myProductList(Map<String, Object> map);		// 판매자 페이지 - 내가 등록한 상품 리스트 출력
 	
 	// 관리자 페이지
 	public List<MemberVO> selectMemberList(Map<String, Object> map);			// 관리자 페이지 - 회원 정보 전체 출력

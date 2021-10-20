@@ -183,7 +183,6 @@ height: 40px;
 						<input type="search" name="search" id="search" class="form-control rounded-pill" placeholder="통합검색" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
 				</div>
 			</form>
-					<a class="navrightitem" href="#" style="font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">장바구니</a> 
 					<a class="navrightitem" href="${pageContext.request.contextPath}/member/login.do" style="font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">로그인</a> 
 					<a class="navrightitem" href="${pageContext.request.contextPath}/member/registerUser.do" style="font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">회원가입</a> 
 					<div class="nav-right-menu">
@@ -273,7 +272,7 @@ height: 40px;
 							<li class="navrightmenuli"><a class="navmenuitem" href="${pageContext.request.contextPath}/member/myPage.do" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">판매자페이지</a>
 								<ul class="dropdownbar">
 									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/myPage.do">마이페이지</a></li>
-									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="#">나의물건</a></li>
+									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/myProduct.do">나의물건</a></li>
 									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
 								</ul>
 							</li>

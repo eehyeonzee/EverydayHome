@@ -112,8 +112,8 @@
 	                        ORDER BY house_num DESC)a)
 	</select>
 	
-	<!-- 내가 추천 누른 게시글 구하기 -->
-	<select id="myRecommBoardList" parameterType="map" resultType="houseBoardVO">
+	<!-- 내가 추천 및 북마크 누른 게시글 구하기 -->
+	<select id="myRecommScrapBoardList" parameterType="map" resultType="houseBoardVO">
 		SELECT * 
 		FROM ( SELECT a.*, rownum rnum
 		        FROM ( SELECT
@@ -132,4 +132,54 @@
 		        ORDER BY b.house_num DESC)a)
 	</select>
 	
+	<!-- 내가 누른 북마크 글 번호 구하기 -->
+	<select id="myScrapBooksNum" parameterType="map" resultType="houseBoardVO">
+		SELECT * FROM ( SELECT a.*, rownum rnum
+                FROM ( SELECT 
+                        house_num
+                        FROM scrapbook 
+                        WHERE mem_num=#{mem_num}
+                        ORDER BY house_num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+	<!-- 내가 누른 북마크 글의 게시글 수 구하기 -->
+	<select id="myScrapBookBoardCounts" parameterType="map" resultType="integer">
+		SELECT count(*) FROM ( SELECT a.*, rownum rnum
+	                FROM ( SELECT 
+	                        house_num
+	                        FROM scrapbook 
+	                        WHERE mem_num=#{mem_num}
+	                        ORDER BY house_num DESC)a)
+	</select>
+	
+	
+	<!-- 판매자 - 내가 등록한 상품 리스트 출력 -->
+	<select id="myProductList" parameterType="map" resultType="storeVO">
+		SELECT *
+  		FROM (SELECT
+  				a.*,
+  				rownum rnum
+  			  FROM (SELECT
+  			  		  p.prod_num,
+  			  		  <![CDATA[
+  			  		  REPLACE(REPLACE(p.prod_name, '<', '&lt;'), '>', '&gt;') prod_name,
+  			  		  ]]>
+  			  		  p.thumbnail_filename,
+  			  		  p.thumbnail_img,
+  			  		  p.prod_price,
+  			  		  p.prod_keyword,
+  			  		  p.prod_cate,
+                      d.buis_name,
+                      d.mem_num
+  			  FROM product p JOIN member m ON p.mem_num = m.mem_num JOIN buis_detail d ON d.mem_num = m.mem_num
+			  WHERE	p.prod_name LIKE '%%'
+              AND d.mem_num = #{mem_num}
+  			  ORDER BY p.prod_num DESC) a)
+  		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
 </mapper>

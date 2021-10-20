@@ -11,6 +11,7 @@ import kr.spring.houseBoard.vo.HouseBoardVO;
 import kr.spring.member.dao.MemberMapper;
 import kr.spring.member.vo.MemberBuisVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.store.vo.StoreVO;
 
 /**
  * @Package Name   : kr.spring.member.service
@@ -44,7 +45,7 @@ public class MemberServiceImpl implements MemberService {
 		MemberVO memberVO = memberMapper.selectMember(mem_num);					// 회원정보 저장
 		memberVO.setCoupon_count(memberMapper.selectGetCouponCount(mem_num));	// 쿠폰수 저장
 		memberVO.setRecommend_count(memberMapper.myRecommCount(mem_num));		// 좋아요 수 저장
-		memberVO.setScrapbook_count(memberMapper.myBookmarkCount(mem_num));		// 북마크 수 저장
+		memberVO.setScrapbook_count(memberMapper.myScrapBookCount(mem_num));		// 북마크 수 저장
 		memberVO.setFollower_count(memberMapper.selectGetFollowCount(mem_num));	// 팔로우 수 저장
 		memberVO.setFollow_count(memberMapper.selectGetFollowerCount(mem_num));	// 팔로워 수 저장
 		memberVO.setHouse_board_count(memberMapper.selectGetHouseBoardCount(mem_num)); // 작성글 수 저장
@@ -128,6 +129,8 @@ public class MemberServiceImpl implements MemberService {
 	public int selectCountSeller(Integer mem_num) {
 		return memberMapper.selectCountSeller(mem_num);
 	}
+	
+	// 마이페이지 좋아요 및 스크랩 부분
 	@Override
 	public List<HouseBoardVO> myRecommBoardNum(Map<String, Object> map) {
 		return memberMapper.myRecommBoardNum(map);
@@ -137,9 +140,28 @@ public class MemberServiceImpl implements MemberService {
 		return memberMapper.myRecommBoardCount(map);
 	}
 	@Override
-	public HouseBoardVO myRecommBoardList(Map<String, Object> map) {
-		return memberMapper.myRecommBoardList(map);
+	public HouseBoardVO myRecommScrapBoardList(Map<String, Object> map) {
+		return memberMapper.myRecommScrapBoardList(map);
 	}
+	@Override
+	public List<HouseBoardVO> myScrapBooksNum(Map<String, Object> map) {
+		return memberMapper.myScrapBooksNum(map);
+	}
+	@Override
+	public int myScrapBookBoardCounts(Map<String, Object> map) {
+		return memberMapper.myScrapBookBoardCounts(map);
+	}
+	
+	// 판매자 페이지 내가 등록한 상품
+	@Override
+	public int myProductCount(Integer mem_num) {
+		return memberMapper.myProductCount(mem_num);
+	}
+	@Override
+	public List<StoreVO> myProductList(Map<String, Object> map) {
+		return memberMapper.myProductList(map);
+	}
+	
 	
 	
 }

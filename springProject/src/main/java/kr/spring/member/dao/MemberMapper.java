@@ -12,6 +12,7 @@ import kr.spring.houseBoard.vo.HouseBoardVO;
 import kr.spring.houseBoard.vo.HouseBoardVO;
 import kr.spring.member.vo.MemberBuisVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.store.vo.StoreVO;
 
 /**
  * @Package Name   : kr.spring.member.dao
@@ -44,17 +45,17 @@ public interface MemberMapper {
 	public int selectGetFollowerCount(Integer mem_num);	// 마이페이지 - 팔로워 수 구하기
 	
 	@Select("SELECT count(*) FROM recommend WHERE mem_num=#{mem_num}")
-	public int myRecommCount(Integer mem_num);						// 마이페이지 - 내가 누른 총 추천 수 구하기
+	public int myRecommCount(Integer mem_num);								// 마이페이지 - 내가 누른 총 추천 수 구하기
 	public List<HouseBoardVO> myRecommBoardNum(Map<String, Object> map); 	// 마이페이지 - 내가 추천 누른 글 번호 구하기
-	public int myRecommBoardCount(Map<String, Object> map);				// 마이페이지 - 내가 추천 누른 글의 게시글 수 구하기 (글번호가 일치한 게시물)
-	public HouseBoardVO myRecommBoardList(Map<String, Object> map);		// 마이페이지 - 내가 추천 누른 게시글 구하기 (글번호가 일치한 게시물)
+	public int myRecommBoardCount(Map<String, Object> map);					// 마이페이지 - 내가 추천 누른 글의 게시글 수 구하기 (글번호가 일치한 게시물)
+	
+	public HouseBoardVO myRecommScrapBoardList(Map<String, Object> map);	// 마이페이지 - 내가 추천 및 북마크 누른 게시글 구하기 (글번호가 일치한 게시물)
 	
 	@Select("SELECT count(*) FROM scrapbook WHERE mem_num=#{mem_num}")
-	public int myBookmarkCount(Integer mem_num);					// 마이페이지 - 내가 누른 총 북마크 수 구하기
+	public int myScrapBookCount(Integer mem_num);							// 마이페이지 - 내가 누른 총 북마크 수 구하기
+	public List<HouseBoardVO> myScrapBooksNum(Map<String, Object> map);		// 마이페이지 - 내가 누른 북마크 글 번호 구하기
+	public int myScrapBookBoardCounts(Map<String, Object> map);				// 마이페이지 - 내가 누른 북마크 글의 게시글 수 구하기
 	
-	// 마이페이지 - 내가 누른 북마크 글 번호 구하기
-	// 마이페이지 - 내가 누른 북마크의 게시글 수 구하기
-	// 마이페이지 - 내가 누른 북마크의 게시글 목록 구하기
 	
 	@Select("SELECT count(*) FROM house_board WHERE mem_num = #{mem_num}")
 	public int selectGetHouseBoardCount(Integer mem_num);	// 마이페이지 - 작성글 수 구하기
@@ -92,6 +93,11 @@ public interface MemberMapper {
 	public void updateSellerMemberState(Integer mem_num);	// 관리자 페이지 - 판매자 신청 등록 (사업자테이블 상태 변경)
 	@Delete("DELETE FROM buis_detail WHERE mem_num=#{mem_num}")
 	public void deleteSellerMember(Integer mem_num);		// 관리자 페이지 - 판매자 신청 취소 (사업자 테이블 해당 ROW 삭제)
+	
+	@Select("SELECT COUNT(*) FROM product WHERE mem_num = #{mem_num}")
+	public int myProductCount(Integer mem_num);						// 판매자 페이지 - 내가 등록한 상품 전체 수 구하기
+	public List<StoreVO> myProductList(Map<String, Object> map);		// 판매자 페이지 - 내가 등록한 상품 리스트 출력
+	
 	
 	
 	
