@@ -9,7 +9,6 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import kr.spring.review.vo.ReviewVO;
-import kr.spring.store.vo.StoreVO;
 
 public interface ReviewMapper {
 	@Insert("INSERT INTO product_review(rev_num, rev_content, rev_grade, rev_reg_date, rev_img, rev_filename, prod_num, mem_num) VALUES(product_review_seq.nextval, #{rev_content}, #{rev_grade}, sysdate, #{rev_img}, #{rev_filename}, #{prod_num}, #{mem_num})")
