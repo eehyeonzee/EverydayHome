@@ -516,23 +516,23 @@ public class HouseBoardController {
 			map.put("result", "logout");
 		}else {
 			// 로그인 되어있음
-			// 추천 중복 체크
+			// 스크랩 중복 체크
 			HMarkVO hMark = new HMarkVO();
 			hMark.setHouse_num(house_num);
 			hMark.setMem_num(user_num);
 			
 			String already = houseBoardService.checkScrap(hMark);
 			
-			if(already == null) { // 추천버튼 누른 적 없음
+			if(already == null) { // 스크랩버튼 누른 적 없음
 				// 좋아요
-				// 테이블에 추천수 저장
+				// 테이블에 스크랩 저장
 				houseBoardService.insertScrap(hMark);
 				countScrap += 1;
 				map.put("result", "success");
 				map.put("countScrap", String.valueOf(countScrap));
 				
-			}else { // 추천버튼 누른 적 있음
-				// 좋아요 취소
+			}else { // 스크랩버튼 누른 적 있음
+				// 스크랩 취소
 				houseBoardService.deleteScrap(hMark);
 				countScrap -= 1;
 				map.put("result", "cancel");
