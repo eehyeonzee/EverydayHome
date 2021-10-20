@@ -110,9 +110,6 @@
 	                        FROM recommend 
 	                        WHERE mem_num=#{mem_num}
 	                        ORDER BY house_num DESC)a)
-		<![CDATA[
-		WHERE rnum >= #{start} AND rnum <= #{end}
-		]]>
 	</select>
 	
 	<!-- 내가 추천 누른 게시글 구하기 -->
@@ -133,9 +130,6 @@
 		                 FROM house_board b JOIN mem_detail m ON b.mem_num = m.mem_num
 		        WHERE b.house_num = #{house_num}
 		        ORDER BY b.house_num DESC)a)
-		<![CDATA[
-		WHERE rnum >= #{start} AND rnum <= #{end}
-		]]>
 	</select>
 	
 </mapper>
