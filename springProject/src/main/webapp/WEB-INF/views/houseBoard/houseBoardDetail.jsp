@@ -197,7 +197,8 @@
 		
 		// 다음 댓글 보기 버튼 클릭시 데이터 추가
 		$('.paging-button input').click(function() {
-			selectData(currentPage + 1);
+			var pageNum = currentPage + 1;
+			selectData(pageNum,$('#house_num').val());
 		});
 		
 		// ========== 댓글 등록 ========== //
@@ -322,7 +323,7 @@
 		$(document).on('submit','#mcomm_form',function(event) { // form submit을 막기 위해 event 객체를 받음
 			if($('#mcomm_content').val().trim() == '') {
 				alert('내용을 입력하세요');
-				$('#comm_content').val('').focus();
+				$('#mcomm_content').val('').focus();
 				return false;
 			}
 			
@@ -344,7 +345,7 @@
 						// 등록 누르면 전송x -> 화면만 갱신
 						// form을 없애기 전에 form에 접근해서 정보를 읽음
 						// 부모로 올라가서 p태그를 찾아 내용을 넣어줌, html태그를 불허용했기 때문에 바꾸는 작업처리 필요
-						$('#mcomm_form').parent().find('p').html($('#mcomm_content').val().replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/gi,'<br>'));
+						$('#mcomm_form').parent().find('p').html($('#mcomm_content').val().replace(/</g,'&lt;').replace(/>/g,'&gt;'));
 						// 수정폼 초기화
 						initModifyForm();
 						alert('댓글이 수정되었습니다');

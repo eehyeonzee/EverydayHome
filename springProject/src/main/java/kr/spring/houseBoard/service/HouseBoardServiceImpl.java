@@ -60,7 +60,7 @@ public class HouseBoardServiceImpl implements HouseBoardService {
 
 	@Override
 	public void deleteHBoard(Integer house_num) {
-		// 댓글, 추천, 스크랩이 존재하면 댓글을 먼저 삭제한 뒤 부모글 삭제
+		// 부모글 삭제 전 댓글,추천,스크랩 먼저 삭제 후 해당 부모글 삭제
 		houseBoardMapper.deleteCommByHouseNum(house_num);
 		houseBoardMapper.deleteHeartByHouseNum(house_num);
 		houseBoardMapper.deleteScrapByHouseNum(house_num);

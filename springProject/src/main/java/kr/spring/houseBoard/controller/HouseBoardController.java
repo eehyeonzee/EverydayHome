@@ -348,8 +348,8 @@ public class HouseBoardController {
 	@RequestMapping("/houseBoard/listComm.do")
 	@ResponseBody
 	public Map<String,Object> getList(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
-									  @RequestParam int house_num,
-									  HttpSession session) {
+									  @RequestParam int house_num) {
+		
 		logger.debug("<<currentPage>> : " + currentPage);
 		logger.debug("<<house_num>> : " + house_num);
 		

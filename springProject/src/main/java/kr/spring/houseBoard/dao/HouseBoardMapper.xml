@@ -15,7 +15,8 @@
                    REPLACE(REPLACE(b.house_title,'<','&lt;'),'>','&gt;') house_title,
                    ]]>
                    b.house_hits,
-                   b.house_reg_date,
+                   TO_CHAR(b.house_reg_date, 'YYYY-MM-DD HH24:MI:SS') house_reg_date,
+                   TO_CHAR(b.house_mod_date, 'YYYY-MM-DD HH24:MI:SS') house_mod_date,
                    b.mem_num,
                    m.nickname
                  FROM house_board b JOIN mem_detail m ON b.mem_num = m.mem_num

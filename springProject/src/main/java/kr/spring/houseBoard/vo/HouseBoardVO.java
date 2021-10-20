@@ -1,9 +1,10 @@
 package kr.spring.houseBoard.vo;
 
 import java.io.IOException;
-import java.sql.Date;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import kr.spring.util.DurationFromNow;
 
 /**
  * @Package Name   : kr.spring.houseBoard.vo
@@ -137,17 +138,19 @@ public class HouseBoardVO {
 	public String getHouse_reg_date() {
 		return house_reg_date;
 	}
-
+	
+	//날짜 표기 형식을 변경(예 5초전)
 	public void setHouse_reg_date(String house_reg_date) {
-		this.house_reg_date = house_reg_date;
+		this.house_reg_date = DurationFromNow.getTimeDiffLabel(house_reg_date);
 	}
 
 	public String getHouse_mod_date() {
 		return house_mod_date;
 	}
-
+	
+	//날짜 표기 형식을 변경(예 5초전)
 	public void setHouse_mod_date(String house_mod_date) {
-		this.house_mod_date = house_mod_date;
+		this.house_mod_date = DurationFromNow.getTimeDiffLabel(house_mod_date);
 	}
 
 	public byte[] getHouse_thumbnail() {
