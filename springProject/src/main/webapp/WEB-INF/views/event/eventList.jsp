@@ -53,19 +53,6 @@ h2{
 }
 </style>
 
-<script type="text/javascript">
-	$(document).ready(function(){
-		// 카드형 게시물 110글자 초과시 ... 처리
-		$('.box').each(function(){
-			var content = $(this).children('.card-body');
-			var content_txt = content.text();
-			var content_txt_short = content_txt.substring(0,110)+"...";
-			if(content_txt.length >= 110){
-				content.html(content_txt_short);
-            }
-        });
-	});
-</script>
 <div class="container"> 
  <div class="main-container">
  	<div class="name-item" align="center">
@@ -74,7 +61,8 @@ h2{
  	<div class="link-container">
  		<c:if test="${user_auth==4}">
  			 <div class="write-button"> 		
- 				<a href="${pageContext.request.contextPath}/event/eventWrite.do">이벤트 작성</a>
+ 				<a href="${pageContext.request.contextPath}/event/eventWrite.do">이벤트 작성</a><br><br>
+ 				<hr size="1" width="100%" noshade="noshade"><br><br>
  			</div>
  		</c:if>
  	
@@ -92,30 +80,22 @@ h2{
 		<c:if test="${ count > 0 }">
         <!-- 반복문 시작 -->
         	<c:forEach var="list" items="${ list }">
-	       	<div class="col-3">
             	<b>No. ${ list.event_num }</b> 
 	            <span style="float: right; font-size: 14px;">
 	           		 <b style="font-size: 14px; color: red;"></b> 조회 ${ list.event_hits }
 	            </span>
 	            
 	            <div class="card" style="height: 540px;">
-		            <div class="card-header">
-		            	 <b style="font-size: 17px">관리자</b>
-		            </div>
 		            <div class="card-body">
-		            <!-- 사진파일이 없는 경우 -->
+		            	<div align="center" style="cursor: pointer;"  onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=${list.event_num}'">
+		           		<!-- 사진파일이 없는 경우 -->
 			            <c:if test="${ empty list.event_filename }">
 			            	<img src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="height: 270px;" />
 			            </c:if>
 			            <!-- 사진파일이 있는 경우 -->
 			            <c:if test="${ !empty list.event_filename }">
-				            <img src="${pageContext.request.contextPath }/event/eventDetail.do?event_num=${list.event_filename}" width="100" height="100" class="my-photo">
-			            	<%-- <img src="${pageContext.request.contextPath}/resources/image_upload/${ list.event_filename }" style="height: 270px; width: 175px;" /> --%>
-			            	<%-- <img src="${pageContext.request.contextPath}/upload/${ list.event_filename }" style="height: 270px;" /> --%>
+				            <img src="${pageContext.request.contextPath}/event/eventPhotoView.do?event_num=${list.event_num}" width="1000" height="250" >
 			            </c:if>
-				        <div class="box">   
-			              <h5 class="card-title"><a href="eventDetail.do?event_num=${ list.event_num }" class="btn btn-outline-dark">${ list.event_title }</a></h5>
-			            </div>
 			           </div>
 		            </div>
 		          </div>

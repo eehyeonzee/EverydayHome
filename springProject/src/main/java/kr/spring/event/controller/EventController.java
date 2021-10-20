@@ -28,8 +28,17 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.spring.event.service.EventService;
 import kr.spring.event.vo.ECommentVO;
 import kr.spring.event.vo.EventVO;
+import kr.spring.member.service.MemberService;
+import kr.spring.member.vo.MemberVO;
 import kr.spring.util.PagingUtil;
 
+/**
+ * @Package Name   : kr.spring.event.controller
+ * @FileName  : EventController.java
+ * @작성일       : 2021. 10. 18. 
+ * @작성자       : 나윤경
+ * @프로그램 설명 : 이벤트 게시판 컨트롤러
+ */
 @Controller
 public class EventController {
 	//로그 처리 (로그 대상 지정)
@@ -39,6 +48,9 @@ public class EventController {
 	
 	@Autowired
 	private EventService eventService;
+	
+	@Autowired
+	private MemberService memberService;
 	
 	//자바빈 초기화
 	@ModelAttribute
@@ -353,8 +365,8 @@ public class EventController {
 
 
 	//썸네일 사진 출력
-   @RequestMapping("/event/photoView.do")
-   public ModelAndView viewImage(HttpSession session, int event_num) {
+   @RequestMapping("/event/eventPhotoView.do")
+   public ModelAndView eventViewImage(@RequestParam int event_num) {
          
       EventVO eventVO = eventService.eventDetail(event_num);
       
@@ -366,7 +378,19 @@ public class EventController {
       return mav;
    }
 	
-	
+   // 댓글 프로필 사진 출력
+	@RequestMapping("/event/commentPhotoView.do")
+	public ModelAndView viewImage(@RequestParam int event_num, HttpSession session) {
+		
+		MemberVO memberVO = memberService.selectMember(event_num);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("imageView");
+		mav.addObject("imageFile", memberVO.getProfile());
+		mav.addObject("filename", memberVO.getProfile_filename());
+		
+		return mav;
+	}
 }
 //카테고리 추가해야함 카테고리 추가후 mapper에 있는 sql수정필요 ==> 현재 다 1로 해둠
 //리스트에서 이미지파일 썸네일처럼 미리보기 추가해야함

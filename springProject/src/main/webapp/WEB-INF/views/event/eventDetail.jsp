@@ -71,6 +71,11 @@ function shareTwitter() {
 					
 					$(param.list).each(function(index,item){
 						var output = '<div class="item">';
+						if(item.profile != null) {
+							output += '<div style="width:57px; height:57px; float:left; padding-right:5em;"><img src="${pageContext.request.contextPath}/event/commentPhotoView.do?mem_num=${event.mem_num}'+item.profile+'" style="height:53px; width:53px;" class="my-photo"/></div>';
+						}else {
+							output += '<div style="width:57px; height:57px; float:left; padding-right:5em;"><img src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="height:45px; width:45px;" class="my-photo"/></div>';
+						}
 						output += '<h4>' + item.nickname + '</h4>';
 						output += '<div class="sub-item">';
 						output +='   <p>' + item.comm_content.replace(/</gi,'&lt;').replace(/>/gi,'&gt;') + '</p>';

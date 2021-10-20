@@ -11,6 +11,8 @@ public class ECommentVO {
 	private int event_num;			//event 번호
 	private int mem_num;			//회원 번호
 	private String nickname;		//닉네임
+	private byte[] profile; 		//댓글 프로필 이미지
+	
 	public int getComm_num() {
 		return comm_num;
 	}
@@ -54,6 +56,12 @@ public class ECommentVO {
 	}
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+	public byte[] getProfile() {
+		return profile;
+	}
+	public void setProfile(byte[] profile) {
+		this.profile = profile;
 	}
 	@Override
 	public String toString() {

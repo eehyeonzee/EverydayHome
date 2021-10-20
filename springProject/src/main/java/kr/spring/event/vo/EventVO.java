@@ -8,7 +8,6 @@ import javax.validation.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 public class EventVO {
-
 	private int event_num;				//이벤트 번호
 	@NotEmpty
 	private String event_title;			//제목
@@ -21,6 +20,10 @@ public class EventVO {
 	private byte[] event_photo; 		//사진(blob) 널가능
 	private String event_filename;		//사진 파일 이름 널가능
 	private int mem_num;				//회원 번호
+	
+	private byte[] profile; 			// 프로필 사진
+	private String profile_filename; 	// 프로필 사진 파일명
+	
 	
 	public void setUpload(MultipartFile upload)throws IOException{
 		//MultipartFile -> byte[]
@@ -88,11 +91,24 @@ public class EventVO {
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
 	}
+	public byte[] getProfile() {
+		return profile;
+	}
+	public void setProfile(byte[] profile) {
+		this.profile = profile;
+	}
+	public String getProfile_filename() {
+		return profile_filename;
+	}
+	public void setProfile_filename(String profile_filename) {
+		this.profile_filename = profile_filename;
+	}
 	@Override
 	public String toString() {
 		return "EventVO [event_num=" + event_num + ", event_title=" + event_title + ", event_content=" + event_content
 				+ ", event_type=" + event_type + ", event_hits=" + event_hits + ", event_reg_date=" + event_reg_date
-				+ ", event_modi=" + event_modi + ", mem_num=" + mem_num + "]";
+				+ ", event_modi=" + event_modi + ", event_filename=" + event_filename + ", mem_num=" + mem_num
+				+ ", profile_filename=" + profile_filename + "]";
 	}
 	
 	
