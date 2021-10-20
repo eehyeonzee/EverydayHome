@@ -1,6 +1,5 @@
 package kr.spring.houseBoard.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -47,7 +46,7 @@ public interface HouseBoardMapper {
 		public int selectRowCountComm(Map<String,Object> map); // 댓글 개수
 		@Insert("INSERT INTO comments (comm_num,comm_content,house_num,mem_num) VALUES (comments_seq.nextval,#{comm_content},#{house_num},#{mem_num})")
 		public void insertComm(HCommentVO hComment); // 댓글 등록
-		@Update("UPDATE comments SET comm_content = #{comm_content}, comm_mod_date = SYSDATE WHERE comm_num = #{comm_num}")
+		@Update("UPDATE comments SET comm_content = #{comm_content},comm_mod_date=SYSDATE WHERE comm_num = #{comm_num}")
 		public void updateComm(HCommentVO hComment); // 댓글 수정
 		@Delete("DELETE FROM comments WHERE comm_num = #{comm_num}")
 		public void deleteComm(Integer comm_num); // 댓글 삭제
