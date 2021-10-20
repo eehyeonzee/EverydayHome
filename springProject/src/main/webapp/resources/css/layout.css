@@ -46,14 +46,14 @@ div#main_menu ul li{
 .mypage-info-main{
 	border: 2px solid; 
 	width: 22%; 
-	height: 45%;
+	height: 100%;
 	margin-top: 3em;
 	float: left;
 	padding:10px;
 	}
 div.mypage-info table{ 
 	width: 90%; 
-	height: 90%;
+	height: 100px;
 	font-size: 10px;
 	border-color: white;
 }

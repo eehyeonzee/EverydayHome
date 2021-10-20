@@ -88,4 +88,54 @@
          	AND application_state = 1
       </where>   
 	</select>
+	
+	<!-- 내가 추천 누른 글 번호 구하기 -->
+	<select id="myRecommBoardNum" parameterType="map" resultType="houseBoardVO">
+		SELECT * FROM ( SELECT a.*, rownum rnum
+                FROM ( SELECT 
+                        house_num
+                        FROM recommend 
+                        WHERE mem_num=#{mem_num}
+                        ORDER BY house_num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+	<!-- 내가 추천 누른 글의 게시글 수 구하기 -->
+	<select id="myRecommBoardCount" parameterType="map" resultType="integer">	
+		SELECT count(*) FROM ( SELECT a.*, rownum rnum
+	                FROM ( SELECT 
+	                        house_num
+	                        FROM recommend 
+	                        WHERE mem_num=#{mem_num}
+	                        ORDER BY house_num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+	<!-- 내가 추천 누른 게시글 구하기 -->
+	<select id="myRecommBoardList" parameterType="map" resultType="houseBoardVO">
+		SELECT * 
+		FROM ( SELECT a.*, rownum rnum
+		        FROM ( SELECT
+		                   b.house_num, 
+		                   b.house_title, 
+		                   b.house_hits,
+		                   b.house_reg_date,
+		                   b.mem_num,
+		                   b.thumbnail_filename,
+		                   b.house_thumbnail,
+		                   m.nickname,
+		                   m.profile_filename,
+                  		   m.profile
+		                 FROM house_board b JOIN mem_detail m ON b.mem_num = m.mem_num
+		        WHERE b.house_num = #{house_num}
+		        ORDER BY b.house_num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
 </mapper>

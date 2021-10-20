@@ -34,18 +34,18 @@
 		<div class="mypage-info">
 			<table  style="border:1px dashed #b5b7ba;">
 				<tr>
-					<th style="border:1px dashed white;"><div class="profile_btn" style="cursor: pointer;" align="center" onclick="location.href='#'">
-																	<img style="margin-top: 1em; margin-bottom: 2px; width: 40px; height: 40px;" src="${pageContext.request.contextPath}/resources/images/bookmark.svg">
+					<th style="border:1px dashed white;"><div  style="cursor: pointer; width: 45px; height: 45px;" align="center" onclick="location.href='myScrapBook.do'">
+																	<img class="profile_btn" style="margin-top: 1em; margin-bottom: 2px; width: 40px; height: 40px;" src="${pageContext.request.contextPath}/resources/images/bookmark.svg">
 																			<p>스크랩북
 																			<p style="margin-bottom: 2em;">${member.scrapbook_count}
 																			</div></th>
-					<th style="border:1px dashed white;"><div class="profile_btn" style="cursor: pointer;" align="center" onclick="location.href='#'">
-																	<img style="margin-top: 1em; margin-bottom: 2px; width: 40px; height: 40px;" src="${pageContext.request.contextPath}/resources/images/heart.svg">
+					<th style="border:1px dashed white;"><div  style="cursor: pointer; width: 45px; height: 45px;" align="center" onclick="location.href='myRecomm.do'">
+																	<img class="profile_btn" style="margin-top: 1em; margin-bottom: 2px; width: 40px; height: 40px;" src="${pageContext.request.contextPath}/resources/images/heart.svg">
 																			<p>좋아요
 																			<p style="margin-bottom: 2em;">${member.recommend_count}
 																			</div></th>
-					<th style="border:1px dashed white;"><div class="profile_btn" style="cursor: pointer;" align="center" onclick="location.href='#'">
-																	<img style="margin-top: 1em; margin-bottom: 2px; width: 40px; height: 40px;" src="${pageContext.request.contextPath}/resources/images/coupon.png">
+					<th style="border:1px dashed white;"><div  style="cursor: pointer; width: 45px; height: 45px;" align="center" onclick="location.href='#'">
+																	<img class="profile_btn" style="margin-top: 1em; margin-bottom: 2px; width: 40px; height: 40px;" src="${pageContext.request.contextPath}/resources/images/coupon.png">
 																			<p>내 쿠폰
 																			<p style="margin-bottom: 2em;">${member.coupon_count}</div></th>
 				</tr>

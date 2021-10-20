@@ -42,6 +42,20 @@ public interface MemberMapper {
 	public int selectGetFollowCount(Integer mem_num);	// 마이페이지 - 팔로우 수 구하기
 	@Select("SELECT count(*) FROM follow WHERE follower_mem_num = #{mem_num}")
 	public int selectGetFollowerCount(Integer mem_num);	// 마이페이지 - 팔로워 수 구하기
+	
+	@Select("SELECT count(*) FROM recommend WHERE mem_num=#{mem_num}")
+	public int myRecommCount(Integer mem_num);						// 마이페이지 - 내가 누른 총 추천 수 구하기
+	public List<HouseBoardVO> myRecommBoardNum(Map<String, Object> map); 	// 마이페이지 - 내가 추천 누른 글 번호 구하기
+	public int myRecommBoardCount(Map<String, Object> map);				// 마이페이지 - 내가 추천 누른 글의 게시글 수 구하기 (글번호가 일치한 게시물)
+	public HouseBoardVO myRecommBoardList(Map<String, Object> map);		// 마이페이지 - 내가 추천 누른 게시글 구하기 (글번호가 일치한 게시물)
+	
+	@Select("SELECT count(*) FROM scrapbook WHERE mem_num=#{mem_num}")
+	public int myBookmarkCount(Integer mem_num);					// 마이페이지 - 내가 누른 총 북마크 수 구하기
+	
+	// 마이페이지 - 내가 누른 북마크 글 번호 구하기
+	// 마이페이지 - 내가 누른 북마크의 게시글 수 구하기
+	// 마이페이지 - 내가 누른 북마크의 게시글 목록 구하기
+	
 	@Select("SELECT count(*) FROM house_board WHERE mem_num = #{mem_num}")
 	public int selectGetHouseBoardCount(Integer mem_num);	// 마이페이지 - 작성글 수 구하기
 	@Update("UPDATE mem_detail SET profile=#{profile},profile_filename=#{profile_filename} WHERE mem_num=#{mem_num}") // 프로필 이미지 업데이트

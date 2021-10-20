@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Select;
 
+import kr.spring.houseBoard.vo.HouseBoardVO;
 import kr.spring.member.vo.MemberBuisVO;
 import kr.spring.member.vo.MemberVO;
 
@@ -28,6 +29,11 @@ public interface MemberService {
 	public List<MemberVO> SelectIdSearch(Map<String, Object> map);	// 아이디 찾기
 	public void updateMemberPasswd(MemberVO member); 				// 마이페이지 - 회원 비밀번호 변경	
 	public int selectCountSeller(Integer mem_num);					// 마이페이지 판매자 신청 및 등록 내역 체크
+	
+	// 마이페이지 - 좋아요 버튼 부분
+	public List<HouseBoardVO> myRecommBoardNum(Map<String, Object> map); 	// 마이페이지 - 내가 추천 누른 글 번호 구하기
+	public int myRecommBoardCount(Map<String, Object> map);					// 마이페이지 - 내가 추천 누른 글의 게시글 수 구하기 (글번호가 일치한 게시물)
+	public HouseBoardVO myRecommBoardList(Map<String, Object> map);			// 마이페이지 - 내가 추천 누른 게시글 구하기 (글번호가 일치한 게시물)
 	// 판매자 페이지
 	
 	

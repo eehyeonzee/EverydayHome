@@ -42,7 +42,9 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO selectMember(Integer mem_num) {
 		MemberVO memberVO = memberMapper.selectMember(mem_num);					// 회원정보 저장
-		memberVO.setCoupon_count(memberMapper.selectGetCouponCount(mem_num));	// 쿠폰번호 저장
+		memberVO.setCoupon_count(memberMapper.selectGetCouponCount(mem_num));	// 쿠폰수 저장
+		memberVO.setRecommend_count(memberMapper.myRecommCount(mem_num));		// 좋아요 수 저장
+		memberVO.setScrapbook_count(memberMapper.myBookmarkCount(mem_num));		// 북마크 수 저장
 		memberVO.setFollower_count(memberMapper.selectGetFollowCount(mem_num));	// 팔로우 수 저장
 		memberVO.setFollow_count(memberMapper.selectGetFollowerCount(mem_num));	// 팔로워 수 저장
 		memberVO.setHouse_board_count(memberMapper.selectGetHouseBoardCount(mem_num)); // 작성글 수 저장
@@ -125,6 +127,18 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int selectCountSeller(Integer mem_num) {
 		return memberMapper.selectCountSeller(mem_num);
+	}
+	@Override
+	public List<HouseBoardVO> myRecommBoardNum(Map<String, Object> map) {
+		return memberMapper.myRecommBoardNum(map);
+	}
+	@Override
+	public int myRecommBoardCount(Map<String, Object> map) {
+		return memberMapper.myRecommBoardCount(map);
+	}
+	@Override
+	public HouseBoardVO myRecommBoardList(Map<String, Object> map) {
+		return memberMapper.myRecommBoardList(map);
 	}
 	
 	

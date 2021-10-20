@@ -8,6 +8,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -95,6 +96,14 @@ public class MemberController {
 		 
 	    return new MemberBuisVO();
 	 }
+	 
+	 // HouseBoardVO 객체 초기화
+	 @ModelAttribute
+	 public HouseBoardVO initCommand4() {
+		 
+	    return new HouseBoardVO();
+	 }
+	 
 	 
 	// 회원가입 - 회원가입 폼 호출
 	@RequestMapping("/member/registerUser.do")
@@ -559,6 +568,40 @@ public class MemberController {
 		return mav;
 	}
 	
+	// 타 회원 프로필 사진 출력
+	@RequestMapping("/member/boardPhotoView.do")
+	public ModelAndView boardViewImage(@RequestParam int mem_num) {
+		
+		MemberVO memberVO = memberService.selectMember(mem_num);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("imageView");
+		mav.addObject("imageFile", memberVO.getProfile());
+		mav.addObject("filename", memberVO.getProfile_filename());
+			
+		return mav;
+	}
+	
+	// 마이페이지 게시글 썸네일 사진 출력
+	@RequestMapping("/member/thumbnailPhotoView.do")
+	public ModelAndView thumbnailViewImage(@RequestParam int house_num) {
+		
+	   Map<String,Object> myMap = new HashMap<String,Object>();
+	   
+	   myMap.put("house_num", house_num);
+	   myMap.put("start", 1);
+	   myMap.put("end", 4);
+	
+	   HouseBoardVO houseBoardVO = memberService.myRecommBoardList(myMap);
+	   
+	   
+	   ModelAndView mav = new ModelAndView();
+	   mav.setViewName("imageView");
+	   mav.addObject("imageFile", houseBoardVO.getHouse_thumbnail());
+	   mav.addObject("filename", houseBoardVO.getThumbnail_filename());
+			
+		return mav;
+	}
 	
 	// 회원정보 수정 - 폼 호출
 	@GetMapping("/member/memberUpdate.do")
@@ -704,6 +747,64 @@ public class MemberController {
 		return map;
 	}
 	
+	// 마이페이지 - 내가 추천한 글 목록 페이지 호출
+	@GetMapping("/member/myRecomm.do")
+	public ModelAndView myRecommPage(HttpSession session,
+								@RequestParam(value="pageNum", defaultValue="1") int currentPage) {
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		Map<String,Object> map = new HashMap<String,Object>();
+		// Mapper에 넣을 데이터 map에 주입하기
+		map.put("mem_num", user_num);
+		map.put("start", 1);
+		map.put("end", 4);
+		
+		// 내가 추천 누른 글 번호와 게시글을 담을 리스트 생성
+		List<HouseBoardVO> myRecommNumList = new ArrayList<HouseBoardVO>();
+		List<HouseBoardVO> myRecommBoardList = new ArrayList<HouseBoardVO>();
+		
+		int count = memberService.myRecommBoardCount(map);	// 내가 추천 누른 글의 게시글 수 구하기
+		// 페이지 처리
+		PagingUtil page = new PagingUtil(currentPage,count,4,5,"myRecomm.do");
+		
+		// 회원 프로필 정보
+		MemberVO member = memberService.selectMember(user_num);
+		
+		myRecommNumList = memberService.myRecommBoardNum(map);
+		
+		// 게시글 수가 존재한다면
+		if(count > 0) {
+			// for문을 돌려서 글번호를 추출한 뒤 바로 내가 추천 누른 글의 게시글 구하기
+			for(HouseBoardVO board : myRecommNumList) {
+				
+				HouseBoardVO mhouseBoardVO = new HouseBoardVO();
+				
+				logger.debug("<<게시글번호 : >>" + board.getHouse_num());
+				
+				// house_num을 담을 map 객체 생성
+				Map<String,Object> myMap = new HashMap<String,Object>();
+				myMap.put("house_num", board.getHouse_num());
+				myMap.put("start", 1);
+				myMap.put("end", 4);
+				
+				mhouseBoardVO = memberService.myRecommBoardList(myMap);
+				
+				logger.debug("<<내가 추천한 글 : >>" + mhouseBoardVO);
+				
+				myRecommBoardList.add(mhouseBoardVO);
+			}
+		}
+		
+		// 전달 객체
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("myRecommView"); // 타일스 식별자
+		mav.addObject("count", count);		// 내가 추천한 글 목록 전체
+		mav.addObject("myRecommBoardList", myRecommBoardList);		// 내가 추천한 글 리스트
+		mav.addObject("pagingHtml", page.getPagingHtml());	// 페이징번호
+		mav.addObject("member", member);			// 회원 프로필 정보
+		
+		return mav;
+	}
+	
 	// 마이페이지 - 내가 쓴 글 목록
 	@GetMapping("/member/myBoard.do")
 	public ModelAndView myBoardView(HttpSession session,
@@ -733,8 +834,6 @@ public class MemberController {
 			list = houseBoardService.selectMyBoardList(map);
 		}
 		
-		
-		logger.debug("<<회원 내가 쓴 글>> : " + member);
 		
 		// 전달 객체
 		ModelAndView mav = new ModelAndView();
@@ -995,6 +1094,10 @@ public class MemberController {
 		
 		return mapAjax;
 	}
+	
+	
+	
+	
 	
 	//----------------- 회원가입 이메일 인증 8자리 난수 생성 부분
     private int certCharLength = 8;
