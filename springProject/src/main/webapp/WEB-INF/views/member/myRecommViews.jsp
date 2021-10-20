@@ -20,12 +20,14 @@
 				content.html(content_txt_short);
 	        }
 	    });
+		
+		
 	});
 </script>
 <div class = "container-fluid contents-wrap" style = "width:99%">
-		<div class="text-center col-sm-30 my-5" style="float: right;">
+		<div class="text-center col-sm-10 my-5" style="float: right;">
 		<div align = "left">
-			<h2 class="admin-page-h2">내가 좋아요 누른 글${count}</h2>
+			<h2 class="admin-page-h2">내가 좋아요 누른 글 ( ${count} )</h2>
 		</div>
 		<%-- 카드시작 --%>
 		<div class="row my-5 ml-5 mr-5" align="center">
@@ -69,16 +71,34 @@
 				           <div class="box">
 				           		<br>   
 				           	  <p class="card-title">${ houseBoard.house_title }</p>
+				              <!-- 게시글 좋아요 및 북마크 -->
 				              <div class="content">
 				              		<ul>
 				              			<li style="display: inline-block; float: left;">
-				              				<img style="margin-top: 1em; margin-bottom: 2px; width: 33px; height: 33px;" src="${pageContext.request.contextPath}/resources/images/heart.svg">
-				              			</li>
-				              			<li style="display: inline-block;">
-				              				<img style="margin-top: 1em; margin-bottom: 2px; width: 33px; height: 33px;" src="${pageContext.request.contextPath}/resources/images/bookmark.svg">
+				              				<!-- 추천 버튼 -->
+											<button type="button" id="heart_btn" class="heart-btn" disabled="disabled">
+												<c:if test="${houseBoard.heartCheckNum == 0}">
+													<img class="heart" style="margin: 5 10 5 10; width:25px; height:25px;" src="${pageContext.request.contextPath}/resources/images/dislike.png">
+												</c:if>
+												<c:if test="${houseBoard.heartCheckNum == 1}">
+													<img class="heart" style="margin: 5 10 5 10; width:25px; height:25px;" src="${pageContext.request.contextPath}/resources/images/like.png">
+												</c:if>
+											</button>
+											<!-- 추천수 -->
+											<span class="heartCount" style="display:inline-block;">${houseBoard.house_recom}</span>&nbsp;
 				              			</li>
 				              			<li style="display: inline-block; float: right;">
-				              				<img style="margin-top: 1em; margin-bottom: 2px; width: 33px; height: 33px;" src="${pageContext.request.contextPath}/resources/images/coupon.png">
+				              				<!-- 스크랩 버튼 -->
+											<button type="button" id="scrap_btn" class="scrap-btn" disabled="disabled">
+												<c:if test="${houseBoard.scrapCheckNum == 0}">
+													<img class="scrap" style="margin: 5 10 5 10; width:25px; height:25px;" src="${pageContext.request.contextPath}/resources/images/scrapX.png">
+												</c:if>
+												<c:if test="${houseBoard.scrapCheckNum == 1}">
+													<img class="scrap" style="margin: 5 10 5 10; width:25px; height:25px;" src="${pageContext.request.contextPath}/resources/images/scrapO.png">
+												</c:if>
+											</button>
+											<!-- 스크랩수 -->
+											<span class="scrapCount" style="display:inline-block;">${houseBoard.house_Scrap}</span>
 				              			</li>
 				              		</ul>
 				              </div>

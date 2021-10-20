@@ -23,9 +23,9 @@
 	});
 </script>
 	<div class = "container-fluid contents-wrap" style = "width:99%">
-		<div class="text-center col-sm-30 my-5" style="float: right;">
+		<div class="text-center col-sm-10 my-5" style="float: right;">
 		<div align = "left">
-			<h2 class="admin-page-h2">내가 쓴 글 조회</h2>
+			<h2 class="admin-page-h2">내가 쓴 글 ( ${count} )</h2>
 		</div>
 		<%-- 카드시작 --%>
 		<div class="row my-5 ml-5 mr-5" align="center">
@@ -40,7 +40,7 @@
 			<!-- 반복문 시작 -->
 			<c:forEach var="houseBoard" items="${list}">
 				<div class="col-3">
-					<div class="card" style="height: 470px; width: 220px;">
+					<div class="card" style="height: 465px; width: 220px;">
 			            <div class="card-header">
 			            	<div style="float: left; cursor: pointer;" onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">
 				         		<%-- 회원 프로필 사진이 없는 경우 --%>
@@ -49,7 +49,7 @@
 								</c:if>
 								<%-- 회원 프로필 사진이 있는 경우 --%>
 								<c:if test="${!empty member.profile_filename }">
-									<img src="${pageContext.request.contextPath }/member/photoView.do" width="33" height="33" class="my-photo">
+									<img src="${pageContext.request.contextPath }/member/boardPhotoView.do?mem_num=${houseBoard.mem_num}" width="33" height="33" class="my-photo">
 								</c:if>
 								  <b style="font-size: 17px">${ member.nickname }</b>
 			            	</div>
@@ -63,24 +63,14 @@
 					            </c:if>
 					            <%-- 사진파일이 있는 경우 --%>
 					            <c:if test="${!empty houseBoard.thumbnail_filename }">
-					            	<img src="${pageContext.request.contextPath}/resources/image_upload/${ houseBoard.thumbnail_filename }" style="height: 270px; width: 175px;" />
+					            	<img src="${pageContext.request.contextPath}/member/thumbnailPhotoView.do?house_num=${houseBoard.house_num}" style="height: 270px; width: 175px;" />
 					            </c:if>
 				            </div>
 				           <div class="box">  
 				           <br> 
-				           	  <p class="card-title">${ houseBoard.house_title }</p>
+				          
 				              <div class="content">
-				              		<ul>
-				              			<li style="display: inline-block; float: left;">
-				              				<img style="margin-top: 1em; margin-bottom: 2px; width: 33px; height: 33px;" src="${pageContext.request.contextPath}/resources/images/heart.svg">
-				              			</li>
-				              			<li style="display: inline-block;">
-				              				<img style="margin-top: 1em; margin-bottom: 2px; width: 33px; height: 33px;" src="${pageContext.request.contextPath}/resources/images/bookmark.svg">
-				              			</li>
-				              			<li style="display: inline-block; float: right;">
-				              				<img style="margin-top: 1em; margin-bottom: 2px; width: 33px; height: 33px;" src="${pageContext.request.contextPath}/resources/images/coupon.png">
-				              			</li>
-				              		</ul>
+				              		<h5 class="card-title"><a href="${pageContext.request.contextPath}/houseBoard/detail.do?house_num=${houseBoard.house_num}" class="btn btn-outline-dark">${ houseBoard.house_title }</a></h5>
 				              </div>
 				           </div>
 			           <br>

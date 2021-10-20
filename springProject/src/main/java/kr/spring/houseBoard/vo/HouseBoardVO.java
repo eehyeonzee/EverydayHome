@@ -23,10 +23,14 @@ public class HouseBoardVO {
 	private String house_content; // 내용
 	private int house_hits; // 조회수
 	private int house_recom; // 추천수
+	private int house_Scrap; // 스크랩수
 	private String house_reg_date; // 작성일
 	private String house_mod_date; // 수정일
 	private byte[] house_thumbnail; // 썸네일 이미지
 	private String thumbnail_filename; // 썸네일 파일명
+	private int heartCheckNum;		// 추천 중복 체크
+	private int scrapCheckNum;		// 스크랩 중복 체크
+	
 	
 	// === 회원 === //
 	private int mem_num; // 회원번호
@@ -121,6 +125,15 @@ public class HouseBoardVO {
 		this.house_recom = house_recom;
 	}
 	
+	
+	public int getHouse_Scrap() {
+		return house_Scrap;
+	}
+
+	public void setHouse_Scrap(int house_Scrap) {
+		this.house_Scrap = house_Scrap;
+	}
+
 	public String getHouse_reg_date() {
 		return house_reg_date;
 	}
@@ -225,16 +238,39 @@ public class HouseBoardVO {
 		this.comm_num = comm_num;
 	}
 	
+	public int getHeartCheckNum() {
+		return heartCheckNum;
+	}
+
+	public void setHeartCheckNum(int heartCheckNum) {
+		this.heartCheckNum = heartCheckNum;
+	}
+
+	public int getScrapCheckNum() {
+		return scrapCheckNum;
+	}
+
+	public void setScrapCheckNum(int scrapCheckNum) {
+		this.scrapCheckNum = scrapCheckNum;
+	}
+	
 	// ***(주의)*** 프로퍼티 타입이 byte[]인 것은 항목에서 제외 -> house_thumbnail, profile
 	@Override
 	public String toString() {
 		return "HouseBoardVO [house_num=" + house_num + ", house_type=" + house_type + ", house_space=" + house_space
 				+ ", house_area=" + house_area + ", house_style=" + house_style + ", house_title=" + house_title
 				+ ", house_content=" + house_content + ", house_hits=" + house_hits + ", house_recom=" + house_recom
-				+ ", house_reg_date=" + house_reg_date + ", house_mod_date=" + house_mod_date + ", thumbnail_filename="
-				+ thumbnail_filename + ", mem_num=" + mem_num + ", mem_id=" + mem_id + ", mem_auth=" + mem_auth
-				+ ", nickname=" + nickname + ", profile_filename=" + profile_filename + ", comm_num=" + comm_num
-				+ ", scrap_num=" + scrap_num + ", follow_num=" + follow_num + "]";
+				+ ", house_Scrap=" + house_Scrap + ", house_reg_date=" + house_reg_date + ", house_mod_date="
+				+ house_mod_date + ", thumbnail_filename=" + thumbnail_filename + ", heartCheckNum=" + heartCheckNum
+				+ ", scrapCheckNum=" + scrapCheckNum + ", mem_num=" + mem_num + ", mem_id=" + mem_id + ", mem_auth="
+				+ mem_auth + ", nickname=" + nickname + ", profile_filename=" + profile_filename + ", comm_num="
+				+ comm_num + ", scrap_num=" + scrap_num + ", follow_num=" + follow_num + "]";
 	}
+
+	
+	
+	
+	
+	
 	
 }

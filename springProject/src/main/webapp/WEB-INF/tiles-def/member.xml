@@ -73,4 +73,8 @@
     	<put-attribute name="title" value="내가 추천한 글 목록"/>
     	<put-attribute name="body" value="/WEB-INF/views/member/myRecommViews.jsp"/>
     </definition>
+    <definition name="myScrapView" extends="main">
+    	<put-attribute name="title" value="내가 스크랩한 글 목록"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/myScrapViews.jsp"/>
+    </definition>
 </tiles-definitions>

@@ -44,6 +44,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import kr.spring.houseBoard.service.HouseBoardService;
+import kr.spring.houseBoard.vo.HMarkVO;
 import kr.spring.houseBoard.vo.HouseBoardVO;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberBuisVO;
@@ -104,6 +105,12 @@ public class MemberController {
 	    return new HouseBoardVO();
 	 }
 	 
+	 // HMarkVO 객체 초기화
+	 @ModelAttribute
+	 public HMarkVO initCommand5() {
+		 
+	    return new HMarkVO();
+	 }
 	 
 	// 회원가입 - 회원가입 폼 호출
 	@RequestMapping("/member/registerUser.do")
@@ -747,11 +754,25 @@ public class MemberController {
 		return map;
 	}
 	
+	// 마이페이지 - 내가 스크랩한 글 목록 페이지 호출
+	@GetMapping("/member/myScrap.do")
+	public ModelAndView myScrapBookPage() {
+		
+		// 전달 객체
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("myScrapView"); // 타일스 식별자
+		
+		return mav;
+	}
+	
 	// 마이페이지 - 내가 추천한 글 목록 페이지 호출
 	@GetMapping("/member/myRecomm.do")
 	public ModelAndView myRecommPage(HttpSession session,
 								@RequestParam(value="pageNum", defaultValue="1") int currentPage) {
+		
 		Integer user_num = (Integer)session.getAttribute("user_num");
+		
+		
 		
 		
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -781,6 +802,11 @@ public class MemberController {
 		if(count > 0) {
 			// for문을 돌려서 글번호를 추출한 뒤 바로 내가 추천 누른 글의 게시글 구하기
 			for(HouseBoardVO board : myRecommNumList) {
+				// 추천 중복 체크 변수
+				int heartCheckNum = 0;
+				
+				// 스크랩 중복 체크 변수
+				int scrapCheckNum = 0;
 				
 				HouseBoardVO mhouseBoardVO = new HouseBoardVO();
 				
@@ -791,6 +817,30 @@ public class MemberController {
 				myMap.put("house_num", board.getHouse_num());
 				
 				mhouseBoardVO = memberService.myRecommBoardList(myMap);
+				
+				// 회원 추천 및 스크랩 체크 중복 체크
+				HMarkVO hMark = new HMarkVO();
+				hMark.setHouse_num(board.getHouse_num());
+				hMark.setMem_num(user_num);
+				
+				// 추천 중복 체크
+				String already = houseBoardService.checkHeart(hMark);
+				if(already != null) { // 추천버튼 누른 적 있음
+					heartCheckNum = 1;
+				}
+				
+				// 스크랩 중복 체크
+				String alreadyScrap = houseBoardService.checkScrap(hMark);
+				if(alreadyScrap != null) { // 스크랩버튼 누른 적 있음
+					scrapCheckNum = 1;
+				}
+				
+				// 추천수와 스크랩수, 중복체크 VO에 담기
+				mhouseBoardVO.setHouse_recom(houseBoardService.countHeart(board.getHouse_num()));
+				mhouseBoardVO.setHouse_Scrap(houseBoardService.countScrap(board.getHouse_num()));
+				// 중복체크
+				mhouseBoardVO.setScrapCheckNum(scrapCheckNum);
+				mhouseBoardVO.setHeartCheckNum(heartCheckNum);
 				
 				logger.debug("<<내가 추천한 글 : >>" + mhouseBoardVO);
 				
