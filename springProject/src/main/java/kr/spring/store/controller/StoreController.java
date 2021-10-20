@@ -1,6 +1,5 @@
 package kr.spring.store.controller;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.review.service.ReviewService;
@@ -147,45 +145,56 @@ public class StoreController {
 		
 		logger.debug("<<prod_num>>" + prod_num);
 		logger.debug("<<storeVO>>" + storeVO);
+		
 		//하단리뷰용
 		List<ReviewVO> reviewVO = reviewService.reviewListStore(prod_num);
-		//하단리뷰용
+		
 		// HTML 태그 불허
 		storeVO.setProd_name(StringUtil.useNoHtml(storeVO.getProd_name()));
 		
 		// HTML 태그 불허, 줄 바꿈 허용
-		storeVO.setProd_content(StringUtil.useBrNoHtml(storeVO.getProd_content()));
+		// CK에디터 사용으로 사용 x
+		// storeVO.setProd_content(StringUtil.useBrNoHtml(storeVO.getProd_content()));
 		
+		// 썸네일 이미지 출력을 위해 뷰네임 세팅
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("imageView");
 
-		mav.addObject("imageFile", storeVO.getProd_img());
-		mav.addObject("filename", storeVO.getProd_filename());
-		ModelAndView mav2 = new ModelAndView();
-		//용복님 이부분 새로 addObject 선언 안되게 return new로 되어있어서 제가바꿧어요
-		int rev_count =reviewService.reviewStoreCount(prod_num);
-		if(rev_count>0) {
+		// 리뷰 갯수 세기
+		int rev_count = reviewService.reviewStoreCount(prod_num);
+		
+		// 리뷰가 1개 이상일 경우
+		if(rev_count > 0) {
+			// 리뷰 평균 값 구하기
 			Integer rev_grade = reviewService.staravg(prod_num);
+			// 평균 값 반올림
 			Integer rev_grade_round = Math.round(rev_grade);
-			mav2.addObject("rev_grade", rev_grade);
-			mav2.addObject("rev_grade_round", rev_grade_round);
-			mav2.addObject("rev_count", rev_count);
+			
+			// 				평균 값		평균 값
+			mav.addObject("rev_grade", rev_grade);
+			//				반올림한 값			반올림한 값
+			mav.addObject("rev_grade_round", rev_grade_round);
+			//				리뷰 갯수		리뷰 갯수		
+			mav.addObject("rev_count", rev_count);
+			
 			Map<Object,String> ratingOptions = new HashMap<Object,String>();
+			
+			// 디비에서 리뷰 점수 호출 후 문자열로 변환
 			ratingOptions.put(0, "☆☆☆☆☆");
 			ratingOptions.put(1, "★☆☆☆☆");
 			ratingOptions.put(2, "★★☆☆☆");
 			ratingOptions.put(3, "★★★☆☆");
 			ratingOptions.put(4, "★★★★☆");
 			ratingOptions.put(5, "★★★★★");
-			mav2.addObject("ratingOptions",ratingOptions);
-			mav2.addObject("reviewVO", reviewVO);
+			
+			mav.addObject("ratingOptions",ratingOptions);
+			mav.addObject("reviewVO", reviewVO);
 		}
-		mav2.setViewName("storeProduct");
-		mav2.addObject("storeVO", storeVO);
-		//바꾼부분
-		//별점
-		//바뀐부분 끝
-		return mav2;
+		
+		mav.setViewName("storeProduct");
+		mav.addObject("storeVO", storeVO);
+		
+		return mav;
 	}
 	
 	//리뷰부분 이미지 
@@ -204,21 +213,6 @@ public class StoreController {
 	}
 	//리뷰부분 이미지 끝
 	
-	// 썸네일 이미지 표시
-	@RequestMapping("/store/contentImageView.do")
-	public ModelAndView viewImageContent(@RequestParam int prod_num) {
-			
-		StoreVO storeVO = storeService.selectProduct(prod_num);
-			
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("imageView");
-			
-		mav.addObject("imageFile", storeVO.getProd_img());
-		mav.addObject("filename", storeVO.getProd_filename());
-			
-		return mav;
-	}
-	
 	// 상품 수정 - 폼 호출
 	@GetMapping("/store/updateProduct.do")
 	public String productUpdate(@RequestParam int prod_num, Model model) {
@@ -232,7 +226,7 @@ public class StoreController {
 	
 	// 상품 수정 - 전송된 데이터 처리
 	@PostMapping("/store/updateProduct.do")
-	public String submitUpdate(@Valid StoreVO storeVO, BindingResult result, HttpSession session, HttpServletRequest request, Model model) {
+	public String submitUpdate(@Valid StoreVO storeVO, BindingResult result, HttpServletRequest request, Model model) {
 		
 		logger.debug("<<상품 수정>> : " + storeVO);
 		
@@ -240,9 +234,6 @@ public class StoreController {
 		if(result.hasErrors()) {
 			return "storeModify";
 		}
-		
-		// 로그인한 회원 정보 세션에 유지
-		storeVO.setMem_num((Integer)session.getAttribute("user_num"));
 		
 		// 상품 수정
 		storeService.updateProduct(storeVO);

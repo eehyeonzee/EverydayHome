@@ -67,9 +67,8 @@
 	<h2>상품 등록</h2>
 	<form:form id = "productRegister" action = "updateProduct.do" modelAttribute = "storeVO"
 	           enctype="multipart/form-data">
-		<div class = "form-group row">	    
-		<input type = "hidden" id = "user_num" value = "${user_num}">
-		<input type = "hidden" id = "prod_num" value = "${storeVO.prod_num}">
+		<div class = "form-group row">
+		<form:hidden path = "prod_num" />
 		<ul>
 			<li>
 				<label class = "col-sm-3 col-form-label" for = "prod_name">상품명</label>

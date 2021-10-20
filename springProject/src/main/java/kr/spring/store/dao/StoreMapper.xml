@@ -45,19 +45,29 @@
   	
   	<update id = "updateProduct" parameterType = "storeVO">
   		UPDATE product SET 
-  			prod_name = #{prod_name}, prod_price = #{prod_price}, delive_price = #{delive_price},
-			delive_type = #{delive_type}, selec_product = #{selec_product}, prod_option1 = #{prod_option1}, 
-            prod_option2 = #{prod_option2}, prod_option3 = #{prod_option3}, prod_option4 = #{prod_option4}, 
-            prod_option5 = #{prod_option5}, prod_option6 = #{prod_option6}, prod_option7 = #{prod_option7}, 
-            prod_option8 = #{prod_option8}, prod_option9 = #{prod_option9}, prod_option10 = #{prod_option10}, 
+  			prod_name = #{prod_name}, 
+  			prod_price = #{prod_price}, 
+  			delive_price = #{delive_price},
+			delive_type = #{delive_type}, 
+			selec_product = #{selec_product}, 
+			prod_option1 = #{prod_option1}, 
+            prod_option2 = #{prod_option2}, 
+            prod_option3 = #{prod_option3}, 
+            prod_option4 = #{prod_option4}, 
+            prod_option5 = #{prod_option5}, 
+            prod_option6 = #{prod_option6}, 
+            prod_option7 = #{prod_option7}, 
+            prod_option8 = #{prod_option8}, 
+            prod_option9 = #{prod_option9}, 
+            prod_option10 = #{prod_option10}, 
             prod_content = #{prod_content}, 
-            <if test = "prod_filename != ''">
-            prod_img = #{prod_img}, prod_filename = #{prod_filename},
-            </if>
             <if test = "thumbnail_filename != ''"> 
-            thumbnail_img = #{thumbnail_img}, thumbnail_filename = #{thumbnail_filename}, 
+            thumbnail_img = #{thumbnail_img}, 
+            thumbnail_filename = #{thumbnail_filename}, 
             </if>
-            prod_quan = #{prod_quan}, prod_keyword = #{prod_keyword}, prod_cate = #{prod_cate}
+            prod_quan = #{prod_quan}, 
+            prod_keyword = #{prod_keyword}, 
+            prod_cate = #{prod_cate}
          WHERE prod_num = #{prod_num}
   	</update>
 </mapper>
