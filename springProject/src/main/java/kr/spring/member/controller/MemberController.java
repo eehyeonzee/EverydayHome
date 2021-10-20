@@ -46,6 +46,7 @@ import com.google.gson.JsonParser;
 import kr.spring.houseBoard.service.HouseBoardService;
 import kr.spring.houseBoard.vo.HMarkVO;
 import kr.spring.houseBoard.vo.HouseBoardVO;
+import kr.spring.member.dao.MemberMapper;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberBuisVO;
 import kr.spring.member.vo.MemberVO;
@@ -796,7 +797,20 @@ public class MemberController {
 		mav.addObject("pagingHtml", page.getPagingHtml());
 		return mav;
 	}
-
+	
+	// 마이페이지 - 내 포인트 조회
+	@GetMapping("/member/myPoint.do")
+	public ModelAndView callMyPointView(HttpSession session) {
+		
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		
+		MemberVO member = memberService.selectMember(user_num);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("myPointView"); // 타일스 식별자
+		mav.addObject("member", member);
+		return mav;
+	}
 	
 	// 마이페이지 - 내가 스크랩한 글 목록 페이지 호출
 	@GetMapping("/member/myScrap.do")

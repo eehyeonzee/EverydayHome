@@ -81,4 +81,8 @@
     	<put-attribute name="title" value="내가 스크랩한 글 목록"/>
     	<put-attribute name="body" value="/WEB-INF/views/member/myProductViews.jsp"/>
     </definition>
+    <definition name="myPointView" extends="main">
+    	<put-attribute name="title" value="나의 포인트"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/myPointViews.jsp"/>
+    </definition>
 </tiles-definitions>
