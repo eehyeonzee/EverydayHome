@@ -24,7 +24,7 @@ public interface ReviewMapper {
 	public void reviewDelete(int rev_num); //리뷰삭제
 	@Select("SELECT o.prod_num as prod_num, p.prod_name as prod_name, p.prod_option1 as prod_option1, o.order_date as order_date, o.buis_name as buis_name , p.prod_price as prod_price  FROM orders o, product p WHERE  p.prod_num = o.prod_num AND o.mem_num = ${mem_num} ORDER BY o.order_date")
 	public List<ReviewVO> reviewbuyList(@Param("mem_num")int mem_num);
-	@Select("SELECT r.rev_num, r.rev_content, r.rev_grade, r.rev_grade, r.rev_img, r.rev_filename, r.prod_num, p.prod_name, p.prod_price, p.thumbnail_img, p.thumbnail_filename, b.buis_name FROM product_review r, product p, buis_detail b WHERE p.mem_num = b.mem_num AND p.prod_num = r.prod_num AND r.mem_num = ${mem_num}")
+	@Select("SELECT r.rev_num, r.rev_content, r.rev_grade,TO_CHAR(r.rev_reg_date,'YYYY-MM-DD')as rev_reg_date, r.rev_img, r.rev_filename, r.prod_num, r.mem_num, m.mem_name FROM product_review r, mem_detail m WHERE m.mem_num=r.mem_num AND r.mem_num=${mem_num}")
 	public List<ReviewVO> reviewList(@Param("mem_num")int mem_num);//리뷰리스트
 	@Select("SELECT r.rev_num, r.rev_content, r.rev_grade,TO_CHAR(r.rev_reg_date,'YYYY-MM-DD')as rev_reg_date, r.rev_img, r.rev_filename, r.prod_num, r.mem_num, m.mem_name FROM product_review r, mem_detail m WHERE m.mem_num=r.mem_num AND prod_num =${prod_num}")
 	public List<ReviewVO> reviewListStore(@Param("prod_num")int prod_num);//리뷰 스토어에서 보게하기

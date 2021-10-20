@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 <style>
 .container{
 width: 900px;
@@ -50,7 +53,7 @@ min-height: 500px;
 
     <div class="container">
     <div class="main-container">
-	<h2>글쓰기</h2>
+	<h2>공지사항 글쓰기</h2>
 	<form:form action="noticeWrite.do" modelAttribute="noticeVO">
 		<ul>
 			<li class="li-title">
@@ -58,8 +61,8 @@ min-height: 500px;
 				<form:input path="notice_title"/><br>
 				<form:errors path="notice_title" cssClass="error-color"/>
 			</li>
-			<li class="li-content">
-				<label for="notice_content">내용</label><br>
+			<li class="li-content mt-1">
+				<label for="notice_content" class="notice_label mb-2">내용</label><br>
 				<form:textarea path="notice_content"/>
 				<form:errors path="notice_content" cssClass="error-color"/>
 				<script>
@@ -80,8 +83,8 @@ min-height: 500px;
 			</li>
 		</ul>
 		<div class="submit-button">
-			<input type="submit" value="등록">
-			<input type="button" value="목록으로" onclick="location.href='${pageContext.request.contextPath}/notice/noticeList.do'">
+			<input type="submit" value="등록" class="btn btn-info">
+			<input type="button" value="목록으로" class="btn btn-success" onclick="location.href='${pageContext.request.contextPath}/notice/noticeList.do'">
 		</div>
 	</form:form>
 	</div>

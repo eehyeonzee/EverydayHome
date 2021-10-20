@@ -31,19 +31,13 @@ width:1138px;
 .title{
 	font-size:18px;
 	weight:800;
-	padding: 10px 10px 10px 10px;
 	text-align:left;
 
 }
 .reg_date{
 	font-size:15px;
-	padding: 0px 10px 20px 10px;
+	padding-right: 30px;
 	text-align:right;
-}
-.paging {
-	text-align:center;
-	padding : 50px;
-	margin-top : 40px;
 }
 h2{
 	text-align:left;
@@ -54,7 +48,7 @@ h2{
 	margin : 40px 100px 0px 30px;
 }
 </style>
-<div class="container-fluid">
+<div class="container">
  <div class="main-container">
  	<div class="name-item">
  	<h2 style="font-family: 'Gowun Dodum', sans-serif;">리뷰목록</h2>
@@ -67,11 +61,13 @@ h2{
  		<c:forEach var="list" items="${list}" varStatus="n">
  		<form:form id="${n.index}" action="reviewCheck.do" modelAttribute="reviewVO" method="post">
  		<div class="link-item" onclick="#">
- 		<div class="title">${list.buis_name}</div><br>
- 		<div class="title">${list.prod_name}</div>
+ 		<div class="title" style="font-size:15px;">${list.buis_name}</div>
+ 		<div class="title"><h5>${list.prod_name}</h5></div>
  		<input type="hidden" name="prod_num"value="${list.prod_num}"/>
- 		<div class="reg_date">${list.prod_price}</div>
- 		<div class="reg_date"><form:button>리뷰작성</form:button></div>
+ 		<div class="reg_date"><h6><fmt:formatNumber pattern="###,###,###" value="${list.prod_price}"/> 원</h6></div>
+ 		<div class="iftag" style="text-align:right; padding-right:20px;">
+		<input type="submit" value="리뷰작성" class="btn btn-light">
+ 		</div>
  		</div>
  		</form:form>
  		</c:forEach>

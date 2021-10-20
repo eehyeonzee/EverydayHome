@@ -92,7 +92,7 @@ public class ReviewController {
 				
 				return "common/resultView";
 			}else {//리뷰쓴적있음
-				model.addAttribute("message", "작성한 리뷰를 확인하시겠습니까?");
+				model.addAttribute("message", "작성한 리뷰가 존재합니다. 확인하시겠습니까?");
 				model.addAttribute("url", request.getContextPath() + "/review/reviewList.do"); 
 			
 				return "common/resultView";
@@ -202,7 +202,7 @@ public class ReviewController {
 	@GetMapping("/review/imageView.do")
 	public ModelAndView viewImage(@RequestParam int rev_num) {
 		
-		ReviewVO review =reviewService.reviewDetail(rev_num);
+		ReviewVO review =reviewService.reviewImgStore(rev_num);
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("imageView");
