@@ -323,15 +323,13 @@ public class EventController {
 		}
 		return map;
 	}
-/*
+
 	//댓글 수정
 	@RequestMapping("/event/updateComment.do")
 	@ResponseBody
 	public Map<String,String> updateComment(ECommentVO eCommentVO,
 											HttpSession session,
-											HttpServletRequest request,
-											@RequestParam int comm_num,
-			                                @RequestParam int mem_num){
+											HttpServletRequest request){
 		
 		logger.debug("<<댓글 수정>> : " + eCommentVO);
 		
@@ -341,8 +339,9 @@ public class EventController {
 		if(user_num == null) {
 			//로그인이 되어있지 않음
 			map.put("result", "logout");
-		}else if(user_num != null && user_num==mem_num) {
+		}else if(user_num != null && user_num==eCommentVO.getMem_num()) {
 			//로그인이 되어 있고 로그인한 아이디와 작성자 아이디가 일치
+			//댓글 수정
 			eventService.updateEComment(eCommentVO);
 			map.put("result", "success");
 		}else {
@@ -351,7 +350,7 @@ public class EventController {
 		}
 		return map;
 	}
-*/
+
 
 	//썸네일 사진 출력
    @RequestMapping("/event/photoView.do")

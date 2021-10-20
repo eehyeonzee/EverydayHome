@@ -36,7 +36,7 @@ public interface EventMapper {
 	public int selectRowCountComment(Map<String, Object>map);
 	@Insert("INSERT INTO comments (comm_num, comm_content, event_num, mem_num) VALUES (comments_seq.nextval,#{comm_content},#{event_num},#{mem_num})")
 	public void insertEComment(ECommentVO eComment);
-	@Update("UPDATE comments SET comm_content=#{comm_content}")
+	@Update("UPDATE comments SET comm_content=#{comm_content},comm_mod_date=SYSDATE WHERE comm_num=#{comm_num}")
 	public void updateEComment(ECommentVO eComment);
 	@Delete("DELETE FROM comments WHERE comm_num=#{comm_num}")
 	public void deleteEComment(Integer comm_num);

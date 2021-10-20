@@ -172,7 +172,7 @@ function shareTwitter() {
 		//댓글 수정 버튼 클릭시 수정폼 노출
 		$(document).on('click','.modify-btn',function(){
 			//댓글 글번호
-			var re_num = $(this).attr('data-num');
+			var comm_num = $(this).attr('data-num');
 			//작성자 회원 번호
 			var mem_num = $(this).attr('data-mem');
 			//댓글 내용
@@ -224,18 +224,18 @@ function shareTwitter() {
 		$(document).on("submit","#mcomm_form", function(event){
 			if($("#mcomm_content").val().trim() == ""){
 				alert("내용을 입력하세요!");
-				$("#comm_content").val("").focus();
+				$("#mcomm_content").val("").focus();
 				return false;
 			}
 			
 			// 폼에 입력한 데이터 변환
-			var form_data = $(this).serialize();
+			var data = $(this).serialize();
 					
 			// 댓글 수정
 			$.ajax({
 				type:"post",
 				url:"updateComment.do",
-				data: form_data,
+				data: data,
 				dataType:"json",
 				cache:false,
 				timeout:30000,
@@ -245,13 +245,13 @@ function shareTwitter() {
 					}else if(param.result == "success"){
 						// 전송을 누르면 전송되지 않고 그대로 화면에 읽어와서 표시되도록
 						// 부모로 올라가서 p태그를 찾아서 내용을 넣어준다. 그리고 html 태그 불허용을 했기때문에 바꾸는 작업처리
-						$('#mcomm_form').parent().find('p').html($('#mcomm_content').val().replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/gi,'<br>'));
+						$('#mcomm_form').parent().find('p').html($('#mcomm_content').val().replace(/</g,'&lt;').replace(/>/g,'&gt;'));
 						// 수정폼 삭제 및 초기화
 						initModifyForm();
 					}else if(param.result == "wrongAccess"){
 						alert("타인의 글을 수정할 수 없습니다.");
 					}else{
-						alert("네트워크 오류 발생");
+						alert("댓글 수정시 오류 발생");
 					}
 				},
 				error : function(request,status,error){		// 에러메세지 반환
