@@ -44,6 +44,8 @@ public interface HouseBoardMapper {
 		// =============== 댓글 =============== //
 		public List<HCommentVO> selectListComm(Map<String,Object> map); // 댓글 목록
 		public int selectRowCountComm(Map<String,Object> map); // 댓글 개수
+		@Select("SELECT COUNT(*) FROM comments WHERE house_num = #{house_num}")
+		public int countComm(Integer house_num); // 댓글 개수 조회
 		@Insert("INSERT INTO comments (comm_num,comm_content,house_num,mem_num) VALUES (comments_seq.nextval,#{comm_content},#{house_num},#{mem_num})")
 		public void insertComm(HCommentVO hComment); // 댓글 등록
 		@Update("UPDATE comments SET comm_content = #{comm_content},comm_mod_date=SYSDATE WHERE comm_num = #{comm_num}")

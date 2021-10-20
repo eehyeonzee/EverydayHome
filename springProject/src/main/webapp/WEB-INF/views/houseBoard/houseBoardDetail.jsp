@@ -158,8 +158,8 @@
 						//each() 메소드는 매개변수로 받은 것을 사용해 for in 반복문과 같이 배열이나 객체의 요소를 검사함
 						var output = '<div class="item">';
 						
-						if(item.profile != null) {
-							output += '<div style="width:57px; height:57px; float:left; padding-right:5em;"><img src="${pageContext.request.contextPath}/member/photoView.do?mem_num=${houseBoard.mem_num}'+item.profile+'" style="height:53px; width:53px;" class="my-photo"/></div>';
+						if(item.profile_filename != null) {
+							output += '<div style="width:57px; height:57px; float:left; padding-right:5em;"><img src="${pageContext.request.contextPath}/member/boardPhotoView.do?mem_num=${houseBoard.mem_num}'+item.profile+'" style="height:53px; width:53px;" class="my-photo"/></div>';
 						}else {
 							output += '<div style="width:57px; height:57px; float:left; padding-right:5em;"><img src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="height:45px; width:45px;" class="my-photo"/></div>';
 						}
@@ -479,7 +479,7 @@
 	</div>
 	<!-- 수정｜삭제｜목록 버튼 끝 -->
 	<!-- 댓글 시작 -->
-	<span class="comm-title">댓글 ${count}</span>
+	<span class="comm-title">댓글 <b style="color:#8c996b">${countComm}</b></span>
 	<div id="comm_div">
 		<p>
 		<form id="comm_form">

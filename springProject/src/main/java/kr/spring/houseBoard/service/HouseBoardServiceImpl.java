@@ -93,6 +93,11 @@ public class HouseBoardServiceImpl implements HouseBoardService {
 	public int selectRowCountComm(Map<String, Object> map) {
 		return houseBoardMapper.selectRowCountComm(map);
 	}
+	
+	@Override
+	public int countComm(Integer house_num) {
+		return houseBoardMapper.countComm(house_num);
+	}
 
 	@Override
 	public void insertComm(HCommentVO hComment) {
@@ -151,5 +156,5 @@ public class HouseBoardServiceImpl implements HouseBoardService {
 	public void deleteScrap(HMarkVO hMark) {
 		houseBoardMapper.deleteScrap(hMark);
 	}
-	
+
 }

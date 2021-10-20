@@ -32,6 +32,7 @@ public interface HouseBoardService {
 	// =============== 댓글 =============== //
 	public List<HCommentVO> selectListComm(Map<String,Object> map); // 댓글 목록
 	public int selectRowCountComm(Map<String,Object> map); // 댓글 개수
+	public int countComm(Integer house_num); // 댓글 개수 조회
 	public void insertComm(HCommentVO hComment); // 댓글 등록
 	public void updateComm(HCommentVO hComment); // 댓글 수정
 	public void deleteComm(Integer comm_num); // 댓글 삭제

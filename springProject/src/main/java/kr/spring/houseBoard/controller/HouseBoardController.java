@@ -125,6 +125,20 @@ public class HouseBoardController {
 		return mav;
 	}
 	
+	// 글 목록 - 썸네일 사진 출력
+	@RequestMapping("/houseBoard/thumbnail.do")
+	public ModelAndView thumbnailViewImage(@RequestParam int house_num) {
+		
+		HouseBoardVO houseBoardVO = houseBoardService.selectHBoard(house_num);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("imageView");
+		mav.addObject("imageFile", houseBoardVO.getHouse_thumbnail());
+	      mav.addObject("filename", houseBoardVO.getThumbnail_filename());
+		
+		return mav;
+	}
+	
 	// 글 상세
 	@RequestMapping("/houseBoard/detail.do")
 	public ModelAndView process(@RequestParam int house_num, HttpSession session) { // 글번호 저장
@@ -156,6 +170,9 @@ public class HouseBoardController {
 		countHeart = houseBoardService.countHeart(house_num);
 		// 스크랩수
 		countScrap = houseBoardService.countScrap(house_num);
+		// 댓글수
+		int countComm = houseBoardService.countComm(house_num);
+		
 		
 		// 추천 버튼 실행
 		if(user_num == null) {
@@ -203,6 +220,7 @@ public class HouseBoardController {
 	    mav.addObject("countHeart", countHeart);
 	    mav.addObject("scrapCheckNum", scrapCheckNum);
 	    mav.addObject("countScrap", countScrap);
+	    mav.addObject("countComm", countComm);
 	     
 		return mav;
 	}
@@ -381,10 +399,10 @@ public class HouseBoardController {
 	}
 	
 	// 댓글 프로필 사진 출력
-	@RequestMapping("/houseBoard/photoView.do")
-	public ModelAndView viewImage(@RequestParam int house_num, HttpSession session) {
+	@GetMapping("/houseBoard/boardPhotoView.do")
+	public ModelAndView boardViewImage(@RequestParam int mem_num) {
 		
-		MemberVO memberVO = memberService.selectMember(house_num);
+		MemberVO memberVO = memberService.selectMember(mem_num);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("imageView");
