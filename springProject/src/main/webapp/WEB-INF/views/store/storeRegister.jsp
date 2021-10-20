@@ -5,10 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
-<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script type = "text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 <script type = "text/javascript" src = "${pageContext.request.contextPath}/resources/js/ckeditor.js"></script>
-<script type = "text/javascript" src = "${pageContext.request.contextPath}/resources/js/uploadAdapter2.js"></script>
+<script type = "text/javascript" src = "${pageContext.request.contextPath}/resources/js/uploadAdapter.js"></script>
 <script type = "text/javascript">
 	$(document).ready(function() {
 		var option = 1;
@@ -203,10 +203,6 @@
 						console.error(error);
 					});
 				</script>
-			</li>
-			<li>
-				<label class = "col-sm-3 col-form-label" for = "upload2">상품 이미지</label>
-				<input class = "btn btn-outline-dark" type = "file" name = "upload2" id = "upload2" accept = "image/gif,image/png,image/jpeg">
 			</li>
 		</ul>
 		<div class = "align-center">

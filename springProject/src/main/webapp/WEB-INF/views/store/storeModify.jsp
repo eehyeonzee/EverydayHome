@@ -5,10 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
-<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script type = "text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 <script type = "text/javascript" src = "${pageContext.request.contextPath}/resources/js/ckeditor.js"></script>
-<script type = "text/javascript" src = "${pageContext.request.contextPath}/resources/js/uploadAdapter2.js"></script>
+<script type = "text/javascript" src = "${pageContext.request.contextPath}/resources/js/uploadAdapter.js"></script>
 <script type = "text/javascript">
 	$(document).ready(function() {
 		var option = 1;
@@ -65,10 +65,11 @@
 <!-- 내용 시작 -->
 <div class = "container-fluid" style = "width:700px; border: 1px solid #d2f1f7; font-family: 'Gowun Dodum', sans-serif; ">
 	<h2>상품 등록</h2>
-	<form:form id = "productRegister" action = "storeRegister.do" modelAttribute = "storeVO"
+	<form:form id = "productRegister" action = "updateProduct.do" modelAttribute = "storeVO"
 	           enctype="multipart/form-data">
 		<div class = "form-group row">	    
-		<input type = "hidden" value = "${user_num}">
+		<input type = "hidden" id = "user_num" value = "${user_num}">
+		<input type = "hidden" id = "prod_num" value = "${storeVO.prod_num}">
 		<ul>
 			<li>
 				<label class = "col-sm-3 col-form-label" for = "prod_name">상품명</label>
@@ -236,13 +237,6 @@
 						console.error(error);
 					});
 				</script>
-			</li>
-			<li>
-				<label class = "col-sm-3 col-form-label" for = "upload2">상품 이미지</label>
-				<input class = "btn btn-outline-dark" type = "file" name = "upload2" id = "upload2" accept = "image/gif,image/png,image/jpeg"><br>
-				<span id = "file_detail2">(${storeVO.prod_filename}) 파일이 등록되어 있습니다.
-				다시 업로드하면 기존 파일은 삭제 됩니다.
-				</span>
 			</li>
 		</ul>
 		<div class = "align-center">
