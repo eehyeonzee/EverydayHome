@@ -56,4 +56,9 @@ public interface MemberService {
 	public void updateMemberPasswdReset(Integer mem_num);	// 관리자 페이지 - 회원 비밀번호 초기화
 	public void updateSellerMember(Integer mem_num);		// 관리자 페이지 - 판매자 신청 등록 (사업자테이블 상태 변경) (회원 등급 변경)
 	public void deleteSellerMember(Integer mem_num);		// 관리자 페이지 - 판매자 신청 취소 (사업자 테이블 해당 ROW 삭제)
+	
+	// 쿠폰 부분
+	public void insertCoupon(MemberVO memberVO);							// 관리자 페이지 쿠폰 등록
+	public int selectCouponAllCount(); 										// 관리자 페이지 쿠폰 전체 개수 구하기
+	public List<MemberVO> selectCouponAllList(Map<String, Object> map); 	// 관리자 페이지 쿠폰 목록 구하기
 }

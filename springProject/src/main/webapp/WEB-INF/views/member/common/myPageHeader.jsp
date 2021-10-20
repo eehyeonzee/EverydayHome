@@ -165,6 +165,16 @@
 	</div>
 	<div class="nav-right-menu">
 		<ul style="display: inline-block;">
+			<li class="navrightmenuli"><a class="navmenuitem" href="${pageContext.request.contextPath}/member/memberUpdate.do" style="font-size: 30px; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">기타</a>
+				<ul class="dropdownbar">
+					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/couponRegisterView.do">쿠폰 등록</a></li>						
+					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/aminCouponAllView.do">전체 쿠폰 조회</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div class="nav-right-menu">
+		<ul style="display: inline-block;">
 			<li class="navrightmenuli"><a class="navmenuitem" href="${pageContext.request.contextPath}/member/memberUpdate.do" style="font-size: 30px; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">설정</a>
 				<ul class="dropdownbar">
 					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/memberUpdate.do">관리자 정보수정</a></li>						

@@ -94,6 +94,23 @@ public interface MemberMapper {
 	@Delete("DELETE FROM buis_detail WHERE mem_num=#{mem_num}")
 	public void deleteSellerMember(Integer mem_num);		// 관리자 페이지 - 판매자 신청 취소 (사업자 테이블 해당 ROW 삭제)
 	
+	
+	// 쿠폰 부분
+	
+	@Insert("INSERT INTO coupon_detail (coupondetail_num, coupon_name, coupon_content, discount_price) VALUES"
+			+ " (coupon_detail_seq.nextval, #{coupon_name}, #{coupon_content}, #{discount_price})")
+	public void insertCoupon(MemberVO memberVO);			// 관리자 페이지 쿠폰 등록
+	
+	@Select("SELECT COUNT(*) FROM coupon_detail")
+	public int selectCouponAllCount(); 				// 관리자 페이지 쿠폰 전체 개수 구하기
+	public List<MemberVO> selectCouponAllList(Map<String, Object> map); 	// 관리자 페이지 쿠폰 목록 구하기
+	
+	// 관리자 페이지 쿠폰 배정
+	// 관리자 페이지 쿠폰 삭제
+	// 관리자 페이지 쿠폰 수정
+	
+	
+	
 	@Select("SELECT COUNT(*) FROM product WHERE mem_num = #{mem_num}")
 	public int myProductCount(Integer mem_num);						// 판매자 페이지 - 내가 등록한 상품 전체 수 구하기
 	public List<StoreVO> myProductList(Map<String, Object> map);		// 판매자 페이지 - 내가 등록한 상품 리스트 출력

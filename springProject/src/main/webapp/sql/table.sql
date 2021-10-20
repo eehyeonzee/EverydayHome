@@ -130,3 +130,27 @@ ALTER TABLE house_board DROP COLUMN house_recom;
 
 --21.10.21 1:10 이벤트 게시판 컬럼 추가
 alter table event add event_day varchar2(50);
+
+-- 21.10.21.02.50 쿠폰테이블 삭제 및 분할	(순서대로 실행)
+DROP TABLE coupon;
+
+CREATE TABLE coupon_detail
+(
+    coupondetail_num    NUMBER           NOT NULL, 
+    coupon_name         VARCHAR2(300)    NOT NULL, 
+    coupon_content      VARCHAR2(600)    NOT NULL, 
+    discount_price      NUMBER(14, 0)    NOT NULL, 
+    CONSTRAINT PK_coupon_num PRIMARY KEY (coupondetail_num)
+);
+
+CREATE SEQUENCE coupon_detail_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+CREATE TABLE coupon
+(
+    coupon_num          NUMBER    NOT NULL, 
+    mem_num             NUMBER    NULL, 
+    coupondetail_num    NUMBER    NULL, 
+     PRIMARY KEY (coupon_num)
+);

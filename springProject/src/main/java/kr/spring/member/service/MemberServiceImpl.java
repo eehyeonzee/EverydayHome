@@ -162,6 +162,22 @@ public class MemberServiceImpl implements MemberService {
 		return memberMapper.myProductList(map);
 	}
 	
+	// 관리자 쿠폰 부분
+	
+	@Override
+	public void insertCoupon(MemberVO memberVO) {
+		memberMapper.insertCoupon(memberVO);
+		
+	}
+	@Override
+	public int selectCouponAllCount() {
+		return memberMapper.selectCouponAllCount();
+	}
+	@Override
+	public List<MemberVO> selectCouponAllList(Map<String, Object> map) {
+		return memberMapper.selectCouponAllList(map);
+	}
+	
 	
 	
 }

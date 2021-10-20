@@ -1282,7 +1282,58 @@ public class MemberController {
 		return mapAjax;
 	}
 	
+	// 관리자 페이지 - 쿠폰 등록 폼 호출
+	@GetMapping("/member/couponRegisterView.do")
+	public String couponRegisterForm() {
+		
+		return "couponRegister";
+	}
 	
+	// 관리자 페이지 - 쿠폰 등록 폼 처리
+	@PostMapping("/member/couponRegisterView.do")
+	public String couponRegisterSubmit(MemberVO memberVO, BindingResult result) {
+		
+		// 유효성 검사 결과 오류가 있으면 폼 호출
+		if(result.hasErrors()) {
+			logger.debug("<<오류 내역 >> : " + result.toString());
+			return couponRegisterForm();
+		}
+		
+		logger.debug("<<회원정보>> : " + memberVO);
+		
+		// 쿠폰 등록
+		memberService.insertCoupon(memberVO);
+		return "redirect:/member/myPage.do";
+	}
+	
+	// 관리자 페이지 - 전체 쿠폰 조회 폼 호출
+	@GetMapping("/member/aminCouponAllView.do")
+	public ModelAndView adminCouponAllView(@RequestParam(value="pageNum", defaultValue="1") int currentPage) {
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		// 쿠폰 전체 개수 구하기
+		int count = memberService.selectCouponAllCount();
+		logger.debug("<<쿠폰 전체 개수>> : " + count);
+		// 페이지 처리
+		PagingUtil page = new PagingUtil(currentPage,count,mem_rowCount,mem_pageCount,"couponAllView.do");
+		
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
+		
+		List<MemberVO> list = null;
+		
+		if(count > 0) {
+			list = memberService.selectCouponAllList(map);
+		}
+		logger.debug("<<쿠폰 전체 리스트>> : " + list);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("couponAllView"); // 타일스 식별자
+		mav.addObject("count", count);
+		mav.addObject("list", list);
+		return mav;
+
+	}
 	
 	
 	

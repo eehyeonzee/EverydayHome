@@ -182,4 +182,22 @@
 		WHERE rnum >= #{start} AND rnum <= #{end}
 		]]>
 	</select>
+	
+	<!-- 관리자 페이지 - 전체 쿠폰 목록 구하기 -->
+	<select id="selectCouponAllList" parameterType="map" resultType="memberVO">
+	 	SELECT *
+	 	FROM (SELECT
+	 			a.*,
+	 			rownum rnum
+	 		  FROM (SELECT
+	 		  		coupondetail_num,
+                    coupon_name,
+                    coupon_content,
+                    discount_price
+                    FROM coupon_detail
+                    ORDER BY coupondetail_num DESC)a)
+        <![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
 </mapper>

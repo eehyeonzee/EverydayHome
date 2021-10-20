@@ -5,6 +5,7 @@ import java.sql.Date;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -34,11 +35,15 @@ public class MemberVO {
 	   private String profile_filename;   // 프로필 사진 파일명
 	   private Date reg_date;      // 가입일
 	   private int point;			// 포인트
-	   private int coupon_num;		// 쿠폰번호
-	   private String coupon_name;	// 쿠폰명
-	   private String coupon_context; // 쿠폰내용
-	   private int coupon_count;	// 쿠폰 갯수
-	   private int discount_price;	// 할인가격
+	   
+	   // 쿠폰
+	   private int coupon_num;			 // 쿠폰번호
+	   private int coupondetail_num;	 // 쿠폰 상세번호
+	   private String coupon_name;		 // 쿠폰명
+	   private String coupon_content;	 // 쿠폰내용
+	   private int coupon_count;		 // 쿠폰 갯수
+	   private int discount_price;		 // 할인가격
+	   
 	   @NotEmpty
 	   private String nickname;		// 닉네임
 	   private int follow_count;	// 팔로우 숫자
@@ -69,6 +74,14 @@ public class MemberVO {
 	   }
 	   
 	   
+	public int getCoupondetail_num() {
+		return coupondetail_num;
+	}
+
+	public void setCoupondetail_num(int coupondetail_num) {
+		this.coupondetail_num = coupondetail_num;
+	}
+
 	public int getMem_num() {
 		return mem_num;
 	}
@@ -166,11 +179,11 @@ public class MemberVO {
 	public void setCoupon_name(String coupon_name) {
 		this.coupon_name = coupon_name;
 	}
-	public String getCoupon_context() {
-		return coupon_context;
+	public String getCoupon_content() {
+		return coupon_content;
 	}
-	public void setCoupon_context(String coupon_context) {
-		this.coupon_context = coupon_context;
+	public void setCoupon_content(String coupon_content) {
+		this.coupon_content = coupon_content;
 	}
 	public int getDiscount_price() {
 		return discount_price;
@@ -248,11 +261,14 @@ public class MemberVO {
 		return "MemberVO [mem_num=" + mem_num + ", mem_id=" + mem_id + ", mem_auth=" + mem_auth + ", mem_name="
 				+ mem_name + ", passwd=" + passwd + ", phone=" + phone + ", email=" + email + ", zipcode=" + zipcode
 				+ ", address1=" + address1 + ", address2=" + address2 + ", profile_filename=" + profile_filename
-				+ ", reg_date=" + reg_date + ", point=" + point + ", coupon_num=" + coupon_num + ", coupon_name="
-				+ coupon_name + ", coupon_context=" + coupon_context + ", coupon_count=" + coupon_count
-				+ ", discount_price=" + discount_price + ", nickname=" + nickname + ", follow_count=" + follow_count
-				+ ", follower_count=" + follower_count + ", scrapbook_count=" + scrapbook_count + ", recommend_count="
-				+ recommend_count + ", house_board_count=" + house_board_count + ", now_passwd=" + now_passwd + "]";
+				+ ", reg_date=" + reg_date + ", point=" + point + ", coupon_num=" + coupon_num + ", coupondetail_num="
+				+ coupondetail_num + ", coupon_name=" + coupon_name + ", coupon_content=" + coupon_content
+				+ ", coupon_count=" + coupon_count + ", discount_price=" + discount_price + ", nickname=" + nickname
+				+ ", follow_count=" + follow_count + ", follower_count=" + follower_count + ", scrapbook_count="
+				+ scrapbook_count + ", recommend_count=" + recommend_count + ", house_board_count=" + house_board_count
+				+ ", now_passwd=" + now_passwd + "]";
 	}
+
+	
 
 }

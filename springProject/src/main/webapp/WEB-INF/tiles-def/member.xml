@@ -85,4 +85,12 @@
     	<put-attribute name="title" value="나의 포인트"/>
     	<put-attribute name="body" value="/WEB-INF/views/member/myPointViews.jsp"/>
     </definition>
+    <definition name="couponRegister" extends="main">
+    	<put-attribute name="title" value="관리자 - 쿠폰 등록"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/couponRegisterViews.jsp"/>
+    </definition>
+    <definition name="couponAllView" extends="main">
+    	<put-attribute name="title" value="관리자 - 쿠폰 전체조회"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/couponAllViews.jsp"/>
+    </definition>
 </tiles-definitions>
