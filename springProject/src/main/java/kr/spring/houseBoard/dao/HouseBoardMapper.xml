@@ -51,7 +51,6 @@
 			  		  REPLACE(REPLACE(b.house_title,'<','&lt;'),'>','&gt;') house_title,
 			  		  ]]>
 			  		  b.house_hits,
-			  		  b.house_recom,
 			  		  b.house_reg_date,
 			  		  b.mem_num,
 			  		  b.house_thumbnail,
