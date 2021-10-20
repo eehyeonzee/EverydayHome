@@ -47,5 +47,10 @@ public interface HouseBoardService {
 	public void insertHeart(HMarkVO hMark); // 테이블에 추천수 저장
 	public void deleteHeart(HMarkVO hMark); // 테이블에서 추천수 제거
 	
+	// =============== 스크랩 =============== //
+	public int countScrap(Integer house_num); // 스크랩수 조회
+	public String checkScrap(HMarkVO hMark); // 스크랩 중복 체크
+	public void insertScrap(HMarkVO hMark); // 테이블에 스크랩 수 저장
+	public void deleteScrap(HMarkVO hMark); // 테이블에서 스크랩수 제거
 	
 }

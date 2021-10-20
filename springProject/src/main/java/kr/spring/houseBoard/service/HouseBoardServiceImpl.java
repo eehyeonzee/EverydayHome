@@ -129,4 +129,26 @@ public class HouseBoardServiceImpl implements HouseBoardService {
 		houseBoardMapper.deleteHeart(hMark);
 	}
 	
+	// ========== 스크랩 ========== //
+	@Override
+	public int countScrap(Integer house_num) {
+		return houseBoardMapper.countScrap(house_num);
+	}
+
+	@Override
+	public String checkScrap(HMarkVO hMark) {
+		return houseBoardMapper.checkScrap(hMark);
+	}
+
+	@Override
+	public void insertScrap(HMarkVO hMark) {
+		houseBoardMapper.insertScrap(hMark);
+		
+	}
+
+	@Override
+	public void deleteScrap(HMarkVO hMark) {
+		houseBoardMapper.deleteScrap(hMark);
+	}
+	
 }

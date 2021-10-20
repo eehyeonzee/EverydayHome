@@ -4,7 +4,7 @@ public class HMarkVO {
 	private int mem_num; // 회원번호
 	private int house_num; // 글번호
 	private int house_recom; // 추천수(좋아요 수)
-	private int scrap_num; // 스크랩 수
+	private int scrap_num; // 스크랩수
 	
 	public int getMem_num() {
 		return mem_num;
