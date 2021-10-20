@@ -63,6 +63,9 @@ public interface HouseBoardMapper {
 		public void insertHeart(HMarkVO hMark); // 테이블에 추천수 저장
 		@Delete("DELETE FROM recommend WHERE house_num = #{house_num} AND mem_num = #{mem_num}")
 		public void deleteHeart(HMarkVO hMark); // 테이블에서 추천수 제거
+		// 부모글 삭제시 추천이 존재하면 부모글 삭제 전 추천 삭제
+		@Delete("DELETE FROM recommend WHERE house_num = #{house_num}")
+		public void deleteHeartByHouseNum(Integer house_num);
 		
 		// =============== 스크랩 =============== //
 		@Select("SELECT COUNT(*) FROM scrapbook WHERE house_num = #{house_num}")
@@ -73,6 +76,9 @@ public interface HouseBoardMapper {
 		public void insertScrap(HMarkVO hMark); // 테이블에 스크랩수 저장
 		@Delete("DELETE FROM scrapbook WHERE house_num = #{house_num} AND mem_num = #{mem_num}")
 		public void deleteScrap(HMarkVO hMark); // 테이블에서 스크랩수 제거
+		// 부모글 삭제시 스크랩이 존재하면 부모글 삭제 전 스크랩 삭제
+		@Delete("DELETE FROM scrapbook WHERE house_num = #{house_num}")
+		public void deleteScrapByHouseNum(Integer house_num);
 		
 }
 

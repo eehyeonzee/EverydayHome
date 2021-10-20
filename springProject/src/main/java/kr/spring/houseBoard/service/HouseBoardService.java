@@ -1,12 +1,7 @@
 package kr.spring.houseBoard.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
 
 import kr.spring.houseBoard.vo.HCommentVO;
 import kr.spring.houseBoard.vo.HMarkVO;
