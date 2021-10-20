@@ -58,14 +58,14 @@ ALTER TABLE house_board DROP COLUMN upload_filename;
 
 -- 21.10.16 23:30 상품 테이블 칼럼 변경
 ALTER TABLE product MODIFY selec_product null;
-ALTER TABLE product add product_option3 VARCHAR2(150) null;
-ALTER TABLE product add product_option4 VARCHAR2(150) null;
-ALTER TABLE product add product_option5 VARCHAR2(150) null;
-ALTER TABLE product add product_option6 VARCHAR2(150) null;
-ALTER TABLE product add product_option7 VARCHAR2(150) null;
-ALTER TABLE product add product_option8 VARCHAR2(150) null;
-ALTER TABLE product add product_option9 VARCHAR2(150) null;
-ALTER TABLE product add product_option10 VARCHAR2(150) null;
+ALTER TABLE product add prod_option3 VARCHAR2(150) null;
+ALTER TABLE product add prod_option4 VARCHAR2(150) null;
+ALTER TABLE product add prod_option5 VARCHAR2(150) null;
+ALTER TABLE product add prod_option6 VARCHAR2(150) null;
+ALTER TABLE product add prod_option7 VARCHAR2(150) null;
+ALTER TABLE product add prod_option8 VARCHAR2(150) null;
+ALTER TABLE product add prod_option9 VARCHAR2(150) null;
+ALTER TABLE product add prod_option10 VARCHAR2(150) null;
 
 -- 21.10.17 02:50 댓글 테이블 컬럼명 변경
 ALTER TABLE comments RENAME COLUMN comm_modi TO comm_mod_date;

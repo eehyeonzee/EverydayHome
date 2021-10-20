@@ -15,36 +15,47 @@
     	height: 7px;
     	positon: absoulte;
 	}
+	.carousel-icon {
+		width: 30px;
+	}
 	
 </style>
 
 <div id = "carousel" class = "carousel slide" data-ride="carousel" role = "region" aria-roledescription = "carousel">
 	<div class = "carousel-inner" aria-live = "off" style = "transform: translateX(0%);">
-	<div class = "carousel-indicators-wrap">
-		<ol class = "carousel-indicators">
-			<li class = "carousel-indicators-item active" data-target="#carousel" data-slide-to="0" aria-current="true" aria-label="Slide 1">
-				<button type = "button"></button>
-			</li>
-			<li class = "carousel-indicators-item" data-target="#carousel" data-slide-to="1" aria-label="Slide 2">
-				<button type = "button"></button>
-			</li>
-			<li class = "carousel-indicators-item" data-target="#carousel" data-slide-to="2" aria-label="Slide 3">
-				<button type = "button"></button>
-			</li>
-			<li class = "carousel-indicators-item" data-target="#carousel" data-slide-to="3" aria-label="Slide 4">
-				<button type = "button"></button>
-			</li>
-			<li class = "carousel-indicators-item" data-target="#carousel" data-slide-to="4" aria-label="Slide 5">
-				<button type = "button"></button>
-			</li>
-			<li class = "carousel-indicators-item" data-target="#carousel" data-slide-to="5" aria-label="Slide 6">
-				<button type = "button"></button>
-			</li>
-			<li class = "carousel-indicators-item" data-target="#carousel" data-slide-to="6" aria-label="Slide 7">
-				<button type = "button"></button>
-			</li>
-		</ol>
-	</div>
+		<div class = "carousel-indicators-wrap">
+			<ol class = "carousel-indicators">
+				<li class = "carousel-indicators-item active" data-target="#carousel" data-slide-to="0" aria-current="true" aria-label="Slide 1">
+					<button type = "button"></button>
+				</li>
+				<li class = "carousel-indicators-item" data-target="#carousel" data-slide-to="1" aria-label="Slide 2">
+					<button type = "button"></button>
+				</li>
+				<li class = "carousel-indicators-item" data-target="#carousel" data-slide-to="2" aria-label="Slide 3">
+					<button type = "button"></button>
+				</li>
+				<li class = "carousel-indicators-item" data-target="#carousel" data-slide-to="3" aria-label="Slide 4">
+					<button type = "button"></button>
+				</li>
+				<li class = "carousel-indicators-item" data-target="#carousel" data-slide-to="4" aria-label="Slide 5">
+					<button type = "button"></button>
+				</li>
+				<li class = "carousel-indicators-item" data-target="#carousel" data-slide-to="5" aria-label="Slide 6">
+					<button type = "button"></button>
+				</li>
+				<li class = "carousel-indicators-item" data-target="#carousel" data-slide-to="6" aria-label="Slide 7">
+					<button type = "button"></button>
+				</li>
+			</ol>
+		</div>
+		<a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+			<img class = "carousel-icon" src="${pageContext.request.contextPath}/resources/images/left.png">
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+			<img class = "carousel-icon" src="${pageContext.request.contextPath}/resources/images/right.png">
+			<span class="sr-only">Next</span>
+		</a>
 		<div class="carousel-item active" style = "width: 100%;" role = "group" aria-roledescription = "slide" aria-label = "1 of 7">
 			<div class = "container">
 				<a href = "#">

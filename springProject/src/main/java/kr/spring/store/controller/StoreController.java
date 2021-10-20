@@ -1,5 +1,6 @@
 package kr.spring.store.controller;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.review.service.ReviewService;
@@ -86,6 +88,40 @@ public class StoreController {
 		// 타일스 식별자
 		return "redirect:/store/storeCategory.do";
 	}
+	
+	// ckeditor 를 이용한 이미지 업로드
+		@RequestMapping("/store/imageUploader2.do")
+		@ResponseBody
+		public Map<String, Object> uploadImage(MultipartFile upload, HttpSession session, HttpServletRequest request) throws Exception {
+			
+			// 업로드할 절대 경로 구하기
+			String realFolder = session.getServletContext().getRealPath("/resources/image_upload");
+			
+			// 업로드한 파일 이름
+			String org_filename = upload.getOriginalFilename();
+			String str_filename = System.currentTimeMillis() + org_filename;
+			
+			logger.debug("<<원본 파일명>> : " + org_filename);
+			logger.debug("<<저장할 파일명>> : " + str_filename);
+			
+			Integer user_num = (Integer)session.getAttribute("user_num");
+			
+			String filepath = realFolder + "\\" + user_num + "\\" + str_filename;
+			logger.debug("<<파일 경로>> : " + filepath);
+			
+			File f = new File(filepath);
+			if(!f.exists()) {
+				f.mkdirs();
+			}
+			
+			upload.transferTo(f);
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("uploaded", true);
+			map.put("url", request.getContextPath() + "/resources/image_upload/" + user_num + "/" + str_filename);
+			
+			return map;
+		}
 	
 	// 카테고리 페이지 출력
 	@RequestMapping("/store/storeCategory.do")
@@ -181,6 +217,7 @@ public class StoreController {
 		//바뀐부분 끝
 		return mav2;
 	}
+	
 	//리뷰부분 이미지 
 	@GetMapping("/store/reviewImageView.do")
 	public ModelAndView reviewImageContent(@RequestParam int rev_num) {
@@ -196,6 +233,7 @@ public class StoreController {
 		return mav;
 	}
 	//리뷰부분 이미지 끝
+	
 	// 썸네일 이미지 표시
 	@RequestMapping("/store/contentImageView.do")
 	public ModelAndView viewImageContent(@RequestParam int prod_num) {

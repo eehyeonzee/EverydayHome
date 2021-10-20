@@ -43,12 +43,11 @@ public class OrderController {
 	
 	// 주문 메인 호출
 	@GetMapping("/order/orderMain.do")
-	public String orderPage(@RequestParam("quan") int quan, OrderVO order, MemberVO member, StoreVO storeVO, HttpSession session, Model model) {
+	public String orderPage(OrderVO order, MemberVO member, StoreVO storeVO, HttpSession session, Model model) {
 		
 		logger.debug("<<주문 페이지 호출>>");
 		
 		member.setMem_num((Integer)session.getAttribute("user_num"));
-		storeVO.setQuan(quan);
 		order.setMem_num(member.getMem_num());
 		
 		logger.debug("<<회원 정보>> : " + member.getMem_num());
