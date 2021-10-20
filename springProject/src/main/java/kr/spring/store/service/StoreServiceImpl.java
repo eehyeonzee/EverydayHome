@@ -51,10 +51,4 @@ public class StoreServiceImpl implements StoreService{
 	public void deleteProduct(Integer prod_num) {
 		storeMapper.deleteBoard(prod_num);
 	}
-
-	@Override
-	public int staravg(int prod_num) {
-		return storeMapper.staravg(prod_num);
-	}
-
 }

@@ -137,6 +137,10 @@ public class HouseBoardController {
 		int heartCheckNum = 0;
 		int countHeart = 0;
 		
+		// 스크랩 중복 체크 변수
+		int scrapCheckNum = 0;
+		int countScrap = 0;
+		
 		// selectHBoard에 글번호 전달
 		HouseBoardVO houseBoard = houseBoardService.selectHBoard(house_num);
 		
@@ -148,34 +152,57 @@ public class HouseBoardController {
 		
 		ModelAndView mav = new ModelAndView();
 		
+		// 추천수
 		countHeart = houseBoardService.countHeart(house_num);
+		// 스크랩수
+		countScrap = houseBoardService.countScrap(house_num);
 		
-	    
-	    if(user_num == null) {
+		// 추천 버튼 실행
+		if(user_num == null) {
 			// 로그인 되어있지 않음
 	    	heartCheckNum = 0;
 		}else {
 			// 로그인 되어있음
-			// 추천 중복 체크
 			HMarkVO hMark = new HMarkVO();
 			hMark.setHouse_num(house_num);
 			hMark.setMem_num(user_num);
 			
+			// 추천 중복 체크
 			String already = houseBoardService.checkHeart(hMark);
-			
 			if(already == null) { // 추천버튼 누른 적 없음
 				
 			}else { // 추천버튼 누른 적 있음
 				heartCheckNum = 1;
 			}
 		}
+		
+		// 스크랩 버튼 실행
+		if(user_num == null) {
+			// 로그인 되어있지 않음
+	    	heartCheckNum = 0;
+		}else {
+			// 로그인 되어있음
+			HMarkVO hMark = new HMarkVO();
+			hMark.setHouse_num(house_num);
+			hMark.setMem_num(user_num);
+			
+			// 스크랩 중복 체크
+			String already = houseBoardService.checkScrap(hMark);
+			if(already == null) { // 스크랩버튼 누른 적 없음
+				
+			}else { // 추천버튼 누른 적 있음
+				scrapCheckNum = 1;
+			}
+		}
 	    
 	    mav.setViewName("houseBoardDetail"); // 타일스 식별자
-	    //					속성명			속성값
+	    // Model(컨테이너)에 데이터 담기
+	    //				속성명(key)	속성값(value)
+	    mav.addObject("houseBoard", houseBoard);
 	    mav.addObject("heartCheckNum", heartCheckNum);
 	    mav.addObject("countHeart", countHeart);
-	    // Model(컨테이너)에 데이터 담기
-	    mav.addObject("houseBoard", houseBoard);
+	    mav.addObject("scrapCheckNum", scrapCheckNum);
+	    mav.addObject("countScrap", countScrap);
 	     
 		return mav;
 	}
@@ -370,10 +397,8 @@ public class HouseBoardController {
 	// 댓글 수정
 	@RequestMapping("/houseBoard/updateComm.do")
 	@ResponseBody
-	public Map<String,String> updateComm(@RequestParam int mem_num,
-			  							 HCommentVO hCommentVO, HttpSession session) {
+	public Map<String,String> updateComm(HCommentVO hCommentVO, HttpSession session) {
 		
-		logger.debug("<<mem_num>> : " + mem_num);
 		logger.debug("<<댓글 수정>> : " + hCommentVO);
 		
 		Map<String,String> map = new HashMap<String,String>();
@@ -383,8 +408,9 @@ public class HouseBoardController {
 		if(user_num == null) {
 			// 로그인 되어있지 않음
 			map.put("result", "logout");
-		}else if(user_num != null && user_num == mem_num) {
+		}else if(user_num != null && user_num == hCommentVO.getMem_num()) {
 			// 로그인 되어있고 로그인한 회원번호와 작성자 회원번호가 일치
+			// 댓글 수정
 			houseBoardService.updateComm(hCommentVO);
 			map.put("result", "success");
 		}else {
@@ -427,15 +453,13 @@ public class HouseBoardController {
 	// ========== 추천(좋아요) 버튼 ========== //
 	@RequestMapping("/houseBoard/heart.do")
 	@ResponseBody
-	public Map<String,String> heartButton(@RequestParam int house_num,
-										  HttpSession session, HttpServletRequest request) {
+	public Map<String,String> heartButton(@RequestParam int house_num, HttpSession session) {
 		
 		logger.debug("<<house_num>> : " + house_num);
 		
 		Map<String,String> map = new HashMap<String,String>();
 		
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		
 		logger.debug("<<user_num>> : " + user_num);
 		
 		int countHeart = houseBoardService.countHeart(house_num);
@@ -473,8 +497,49 @@ public class HouseBoardController {
 	}
 	
 	// ========== 스크랩 ========== //
-	
-	
-	
+	@RequestMapping("/houseBoard/scrap.do")
+	@ResponseBody
+	public Map<String,String> scrapButton(@RequestParam int house_num, HttpSession session) {
+		
+		logger.debug("<<house_num>> : " + house_num);
+		
+		Map<String,String> map = new HashMap<String,String>();
+		
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		logger.debug("<<user_num>> : " + user_num);
+		
+		int countScrap = houseBoardService.countScrap(house_num);
+		
+		if(user_num == null) {
+			// 로그인 되어있지 않음
+			map.put("result", "logout");
+		}else {
+			// 로그인 되어있음
+			// 스크랩 중복 체크
+			HMarkVO hMark = new HMarkVO();
+			hMark.setHouse_num(house_num);
+			hMark.setMem_num(user_num);
+			
+			String already = houseBoardService.checkScrap(hMark);
+			
+			if(already == null) { // 스크랩버튼 누른 적 없음
+				// 좋아요
+				// 테이블에 스크랩 저장
+				houseBoardService.insertScrap(hMark);
+				countScrap += 1;
+				map.put("result", "success");
+				map.put("countScrap", String.valueOf(countScrap));
+				
+			}else { // 스크랩버튼 누른 적 있음
+				// 스크랩 취소
+				houseBoardService.deleteScrap(hMark);
+				countScrap -= 1;
+				map.put("result", "cancel");
+				map.put("countScrap", String.valueOf(countScrap));
+			}
+		}
+		
+		return map;
+	}
 	
 }

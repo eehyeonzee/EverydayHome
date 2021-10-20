@@ -16,11 +16,12 @@
 <script type="text/javascript">
 	$(function() {
 		$('#heartCount').html("${countHeart}"); // span값 가져오기
+		$('#scrapCount').html("${countScrap}");
+		
+		var house_num = $('#house_num').val(); // hidden값 가져오기
 		
 		// ========== 추천 버튼 ========== //
-		var house_num = $('#house_num').val();
-		
-		// 추천 버튼 클릭시 추천 또는 제거
+		// 추천 버튼 클릭시 추천 실행 또는 취소
 		$(document).on('click','.heart-btn',function() {
 			$.ajax({
 				data: {
@@ -33,7 +34,7 @@
 				timeout: 30000,
 				success: function(param) { // param으로 데이터 전송받음
 					if(param.result == 'logout') {
-						alert('로그인 후 사용하세요🚀');
+						alert('로그인 후 사용하세요');
 					}else if(param.result == 'success') {
 						alert('추천해주셔서 감사합니다');
 						$('#heart').attr('src','../resources/images/like.png');
@@ -49,6 +50,38 @@
 				}
 			}); // end of ajax
 		});
+		
+		// ========== 스크랩 버튼 ========== //		
+		// 스크랩 버튼 클릭시 스크랩 실행 또는 취소
+		$(document).on('click','.scrap-btn',function() {
+			$.ajax({
+				data: {
+					"house_num": house_num, // 보내는 데이터
+					},
+				tyep: 'post', // 데이터 전송 방식
+				url: 'scrap.do', // 데이터 보내는 곳
+				dataType: 'json', // 보내는 데이터 타입
+				cache: false,
+				timeout: 30000,
+				success: function(param) { // param으로 데이터 전송받음
+					if(param.result == 'logout') {
+						alert('로그인 후 사용하세요');
+					}else if(param.result == 'success') {
+						alert('스크랩이 완료되었습니다');
+						$('#scrap').attr('src','../resources/images/scrapO.png');
+						$('#scrapCount').text(param.countScrap); // span값 변경하기
+					}else {
+						alert('스크랩이 취소되었습니다');
+						$('#scrap').attr('src','../resources/images/scrapX.png');
+						$('#scrapCount').text(param.countScrap);
+					}
+				},
+				error: function(request,status,error) { // 에러메시지 반환
+					alert("🤯 code = " + request.status + " message = " + request.responseText + " error = " + error);
+				}
+			}); // end of ajax
+		});
+		
 	});
 </script>
 <!-- 추천 및 스크랩 자바스크립트 끝 -->
@@ -187,7 +220,7 @@
 				timeout: 30000,
 				success: function(param) {
 					if(param.result == 'logout') {
-						alert('로그인 후 사용하세요🚀');
+						alert('로그인 후 사용하세요');
 					}else if(param.result == 'success') {
 						// 폼 초기화
 						initForm(); // 따로 만들어줘야 함
@@ -286,7 +319,7 @@
 		}
 		
 		// 댓글 수정
-		$(document).on('submit','mcomm_form',function(event) {
+		$(document).on('submit','#mcomm_form',function(event) { // form submit을 막기 위해 event 객체를 받음
 			if($('#mcomm_content').val().trim() == '') {
 				alert('내용을 입력하세요');
 				$('#comm_content').val('').focus();
@@ -298,19 +331,22 @@
 			
 			// 댓글 수정
 			$.ajax({
-				type: 'post',
 				url: 'updateComm.do',
-				data: form_data,
+				type: 'post',
+				data: form_data, // 오른쪽 form_data(value)는 중괄호 형태의 json 표기법으로 바뀜
 				dataType: 'json',
 				cache: false,
 				timeout: 30000,
 				success: function(param) {
 					if(param.result == 'logout') {
-						alert('로그인 후 사용하세요🚀');
+						alert('로그인 후 사용하세요');
 					}else if(param.result == 'success') {
-						// 등록 누르면 전송x -> 그대로 화면에 읽어와서 표시
+						// 등록 누르면 전송x -> 화면만 갱신
+						// form을 없애기 전에 form에 접근해서 정보를 읽음
 						// 부모로 올라가서 p태그를 찾아 내용을 넣어줌, html태그를 불허용했기 때문에 바꾸는 작업처리 필요
 						$('#mcomm_form').parent().find('p').html($('#mcomm_content').val().replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/gi,'<br>'));
+						// 수정폼 초기화
+						initModifyForm();
 						alert('댓글이 수정되었습니다');
 					}else if(param.result == 'wrongAccess') {
 						alert('타인의 글을 수정할 수 없습니다');
@@ -345,7 +381,7 @@
 				timeout: 30000,
 				success: function(param) {
 					if(param.result == 'logout') {
-						alert('로그인 후 사용하세요🚀');
+						alert('로그인 후 사용하세요');
 					}else if(param.result == 'success') {
 						alert('댓글이 삭제되었습니다');
 						selectData(1,$('#house_num').val());
@@ -389,7 +425,7 @@
 	<!-- 해당 게시글 상세 내용 끝 -->
 	<!-- 추천 및 스크랩 시작 -->
 	<div class="btn_click">
-		<!-- 추천 -->
+		<!-- 추천 버튼 -->
 		<button type="button" id="heart_btn" class="heart-btn">
 			<c:if test="${heartCheckNum == 0}">
 				<img id="heart" style="margin: 5 10 5 10; width:25px; height:25px;" src="${pageContext.request.contextPath}/resources/images/dislike.png">
@@ -398,17 +434,19 @@
 				<img id="heart" style="margin: 5 10 5 10; width:25px; height:25px;" src="${pageContext.request.contextPath}/resources/images/like.png">
 			</c:if>
 		</button>
-		<span id="heartCount" style="display:inline-block;"></span>
-		<!-- 스크랩 -->
-		<button type="button" id="scrap_btn" class="btn btn-outline-danger">
-			<img style="margin: 5 10 5 10; width:25px; height:25px;" src="${pageContext.request.contextPath}/resources/images/scrapX.png">
-			<c:if test="${heartBtnCheck == 0}">
-				<img style="margin: 5 10 5 10; width:25px; height:25px;" src="${pageContext.request.contextPath}/resources/images/scrapX.png">
+		<!-- 추천수 -->
+		<span id="heartCount" style="display:inline-block;"></span>&nbsp;
+		<!-- 스크랩 버튼 -->
+		<button type="button" id="scrap_btn" class="scrap-btn">
+			<c:if test="${scrapCheckNum == 0}">
+				<img id="scrap" style="margin: 5 10 5 10; width:25px; height:25px;" src="${pageContext.request.contextPath}/resources/images/scrapX.png">
 			</c:if>
-			<c:if test="${heartBtnCheck == 1}">
-				<img style="margin: 5 10 5 10; width:25px; height:25px;" src="${pageContext.request.contextPath}/resources/images/scrapO.png">
+			<c:if test="${scrapCheckNum == 1}">
+				<img id="scrap" style="margin: 5 10 5 10; width:25px; height:25px;" src="${pageContext.request.contextPath}/resources/images/scrapO.png">
 			</c:if>
 		</button>
+		<!-- 스크랩수 -->
+		<span id="scrapCount" style="display:inline-block;"></span>
 	</div>
 	<!-- 추천 및 스크랩 끝 -->
 	
@@ -448,7 +486,7 @@
 			<input type="hidden" name="mem_num" value="${user_num}" id="mem_num">
 			<textarea rows="3" cols="50" name="comm_content" id="comm_content" class="comm-content" placeholder="칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)"
 				<c:if test="${empty user_num}">disabled="disabled"</c:if>
-				><c:if test="${empty user_num}">로그인 후 작성하세요</c:if></textarea><!-- 닫는 태그 내리지(띄어쓰지) 말자! 공백으로 인식함 -->
+				><c:if test="${empty user_num}">로그인 후 사용하세요</c:if></textarea><!-- 닫는 태그 내리지(띄어쓰지) 말자! 공백으로 인식함 -->
 			<c:if test="${!empty user_num}">
 			<div id="comm_first">
 				<span class="letter-count">300/300</span>

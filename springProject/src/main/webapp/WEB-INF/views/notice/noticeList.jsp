@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
+<script>
+$('a').click(function(event){
+    event.preventDefault(); 
+	});
+</script>
 <style>
 .name-item{
 	align-items: center;
@@ -9,30 +17,22 @@
 width:1136px;
 margin : 0 auto;
 }
-.link-tiem{
-margin: 0 auto;
-width : 100%;
-}
 .container{
 margin : 0 auto;
 width:1138px;
 }
-.link-item{
-	border-bottom : 1px solid #dbdbdb;
-	width : 900px;
-	margin : 0 auto;
-}
+
 .title{
-	font-size:18px;
+	font-size:22px;
 	weight:800;
-	padding: 10px 10px 10px 10px;
+	padding-left :30px;
 	text-align:left;
 
 }
 .reg_date{
 	font-size:15px;
-	padding: 0px 10px 20px 10px;
 	text-align:right;
+	padding-right : 50px;
 }
 .paging {
 	text-align:center;
@@ -50,37 +50,37 @@ h2{
 </style>
 <div class="container"> 
  <div class="main-container">
- 	<div class="name-item" align="center">
+ 	<div class="name-item mb-5 pb-5" align="center">
  	<h2 style="font-family: 'Gowun Dodum', sans-serif;">공지사항</h2>
  	</div>
- 	<div class="link-container">
  		<c:if test="${count==0}">
- 		<div class="link-item" style="font-family: 'Gowun Dodum', sans-serif;">출력할 내용이 없습니다</div>
- 		<div class="write-button">
- 		<a href="${pageContext.request.contextPath}/notice/noticeWrite.do" >공지 쓰기</a>
+ 		<div class="container mt-5">
+ 		<div class="link-item mb-5 mb-5" style="font-family: 'Gowun Dodum', sans-serif; text-align:center;">출력할 내용이 없습니다</div>
  		</div>
  		</c:if>
  		<c:if test="${count>0}">
+ 		<div class="container" style=" width : 90%">
  		<c:forEach var="notice" items="${list}">
  		<div class="link-item" onclick="location.href='noticeDetail.do?notice_num=${notice.notice_num}'">
  			<div class="title">
- 			<p style="font-family: 'Gowun Dodum', sans-serif;">${notice.notice_title}</p>
+ 			<h5 style="font-family: 'Gowun Dodum', sans-serif; weight:bold;">${notice.notice_title}</h5>
  			</div>
  			<div class="reg_date">
  			<span style="font-family: 'Gowun Dodum', sans-serif;">${notice.notice_reg_date}</span>
  			</div>
+ 			<hr>
  		</div>
  		</c:forEach>
- 		</c:if>
- 		<div class="paging">
+		</div>
+ 		<div class="paging" style="color:gray;">
  			<span>${pagingHtml}</span>
  		</div>
+ 		</c:if>
  		<c:if test="${user_auth==4}">
- 		 <div class="write-button"> 		
- 		<a href="${pageContext.request.contextPath}/notice/noticeWrite.do">공지 쓰기</a>
+ 		 <div class="write-button pt-5"> 		
+ 		<a href="${pageContext.request.contextPath}/notice/noticeWrite.do" class="btn btn-info">공지 쓰기</a>
  		</div>
  		</c:if>
  	</div>
- </div>
  </div>
  

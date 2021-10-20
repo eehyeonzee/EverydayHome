@@ -1,6 +1,5 @@
 package kr.spring.houseBoard.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -47,7 +46,7 @@ public interface HouseBoardMapper {
 		public int selectRowCountComm(Map<String,Object> map); // 댓글 개수
 		@Insert("INSERT INTO comments (comm_num,comm_content,house_num,mem_num) VALUES (comments_seq.nextval,#{comm_content},#{house_num},#{mem_num})")
 		public void insertComm(HCommentVO hComment); // 댓글 등록
-		@Update("UPDATE comments SET comm_content = #{comm_content}, comm_mod_date = SYSDATE WHERE comm_num = #{comm_num}")
+		@Update("UPDATE comments SET comm_content = #{comm_content},comm_mod_date=SYSDATE WHERE comm_num = #{comm_num}")
 		public void updateComm(HCommentVO hComment); // 댓글 수정
 		@Delete("DELETE FROM comments WHERE comm_num = #{comm_num}")
 		public void deleteComm(Integer comm_num); // 댓글 삭제
@@ -65,12 +64,15 @@ public interface HouseBoardMapper {
 		@Delete("DELETE FROM recommend WHERE house_num = #{house_num} AND mem_num = #{mem_num}")
 		public void deleteHeart(HMarkVO hMark); // 테이블에서 추천수 제거
 		
-		// @Update("UPDATE house_board SET house_recom = house_recom+1 WHERE house_num = #{house_num}")
-		// public void plusHeart(Integer house_num); // 추천수 +1 증가
-		// @Update("UPDATE house_board SET house_recom = house_recom-1 WHERE house_num = #{house_num}")
-		// public void minusHeart(Integer house_num); // 추천수 -1 감소
-		
 		// =============== 스크랩 =============== //
+		@Select("SELECT COUNT(*) FROM scrapbook WHERE house_num = #{house_num}")
+		public int countScrap(Integer house_num); // 스크랩수 조회
+		@Select("SELECT mem_num FROM scrapbook WHERE house_num = #{house_num} AND mem_num = #{mem_num}")
+		public String checkScrap(HMarkVO hMark); // 스크랩 중복 체크
+		@Insert("INSERT INTO scrapbook (scrap_num,house_num,mem_num) VALUES (scrapbook_seq.nextval,#{house_num},#{mem_num})")
+		public void insertScrap(HMarkVO hMark); // 테이블에 스크랩수 저장
+		@Delete("DELETE FROM scrapbook WHERE house_num = #{house_num} AND mem_num = #{mem_num}")
+		public void deleteScrap(HMarkVO hMark); // 테이블에서 스크랩수 제거
 		
 }
 

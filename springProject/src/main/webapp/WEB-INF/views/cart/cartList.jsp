@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 <style>
 .name-item{
 	align-items: center;
@@ -18,11 +21,6 @@ width : 100%;
 .container{
 margin : 0 auto;
 width:1138px;
-}
-.link-item{
-	border-bottom : 1px solid #dbdbdb;
-	width : 900px;
-	margin : 0 auto;
 }
 .title{
 	font-size:18px;
@@ -56,14 +54,16 @@ h2{
  	</div>
  	<div class="cart-container">
  		<c:if test="${map.count==0}">
- 		<div class="link-item" style="font-family: 'Gowun Dodum', sans-serif;">장바구니에 아무것도 없습니다.</div>
+		<div class="container mt-5">
+ 		<div class="link-item mb-5 mb-5" style="font-family: 'Gowun Dodum', sans-serif; text-align:center;">장바구니에 아무것도 없습니다.</div>
+ 		</div>
  		</c:if>
  		<c:if test="${map.count>0}">
 		<form name="form1" id="form1" method="post" action="cartUpdate.do">
 			<c:forEach var="row" items="${map.list}" varStatus="i">
 			<c:if test="${empty row.thumbnail_filename}">
 			<!-- 상세페이지링크연결 -->
-			<div class="link-item" onclick="location.href='#'"> 
+			<div class="link-item" style="display:float;"> 
 			<a href="storeDetail.do?prod_num=${row.prod_num}"><img src = "${pageContext.request.contextPath}/resources/images/gift.png" style = "width:240px; height:240px; max-width:240px; max-height:240px;"></a><br>
 			<!-- 이미지 추가 -->
  			<div class="title">
@@ -72,29 +72,32 @@ h2{
             <input type="number" style="width: 40px" name="cart_quan" value="${row.cart_quan}" min="1" max="10">
             <input type="hidden" name="prod_num" value="${row.prod_num}">
  			<div class="reg_date">
- 			<span style="font-family: 'Gowun Dodum', sans-serif;">
+ 			<p style="font-family: 'Gowun Dodum', sans-serif;">
  			 <fmt:formatNumber pattern="###,###,###" value="${row.prod_price}"/>
- 			 </span>
- 			 <a href="${pageContext.request.contextPath}/cart/cartDelete.do?cart_num=${row.cart_num}">삭제</a>
+ 			 </p>
+ 			 <a href="${pageContext.request.contextPath}/cart/cartDelete.do?cart_num=${row.cart_num}" class="btn btn-outline-danger">삭제</a>
  			</div>
  			</div>
  			</c:if>
  			<c:if test="${!empty row.thumbnail_filename}">
 			<!-- 상세페이지링크연결 -->
-			<div class="link-item"> 
+			<div class="if_thumbnail"> 
+			<div class="container" style="display: flex;"> 
 			<!-- 이미지 추가 -->
+			<div class="imgBox" style="display:flex;">
 			<a href="storeDetail.do?prod_num=${row.prod_num}"><img src = "imageView.do?prod_num=${row.prod_num}" style = "width:240px; height:240px; max-width:240px; max-height:240px; display: float;"></a><br>
-			
- 			<div class="title">
+			</div>
+ 			<div class="title" style="display:flex;">
  			<p style="font-family: 'Gowun Dodum', sans-serif;">${row.prod_name}</p>
  			</div>
-            <input type="number" style="width: 40px" name="cart_quan" value="${row.cart_quan}" min="1" max="10">
+ 			</div>
             <input type="hidden" name="prod_num" value="${row.prod_num}">
  			<div class="reg_date">
  			<span style="font-family: 'Gowun Dodum', sans-serif;">
- 			 <fmt:formatNumber pattern="###,###,###" value="${row.prod_price}"/>
+ 			 가격:<fmt:formatNumber pattern="###,###,###" value="${row.prod_price}"/>원<br>
+             장바구니 수량:<input type="number" style="width: 50px; height: 34px;" name="cart_quan" value="${row.cart_quan}" min="1" max="10">ㅣㅣㅣ
  			 </span>
- 			 <a href="${pageContext.request.contextPath}/cart/cartDelete.do?cart_num=${row.cart_num}">삭제</a>
+ 			 <a href="${pageContext.request.contextPath}/cart/cartDelete.do?cart_num=${row.cart_num}" class="btn btn-outline-danger">삭제</a>
  			</div>
  			</div>
  			</c:if>
@@ -102,6 +105,7 @@ h2{
 		<hr>
 		 장바구니 금액 합계 : <fmt:formatNumber pattern="###,###,###" value="${map.sumMoney}"/><br>
          배송료 : ${map.fee}<br>
+         *10만원 이상부터는 배송료가 0원이 됩니다.<br>
          전체 주문금액  :<fmt:formatNumber pattern="###,###,###" value="${map.allSum}"/>
 			<button type="submit" id="btnUpdate">수정</button>
 		</form>

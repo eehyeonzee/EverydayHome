@@ -74,6 +74,11 @@
 		bottom: 0;
 		z-index: 2;
 	}
+	#page_font {
+		color : #484F5C;
+		font-family: 'Gowun Dodum', sans-serif;
+		text-decoration: none;
+	}
 </style>
 <div class = "container">
 	<div class = "wrap container">
@@ -81,79 +86,81 @@
 			<div class = "side-bar col-12 col-md-3">
 				<section class="category-list">
 					<ul class = "category-list-title others">
-						<li>
-							<a href="#">가구</a>
+						<li id = "furniture">
+							<a href="storeCategory.do?prod_cate=furniture">가구</a>
 						</li>
-						<li>
-							<a href="#">패브릭</a>
+						<li id = "fabric">
+							<a href="storeCategory.do?prod_cate=fabric">패브릭</a>
 						</li>
-						<li>
-							<a href="#">조명</a>
+						<li id = "lamp">
+							<a href="storeCategory.do?prod_cate=lamp">조명</a>
 						</li>
-						<li>
-							<a href="#">가전</a>
+						<li id = "electronic">
+							<a href="storeCategory.do?prod_cate=electronic">가전</a>
 						</li>
-						<li>
-							<a href="#">주방용품</a>
+						<li id = "kitchen">
+							<a href="storeCategory.do?prod_cate=kitchen">주방용품</a>
 						</li>
-						<li>
-							<a href="#">데코/취미</a>
+						<li id = "deco">
+							<a href="storeCategory.do?prod_cate=deco">데코/취미</a>
 						</li>
-						<li>
-							<a href="#">수납/정리</a>
+						<li id = "storage">
+							<a href="storeCategory.do?prod_cate=storage">수납/정리</a>
 						</li>
-						<li>
-							<a href="#">생활용품</a>
+						<li id = "daily_necessities">
+							<a href="storeCategory.do?prod_cate=daily_necessities">생활용품</a>
 						</li>
-						<li>
-							<a href="#">생필품</a>
+						<li id = "necessities">
+							<a href="storeCategory.do?prod_cate=necessities">생필품</a>
 						</li>
-						<li>
-							<a href="#">공구/DIY</a>
+						<li id = "tool_diy">
+							<a href="storeCategory.do?prod_cate=tool_diy">공구/DIY</a>
 						</li>
-						<li>
-							<a href="#">인테리어시공</a>
+						<li id = "interior">
+							<a href="storeCategory.do?prod_cate=interior">인테리어시공</a>
 						</li>
-						<li>
-							<a href="#">반려동물</a>
+						<li id = "pet">
+							<a href="storeCategory.do?prod_cate=pet">반려동물</a>
 						</li>
-						<li>
-							<a href="#">캠핑용품</a>
+						<li id = "camping">
+							<a href="storeCategory.do?prod_cate=camping">캠핑용품</a>
 						</li>
-						<li>
-							<a href="#">실내운동</a>
+						<li id = "indoor">
+							<a href="storeCategory.do?prod_cate=indoor">실내운동</a>
 						</li>
-						<li>
-							<a href="#">유아/아동</a>
+						<li id = "baby_pro">
+							<a href="storeCategory.do?prod_cate=baby_pro">유아/아동</a>
 						</li>
-						<li>
-							<a href="#">렌탈</a>
+						<li id = "rental">
+							<a href="storeCategory.do?prod_cate=rental">렌탈</a>
 						</li>
 					</ul>
 				</section>
 			</div>
 			<div class = "content col-12 col-md-9">
-				<h3>${storeVO.prod_cate}</h3>
-				CAROUSEL
 				
-				<div class = "row" style="padding-top: 0px; padding-bottom: 5562px; transform: translateY(0px);">
+				<div class = "row" style="padding-top: 0px; padding-bottom: 50px; transform: translateY(0px);">
 					<c:forEach var = "storeVO" items = "${list}">
 					<div class = "col-6 col-md-4">
 						<article id = "product" class = "product-item">
-							<div class = "align-center">
+							<div id = "page_font" class = "align-center">
 								<c:if test = "${empty storeVO.thumbnail_filename}">
 									<!-- 썸네일 이미지가 존재하지 않을 경우 -->
 									<a class = "item-overlay" href = "storeDetail.do?prod_num=${storeVO.prod_num}">
 									<img src = "${pageContext.request.contextPath}/resources/images/gift.png" style = "width:240px; height:240px; max-width:240px; max-height:240px;"><br>
-									${storeVO.prod_name}<br>
-									${storeVO.prod_price}원
+										[${storeVO.buis_name}]
+										${storeVO.prod_name}<br>
+										#${storeVO.prod_keyword}<br>
+										${storeVO.prod_price}원
 									</a>
 								</c:if>
 								<c:if test = "${!empty storeVO.thumbnail_filename}">
 									<!-- 썸네일 이미지가 존재 -->
 									<a class = "item-overlay" href = "storeDetail.do?prod_num=${storeVO.prod_num}">
 									<img src = "imageView.do?prod_num=${storeVO.prod_num}" style = "width:240px; height:240px; max-width:240px; max-height:240px;"><br>
+									[${storeVO.buis_name}]
 									${storeVO.prod_name}<br>
+									#${storeVO.prod_keyword}<br>
 									${storeVO.prod_price}원
 									</a>
 								</c:if>	

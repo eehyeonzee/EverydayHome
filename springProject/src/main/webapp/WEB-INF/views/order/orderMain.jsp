@@ -15,30 +15,43 @@
 	<li>연락처 <input type = "text" id = "phone" value = "${memberVO.phone}"></li>
 </ul>
 <h3>배송지</h3>
-<ul>
-	<li>받는 사람 <input type = "text" id = "receiver_name"><input type = "button" id = "equal" value = "위와 동일하게 채우기"></li>
-	<li>연락처 <input type = "text" id = "receiver_phone"></li>
-	<li>주소 <input type = "text" id = "order_zipcode" value = "${memberVO.zipcode}"> 카카오 주소</li>
-	<li><input type = "text" id = "order_address1" value = "${memberVO.address1}"></li>
-	<li><input type = "text" id = "order_address2" value = "${memberVO.address2}"></li>
-</ul>
-<script type = "text/javascript">
-	$(document).ready(function() {
-		$('#receiver_name').val('');
-		$('#receiver_phone').val('');
-		
-		$('#equal').click(function() {
-			var receiver_name = $('#name').val();
-			var receiver_phone = $('#phone').val();
-			$('#receiver_name').val(receiver_name);
-			$('#receiver_phone').val(receiver_phone);
+<form>
+	<ul>
+		<li>받는 사람 <input type = "text" id = "receiver_name"><input type = "button" id = "equal" value = "위와 동일하게 채우기"></li>
+		<li>연락처 <input type = "text" id = "receiver_phone"></li>
+		<li>주소 <input type = "text" id = "order_zipcode" value = "${memberVO.zipcode}"> 카카오 주소</li>
+		<li><input type = "text" id = "order_address1" value = "${memberVO.address1}"></li>
+		<li><input type = "text" id = "order_address2" value = "${memberVO.address2}"></li>
+	</ul>
+	<script type = "text/javascript">
+		$(document).ready(function() {
+			$('#receiver_name').val('');
+			$('#receiver_phone').val('');
+			
+			$('#equal').click(function() {
+				var receiver_name = $('#name').val();
+				var receiver_phone = $('#phone').val();
+				$('#receiver_name').val(receiver_name);
+				$('#receiver_phone').val(receiver_phone);
+			});
+			
+			var price = ${storeVO.prod_price};
+			var delive = ${storeVO.delive_price};
+			
+			var final_price = price + delive;
+			$('#final_price').append(final_price);
+			
 		});
-	});
-</script>
-<h3>상품 정보</h3>
-<ul>
-	<li>판매자명 : </li>
-	<li>상품명 : ${storeVO.prod_name}</li>
-	<li>상품 가격 : ${storeVO.prod_price}</li>
-	<li>수량 : ${quan}</li>
-</ul>
+	</script>
+	<h3>상품 정보</h3>
+	<ul>
+		<li>판매자명 : </li>
+		<li>상품명 : ${storeVO.prod_name}</li>
+		<li>상품 가격 : ${storeVO.prod_price}</li>
+		<li>수량 : </li>
+		<li>배송 방법 : ${storeVO.delive_type}</li>
+		<li>배송비 : ${storeVO.delive_price}</li>
+		<li>옵션 : </li>
+		<li id = "final_price">최종 결제 금액 : </li>
+	</ul>
+</form>

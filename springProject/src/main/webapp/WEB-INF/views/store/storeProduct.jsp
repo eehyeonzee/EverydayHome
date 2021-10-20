@@ -233,12 +233,22 @@
 </form:form>
 <!-- 리뷰부분 시작 -->
 <!-- 리뷰 총합 -->
+<c:if test="${rev_count>0}">
 <div class="review-star mt-5">
 	<div class="container" style="border:1px solid gray">
 	<div class="star-name mt-2 mb-3" style="font-size:20px; text-align:center;">평균평점 : ${rev_grade} <div style="color:red;"><c:forEach var="var" items="${ratingOptions}" varStatus="status" begin="1" end="${rev_grade_round}">★</c:forEach></div>
 	<hr>리뷰개수 : ${rev_count} </div>
 	</div>
 </div>
+</c:if>
+<c:if test="${rev_count==0}">
+<div class="review-star mt-5">
+	<div class="container" style="border:1px solid gray">
+	<div class="star-name mt-2 mb-3" style="font-size:20px; text-align:center;">
+	<hr>리뷰개수 : ${rev_count} </div>
+	</div>
+</div>
+</c:if>
 <!-- 리뷰 보기 -->
 <div class="review-list mt-5">
 	<div class="container">

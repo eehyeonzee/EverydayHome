@@ -5,8 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
-<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script type = "text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
+<script type = "text/javascript" src = "${pageContext.request.contextPath}/resources/js/ckeditor.js"></script>
+<script type = "text/javascript" src = "${pageContext.request.contextPath}/resources/js/uploadAdapter.js"></script>
 <script type = "text/javascript">
 	$(document).ready(function() {
 		var option = 1;
@@ -39,9 +41,9 @@
 		}
 		
 		$('#minus').click(function(e) {
-			e.preventDefault();
 			$('#prod_option' + option).hide();
 			option--;
+			e.preventDefault();
 			
 			if(option == 1) {
 				$('#minus').hide();
@@ -51,26 +53,36 @@
 		});
 	});			
 </script>
+<style>
+	h2 {
+		font-family: 'Gowun Dodum', sans-serif;
+		text-decoration: none;
+	}
+	.ck-editor__editable_inline {
+		min-height : 250px;
+	}
+</style>
 <!-- 내용 시작 -->
-<div class = "container">
+<div class = "container-fluid" style = "width:700px; border: 1px solid #d2f1f7; font-family: 'Gowun Dodum', sans-serif; ">
 	<h2>상품 등록</h2>
 	<form:form id = "productRegister" action = "storeRegister.do" modelAttribute = "storeVO"
 	           enctype="multipart/form-data">
+		<div class = "form-group row">	    
 		<input type = "hidden" value = "${user_num}">
 		<ul>
 			<li>
-				<label for = "prod_name">상품명</label>
+				<label class = "col-sm-3 col-form-label" for = "prod_name">상품명</label>
 				<form:input path = "prod_name"/>
 				<form:errors path = "prod_name" cssClass = "error-color" />
 			</li>
 			<li>
-				<label for = "prod_keyword">상품 키워드</label>
+				<label class = "col-sm-3 col-form-label" for = "prod_keyword">상품 키워드</label>
 				<form:input path = "prod_keyword" />
 				<form:errors path = "prod_keyword" cssClass = "error-color" />
 			</li>
 			<li>
-				<label for = "prod_cate">카테고리</label>
-				<form:select path="prod_cate">
+				<label class = "col-sm-3 col-form-label" for = "prod_cate">카테고리</label>
+				<form:select class = "col-sm-4 custom-select" path="prod_cate">
 					<form:option value = "furniture">가구</form:option>
 					<form:option value = "fabric">패브릭</form:option>
 					<form:option value = "lamp">조명</form:option>
@@ -90,100 +102,111 @@
 				</form:select>
 			</li>
 			<li>
-				<label for = "prod_price">가격</label>
-				<form:input path = "prod_price"/>
+				<label class = "col-sm-3 col-form-label" for = "prod_price">가격</label>
+				<form:input path = "prod_price"/><br>
 				<form:errors path = "prod_price" cssClass = "error-color" />
 			</li>
 			<li>
-				<label for = "delive_price">배송비</label>
+				<label class = "col-sm-3 col-form-label" for = "delive_price">배송비</label>
 				<form:input path = "delive_price" />
 				<form:errors path = "delive_price" cssClass = "error-color" />
 			</li>
 			<li>
-				<label for = "delive_type">배송방법</label>
-				<form:input path = "delive_type" />
+				<label class = "col-sm-3 col-form-label" for = "delive_type">배송방법</label>
+				<form:input path = "delive_type" /><br>
 				<form:errors path = "delive_type" cssClass = "error-color" />
 			</li>
 			<li>
-				<label for = "prod_quan">상품 수량</label>
-				<form:input path = "prod_quan" />
+				<label class = "col-sm-3 col-form-label" for = "prod_quan">상품 수량</label>
+				<form:input path = "prod_quan" /><br>
 				<form:errors path = "prod_quan" cssClass = "error-color" />
 			</li>
 			<li>
-				<label for = "selec_product">상품선택</label>
+				<label class = "col-sm-3 col-form-label" for = "selec_product">상품선택</label>
 				<form:input path = "selec_product" />
 				<form:errors path = "selec_product" cssClass = "error-color" />
 			</li>
 			<li>
-				<label for = "prod_option1">상품옵션1</label>
+				<label class = "col-sm-3 col-form-label" for = "prod_option1">상품옵션1</label>
 				<form:input path = "prod_option1" />
 				<form:errors path = "prod_option1" cssClass = "error-color" />
 			</li>
 			<li id = "prod_option2">
-				<label for = "prod_option2">상품옵션2</label>
+				<label class = "col-sm-3 col-form-label" for = "prod_option2">상품옵션2</label>
 				<form:input path = "prod_option2" />
 				<form:errors path = "prod_option2" cssClass = "error-color" />
 			</li>
 			<li id = "prod_option3">
-				<label for = "prod_option3">상품옵션3</label>
+				<label class = "col-sm-3 col-form-label" for = "prod_option3">상품옵션3</label>
 				<form:input path = "prod_option3" />
 				<form:errors path = "prod_option3" cssClass = "error-color" />
 			</li>
 			<li id = "prod_option4">
-				<label for = "prod_option4">상품옵션4</label>
+				<label class = "col-sm-3 col-form-label" for = "prod_option4">상품옵션4</label>
 				<form:input path = "prod_option4" />
 				<form:errors path = "prod_option4" cssClass = "error-color" />
 			</li>
 			<li id = "prod_option5">
-				<label for = "prod_option5">상품옵션5</label>
+				<label class = "col-sm-3 col-form-label" for = "prod_option5">상품옵션5</label>
 				<form:input path = "prod_option5" />
 				<form:errors path = "prod_option5" cssClass = "error-color" />
 			</li>
 			<li id = "prod_option6">
-				<label for = "prod_option6">상품옵션6</label>
+				<label class = "col-sm-3 col-form-label" for = "prod_option6">상품옵션6</label>
 				<form:input path = "prod_option6" />
 				<form:errors path = "prod_option6" cssClass = "error-color" />
 			</li>
 			<li id = "prod_option7">
-				<label for = "prod_option7">상품옵션7</label>
+				<label class = "col-sm-3 col-form-label" for = "prod_option7">상품옵션7</label>
 				<form:input path = "prod_option7" />
 				<form:errors path = "prod_option7" cssClass = "error-color" />
 			</li>
 			<li id = "prod_option8">
-				<label for = "prod_option8">상품옵션8</label>
+				<label class = "col-sm-3 col-form-label" for = "prod_option8">상품옵션8</label>
 				<form:input path = "prod_option8" />
 				<form:errors path = "prod_option8" cssClass = "error-color" />
 			</li>
 			<li id = "prod_option9">
-				<label for = "prod_option9">상품옵션9</label>
+				<label class = "col-sm-3 col-form-label" for = "prod_option9">상품옵션9</label>
 				<form:input path = "prod_option9" />
 				<form:errors path = "prod_option9" cssClass = "error-color" />
 			</li>
 			<li id = "prod_option10">
-				<label for = "prod_option10">상품옵션10</label>
+				<label class = "col-sm-3 col-form-label" for = "prod_option10">상품옵션10</label>
 				<form:input path = "prod_option10" />
 				<form:errors path = "prod_option10" cssClass = "error-color" />
 			</li>
 			<li>
-				<input type = "button" id = "plus" value = "상품 옵션 추가">
-				<input type = "button" id = "minus" value = "상품 옵션 제거">
+				<input class = "btn btn-outline-dark" type = "button" id = "plus" value = "상품 옵션 추가">
+				<input class = "btn btn-outline-dark" type = "button" id = "minus" value = "상품 옵션 제거">
 			</li>
 			<li>
-				<label for = "upload1">썸네일 이미지</label>
-				<input type = "file" name = "upload1" id = "upload1" accept = "image/gif,image/png,image/jpeg">
+				<label class = "col-sm-3 col-form-label" for = "upload1">썸네일 이미지</label>
+				<input class = "btn btn-outline-dark" type = "file" name = "upload1" id = "upload1" accept = "image/gif,image/png,image/jpeg">
 			</li>
 			<li>
-				<label for = "prod_content">상품 내용</label>
+				<label class = "col-sm-3 col-form-label" for = "prod_content">상품 내용</label>
 				<form:textarea path = "prod_content" />
 				<form:errors path = "prod_content" cssClass = "error-color" />
-			</li>
-			<li>
-				<label for = "upload2">상품 이미지</label>
-				<input type = "file" name = "upload2" id = "upload2" accept = "image/gif,image/png,image/jpeg">
+				<script>
+					function MyCustomUploadAdapterPlugin(editor) {
+						editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+							return new UploadAdapter(loader);
+						}
+					}
+					
+					ClassicEditor.create(document.querySelector('#prod_content'), {
+						extraPlugins:[MyCustomUploadAdapterPlugin]
+					}).then(editor => {
+						window.editor = editor;
+					}).catch(error => {
+						console.error(error);
+					});
+				</script>
 			</li>
 		</ul>
 		<div class = "align-center">
-			<input type = "submit" value = "상품 등록" id = "regist">
+			<input class = "btn btn-outline-dark" type = "submit" value = "상품 등록" id = "regist">
 			<script type = "text/javascript">
 				var regist = document.getElementById('regist');
 				regist.onclick=function() {
@@ -195,7 +218,8 @@
 					}
 				};
 			</script>
-			<input type = "button" value = "홈으로" onclick = "location.href='${pageContext.request.contextPath}/store/storeMain.do'">
+			<input class = "btn btn-outline-dark" type = "button" value = "홈으로" onclick = "location.href='${pageContext.request.contextPath}/store/storeMain.do'">
+		</div>
 		</div>
 	</form:form>
 </div>

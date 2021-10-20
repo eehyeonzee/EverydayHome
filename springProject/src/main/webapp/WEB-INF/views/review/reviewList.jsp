@@ -65,6 +65,7 @@ h2{
  		<div class="link-item" style="font-family: 'Gowun Dodum', sans-serif;">작성한 리뷰가 없습니다.</div>
  	</c:if>
  	<c:if test="${count>0}">
+ 	<!-- 상품정보도 받아올 수 있도록 sql수정하기 -->
  		<c:forEach var="list" items="${list}" varStatus="n">
  		<input type = "hidden" name="mem_num" value = "${mem_num}">
 		<input type = "hidden" name="prod_num" value = "${prod_num}">
@@ -80,8 +81,8 @@ h2{
 		</div>
  		</c:if>
  		<div class="reg_date">
- 		<a href="${pageContext.request.contextPath}/review/reviewUpdate.do?rev_num=${list.rev_num}" onclick="return confirm('리뷰를 수정하시겠습니까?');">수정</a><br>
- 		<a href="${pageContext.request.contextPath}/review/reviewDelete.do?rev_num=${list.rev_num}" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+ 		<a href="${pageContext.request.contextPath}/review/reviewUpdate.do?rev_num=${list.rev_num}" onclick="return confirm('리뷰를 수정하시겠습니까?');" class="btn btn-outline-info">수정</a>
+ 		<a href="${pageContext.request.contextPath}/review/reviewDelete.do?rev_num=${list.rev_num}" onclick="return confirm('정말 삭제하시겠습니까?');" class="btn btn-outline-danger">삭제</a>
 		</div>
  		</div>
  		</c:forEach>

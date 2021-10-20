@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 <style>
 .container{
 width: 900px;
@@ -43,8 +46,6 @@ text-align: center;
 min-height: 500px;
 }
 </style>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ckeditor.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/uploadAdapter.js"></script>
     <div class="container">
@@ -54,11 +55,11 @@ min-height: 500px;
 		<form:hidden path="notice_num"/>
 		<ul>
 			<li class="li-title">
-				<label for="notice_title">제목</label>
+				<label for="notice_title" class="notice_label mb-2">제목</label>
 				<form:input path="notice_title"/>
 				<form:errors path="notice_title" cssClass="error-color"/>
 			</li>
-			<li class="li-content">
+			<li class="li-content mt-1">
 				<label for="notice_content">내용</label><br>
 				<form:textarea path="notice_content"/>
 				<form:errors path="notice_content" cssClass="error-color"/>
@@ -79,9 +80,9 @@ min-height: 500px;
 				</script>
 			</li>
 		</ul>
-		<div class="submit-button">
-			<input type="submit" value="등록">
-			<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/notice/noticeList.do'">
+		<div class="submit-button mt-2 mb-2" >
+			<input type="submit" value="등록" class="btn btn-info">
+			<input type="button" value="목록으로"  class="btn btn-success" onclick="location.href='${pageContext.request.contextPath}/notice/noticeList.do'">
 		</div>
 	</form:form>
 	</div>

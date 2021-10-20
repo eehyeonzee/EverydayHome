@@ -18,11 +18,11 @@
     	<put-attribute name="body" value="/WEB-INF/views/store/storeCategory.jsp"/>
     </definition>
     <definition name="storeProduct" extends="main">
-    	<put-attribute name="title" value="test"/>
+    	<put-attribute name="title" value= "상품 상세"/>
     	<put-attribute name="body" value="/WEB-INF/views/store/storeProduct.jsp"/>
     </definition>
     <definition name="storeModify" extends="main">
-    	<put-attribute name="title" value="test"/>
+    	<put-attribute name="title" value="상품 수정"/>
     	<put-attribute name="body" value="/WEB-INF/views/store/storeModify.jsp"/>
     </definition>
 </tiles-definitions>
