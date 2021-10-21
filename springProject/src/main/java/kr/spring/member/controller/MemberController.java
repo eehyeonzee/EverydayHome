@@ -245,7 +245,7 @@ public class MemberController {
 	
 	// 카카오 로그인 - 회원 정보 DB 등록 및 로그인 처리
 	@PostMapping("/member/kakaoLoginProcess.do")
-	public String kakaoRegister(@Valid MemberVO memberVO, BindingResult result, HttpSession session) {
+	public String kakaoRegister(MemberVO memberVO, HttpSession session) {
 		
 		// 세션 정보 저장
 		String id = (String) session.getAttribute("kakao_id");
@@ -255,10 +255,6 @@ public class MemberController {
 		// 로그인한 내역이 한번이라도 없으면 DB 등록 후 로그인
 		logger.debug("<<회원정보>> : " + memberVO);
 			
-		// 유효성 검사 결과 오류가 있으면 폼 호출
-		if(result.hasErrors()) {
-			return form();
-		}
 		// 입력받은 자바빈 객체에 세션정보 담기
 		memberVO.setMem_id(id);
 		memberVO.setNickname(nickname);

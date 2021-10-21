@@ -25,7 +25,7 @@
  <%@ include file="/WEB-INF/views/member/common/myPageProfile.jsp" %>
 	<div class="mypage-main-content" align="center">
 		<div class="mypage-photo-write-divi">
-		<div align="left">사진 ${member.house_board_count}</div>
+		<div align="left"><a href="${pageContext.request.contextPath}/member/myBoard.do">사진 ${member.house_board_count}</a></div>
 		<table style="border:1px dashed #b5b7ba;">
 			<tr>
 			<td style="border:1px dashed #b5b7ba;" class="mypage-photo-write" align="center" onclick="location.href='${pageContext.request.contextPath}/houseBoard/write.do'">
@@ -35,7 +35,7 @@
 			</tr>
 		</table>	
 		<br><br>
-		<div align="left">문의하기</div>
+		<div align="left"><a href="${pageContext.request.contextPath}/qna/qnaList.do">문의</a></div>
 		<table style="border:1px dashed #b5b7ba;">
 			<tr style="border-style: dotted;">
 			<td style="border:1px dashed #b5b7ba;" class="mypage-photo-write" align="center" onclick="location.href='${pageContext.request.contextPath}/qna/serviceBoardInsert.do'">

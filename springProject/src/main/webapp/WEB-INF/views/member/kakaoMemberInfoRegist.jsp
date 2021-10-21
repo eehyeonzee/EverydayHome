@@ -9,35 +9,72 @@
 --%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 <script type="text/javascript">
 	$(function(){
 		alert("상세정보를 반드시 입력해주세요!");
+		
+		$('#register_form').submit(function(){
+			if($('#mem_name').val().trim()==''){
+				$('#mem_name').val('').focus();
+				alert("이름을 입력해주세요!");
+				return false;
+			}
+			if($('#phone').val().trim()==''){
+				$('#phone').val('').focus();
+				alert("전화번호를 입력해주세요!");
+				return false;
+			}
+			
+			if($('#email').val().trim()==''){
+				$('#email').val('').focus();
+				alert("이메일을 입력해주세요!");
+				return false;
+			}
+			if($('#zipcope').val().trim()==''){
+				$('#zipcope').val('').focus();
+				alert("우편번호를 입력해주세요!");
+				return false;
+			}
+			if($('#address1').val().trim()==''){
+				$('#address1').val('').focus();
+				alert("주소를 입력해주세요!");
+				return false;
+			}
+			if($('#address2').val().trim()==''){
+				$('#address2').val('').focus();
+				alert("상세주소를 입력해주세요!");
+				return false;
+			}
+			
+			
+		});
 	});
 </script>
 <!-- 중앙 내용 시작 -->
-<div class="page-main">
-	<h2>회원가입</h2>
+<div class = "container-fluid" style = "width:700px; border: 1px solid #d2f1f7; font-family: 'Gowun Dodum', sans-serif; ">
+	<div align = "left">
+			<h3>회원 가입</h3>
+	</div>
+	<div class="text-center col-sm-12 my-5">
 	<form:form id="register_form" action="kakaoLoginProcess.do" modelAttribute="memberVO">
-		<ul>
-			<li>
-				<label for="mem_name">이름</label>
+		<div class = "form-group row">
+				<label class = "col-sm-2 col-form-label" for="mem_name">이름&nbsp;</label>
 				<form:input path="mem_name"/>
-				<form:errors path="mem_name" cssClass="error-color"/>
-			</li>
-			<li>
-				<label for="phone">전화번호</label>
-				<form:input path="phone"/>
-				<form:errors path="phone" cssClass="error-color"/>
-			</li>
-			<li>
-				<label for="email">이메일</label>
-				<form:input path="email"/>
-				<form:errors path="email" cssClass="error-color"/>
-			</li>
-			<li>
-				<label for="zipcope">우편번호</label>
-				<input id="zipcode" name="zipcode" placeholder="우편번호" type="text" value="" maxlength="5" readonly="readonly"/>
-				<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+		</div>	
+		<div class = "form-group row">
+			<label class = "col-sm-2 col-form-label" for="phone">전화번호&nbsp;</label>
+			<form:input path="phone"/>
+		</div>
+		<div class = "form-group row">	
+			<label class = "col-sm-2 col-form-label" for="email">이메일&nbsp;</label>
+			<form:input path="email"/>
+		</div>
+		<div class = "form-group row">	
+			<label class = "col-sm-2 col-form-label" for="zipcope">우편번호&nbsp;</label>
+			<input id="zipcode" name="zipcode" placeholder="우편번호" type="text" value="" maxlength="5" readonly="readonly"/>&nbsp;&nbsp;&nbsp;
+			<input class = "btn btn-outline-dark" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 				
 				<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
 <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
@@ -92,23 +129,22 @@
         }).open();
     }
 	</script>
-			<form:errors path="zipcode" cssClass="error-color"/>
-			</li>
-			<li>
-				<label for="address1">주소</label>
+			</div>
+			<div class = "form-group row">
+				<label class = "col-sm-2 col-form-label" for="address1">주소&nbsp;</label>
 				<input id="address1" name="address1" type="text" value="" maxlength="30" readonly="readonly" placeholder="주소"/>
-				<form:errors path="address1" cssClass="error-color"/>
-			</li>
-			<li>
-				<label for="address2">나머지주소</label>
+			</div>
+			<div class = "form-group row">
+				<label class = "col-sm-2 col-form-label" for="address2">나머지주소&nbsp;</label>
 				<form:input path="address2" maxlength="30" placeholder="상세주소"/>
-				<form:errors path="address2" cssClass="error-color"/>
-			</li>
-		</ul>
-		<div class="align-center">
-			<form:button>전송</form:button>
-			<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-		</div>
+			</div>
+			<div class = "form-group row">
+				<div class = "text-center col-sm-10">
+					<form:button class = "btn btn-outline-dark">가입</form:button>
+					<input class = "btn btn-outline-dark" type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+				</div>
+			</div>
 	</form:form>
+	</div>
 </div>
 <!-- 중앙 내용 끝 -->
