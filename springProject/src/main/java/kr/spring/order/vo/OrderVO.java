@@ -30,7 +30,15 @@ public class OrderVO {
 	private int zipcode;			// 회원정보에 저장된 우편번호
 	private String address1;		// 회원정보에 저장된 주소
 	private String address2;		// 회원정보에 저장된 나머지 주소
+	private String prod_opt;		// 구매할 때 입력한 옵션
 	
+	
+	public String getProd_opt() {
+		return prod_opt;
+	}
+	public void setProd_opt(String prod_opt) {
+		this.prod_opt = prod_opt;
+	}
 	public int getOrder_num() {
 		return order_num;
 	}
@@ -198,6 +206,6 @@ public class OrderVO {
 				+ ", point=" + point + ", buis_name=" + buis_name + ", prod_price=" + prod_price + ", prod_name="
 				+ prod_name + ", delive_price=" + delive_price + ", delive_type=" + delive_type + ", email=" + email
 				+ ", phone=" + phone + ", zipcode=" + zipcode + ", address1=" + address1 + ", address2=" + address2
-				+ "]";
+				+ ", prod_opt=" + prod_opt + "]";
 	}
 }
