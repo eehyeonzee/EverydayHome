@@ -35,16 +35,17 @@ public class StoreVO {
 	@NotEmpty
 	private String prod_cate;			// 카테고리
 	private String prod_option2;		// 옵션2
-	private String prod_option3;		// 옵션2
-	private String prod_option4;		// 옵션2
-	private String prod_option5;		// 옵션2
-	private String prod_option6;		// 옵션2
-	private String prod_option7;		// 옵션2
-	private String prod_option8;		// 옵션2
-	private String prod_option9;		// 옵션2
-	private String prod_option10;		// 옵션2
+	private String prod_option3;		// 옵션3
+	private String prod_option4;		// 옵션4
+	private String prod_option5;		// 옵션5
+	private String prod_option6;		// 옵션6
+	private String prod_option7;		// 옵션7
+	private String prod_option8;		// 옵션8
+	private String prod_option9;		// 옵션9
+	private String prod_option10;		// 옵션10
 	private int quan;					// 주문 수량
 	private String buis_name;			// 사업자 이름
+	private String commit_option;		// 선택한 옵션
 	
 	// 썸네일 BLOB 처리
 	public void setUpload1(MultipartFile upload1)throws IOException {
@@ -66,6 +67,12 @@ public class StoreVO {
 	}
 	
 	
+	public String getCommit_option() {
+		return commit_option;
+	}
+	public void setCommit_option(String commit_option) {
+		this.commit_option = commit_option;
+	}
 	public String getBuis_name() {
 		return buis_name;
 	}
@@ -252,6 +259,6 @@ public class StoreVO {
 				+ ", prod_option3=" + prod_option3 + ", prod_option4=" + prod_option4 + ", prod_option5=" + prod_option5
 				+ ", prod_option6=" + prod_option6 + ", prod_option7=" + prod_option7 + ", prod_option8=" + prod_option8
 				+ ", prod_option9=" + prod_option9 + ", prod_option10=" + prod_option10 + ", quan=" + quan
-				+ ", buis_name=" + buis_name + "]";
+				+ ", buis_name=" + buis_name + ", commit_option=" + commit_option + "]";
 	}
 }

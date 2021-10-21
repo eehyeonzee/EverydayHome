@@ -27,7 +27,7 @@ public interface StoreMapper {
 	public void productRegister(StoreVO storeVO);
 	public List<StoreVO> selectList(Map<String, Object> map);
 	public int selectRowCount(Map<String, Object> map);
-	@Select("SELECT * FROM product p JOIN member m ON p.mem_num = m.mem_num WHERE p.prod_num = #{prod_num}")
+	@Select("SELECT * FROM product p JOIN member m ON p.mem_num = m.mem_num JOIN buis_detail d ON d.mem_num = m.mem_num WHERE p.prod_num = #{prod_num}")
 	public StoreVO selectProduct(Integer prod_num);
 	public void updateProduct(StoreVO storeVO);
 	@Update("UPDATE product SET thumbnail_img = '', thumbnail_filename = '' WHERE prod_num = #{prod_num}")

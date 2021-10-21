@@ -154,3 +154,7 @@ CREATE TABLE coupon
     coupondetail_num    NUMBER    NULL, 
      PRIMARY KEY (coupon_num)
 );
+
+-- 21.10.21 12:00 카테고리 테이블 제거
+drop table category;
+
