@@ -76,6 +76,7 @@
 	
 	<div class="orderInfo">결제금액 ${cart.totalPrice}</div>
     <button type="submit" class="btn btn-info">주문하기</button>
+    <!-- 결제 api연동 -->
 	</form>
 	</div>
 	</div>
