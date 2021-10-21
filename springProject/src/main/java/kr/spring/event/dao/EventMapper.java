@@ -17,7 +17,8 @@ public interface EventMapper {
 	@Insert("INSERT INTO event (event_num,event_title,event_content,event_type,event_day,event_hits,event_reg_date,event_modi,mem_num,event_filename,event_photo) VALUES(event_seq.nextval,#{event_title},#{event_content},#{event_type},#{event_day},1,SYSDATE,SYSDATE,#{mem_num},#{event_filename},#{event_photo})")
 	public void eventWrite(EventVO eventVO);
 	//@Select("select count(*) from event")
-	public int eventTotalCount();
+	//public int eventTotalCount();
+	public int selectRowCount(Map<String,Object> map);
 	@Select("SELECT * FROM event b JOIN mem_detail m ON b.mem_num=m.mem_num WHERE b.event_num=#{event_num}")
 	public EventVO eventDetail(int event_num);
 	@Update("UPDATE event SET event_title=#{event_title},event_content=#{event_content},event_day=#{event_day},event_type=#{event_type} WHERE event_num=#{event_num}")

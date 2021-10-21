@@ -3,56 +3,44 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 <mapper namespace="kr.spring.event.dao.EventMapper">
-	
 	<select id="eventGetList" parameterType="map" resultType="eventVO">
-
 		SELECT
 		  *
 		FROM (SELECT 
 		        a.*,
 		        rownum rnum
 		      FROM (SELECT 
-		              *
+		              event_num,
+		              <![CDATA[
+		              REPLACE(REPLACE( event_title,'<','&lt;'),'>','&gt;') event_title,
+		              REPLACE(REPLACE( event_type,'<','&lt;'),'>','&gt;') event_type,
+		              ]]>
+		               event_hits,
+		               event_reg_date,
+		               event_filename,
+		               event_day
 		            FROM event 
 		            <where>
-		            	<if test="keyword != '' and keyfield == 1">
-		            		 event_type LIKE '%' || #{keyword} || '%'
-		            	</if>
-		            	<if test="keyword != '' and keyfield == 2">
-		            		 event_type LIKE '%' || #{keyword} || '%'
-		            	</if>
-		            	<if test="keyword != '' and keyfield == 3">
-		            		 event_type LIKE '%' || #{keyword} || '%'
-		            	</if>
-		            </where>
+			            <if test="keyword != ''">
+			        		 event_type LIKE '%' || #{keyword} || '%'
+			        	</if>
+		            </where>	
 		            ORDER BY  event_reg_date DESC)a)
 		<![CDATA[
 		WHERE rnum >= #{start} AND rnum <= #{end}  
 		]]>
 	</select>
 
-
-	<select id="eventTotalCount" parameterType="map" resultType="integer">
+	<select id="selectRowCount" parameterType="map" resultType="integer">
 		SELECT
 		  COUNT(*)
 		FROM event
 		<where>
-        	<if test="keyword != '' and keyfield == 1">
-        		 service_keyword LIKE '%' || #{keyword} || '%'
-        	</if>
-        	<if test="keyword != '' and keyfield == 2">
-        		 service_keyword LIKE '%' || #{keyword} || '%'
-        	</if>
-        	<if test="keyword != '' and keyfield == 3">
-        		 service_keyword LIKE '%' || #{keyword} || '%'
+        	<if test="keyword != ''">
+        		 event_type LIKE '%' || #{keyword} || '%'
         	</if>
         </where>
 	</select>
-	
-	
-	
-	
-	
 	
 	<!-- 댓글 목록 -->
 	
@@ -69,7 +57,9 @@
 					   TO_CHAR(b.comm_mod_date, 'YYYY-MM-DD HH24:MI:SS') comm_mod_date,
 					   b.event_num,
 					   b.mem_num,
-					   m.nickname
+					   m.nickname,
+					   m.profile,
+					   m.profile_filename
 			  		FROM comments b JOIN mem_detail m ON b.mem_num = m.mem_num
 			  		WHERE b.event_num = #{event_num}
 			  		ORDER BY b.comm_num DESC)a)
