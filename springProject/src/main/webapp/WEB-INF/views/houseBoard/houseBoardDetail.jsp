@@ -94,11 +94,11 @@
 	}
 	// 카카오톡
 	function shareKakao() {
- 		// 사용할 앱의 JavaScript 키 설정
+		var content = document.getElementById('btnKakao').innerHTML;
+		// 사용할 앱의 JavaScript 키 설정
 		Kakao.init('bb121a537c2b70043cc692b909a3c23f');
 		// 링크 버튼 생성
-		Kakao.Link.createDefaultButton({
-			container: '#btnKakao', // 공유 버튼 ID
+		Kakao.Link.sendDefault({
 			objectType: 'feed',
 			content: {
 				title: '매일의 집', // 보여질 제목

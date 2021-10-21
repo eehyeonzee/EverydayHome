@@ -94,7 +94,7 @@ public class HouseBoardController {
 	public ModelAndView Process(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
 								@RequestParam(value="keyfield", defaultValue="") String keyfield,
 								@RequestParam(value="keyword", defaultValue="") String keyword) {
-		
+
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
@@ -134,7 +134,7 @@ public class HouseBoardController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("imageView");
 		mav.addObject("imageFile", houseBoardVO.getHouse_thumbnail());
-	      mav.addObject("filename", houseBoardVO.getThumbnail_filename());
+		mav.addObject("filename", houseBoardVO.getThumbnail_filename());
 		
 		return mav;
 	}

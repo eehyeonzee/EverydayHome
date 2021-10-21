@@ -8,6 +8,8 @@
  * 수정일 : 
 --%>
 <!-- 중앙 내용 시작 -->
+<link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script type="text/javascript" src="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function() {
@@ -89,6 +91,9 @@
 	</div>
 	</c:if>
 	<c:if test="${count > 0}">
+	<p>
+		총 <b style="color:#8c996b">${count}</b>개의 글
+	</p>
 	<table>
 		<tr>
 			<th>번호</th>
