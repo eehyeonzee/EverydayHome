@@ -11,20 +11,20 @@
 <h2>주문/결제</h2>
 <h3>주문자</h3>
 <ul>
-	<li>이름 <input type = "text" id = "name" value = "${memberVO.mem_name}"></li>
-	<li>이메일 <input type = "email" id = "email" value = "${memberVO.email}"></li>
-	<li>연락처 <input type = "text" id = "phone" value = "${memberVO.phone}"></li>
+	<li>이름 <input type = "text" id = "name" name = "name" value = "${memberVO.mem_name}"></li>
+	<li>이메일 <input type = "email" id = "email" name = "email" value = "${memberVO.email}"></li>
+	<li>연락처 <input type = "text" id = "phone" name = "phone" value = "${memberVO.phone}"></li>
 </ul>
 <h3>배송지</h3>
 <form>
 	<ul>
-		<li>받는 사람 <input type = "text" id = "receiver_name"><input type = "button" id = "equal" value = "위와 동일하게 채우기"></li>
-		<li>연락처 <input type = "text" id = "receiver_phone"></li>
-		<li>주소 <input type = "text" id = "order_zipcode" value = "${memberVO.zipcode}">
+		<li>받는 사람 <input type = "text" name = "receiver_name" id = "receiver_name"><input type = "button" id = "equal" value = "위와 동일하게 채우기"></li>
+		<li>연락처 <input type = "text" name = "receiver_phone" id = "receiver_phone"></li>
+		<li>주소 <input type = "text" name = "order_zipcode" id = "order_zipcode" value = "${memberVO.zipcode}">
 		<input class = "btn btn-outline-dark" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 		</li>
-		<li><input type = "text" id = "order_address1" value = "${memberVO.address1}"></li>
-		<li><input type = "text" id = "order_address2" value = "${memberVO.address2}"></li>
+		<li><input type = "text" name = "order_address1" id = "order_address1" value = "${memberVO.address1}"></li>
+		<li><input type = "text" name = "order_address2" id = "order_address2" value = "${memberVO.address2}"></li>
 	</ul>
 	<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
 		<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
@@ -92,21 +92,80 @@
 			
 			var price = ${storeVO.prod_price};
 			var delive = ${storeVO.delive_price};
+			var quan = ${storeVO.quan};
 			
-			var final_price = price + delive;
-			$('#final_price').append(final_price);
+			var final_price = (price * quan) + delive;
+			$('#final_price').val(final_price);
+			$('#final_price_li').append(final_price);
 			
 		});
 	</script>
 	<h3>상품 정보</h3>
 	<ul>
-		<li>판매자명 : ${storeVO.buis_name}</li>
-		<li>상품명 : ${storeVO.prod_name}</li>
-		<li>상품 가격 : ${storeVO.prod_price}</li>
-		<li>수량 : ${storeVO.quan}</li>
-		<li>배송 방법 : ${storeVO.delive_type}</li>
-		<li>배송비 : ${storeVO.delive_price}</li>
-		<li>옵션 : ${storeVO.commit_option}</li>
-		<li id = "final_price">최종 결제 금액 : </li>
+		<li>판매자명 : ${storeVO.buis_name}
+			<input type = "hidden" id = "buis_name" name = "buis_name" value = "${storeVO.buis_name}">
+		</li>
+		<li>상품명 : ${storeVO.prod_name}
+			<input type = "hidden" id = "prod_name" name = "prod_name" value = "${storeVO.prod_name}">		
+		</li>
+		<li>상품 가격 : ${storeVO.prod_price}
+			<input type = "hidden" id = "prod_price" name = "prod_price" value = "${storeVO.prod_price}">
+		</li>
+		<li>수량 : ${storeVO.quan}
+			<input type = "hidden" id = "quan" name = "quan" value = "${storeVO.quan}">
+		</li>
+		<li>배송 방법 : ${storeVO.delive_type}
+			<input type = "hidden" id = "delive_type" name = "delive_type" value = "${storeVO.delive_type}">
+		</li>
+		<li>배송비 : ${storeVO.delive_price}
+			<input type = "hidden" id = "delive_price" name = "delive_price" value = "${storeVO.delive_price}">
+		</li>
+		<li>옵션 : ${storeVO.commit_option}
+			<input type = "hidden" id = "commit_option" name = "commit_option" value = "${storeVO.commit_option}">
+		</li>
+		<li id = "final_price_li">최종 결제 금액 : 
+			<input type = "hidden" id = "final_price" name = "final_price" value = "final_price">
+		</li>
 	</ul>
+	<input type = "button" value = "kakao" id = "kakao_btn">
+	<script type="text/javascript">
+		$(document).ready(function() {
+				var receiver_name = $('#receiver_name').val();
+				var receiver_phone = $('#receiver_phone').val();
+				var order_zipcode = $('#order_zipcode').val();
+				var order_address1 = $('#order_address1').val();
+				var order_address2 = $('#order_address2').val();
+				var buis_name = $('#buis_name').val();
+				var prod_name = $('#prod_name').val();
+				var quan = $('#quan').val();
+				var commit_option = $('#commit_option').val();
+				var final_price = $('#final_price').val();
+			
+			$('#kakao_btn').click(function() {				
+				$.ajax({
+					url: '${pageContext.request.contextPath}/order/kakao.do',
+					data : {
+						receiver_name : receiver_name,
+						receiver_phone : receiver_phone,
+						order_zipcode : order_zipcode,
+						order_address1 : order_address1,
+						order_address2 : order_address2,
+						buis_name : buis_name,
+						prod_name : prod_name,
+						quan : quan,
+						commit_option : commit_option,
+						final_price : final_price
+					},
+					dataType: 'json',
+					success: function(param) {
+						var box = param.next_redirect_pc_url;
+						window.open(box, 'width=500, height=500, resizable=no');
+					},
+					error: function() {
+						alert('암튼 에러임');
+					}
+				});
+			});
+		});
+	</script>
 </form>
