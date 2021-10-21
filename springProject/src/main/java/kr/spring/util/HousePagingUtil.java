@@ -29,21 +29,20 @@ public class HousePagingUtil {
 	 * */
 	public HousePagingUtil(int currentPage, int totalCount, int rowCount,
 			int pageCount, String pageUrl) {
-		this(null,null,currentPage,totalCount,rowCount,pageCount,pageUrl,null, null);
+		this(null,null,currentPage,totalCount,rowCount,pageCount,pageUrl,null);
 	}
 	public HousePagingUtil(int currentPage, int totalCount, int rowCount,
 			int pageCount, String pageUrl, String addKey) {
-		this(null,null,currentPage,totalCount,rowCount,pageCount,pageUrl,addKey, null);
+		this(null,null,currentPage,totalCount,rowCount,pageCount,pageUrl,addKey);
 	}
 	public HousePagingUtil(String keyfield, String keyword, int currentPage, int totalCount, int rowCount,
 			int pageCount,String pageUrl) {
-		this(keyfield,keyword,currentPage,totalCount,rowCount,pageCount,pageUrl,null, null);
+		this(keyfield,keyword,currentPage,totalCount,rowCount,pageCount,pageUrl,null);
 	}
 	public HousePagingUtil(String keyfield, String keyword, int currentPage, int totalCount, int rowCount,
-			int pageCount,String pageUrl,String addKey, String space) {
+			int pageCount,String pageUrl,String addKey) {
 		
 		if(addKey == null) addKey = ""; //부가키가 null 일때 ""처리
-		if(space == null) space = "";
 		
 		// 전체 페이지 수
 		int totalPage = (int) Math.ceil((double) totalCount / rowCount);
@@ -68,9 +67,9 @@ public class HousePagingUtil {
 		pagingHtml = new StringBuffer();
 		if (currentPage > pageCount) {
 			if(keyword==null){//검색 미사용시
-				pagingHtml.append("<a href="+pageUrl+"?pageNum="+ (startPage - 1) + addKey +">");
+				pagingHtml.append("<a href="+pageUrl+"&pageNum="+ (startPage - 1) + addKey +">");
 			}else{
-				pagingHtml.append("<a href="+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum="+ (startPage - 1) + addKey +">");
+				pagingHtml.append("<a href="+pageUrl+"&keyfield="+keyfield+"&keyword="+keyword+"&pageNum="+ (startPage - 1) + addKey +">");
 			}
 			pagingHtml.append("이전");
 			pagingHtml.append("</a>");
@@ -87,7 +86,7 @@ public class HousePagingUtil {
 				pagingHtml.append("</font></b>");
 			} else {
 				if(keyword==null){//검색 미사용시
-					pagingHtml.append("&nbsp;<a href='"+pageUrl+"?pageNum=");
+					pagingHtml.append("&nbsp;<a href='"+pageUrl+"&pageNum=");
 				}else{
 					pagingHtml.append("&nbsp;<a href='"+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum=");
 				}
@@ -102,9 +101,9 @@ public class HousePagingUtil {
 		// 다음 block 페이지
 		if (totalPage - startPage >= pageCount) {
 			if(keyword==null){//검색 미사용시
-				pagingHtml.append("<a href="+pageUrl+"?pageNum="+ (endPage + 1) + addKey +">");
+				pagingHtml.append("<a href="+pageUrl+"&pageNum="+ (endPage + 1) + addKey +">");
 			}else{
-				pagingHtml.append("<a href="+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum="+ (endPage + 1) + addKey +">");
+				pagingHtml.append("<a href="+pageUrl+"&keyfield="+keyfield+"&keyword="+keyword+"&pageNum="+ (endPage + 1) + addKey +">");
 			}
 			pagingHtml.append("다음");
 			pagingHtml.append("</a>");

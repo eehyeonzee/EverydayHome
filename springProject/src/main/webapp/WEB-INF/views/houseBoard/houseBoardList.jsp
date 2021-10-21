@@ -4,17 +4,15 @@
 <%-- 
  * 작성일 : 2021. 10. 12.
  * 작성자 : 이현지
- * 설명 : 집들이 게시판 글 목록
+ * 설명 : 집들이 게시판 글 목록!
  * 수정일 : 
 --%>
 <!-- 중앙 내용 시작 -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
-<%-- <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> --%>
 <style>
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
-<%-- <script type="text/javascript" src="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> --%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 <script type="text/javascript">
 	$(function() {
 		
@@ -22,79 +20,91 @@
 </script>
 <div class="page-main">
 	<h2>글 목록</h2>
-<input style="float: right;" type="button" value="초기화" onclick="location.href='list.do'">
+
+
 	<br>
 <div style="display: inline-block;">
 	<div class="input-group mb-3">
 	  <div class="input-group-prepend">
 	    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">평수</button>
 	    <div class="dropdown-menu">
-	      <a class="dropdown-item" href="list.do?size=0">10평미만</a>
-	      <a class="dropdown-item" href="list.do?size=1">10평대</a>
-	      <a class="dropdown-item" href="list.do?size=2">20평대</a>
-	      <a class="dropdown-item" href="list.do?size=3">30평대</a>
-	      <a class="dropdown-item" href="list.do?size=4">40평대</a>
-	      <a class="dropdown-item" href="list.do?size=5">50평 이상</a>
+	      <a class="dropdown-item" href="list.do?size=0&residence=${residence}&style=${style}&space=${space}">10평미만</a>
+	      <a class="dropdown-item" href="list.do?size=1&residence=${residence}&style=${style}&space=${space}">10평대</a>
+	      <a class="dropdown-item" href="list.do?size=2&residence=${residence}&style=${style}&space=${space}">20평대</a>
+	      <a class="dropdown-item" href="list.do?size=3&residence=${residence}&style=${style}&space=${space}">30평대</a>
+	      <a class="dropdown-item" href="list.do?size=4&residence=${residence}&style=${style}&space=${space}">40평대</a>
+	      <a class="dropdown-item" href="list.do?size=5&residence=${residence}&style=${style}&space=${space}">50평 이상</a>
+	      <a class="dropdown-item" href="list.do?size=''&residence=${residence}&style=${style}&space=${space}">취소</a>
 	    </div>
 	  </div>
 	</div>		
-	<span><a style="font-size:15px;" href="#">${size}</a></span>
-</div>
+	<span><a style="font-size: 30px; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;" href="#">${sizeOutput}</a></span>
+
 	<div class="input-group mb-3">
 	  <div class="input-group-prepend">
 	    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">주거형태</button>
 	    <div class="dropdown-menu">
-	      <a class="dropdown-item" href="list.do?residence=0">원룸&오피스텔</a>
-	      <a class="dropdown-item" href="list.do?residence=1">아파트</a>
-	      <a class="dropdown-item" href="list.do?residence=2">빌라&연립</a>
-	      <a class="dropdown-item" href="list.do?residence=3">단독주택</a>
-	      <a class="dropdown-item" href="list.do?residence=4">사무공간</a>
-	      <a class="dropdown-item" href="list.do?residence=5">상업공간</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=0&style=${style}&space=${space}">원룸&amp;오피스텔</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=1&style=${style}&space=${space}">아파트</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=2&style=${style}&space=${space}">빌라&amp;연립</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=3&style=${style}&space=${space}">단독주택</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=4&style=${style}&space=${space}">사무공간</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=5&style=${style}&space=${space}">상업공간</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=''&style=${style}&space=${space}">취소</a>
 	    </div>
 	  </div>
 	</div>		
-	<span><a style="font-size:15px;" href="#">${residence}</a></span>
+	<span><a style="font-size: 30px; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;" href="#">${residenceOutput}</a></span>
+	
 	<div class="input-group mb-3">
 	  <div class="input-group-prepend">
 	    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">스타일</button>
 	    <div class="dropdown-menu">
-	      <a class="dropdown-item" href="list.do?style=0">모던</a>
-	      <a class="dropdown-item" href="list.do?style=1">북유럽</a>
-	      <a class="dropdown-item" href="list.do?style=2">빈티지</a>
-	      <a class="dropdown-item" href="list.do?style=3">내추럴</a>
-	      <a class="dropdown-item" href="list.do?style=4">프로방스&로맨틱</a>
-	      <a class="dropdown-item" href="list.do?style=5">클래식&앤틱</a>
-	      <a class="dropdown-item" href="list.do?style=6">한국&아시아</a>
-	      <a class="dropdown-item" href="list.do?style=7">유니크</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=${residence}&style=0&space=${space}">모던</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=${residence}&style=1&space=${space}">북유럽</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=${residence}&style=2&space=${space}">빈티지</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=${residence}&style=3&space=${space}">내추럴</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=${residence}&style=4&space=${space}">프로방스&amp;로맨틱</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=${residence}&style=5&space=${space}">클래식&amp;앤틱</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=${residence}&style=6&space=${space}">한국&amp;아시아</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=${residence}&style=7&space=${space}">유니크</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=${residence}&style=''&space=${space}">취소</a>
 	    </div>
 	  </div>
 	</div>		
-	<span><a style="font-size:15px;" href="#">${style}</a></span>
+	<span><a style="font-size: 30px; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;" href="#">${styleOutput}</a></span>
+
 	<div class="input-group mb-3">
 	  <div class="input-group-prepend">
 	    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">공간</button>
 	    <div class="dropdown-menu">
-	      <a class="dropdown-item" href="list.do?space=0">원룸</a>
-	      <a class="dropdown-item" href="list.do?space=1">거실</a>
-	      <a class="dropdown-item" href="list.do?space=2">침실</a>
-	      <a class="dropdown-item" href="list.do?space=3">주방</a>
-	      <a class="dropdown-item" href="list.do?space=4">욕실</a>
-	      <a class="dropdown-item" href="list.do?space=5">아이방</a>
-	      <a class="dropdown-item" href="list.do?space=6">드레스룸</a>
-	      <a class="dropdown-item" href="list.do?space=7">서재&작업실</a>
-	      <a class="dropdown-item" href="list.do?space=8">베란다</a>
-	      <a class="dropdown-item" href="list.do?space=9">사무공간</a>
-	      <a class="dropdown-item" href="list.do?space=10">상업공간</a>
-	      <a class="dropdown-item" href="list.do?space=11">가구&소품</a>
-	      <a class="dropdown-item" href="list.do?space=12">현관</a>
-	      <a class="dropdown-item" href="list.do?space=13">외관&기타</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=${residence}&style=${style}&space=0">원룸</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=${residence}&style=${style}&space=1">거실</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=${residence}&style=${style}&space=2">침실</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=${residence}&style=${style}&space=3">주방</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=${residence}&style=${style}&space=4">욕실</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=${residence}&style=${style}&space=5">아이방</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=${residence}&style=${style}&space=6">서재&amp;작업실</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=${residence}&style=${style}&space=7">베란다</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=${residence}&style=${style}&space=8">사무공간</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=${residence}&style=${style}&space=9">상업공간</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=${residence}&style=${style}&space=10">가구&amp;소품</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=${residence}&style=${style}&space=11">현관</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=${residence}&style=${style}&space=12">외관&amp;기타</a>
+	      <a class="dropdown-item" href="list.do?size=${size}&residence=${residence}&style=${style}&space=''">취소</a>
 	    </div>
 	  </div>
 	</div>		
-	<span><a style="font-size:15px;" href="#">${space}</a></span>
+	<span><a style="font-size: 30px; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;" href="#">${spaceOutput}</a></span>
+	<div class="input-group mb-3">
+	  <div class="input-group-prepend">
+	  	<button class="btn btn-outline-secondary" type="button" onclick="location.href='list.do'">초기화</button>
+	  </div>
+	</div>
+</div>
 	<!-- 카테고리 검색 끝 -->
 	<!-- 게시물 출력 시작 -->
-	<div class="row mb-5 ml-5 mr-5">
+	<div class="row mb-5 ml-5 mr-5" align="center">
 	<c:if test="${count == 0}">
 	<div class="align-center">
 		등록된 게시물이 없습니다.

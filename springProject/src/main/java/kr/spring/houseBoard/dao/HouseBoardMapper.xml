@@ -20,34 +20,25 @@
 						REPLACE(REPLACE(b.house_space,'<','&lt;'),'>','&gt;') house_space,
 						]]>
 						b.house_hits,
-						TO_CHAR(b.house_reg_date, 'YYYY-MM-DD HH24:MI:SS') house_reg_date,
-						TO_CHAR(b.house_mod_date, 'YYYY-MM-DD HH24:MI:SS') house_mod_date,
+						TO_CHAR(b.house_reg_date, 'YYYY-MM-DD') house_reg_date,
+						TO_CHAR(b.house_mod_date, 'YYYY-MM-DD') house_mod_date,
 						b.mem_num,
 						m.nickname,
 						m.profile,
 						m.profile_filename
 					FROM house_board b JOIN mem_detail m ON b.mem_num = m.mem_num
 					<where>
-						<if test="keyword != '' and keyfield == 0">
-							b.house_area LIKE '%' || #{keyword} || '%'
-						</if>
 						<if test="keyword != '' and keyfield == 1">
 							b.house_area LIKE '%' || #{keyword} || '%'
 						</if>
 						<if test="keyword != '' and keyfield == 2">
-							b.house_area LIKE '%' || #{keyword} || '%'
+							b.house_type LIKE '%' || #{keyword} || '%'
 						</if>
 						<if test="keyword != '' and keyfield == 3">
-							b.house_area LIKE '%' || #{keyword} || '%'
+							b.house_style LIKE '%' || #{keyword} || '%'
 						</if>
 						<if test="keyword != '' and keyfield == 4">
-							b.house_area LIKE '%' || #{keyword} || '%'
-						</if>
-						<if test="keyword != '' and keyfield == 5">
-							b.house_area LIKE '%' || #{keyword} || '%'
-						</if>
-						<if test="keyword != '' and keyfield == 6">
-							b.house_area LIKE '%' || #{keyword} || '%'
+							b.house_space LIKE '%' || #{keyword} || '%'
 						</if>
 					</where>
 					ORDER BY b.house_num DESC)a)
@@ -90,26 +81,17 @@
 			COUNT(*)
 		FROM house_board b JOIN mem_detail m ON b.mem_num = m.mem_num
 		<where>
-			<if test="keyword != '' and keyfield == 0">
-				b.house_area LIKE '%' || #{keyword} || '%'
-			</if>
 			<if test="keyword != '' and keyfield == 1">
 				b.house_area LIKE '%' || #{keyword} || '%'
 			</if>
 			<if test="keyword != '' and keyfield == 2">
-				b.house_area LIKE '%' || #{keyword} || '%'
+				b.house_type LIKE '%' || #{keyword} || '%'
 			</if>
 			<if test="keyword != '' and keyfield == 3">
-				b.house_area LIKE '%' || #{keyword} || '%'
+				b.house_style LIKE '%' || #{keyword} || '%'
 			</if>
 			<if test="keyword != '' and keyfield == 4">
-				b.house_area LIKE '%' || #{keyword} || '%'
-			</if>
-			<if test="keyword != '' and keyfield == 5">
-				b.house_area LIKE '%' || #{keyword} || '%'
-			</if>
-			<if test="keyword != '' and keyfield == 6">
-				b.house_area LIKE '%' || #{keyword} || '%'
+				b.house_space LIKE '%' || #{keyword} || '%'
 			</if>
 		</where>
 	</select>
