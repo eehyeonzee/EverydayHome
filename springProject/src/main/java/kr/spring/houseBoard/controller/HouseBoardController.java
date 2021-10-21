@@ -139,7 +139,7 @@ public class HouseBoardController {
 		return mav;
 	}
 	
-	// 글 상세
+	// 글 상세ㅇㅇㅇ
 	@RequestMapping("/houseBoard/detail.do")
 	public ModelAndView process(@RequestParam int house_num, HttpSession session) { // 글번호 저장
 		// 해당 글의 조회수 증가

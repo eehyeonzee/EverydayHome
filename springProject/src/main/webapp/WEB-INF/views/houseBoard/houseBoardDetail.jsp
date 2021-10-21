@@ -35,6 +35,7 @@
 				success: function(param) { // param으로 데이터 전송받음
 					if(param.result == 'logout') {
 						alert('로그인 후 사용하세요');
+						location.replace('../member/login.do');
 					}else if(param.result == 'success') {
 						alert('추천해주셔서 감사합니다');
 						$('#heart').attr('src','../resources/images/like.png');
@@ -66,6 +67,7 @@
 				success: function(param) { // param으로 데이터 전송받음
 					if(param.result == 'logout') {
 						alert('로그인 후 사용하세요');
+						location.replace('../member/login.do');
 					}else if(param.result == 'success') {
 						alert('스크랩이 완료되었습니다');
 						$('#scrap').attr('src','../resources/images/scrapO.png');

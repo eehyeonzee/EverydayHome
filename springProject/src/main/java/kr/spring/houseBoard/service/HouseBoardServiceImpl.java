@@ -52,12 +52,12 @@ public class HouseBoardServiceImpl implements HouseBoardService {
 	public void updateHBoardHits(Integer house_num) {
 		houseBoardMapper.updateHBoardHits(house_num);
 	}
-
+	
 	@Override
 	public void updateHBoard(HouseBoardVO houseBoard) {
 		houseBoardMapper.updateHBoard(houseBoard);
 	}
-
+	
 	@Override
 	public void deleteHBoard(Integer house_num) {
 		// 부모글 삭제 전 댓글,추천,스크랩 먼저 삭제 후 해당 부모글 삭제
@@ -66,7 +66,7 @@ public class HouseBoardServiceImpl implements HouseBoardService {
 		houseBoardMapper.deleteScrapByHouseNum(house_num);
 		houseBoardMapper.deleteHBoard(house_num);
 	}
-
+	
 	@Override
 	public void deleteFile(Integer house_num) {
 		houseBoardMapper.deleteFile(house_num);	

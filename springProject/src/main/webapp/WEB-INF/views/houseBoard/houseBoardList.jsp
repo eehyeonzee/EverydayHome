@@ -9,6 +9,8 @@
 --%>
 <!-- 중앙 내용 시작 -->
 <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style>
+</style>
 <script type="text/javascript" src="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -17,7 +19,8 @@
 	});
 </script>
 <div class="page-main">
-	<h2>글 목록</h2>
+<div class="container-fluid">
+	<!-- 카테고리 검색 시작 -->
 	<form id="search_form" action="list.do" method="get">
 		<div class="search">
 			<select name="keyword" id="keyword">
@@ -85,8 +88,11 @@
 			<input type="submit" value="찾기" >
 		</div>
 	</form>
+	<!-- 카테고리 검색 끝 -->
+	<!-- 게시물 출력 시작 -->
+	<div class="row mb-5 ml-5 mr-5" align="center">
 	<c:if test="${count == 0}">
-	<div class="result-display">
+	<div class="align-center">
 		등록된 게시물이 없습니다.
 	</div>
 	</c:if>
@@ -94,6 +100,7 @@
 	<p>
 		총 <b style="color:#8c996b">${count}</b>개의 글
 	</p>
+	
 	<table>
 		<tr>
 			<th>번호</th>
@@ -114,5 +121,8 @@
 	</table>
 	<div class="align-center">${pagingHtml}</div>
 	</c:if>
+	</div>
+	<!-- 게시물 출력 끝 -->
+</div>
 </div>
 <!-- 중앙 내용 끝 -->
