@@ -65,7 +65,7 @@ public class MemberController {
 	// 게시물, 페이지 카운트 지정
 	private int rowCount = 4;
 	private int pageCount = 5;
-	private int mem_rowCount = 13;
+	private int mem_rowCount = 10;
 	private int mem_pageCount = 5;
 	
 	@Autowired
@@ -1069,6 +1069,37 @@ public class MemberController {
 		return "redirect:/member/myPage.do";
 	}
 	
+	// 마이페이지 - 회원 나의 쿠폰 조회
+	@GetMapping("/member/myCoupon.do")
+	public ModelAndView myCouponList(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
+									HttpSession session) {
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		// map 생성
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		int count = memberService.selectGetCouponCount(user_num);
+		
+		// 페이지 처리
+		PagingUtil page = new PagingUtil(currentPage,count,mem_rowCount,mem_pageCount,"myCoupon.do");
+		
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
+		
+		List<MemberVO> list = null;
+		if(count > 0) {
+			list = memberService.selectGetCouponList(map);
+		}
+		
+		logger.debug("<<전체 쿠폰 조회>> : " + list);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("myCouponView"); // 타일스 식별자
+		mav.addObject("count", count);
+		mav.addObject("list", list);
+		mav.addObject("pagingHtml", page.getPagingHtml());
+		
+		return mav;
+	}
 	
 	// 관리자 페이지 - 전체회원 조회
 	@GetMapping("/member/memberList.do")
@@ -1335,11 +1366,73 @@ public class MemberController {
 
 	}
 	
+	// 관리자 페이지 - 쿠폰 삭제
+	// 관리자 페이지 - 판매자 등록 취소
+	@PostMapping("/member/deleteCoupon.do")
+	@ResponseBody
+	public Map<String, String> couponDelete(@RequestParam String output) {
+		String[] stopChecked = output.split(",");
+		Map<String,String> mapAjax = new HashMap<String,String>();
+		
+		for(String coupondetail_num : stopChecked) {
+			memberService.deleteCoupon(Integer.parseInt(coupondetail_num));		// 바꿀부분
+			
+			mapAjax.put("result", "success");
+		}
+		
+		return mapAjax;
+	}
+	
+	// 관리자 페이지 - 쿠폰 수정 폼 호출
+	@GetMapping("/member/couponModifyView.do")
+	public String couponModifyForm(@RequestParam int coupondetail_num, Model model) {
+		
+		MemberVO memberVO = memberService.couponSelect(coupondetail_num);
+		
+		model.addAttribute("member", memberVO);
+		return "couponModify";
+	}
+	
+	// 관리자 페이지 - 쿠폰 수정 폼 처리
+	@PostMapping("/member/couponModifyView.do")
+	public String couponModify(MemberVO memberVO) {
+		
+		logger.debug("<<변경 쿠폰 정보>> : " + memberVO);
+		
+		// 쿠폰 정보 변경
+		memberService.updateCoupon(memberVO);
+		return "redirect:/member/aminCouponAllView.do";
+	}
+	
+	// 관리자 페이지 - 회원 쿠폰 배정
+	@PostMapping("/member/memberCouponRegister.do")
+	@ResponseBody
+	public Map<String, String> CouponMemberReg(@RequestParam String output,
+										@RequestParam int coupondetail_num) {
+		String[] stopChecked = output.split(",");
+		Map<String,String> mapAjax = new HashMap<String,String>();
+		MemberVO member = memberService.couponSelect(coupondetail_num);
+		
+		logger.debug("<<넘어온 데이터>> : " + output);
+		logger.debug("<<쿠폰번호 : >>" + coupondetail_num);
+		logger.debug("<<쿠폰 체크 : >>" + member);
+		
+		if(member.getCoupon_name() == null) {
+			mapAjax.put("result", "fail");
+		}else {
+			for(String mem_num : stopChecked) {
+				memberService.insertMemberCouponReg(Integer.parseInt(mem_num), coupondetail_num);
+				
+				mapAjax.put("result", "success");
+			}
+		}
+		
+		return mapAjax;
+	}
 	
 	
 	
-	
-	//----------------- 회원가입 이메일 인증 8자리 난수 생성 부분
+	//----------------- 회원가입 이메일 인증 8자리 난수 생성 부분 /member/couponModifyView.do
     private int certCharLength = 8;
     
     private final char[] characterTable = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 

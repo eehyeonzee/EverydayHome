@@ -158,3 +158,7 @@ CREATE TABLE coupon
 -- 21.10.21 12:00 카테고리 테이블 제거
 drop table category;
 
+-- 21.10.21 17:00 팔로우 테이블 제거
+DROP TABLE follow;
+
+

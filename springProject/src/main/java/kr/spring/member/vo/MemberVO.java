@@ -5,7 +5,6 @@ import java.sql.Date;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -46,8 +45,6 @@ public class MemberVO {
 	   
 	   @NotEmpty
 	   private String nickname;		// 닉네임
-	   private int follow_count;	// 팔로우 숫자
-	   private int follower_count; // 팔로워 숫자
 	   private int scrapbook_count;	// 스크랩 북 숫자
 	   private int recommend_count;	// 좋아요 숫자
 	   private int house_board_count;	// 사진 글 숫자
@@ -208,23 +205,6 @@ public class MemberVO {
 		this.coupon_count = coupon_count;
 	}
 
-	public int getFollow_count() {
-		return follow_count;
-	}
-
-	public void setFollow_count(int follow_count) {
-		this.follow_count = follow_count;
-	}
-
-	public int getFollower_count() {
-		return follower_count;
-	}
-
-	public void setFollower_count(int follower_count) {
-		this.follower_count = follower_count;
-	}
-	
-
 	public int getScrapbook_count() {
 		return scrapbook_count;
 	}
@@ -264,10 +244,11 @@ public class MemberVO {
 				+ ", reg_date=" + reg_date + ", point=" + point + ", coupon_num=" + coupon_num + ", coupondetail_num="
 				+ coupondetail_num + ", coupon_name=" + coupon_name + ", coupon_content=" + coupon_content
 				+ ", coupon_count=" + coupon_count + ", discount_price=" + discount_price + ", nickname=" + nickname
-				+ ", follow_count=" + follow_count + ", follower_count=" + follower_count + ", scrapbook_count="
-				+ scrapbook_count + ", recommend_count=" + recommend_count + ", house_board_count=" + house_board_count
-				+ ", now_passwd=" + now_passwd + "]";
+				+ ", scrapbook_count=" + scrapbook_count + ", recommend_count=" + recommend_count
+				+ ", house_board_count=" + house_board_count + ", now_passwd=" + now_passwd + "]";
 	}
+
+	
 
 	
 

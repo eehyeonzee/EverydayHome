@@ -22,10 +22,8 @@
 			
 		</li>
 	</ul>
-	
-		<h3>닉네임 : ${member.nickname}</h3><br>
-		팔로우 : ${member.follow_count} | 팔로워 : ${member.follower_count}
-		<br><br> 
+		<h3>닉네임 : ${member.nickname}</h3>
+		<br>
 		<div class="align-center">
 				<input class = "btn btn-outline-dark" type="button" value="수정" id="modify_btn" onclick="location.href='memberUpdate.do'">
 			</div>
@@ -44,7 +42,7 @@
 																			<p>좋아요
 																			<p style="margin-bottom: 2em;">${member.recommend_count}
 																			</div></th>
-					<th style="border:1px dashed white;"><div  style="cursor: pointer; width: 45px; height: 45px;" align="center" onclick="location.href='#'">
+					<th style="border:1px dashed white;"><div  style="cursor: pointer; width: 45px; height: 45px;" align="center" onclick="location.href='myCoupon.do'">
 																	<img class="profile_btn" style="margin-top: 1em; margin-bottom: 2px; width: 40px; height: 40px;" src="${pageContext.request.contextPath}/resources/images/coupon.png">
 																			<p>내 쿠폰
 																			<p style="margin-bottom: 2em;">${member.coupon_count}</div></th>
