@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.cart.service.CartService;
 import kr.spring.cart.vo.CartVO;
-import kr.spring.event.vo.EventVO;
+import kr.spring.member.service.MemberService;
+import kr.spring.member.vo.MemberVO;
 
 @Controller
 public class CartController {
@@ -27,8 +29,17 @@ public class CartController {
 	@Autowired
 	private CartService cartService;
 	
+	@Autowired
+	private MemberService memberService;
+	
+	// Member 자바빈(VO) 초기화
+	 @ModelAttribute
+	 public MemberVO initMember() {
+			 
+	    return new MemberVO();
+	}
 	@ModelAttribute
-	public CartVO initCommand() {
+	public CartVO initCartVO() {
 		return new CartVO();
 	}
 	private static final Logger logger = LoggerFactory.getLogger(CartController.class);
@@ -120,6 +131,29 @@ public class CartController {
 			
 		return mav;
 		}
+	
+	//장바구니 정보 폼 전달
+	@RequestMapping("cart/cartOrderForm")
+	public String cartOrderForm(Model model,HttpSession session) {
+		Integer mem_num = (Integer)session.getAttribute("user_num");
+		int count = cartService.OrdercartCount(mem_num);
+		List<CartVO> cartVO = cartService.cartList(mem_num);
+		MemberVO memberVO = memberService.selectMember(mem_num);
+		logger.debug("<<장바구니 주문에서 제품정보 넘어가는지 확인 cartVO>> : " + cartVO);
+		logger.debug("<<장바구니 주문에서 숫자 제대로 넘어가는지 확인>> : " + count);
+		logger.debug("<<장바구니 주문에서 회원정보 넘어가는지 확인 memberVO>> : " + memberVO);
+
+		int totalPrice = 0;
+		for(int i=0; i<cartVO.size(); i++) {
+			totalPrice += cartVO.get(i).getMoney();
+		}
+		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("count", count);
+		model.addAttribute("cartVO", cartVO);
+		model.addAttribute("memberVO", memberVO);
 		
+		
+		return "cartOrderForm";
 	}
+}
 

@@ -29,4 +29,8 @@ public interface CartMapper {
 	public void CurrentUpdate(CartVO cartVO); //장바구니 개수 변경
 	@Select("SELECT thumbnail_img,thumbnail_filename  FROM  product  WHERE prod_num = #{prod_num}")
 	public CartVO cartImg(int prod_num);
+
+	//주문에 필요한 리스트
+	@Select("select count(*) FROM cart WHERE mem_num = ${mem_num}")
+	public int OrdercartCount(int mem_num);
 }

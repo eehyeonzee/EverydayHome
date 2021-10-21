@@ -59,5 +59,11 @@ public class CartServiceImpl implements CartService {
 		return cartMapper.cartCount(cartVO);
 	}
 
+	@Override
+	public int OrdercartCount(int mem_num) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 }

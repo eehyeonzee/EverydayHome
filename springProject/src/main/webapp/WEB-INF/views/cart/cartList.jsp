@@ -107,7 +107,8 @@ h2{
          배송료 : ${map.fee}<br>
          *10만원 이상부터는 배송료가 0원이 됩니다.<br>
          전체 주문금액  :<fmt:formatNumber pattern="###,###,###" value="${map.allSum}"/>
-			<button type="submit" id="btnUpdate">수정</button>
+		<input type="submit" class="btn btn-success" value="수정" formaction="${pageContext.request.contextPath}/cart/cartUpdate.do">
+		<input type="submit" class="btn btn-info" value="주문" formaction="${pageContext.request.contextPath}/cart/cartOrderForm.do">
 		</form>
  		</c:if>
  	</div>

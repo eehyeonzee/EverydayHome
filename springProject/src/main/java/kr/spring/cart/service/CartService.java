@@ -14,4 +14,5 @@ public interface CartService {
 	public int cartCount(CartVO cartVO); //장바구니 총 개수 세기
 	public void CurrentUpdate(CartVO cartVO); //장바구니 개수 변경
 	public CartVO cartImg(int prod_num);
+	public int OrdercartCount(int mem_num);
 }
