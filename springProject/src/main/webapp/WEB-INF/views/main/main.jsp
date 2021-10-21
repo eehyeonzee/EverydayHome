@@ -362,22 +362,6 @@ text-align : center;
 			</div>
 		</div>
 <!-- 두번째 줄 오른쪽 바로가기끝 -->
-<!-- 카테고리 이미지 시작 -->
-		<div class="main-item" style="text-align :center; font-size:20px; font-weight:bold;">매일의 집의 카테고리<br>
-	
-			<ul class="cateul">
-				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category1.png"></a></li>
-				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category2.png"></a></li>
-				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category3.png"></a></li>
-				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category4.png"></a></li>
-				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category5.png"></a></li>
-				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category6.png"></a></li>
-				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category7.png"></a></li>
-				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category8.png"></a></li>
-				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category9.png"></a></li>
-			</ul>
-		</div>
-<!-- 카테고리 이미지 끝 -->		
 		<!-- 매일의 인기사진 시작 -->
 		<div class="main-item">매일의 인기사진
 			<section class="popular">
@@ -410,6 +394,22 @@ text-align : center;
 		</section>
 		</div>
 		<!-- 매인의 인기사진 끝 -->
+<!-- 카테고리 이미지 시작 -->
+		<div class="main-item" style="text-align :center; font-size:20px; font-weight:bold;">매일의 집의 카테고리<br>
+	
+			<ul class="cateul">
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category1.png"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category2.png"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category3.png"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category4.png"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category5.png"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category6.png"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category7.png"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category8.png"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category9.png"></a></li>
+			</ul>
+		</div>
+<!-- 카테고리 이미지 끝 -->		
 		<!-- 베스트 랭킹 시작 -->
 		<div class="main-item">
 			<div class="rankfeed">

@@ -399,20 +399,6 @@ public class EventController {
 	   
 	   return mav;
    }
-   /*
-   	// 댓글 프로필 사진 출력
-	@RequestMapping("/event/commentPhotoView.do")
-	public ModelAndView viewImageComment(@RequestParam int event_num, HttpSession session) {
-	
-	MemberVO memberVO = memberService.selectMember(event_num);
-	
-	ModelAndView mav = new ModelAndView();
-	mav.setViewName("imageView");
-	mav.addObject("imageFile", memberVO.getProfile());
-	mav.addObject("filename", memberVO.getProfile_filename());
-	
-	return mav;
-	}*/
 }
 //카테고리 추가해야함 카테고리 추가후 mapper에 있는 sql수정필요 ==> 현재 다 1로 해둠
 //리스트에서 이미지파일 썸네일처럼 미리보기 추가해야함
