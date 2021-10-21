@@ -61,4 +61,10 @@ public interface MemberService {
 	public void insertCoupon(MemberVO memberVO);							// 관리자 페이지 쿠폰 등록
 	public int selectCouponAllCount(); 										// 관리자 페이지 쿠폰 전체 개수 구하기
 	public List<MemberVO> selectCouponAllList(Map<String, Object> map); 	// 관리자 페이지 쿠폰 목록 구하기
+	public MemberVO couponSelect(Integer coupondetail_num);					// 관리자 페이지 쿠폰 정보 가져오기
+	public void deleteCoupon(Integer coupondetail_num);						// 관리자 페이지 쿠폰 삭제
+	public void updateCoupon(MemberVO memberVO);							// 관리자 페이지 쿠폰 수정
+	public void insertMemberCouponReg(Integer mem_num, Integer coupondetail_num);		// 관리자 페이지 회원 쿠폰 배정
+	public List<MemberVO> selectGetCouponList(Map<String, Object> map);		// 회원 나의 쿠폰 전체 리스트 출력
+	public int selectGetCouponCount(Integer mem_num);					// 마이페이지 - 회원 쿠폰 수 반환
 }

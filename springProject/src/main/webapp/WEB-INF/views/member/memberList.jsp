@@ -219,6 +219,61 @@
 	    		}
 		});	// 비밀번호 초기화 끝
 		
+		// 쿠폰 전체 리스트 팝업창 띄우기  couponView_btn
+		function openPopup() {
+			  var popup = window.open('../member/aminCouponAllView.do', "쿠폰전체조회", "width=700px,height=800px,scrollbars=yes");
+			  return popup;
+		}
+		
+		$('#couponView_btn').click(function() {			// 쿠폰 전체조회 클릭
+			openPopup();	
+		});	// 쿠폰 전체조회 클릭 끝
+		
+		$('#coupon_btn').click(function() {			
+		   	var output = '';
+		   	var cou_num = prompt("배정할 쿠폰번호를 입력해주세요");
+		    
+			
+			$('input[type=checkbox]:checked').each(function(index,item){
+			    if(index !=0 ){
+			    	output += ',';
+			    }
+					output += $(this).val();
+			  	});
+				var cnt = 0;
+		  		cnt = output;
+	      		if(cnt == 0){
+	         		alert("선택한 회원이 없습니다!");
+	         		return false;
+	      		}else{
+	      			
+	    			if(confirm("선택한 회원에게 쿠폰을 배정 하시겠습니까?")){
+		   
+						$.ajax({
+							url: 'memberCouponRegister.do',
+						   	type: 'post',
+						   	data: {
+						   		  output : output,
+						   		  coupondetail_num : cou_num
+						   		  },
+						   	dataType : 'json',
+							cache : false,
+							timeout : 30000,
+						    success: function(param) {
+						    	alert('쿠폰배정 완료!');
+						    	location.reload();
+						    	$('input[type=checkbox]:checked').prop("checked", false);
+						    },
+						    error : function(request,status,error){		// 에러메세지 반환
+								alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
+						    }
+						});
+	    			}else {
+	    				$('input[type=checkbox]:checked').prop("checked", false);
+	    			}
+	    		}
+			
+		});	// 쿠폰배정 끝
 	});
 	
 </script>
@@ -236,13 +291,14 @@
 	</c:if>
 	<c:if test = "${count > 0}">
 		<div class = "text-right">
-			<input type = "button" class = "btn btn-outline-dark" value = "뒤로 가기" onclick = "location.href='myPage.do'">
-			<input type = "button" class = "btn btn-outline-dark" value = "홈으로" onclick = "location.href='${pageContext.request.contextPath}/main/main.do'"> 
-			<input type = "button" class = "btn btn-outline-dark" value = "회원 정지" id = "stop_btn">
-			<input type = "button" class = "btn btn-outline-dark" value = "일반회원 등급변경" id = "up_btn">
-			<input type = "button" class = "btn btn-outline-dark" value = "판매자 등급변경" id = "seller_btn">
-			<input type = "button" class = "btn btn-outline-dark" value = "회원 탈퇴" id = "delete_btn">
-			<input type = "button" class = "btn btn-outline-dark" value = "비밀번호 초기화" id = "resetPasswd_btn">
+			<input type = "button" class = "btn btn-outline-dark" value = "회원관리메인" onclick = "location.href='myPage.do'">&nbsp;
+			<input type = "button" class = "btn btn-outline-dark" value = "회원 정지" id = "stop_btn">&nbsp;
+			<input type = "button" class = "btn btn-outline-dark" value = "일반회원" id = "up_btn">&nbsp;
+			<input type = "button" class = "btn btn-outline-dark" value = "판매자 등급변경" id = "seller_btn">&nbsp;
+			<input type = "button" class = "btn btn-outline-dark" value = "회원 탈퇴" id = "delete_btn">&nbsp;
+			<input type = "button" class = "btn btn-outline-dark" value = "비밀번호 초기화" id = "resetPasswd_btn">&nbsp;
+			<input type = "button" class = "btn btn-outline-dark" value = "쿠폰배정" id = "coupon_btn">&nbsp;
+			<input type = "button" class = "btn btn-outline-dark" value = "쿠폰조회" id = "couponView_btn">
 		</div>
 		<br>
 	<table class="table table-sm">

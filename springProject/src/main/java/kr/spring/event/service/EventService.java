@@ -8,7 +8,8 @@ import kr.spring.event.vo.EventVO;
 
 public interface EventService {
 	public void eventWrite(EventVO eventVO);
-	public int eventTotalCount();
+	//public int eventTotalCount();
+	public int selectRowCount(Map<String, Object> map);
 	public EventVO eventDetail(int event_num);
 	public void eventUpdate(EventVO eventVO);
 	public void eventDelete(int event_num);

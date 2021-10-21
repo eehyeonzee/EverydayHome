@@ -110,7 +110,7 @@ h2{
 			            </c:if>
 			            <!-- 사진파일이 있는 경우 -->
 			            <c:if test="${ !empty list.event_filename }">
-				            <img src="${pageContext.request.contextPath}/event/eventPhotoView.do?event_num=${list.event_num}" width="1200" height="300" >
+				            <img src="${pageContext.request.contextPath}/event/eventPhotoView.do?event_num=${list.event_num}" width="498" height="148" >
 			            </c:if>
 			            <p style="font-family: 'Gowun Dodum', sans-serif;">${list.event_type}	|	${list.event_day}</p>
 			           </div>

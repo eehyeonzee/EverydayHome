@@ -72,14 +72,18 @@ function shareTwitter() {
 					$(param.list).each(function(index,item){
 						var output = '<div class="item">';
 						if(item.profile != null) {
-							output += '<div style="width:57px; height:57px; float:left; padding-right:5em;"><img src="${pageContext.request.contextPath}/event/commentPhotoView.do?mem_num=${event.mem_num}'+item.profile+'" style="height:53px; width:53px;" class="my-photo"/></div>';
+							output += '<div style="width:57px; height:57px; float:left; padding-right:5em;"><img src="${pageContext.request.contextPath}/event/commentPhotoView.do?mem_num=' + item.mem_num + '" style="height:53px; width:53px;" class="my-photo"/></div>';
 						}else {
 							output += '<div style="width:57px; height:57px; float:left; padding-right:5em;"><img src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="height:45px; width:45px;" class="my-photo"/></div>';
 						}
 						output += '<h4>' + item.nickname + '</h4>';
 						output += '<div class="sub-item">';
 						output +='   <p>' + item.comm_content.replace(/</gi,'&lt;').replace(/>/gi,'&gt;') + '</p>';
-						output += item.comm_reg_date;
+						if(item.comm_reg_date == null){
+							output += item.comm_reg_date;
+						}else{
+							output += item.comm_mod_date;
+						}
 						if($('#mem_num').val()==item.mem_num){
 							//로그인한 회원 번호가 댓글 작성자 회원 번호와 같으면
 							output += ' <input type="button" data-num="'+item.comm_num+'" data-mem="'+item.mem_num+'" value="수정" class="modify-btn">';
@@ -352,19 +356,13 @@ padding : 40px 8px 0px 100px;
  		<p style="font-family: 'Gowun Dodum', sans-serif;">카테고리: ${event.event_type}	|	진행날짜: ${event.event_day}</p>
  	</div>
  	<!-- 썸네일 시작 -->
- 	<hr size="1" width="100%" noshade>
+	<br>
 	<c:if test="${!empty event.event_filename}">
-	<div class="align-center">
+	<div style="display:none">
 		<img src="imageView.do?event_num=${event.event_num}" style="max-width:500px">
 	</div>
 	</c:if>
  	<!-- 썸네일 끝 -->
-	
- 	<%-- <c:if test="${!empty event.event_filename}">
-		<div class="file-item">
-			<img src="imageView.do?event_num=${event.event_num}" style="max-width:500px">
-	</div>
-	</c:if> --%>
  	<div class="content-item" align="center">
  		<p id="content" style="font-family: 'Gowun Dodum', sans-serif;">${event.event_content}</p>
  	</div>
@@ -393,7 +391,7 @@ padding : 40px 8px 0px 100px;
 		<form id="comm_form">
 			<input type="hidden" name="event_num" value="${event.event_num }" id="event_num">
 			<input type="hidden" name="mem_num" value="${user_num }" id="mem_num">
-			<textarea rows="3" cols="50" name="comm_content" id="comm_content" class="commp-content" placeholder="칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)"
+			<textarea rows="3" cols="50" name="comm_content" id="comm_content" class="commp-content" placeholder="댓글을 남겨보세요."
 				<c:if test="${empty user_num }">disabled="disabled"</c:if>
 				><c:if test="${empty user_num }">로그인 해야 작성할 수 있습니다.</c:if></textarea>
 			<c:if test="${!empty user_num }">

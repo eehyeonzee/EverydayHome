@@ -61,20 +61,27 @@ public class EventController {
 	//이벤트 리스트 출력
 	@RequestMapping("event/eventList.do")
 	public ModelAndView eventList(
-			@RequestParam(value="pageNum",defaultValue="1") int currentPage, HttpSession session){
+			@RequestParam(value="pageNum",defaultValue="1") int currentPage,
+			@RequestParam(value="keyword",defaultValue="") String keyword,
+			HttpSession session){
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("keyword", keyword);
 		
 		logger.debug("<currentPage>>: " + currentPage);
 		
+		//글의 총갯수 또는 검색된 글의 갯수
+		int count = eventService.selectRowCount(map);
+		
 		//총 레코드 수
-		int count = eventService.eventTotalCount();
+		//int count = eventService.eventTotalCount();
 		
 		//페이징 처리
-		PagingUtil page = new PagingUtil(currentPage, count, 10, 10, "/EverydayHome/event/eventList.do");
+		PagingUtil page = new PagingUtil(null,keyword,currentPage,count,rowCount,pageCount, "eventList.do");
 		
 		//목록 호출
 		List<EventVO> list =null;
 		if(count > 0) {
-			Map<String,Object> map = new HashMap<String,Object>();
 			map.put("start", page.getStartCount());
 			map.put("end", page.getEndCount());
 			
@@ -87,6 +94,7 @@ public class EventController {
 		ModelAndView mav = new ModelAndView();
 		//뷰 이름 설정
 		mav.setViewName("eventList");
+		//데이터 저장
 		mav.addObject("count",count);
 		mav.addObject("list",list);
 		mav.addObject("user_auth",user_auth);
@@ -281,7 +289,7 @@ public class EventController {
 									  HttpSession session){
 			
 		logger.debug("<<currentPage>>: " + currentPage);
-		logger.debug("<<event_num>>: " + event_num);
+		logger.debug("<<이벤트 번호>>: " + event_num);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("event_num", event_num);

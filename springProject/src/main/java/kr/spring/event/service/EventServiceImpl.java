@@ -22,10 +22,10 @@ public class EventServiceImpl implements EventService{
 		eventMapper.eventWrite(event);
 	}
 
-	@Override
-	public int eventTotalCount() {
-		return eventMapper.eventTotalCount();
-	}
+	/*
+	 * @Override public int eventTotalCount() { return
+	 * eventMapper.eventTotalCount(); }
+	 */
 	@Override
 	public EventVO eventDetail(int event_num) {
 		return eventMapper.eventDetail(event_num);
@@ -52,6 +52,10 @@ public class EventServiceImpl implements EventService{
 	public void deleteFile(Integer event_num) {
 		eventMapper.deleteFile(event_num);
 	}
+	@Override
+	public int selectRowCount(Map<String, Object> map) {
+		return eventMapper.selectRowCount(map);
+	}
 	
 	//------------------댓글-------------------
 
@@ -75,6 +79,7 @@ public class EventServiceImpl implements EventService{
 	public void deleteEComment(Integer comm_num) {
 		eventMapper.deleteEComment(comm_num);
 	}
+
 
 
 }

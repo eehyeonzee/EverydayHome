@@ -200,4 +200,25 @@
 		WHERE rnum >= #{start} AND rnum <= #{end}
 		]]>
 	</select>
+	
+	<!-- 회원 내가 보유한 쿠폰 전체 출력 -->
+	<select id="selectGetCouponList" parameterType="map" resultType="memberVO">
+	 	SELECT *
+	 	FROM (SELECT
+	 			a.*,
+	 			rownum rnum
+	 		  FROM (SELECT
+	 		  		cd.coupondetail_num,
+                    cd.coupon_name,
+                    cd.coupon_content,
+                    cd.discount_price,
+                    c.coupon_num,
+                    c.mem_num
+                    FROM coupon_detail cd JOIN coupon c ON CD.coupondetail_num = c.coupondetail_num
+                    WHERE mem_num = 49
+                    ORDER BY coupondetail_num DESC)a)
+        <![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
 </mapper>

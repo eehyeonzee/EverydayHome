@@ -51,7 +51,7 @@ public class StoreController {
 	}
 	@Autowired
 	private ReviewService reviewService;
-	//하단 리뷰 -신혜지
+	
 	// 스토어 메인 호출
 	@GetMapping("/store/storeMain.do")
 	public String storeMain() {
@@ -193,6 +193,7 @@ public class StoreController {
 		
 		mav.setViewName("storeProduct");
 		mav.addObject("storeVO", storeVO);
+		mav.addObject("rev_count", rev_count);
 		
 		return mav;
 	}

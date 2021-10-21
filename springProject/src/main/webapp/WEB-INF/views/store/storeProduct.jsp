@@ -15,6 +15,9 @@
 		font-family: 'Gowun Dodum', sans-serif;
 		text-decoration: none;	
 	}
+	div .content {
+		height : 500px;
+	}
 	ul {
 		list-style : none;
 	}
@@ -129,9 +132,10 @@
 			</script>
 	</c:if>
 </div>
+<div class = "content">
 <form:form id = "order_form" action = "${pageContext.request.contextPath}/order/orderMain.do" modelAttribute = "storeVO" method = "get">
 	<form:hidden path = "prod_num" value = "${storeVO.prod_num}" />
-<div>
+	<form:hidden path = "mem_num" value = "${user_num}" />
 	<div class = "thumbnailImg_detail">
 		<c:if test = "${!empty storeVO.thumbnail_img}">
 		<img src = "imageView.do?prod_num=${storeVO.prod_num}" style = "width:400px; height:400px; max-width:400px; max-height:400px;"><br>
@@ -139,7 +143,6 @@
 		<c:if test = "${empty storeVO.thumbnail_img}">
 		<img src = "${pageContext.request.contextPath}/resources/images/gift.png" style = "width:400px; height:400px; max-width:400px; max-height:400px;"><br>
 		</c:if>
-		<hr style="width:1100px;height:10px;text-align:left;margin-left:0">
 	</div>
 	<div class = "form-group product_rgt">
 		<div class = "prod-title">
@@ -152,35 +155,35 @@
 			<label class = "col-sm-3 col-form-label" for = "del_type">배송방법</label>
 			<span id = "del_type">${storeVO.delive_type}<br></span>
 			<c:if test = "${!empty storeVO.prod_option1}">
-			<select class = "col-sm-8 custom-select" id = "product">
+			<select class = "col-sm-8 custom-select" id = "product" name = "prod_option">
 				<option value = "" id = "selec_option">${storeVO.selec_product}</option>
-				<option value = "${storeVO.prod_option1}" id = "selec_option">${storeVO.prod_option1}</option>
+				<option value = "${storeVO.prod_option1}" id = "prod_option">${storeVO.prod_option1}</option>
 				<c:if test = "${!empty storeVO.prod_option2}">
-				<option value = "${storeVO.prod_option2}" id = "selec_option">${storeVO.prod_option2}</option>
+				<option value = "${storeVO.prod_option2}" id = "prod_option">${storeVO.prod_option2}</option>
 				</c:if>
 				<c:if test = "${!empty storeVO.prod_option3}">
-				<option value = "${storeVO.prod_option3}" id = "selec_option">${storeVO.prod_option3}</option>
+				<option value = "${storeVO.prod_option3}" id = "prod_option">${storeVO.prod_option3}</option>
 				</c:if>
 				<c:if test = "${!empty storeVO.prod_option4}">
-				<option value = "${storeVO.prod_option4}" id = "selec_option">${storeVO.prod_option4}</option>
+				<option value = "${storeVO.prod_option4}" id = "prod_option">${storeVO.prod_option4}</option>
 				</c:if>
 				<c:if test = "${!empty storeVO.prod_option5}">
-				<option value = "${storeVO.prod_option5}" id = "selec_option">${storeVO.prod_option5}</option>
+				<option value = "${storeVO.prod_option5}" id = "prod_option">${storeVO.prod_option5}</option>
 				</c:if>
 				<c:if test = "${!empty storeVO.prod_option6}">
-				<option value = "${storeVO.prod_option6}" id = "selec_option">${storeVO.prod_option6}</option>
+				<option value = "${storeVO.prod_option6}" id = "prod_option">${storeVO.prod_option6}</option>
 				</c:if>
 				<c:if test = "${!empty storeVO.prod_option7}">
-				<option value = "${storeVO.prod_option7}" id = "selec_option">${storeVO.prod_option7}</option>
+				<option value = "${storeVO.prod_option7}" id = "prod_option">${storeVO.prod_option7}</option>
 				</c:if>
 				<c:if test = "${!empty storeVO.prod_option8}">
-				<option value = "${storeVO.prod_option8}" id = "selec_option">${storeVO.prod_option8}</option>
+				<option value = "${storeVO.prod_option8}" id = "prod_option">${storeVO.prod_option8}</option>
 				</c:if>
 				<c:if test = "${!empty storeVO.prod_option9}">
-				<option value = "${storeVO.prod_option9}" id = "selec_option">${storeVO.prod_option9}</option>
+				<option value = "${storeVO.prod_option9}" id = "prod_option">${storeVO.prod_option9}</option>
 				</c:if>
 				<c:if test = "${!empty storeVO.prod_option10}">
-				<option value = "${storeVO.prod_option10}" id = "selec_option">${storeVO.prod_option10}</option>
+				<option value = "${storeVO.prod_option10}" id = "prod_option">${storeVO.prod_option10}</option>
 				</c:if>
 			</select><br>
 			</c:if>
@@ -254,7 +257,7 @@
 				</div>
 				<div class = "quan">
 					<label class = "col-sm-3 col-form-label " for = "quan">수량</label>
-					<input type = "text" id = "quan" /><br>
+					<input type = "text" id = "quan" name = "quan"/><br>
 				</div>
 				<span id = "quan_result"></span>
 			</div>
@@ -291,6 +294,15 @@
 		});
 	</script>
 	<script type = "text/javascript">
+		// 장바구니 클릭시
+		var user_check = $('#mem_num').val();
+		$('#btn_cart').click(function() {
+			if(user_check == 1) {
+				location.assign('${pageContext.request.contextPath}/member/login.do');
+				return false;
+			}
+		});
+		
 		$('#btn_cart').click(function() {
 			var quan = $('#quan').val();
 			if(quan > ${storeVO.prod_quan}) {
@@ -304,7 +316,7 @@
 						url : '${pageContext.request.contextPath}/cart/cartInsert.do',
 						data : {
 							prod_num : ${storeVO.prod_num},
-							user_num : ${user_num},
+							user_num : user_check,
 							cart_quan : quan
 						},
 						dataType : 'json',
@@ -349,9 +361,10 @@
 			}
 		});
 	</script>
-</div>
 </form:form>
-	<div class = "content align-center">
+</div>
+<hr style = "height:2px;color:solid-gray;">
+	<div class = "align-center">
 		${storeVO.prod_content}
 	</div>
 </div>

@@ -11,10 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
@@ -43,17 +39,28 @@ public class OrderController {
 	
 	// 주문 메인 호출
 	@GetMapping("/order/orderMain.do")
-	public String orderPage(OrderVO order, MemberVO member, StoreVO storeVO, HttpSession session, Model model) {
+	public String orderPage(OrderVO order, MemberVO member, StoreVO storeVO, HttpServletRequest request, HttpSession session, Model model) {
 		
 		logger.debug("<<주문 페이지 호출>>");
 		
+		// 로그인한 회원의 정보를 세팅
 		member.setMem_num((Integer)session.getAttribute("user_num"));
+		// 로그인한 회원의 정보를 주문 테이블에 세팅
 		order.setMem_num(member.getMem_num());
+		// 수량 정보를 가져 옴
+		Integer quan = Integer.parseInt(request.getParameter("quan"));
+		// 상품 옵션 정보를 가져 옴
+		String prod_option = request.getParameter("prod_option");
 		
 		logger.debug("<<회원 정보>> : " + member.getMem_num());
 		
 		member = memberService.selectMember(member.getMem_num());
 		storeVO = storeService.selectProduct(storeVO.getProd_num());
+		
+		// 수량 정보 세팅
+		storeVO.setQuan(quan);
+		// 상품 옵션 세팅
+		storeVO.setCommit_option(prod_option);
 		 
 		logger.debug("<<주문 내용 삽입 멤버 정보>> : " + member);
 		logger.debug("<<주문 내용 삽입 상품 정보>> : " + storeVO);

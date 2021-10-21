@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -31,18 +32,11 @@ public interface MemberMapper {
 	public void insertMember_datail(MemberVO member);	// 회원가입 - 회원 상세 테이블
 	@Select("SELECT m.mem_num,m.mem_id,m.mem_auth,d.passwd,d.profile,d.email, d.nickname, d.phone FROM member m LEFT OUTER JOIN mem_detail d ON m.mem_num=d.mem_num WHERE m.mem_id=#{mem_id}")
 	public MemberVO selectCheckMember(String mem_id);	// 회원가입 중복체크 - 회원존재 여부 체크
-	
 	@Select("SELECT m.mem_id FROM member m JOIN mem_detail d ON m.mem_num=d.mem_num WHERE d.mem_name = #{mem_name} AND d.phone = #{phone}")
 	public List<MemberVO> SelectIdSearch(Map<String, Object> map);		// 아이디 찾기
 	
 	@Select("SELECT * FROM member m JOIN mem_detail d ON m.mem_num=d.mem_num WHERE m.mem_num=#{mem_num}")
 	public MemberVO selectMember(Integer mem_num);		// 마이페이지 - 회원 정보 출력
-	@Select("SELECT count(*) FROM coupon WHERE mem_num=#{mem_num}")
-	public int selectGetCouponCount(Integer mem_num);	// 마이페이지 - 회원 쿠폰 수 반환
-	@Select("SELECT count(*) FROM follow WHERE follow_mem_num = #{mem_num}")
-	public int selectGetFollowCount(Integer mem_num);	// 마이페이지 - 팔로우 수 구하기
-	@Select("SELECT count(*) FROM follow WHERE follower_mem_num = #{mem_num}")
-	public int selectGetFollowerCount(Integer mem_num);	// 마이페이지 - 팔로워 수 구하기
 	
 	@Select("SELECT count(*) FROM recommend WHERE mem_num=#{mem_num}")
 	public int myRecommCount(Integer mem_num);								// 마이페이지 - 내가 누른 총 추천 수 구하기
@@ -100,16 +94,23 @@ public interface MemberMapper {
 	@Insert("INSERT INTO coupon_detail (coupondetail_num, coupon_name, coupon_content, discount_price) VALUES"
 			+ " (coupon_detail_seq.nextval, #{coupon_name}, #{coupon_content}, #{discount_price})")
 	public void insertCoupon(MemberVO memberVO);			// 관리자 페이지 쿠폰 등록
-	
 	@Select("SELECT COUNT(*) FROM coupon_detail")
 	public int selectCouponAllCount(); 				// 관리자 페이지 쿠폰 전체 개수 구하기
 	public List<MemberVO> selectCouponAllList(Map<String, Object> map); 	// 관리자 페이지 쿠폰 목록 구하기
 	
 	// 관리자 페이지 쿠폰 배정
-	// 관리자 페이지 쿠폰 삭제
-	// 관리자 페이지 쿠폰 수정
+	@Delete("DELETE FROM coupon_detail WHERE coupondetail_num=#{coupondetail_num}")
+	public void deleteCoupon(Integer coupondetail_num);			// 관리자 페이지 쿠폰 삭제
+	@Select("SELECT * FROM coupon_detail WHERE coupondetail_num=#{coupondetail_num}")
+	public MemberVO couponSelect(Integer coupondetail_num);		// 관리자 페이지 쿠폰 정보 가져오기
+	@Update("UPDATE coupon_detail SET coupon_name = #{coupon_name}, discount_price=#{discount_price}, coupon_content=#{coupon_content}")
+	public void updateCoupon(MemberVO memberVO);				// 관리자 페이지 쿠폰 수정
+	@Insert("INSERT INTO coupon (coupon_num, mem_num, coupondetail_num) VALUES (coupon_seq.nextval, #{mem_num}, #{coupondetail_num})")
+	public void insertMemberCouponReg(@Param("mem_num") Integer mem_num, @Param("coupondetail_num") Integer coupondetail_num);		// 관리자 페이지 회원 쿠폰 배정
 	
-	
+	@Select("SELECT count(*) FROM coupon WHERE mem_num=#{mem_num}")
+	public int selectGetCouponCount(Integer mem_num);					// 마이페이지 - 회원 쿠폰 수 반환
+	public List<MemberVO> selectGetCouponList(Map<String, Object> map);	// 회원 나의 쿠폰 전체 리스트 출력
 	
 	@Select("SELECT COUNT(*) FROM product WHERE mem_num = #{mem_num}")
 	public int myProductCount(Integer mem_num);						// 판매자 페이지 - 내가 등록한 상품 전체 수 구하기

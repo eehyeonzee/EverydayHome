@@ -46,8 +46,6 @@ public class MemberServiceImpl implements MemberService {
 		memberVO.setCoupon_count(memberMapper.selectGetCouponCount(mem_num));	// 쿠폰수 저장
 		memberVO.setRecommend_count(memberMapper.myRecommCount(mem_num));		// 좋아요 수 저장
 		memberVO.setScrapbook_count(memberMapper.myScrapBookCount(mem_num));		// 북마크 수 저장
-		memberVO.setFollower_count(memberMapper.selectGetFollowCount(mem_num));	// 팔로우 수 저장
-		memberVO.setFollow_count(memberMapper.selectGetFollowerCount(mem_num));	// 팔로워 수 저장
 		memberVO.setHouse_board_count(memberMapper.selectGetHouseBoardCount(mem_num)); // 작성글 수 저장
 		
 		return memberVO;
@@ -176,6 +174,33 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<MemberVO> selectCouponAllList(Map<String, Object> map) {
 		return memberMapper.selectCouponAllList(map);
+	}
+	@Override
+	public void deleteCoupon(Integer coupondetail_num) {
+		memberMapper.deleteCoupon(coupondetail_num);
+		
+	}
+	@Override
+	public MemberVO couponSelect(Integer coupondetail_num) {
+		return memberMapper.couponSelect(coupondetail_num);
+	}
+	@Override
+	public void updateCoupon(MemberVO memberVO) {
+		memberMapper.updateCoupon(memberVO);
+		
+	}
+	@Override
+	public void insertMemberCouponReg(Integer mem_num, Integer coupondetail_num) {
+		memberMapper.insertMemberCouponReg(mem_num, coupondetail_num);
+		
+	}
+	@Override
+	public List<MemberVO> selectGetCouponList(Map<String, Object> map) {
+		return memberMapper.selectGetCouponList(map);
+	}
+	@Override
+	public int selectGetCouponCount(Integer mem_num) {
+		return memberMapper.selectGetCouponCount(mem_num);
 	}
 	
 	

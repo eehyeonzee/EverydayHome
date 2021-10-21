@@ -93,4 +93,12 @@
     	<put-attribute name="title" value="관리자 - 쿠폰 전체조회"/>
     	<put-attribute name="body" value="/WEB-INF/views/member/couponAllViews.jsp"/>
     </definition>
+    <definition name="couponModify" extends="main">
+    	<put-attribute name="title" value="관리자 - 쿠폰 수정"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/couponModifyView.jsp"/>
+    </definition>
+    <definition name="myCouponView" extends="main">
+    	<put-attribute name="title" value="내 쿠폰 조회"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/myCouponViews.jsp"/>
+    </definition>
 </tiles-definitions>

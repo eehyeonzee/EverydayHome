@@ -12,6 +12,7 @@ public class ECommentVO {
 	private int mem_num;			//회원 번호
 	private String nickname;		//닉네임
 	private byte[] profile; 		//댓글 프로필 이미지
+	private String profile_filename; // 프로필 사진 이름
 	
 	public int getComm_num() {
 		return comm_num;
@@ -63,12 +64,21 @@ public class ECommentVO {
 	public void setProfile(byte[] profile) {
 		this.profile = profile;
 	}
+	
+	public String getProfile_filename() {
+		return profile_filename;
+	}
+	public void setProfile_filename(String profile_filename) {
+		this.profile_filename = profile_filename;
+	}
 	@Override
 	public String toString() {
 		return "ECommentVO [comm_num=" + comm_num + ", comm_reg_date=" + comm_reg_date + ", comm_mod_date="
 				+ comm_mod_date + ", comm_content=" + comm_content + ", event_num=" + event_num + ", mem_num=" + mem_num
-				+ ", nickname=" + nickname + "]";
+				+ ", nickname=" + nickname + ", profile_filename=" + profile_filename + "]";
 	}
+
+
 	
 	
 }

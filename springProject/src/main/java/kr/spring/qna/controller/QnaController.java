@@ -266,11 +266,10 @@ public class QnaController {
 				list = serviceBoardService.getServiceBoardList(map);
 			}
 			
+			//전달 객체 생성
 			ModelAndView mav = new ModelAndView();
-			
 			//뷰 이름 설정
 			mav.setViewName("qna/serviceBoardList");
-			
 			//데이터 저장
 			mav.addObject("count",count);
 			mav.addObject("list", list);
@@ -316,7 +315,11 @@ public class QnaController {
 	        log.info("이메일 : " + service_email);
 	        
 	        String title = "Re: 매일의 홈에 문의 주셔서 감사합니다.";	
-	        String content = "문의 내용 확인하였습니다" +service_reply;
+	        String content = "안녕하세요. 항상 매일의 홈에 관심을 갖고 이용해 주셔서 감사드립니다.<br>"
+			        		+ "요청하신 사항은 담당 부서로 전달하도록 하겠습니다.<br>"
+			        		+ "앞으로 이용에 불편함이 없도록 노력하는 매일의 홈이 되겠습니다.<br>"
+			        		+ "오늘도 좋은 하루 보내시길 바랍니다.<br>"
+			        		+ "감사합니다." +service_reply;
 	        
 	        String fromEmail = "springtest1010@gmail.com";
 	        String toEmail = service_email;
