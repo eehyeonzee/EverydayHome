@@ -156,5 +156,5 @@ public class HouseBoardServiceImpl implements HouseBoardService {
 	public void deleteScrap(HMarkVO hMark) {
 		houseBoardMapper.deleteScrap(hMark);
 	}
-
+	
 }

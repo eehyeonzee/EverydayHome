@@ -399,7 +399,7 @@ public class HouseBoardController {
 	}
 	
 	// 댓글 프로필 사진 출력
-	@GetMapping("/houseBoard/boardPhotoView.do")
+	@GetMapping("/houseBoard/commPhotoView.do")
 	public ModelAndView boardViewImage(@RequestParam int mem_num) {
 		
 		MemberVO memberVO = memberService.selectMember(mem_num);

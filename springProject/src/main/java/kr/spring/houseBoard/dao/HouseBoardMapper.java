@@ -22,7 +22,7 @@ import kr.spring.houseBoard.vo.HouseBoardVO;
 
 public interface HouseBoardMapper {
 		// =============== 집들이 게시판 & 내가 쓴 글 =============== //
-		public List<HouseBoardVO> selectHBoardList(Map<String,Object> map); // 글 목록
+		public List<HouseBoardVO> selectHBoardList(Map<String,Object> map); // 글 목록 (기본 - 번호순 정렬, 평수 검색)
 		public int selectRowCount(Map<String,Object> map); // 글의 개수
 		public List<HouseBoardVO> selectMyBoardList(Map<String, Object> map);   // 내가 쓴 글 목록
 		@Select("SELECT COUNT(*) FROM house_board b JOIN mem_detail m ON b.mem_num = m.mem_num WHERE m.mem_num = #{mem_num}")

@@ -11,36 +11,77 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		// 검색 유효성 체크
-		$('#search_form').submit(function() {
-			if($('#keyword').val().trim() == '') {
-				alert('검색어를 입력하세요');
-				$('#keyword').val('').focus();
-				return false;
-			}
-		});
+		
 	});
 </script>
 <div class="page-main">
 	<h2>글 목록</h2>
 	<form id="search_form" action="list.do" method="get">
-		<ul class="search">
-			<li>
-				<select name="keyfield" id="keyfield">
-					<option value="1">제목</option>
-					<option value="2">작성자</option>
-					<option value="3">내용</option>
-					<option value="4">제목+내용</option>
-				</select>
-			</li>
-			<li>
-				<input type="search" name="keyword" id="keyword">
-			</li>
-			<li>
-				<input type="submit" value="찾기">
-				<input type="button" value="목록" onclick="location.href='list.do'">
-			</li>
-		</ul>
+		<div class="search">
+			<select name="keyword" id="keyword">
+				<option value="">평수</option>
+				<option value="10평 미만">10평 미만</option>
+				<option value="10평대">10평대</option>
+				<option value="20평대">20평대</option>
+				<option value="30평대">30평대</option>
+				<option value="40평대">40평대</option>
+				<option value="50평 이상">50평 이상</option>
+			</select>
+			<input type="submit" value="찾기" >
+			<input type="button" value="초기화" onclick="location.href='list.do'">
+		</div>
+	</form>
+	<form id="search_form" action="list.do" method="get">
+		<div class="search">
+			<select name="keyword" id="keyword">
+				<option value="">주거형태</option>
+				<option value="원룸&오피스텔">원룸&오피스텔</option>
+				<option value="아파트">아파트</option>
+				<option value="빌라&연립">빌라&연립</option>
+				<option value="단독주택">단독주택</option>
+				<option value="사무공간">사무공간</option>
+				<option value="상업공간">상업공간</option>
+			</select>
+			<input type="submit" value="찾기" >
+		</div>
+	</form>
+	<form id="search_form" action="list.do" method="get">
+		<div class="search">
+			<select name="keyword" id="keyword">
+				<option value="">스타일</option>
+				<option value="모던">모던</option>
+				<option value="북유럽">북유럽</option>
+				<option value="빈티지">빈티지</option>
+				<option value="내추럴">내추럴</option>
+				<option value="프로방스&로맨틱">프로방스&로맨틱</option>
+				<option value="클래식&앤틱">클래식&앤틱</option>
+				<option value="한국&아시아">한국&아시아</option>
+				<option value="유니크">유니크</option>
+			</select>
+			<input type="submit" value="찾기" >
+		</div>
+	</form>
+	<form id="search_form" action="list.do" method="get">
+		<div class="search">
+			<select name="keyword" id="keyword">
+				<option value="">공간</option>
+				<option value="원룸">원룸</option>
+				<option value="거실">거실</option>
+				<option value="침실">침실</option>
+				<option value="주방">주방</option>
+				<option value="욕실">욕실</option>
+				<option value="아이방">아이방</option>
+				<option value="드레스룸">드레스룸</option>
+				<option value="서재&작업실">서재&작업실</option>
+				<option value="베란다">베란다</option>
+				<option value="사무공간">사무공간</option>
+				<option value="상업공간">상업공간</option>
+				<option value="가구&소품">가구&소품</option>
+				<option value="현관">현관</option>
+				<option value="외관&기타">외관&기타</option>
+			</select>
+			<input type="submit" value="찾기" >
+		</div>
 	</form>
 	<c:if test="${count == 0}">
 	<div class="result-display">
