@@ -285,20 +285,41 @@ text-align : center;
 		</div>
 		<div class="main-item">
 <!-- 메인 이미지박스 -->
-<!-- 캐러셀 시작 -->
+<!-- 이벤트 캐러셀 시작 -->
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/img1.png" alt="First slide" style="border-radius:1%;">
+   	  <c:forEach var="list" items="${ list }">
+	            <div class="card" style="height: 540px;">
+		            <div class="card-body">
+		            	<div align="center" style="cursor: pointer;"  onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=${list.event_num}'">
+		           		<!-- 사진파일이 없는 경우 -->
+			            <c:if test="${ empty list.event_filename }">
+			            	<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="border-radius:1%;"/>
+			            </c:if>
+			            <!-- 사진파일이 있는 경우 -->
+			            <c:if test="${ !empty list.event_filename }">
+				            <img class="d-block w-100" src="${pageContext.request.contextPath}/event/eventPhotoView.do?event_num=${list.event_num}" style="border-radius:1%;" >
+			            </c:if>
+			           </div>
+		            </div>
+		          </div>
+        </c:forEach>
+    
+      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/event1.png" alt="First slide" style="border-radius:1%;"
+      onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=${list.event_num}'">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/img2.png" alt="Second slide" style="border-radius:1%;">
+      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/event2.png" alt="Second slide" style="border-radius:1%;"
+      onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=${list.event_num}'">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/img3.png" alt="Third slide" style="border-radius:1%;">
+      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/event3.png" alt="Third slide" style="border-radius:1%;"
+      onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=${list.event_num}'">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/img4.png" alt="Four slide" style="border-radius:1%;">
+      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/event4.png" alt="Four slide" style="border-radius:1%;"
+      onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=${list.event_num}'">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -310,9 +331,12 @@ text-align : center;
     <span class="sr-only">Next</span>
   </a>
 </div>
-<!-- 캐러셀끝 -->
-<!-- 스토리 부분 최신순 미리보기 시작 -->
-		</div>
+</div>
+<!-- 이벤트 캐러셀끝 -->
+<!-- 사진 게시판 최신순 미리보기 시작 -->
+
+
+
 		<div class="main-item">매일의 스토리
 			<section class="everydaystory">
 			<ul class="storyul">
@@ -337,63 +361,31 @@ text-align : center;
 			</ul>
 		</section>
 		</div>
-<!-- 스토리최신순 미리보기 끝 -->
+<!-- 사진 게시판 미리보기 끝 -->
 <!-- 두번째 쭐 오른쪽 바로가기 -->
 		<div class="main-item" id="main-item-link">
 			<div class="main-story">
-			<div class="main-story-link" onclick="location.href='#';">
+			<div class="main-story-link" onclick="location.href='${pageContext.request.contextPath}/houseBoard/list.do';">
 				<div class="description">예쁜집 구경하기</div>
 				<div class="title">
 					<span class="text">>집들이</span>
 				</div>
 			</div> 
-			<div class="main-story-link" onclick="location.href='#';">
-				<div class="description">전문가 시공사례</div>
+			<div class="main-story-link" onclick="location.href='${pageContext.request.contextPath}/store/storeMain.do';">
+				<div class="description">매일 자정, 새로운 특가상품</div>
 				<div class="title">
-					<span class="text">>전문가 집들이</span>
+					<span class="text">>스토어</span>
 				</div>
 			</div>
-			<div class="main-story-link" onclick="location.href='#';">
-				<div class="description">인테리어 꿀팁 총 집합</div>
+			<div class="main-story-link" onclick="location.href='${pageContext.request.contextPath}/event/eventList.do';">
+				<div class="description">매일의 집은 처음이세요?</div>
 				<div class="title">
-					<span class="text">>노하우</span>
+					<span class="text">>이벤트</span>
 				</div>
 			</div>
 			</div>
 		</div>
 <!-- 두번째 줄 오른쪽 바로가기끝 -->
-		<!-- 매일의 인기사진 시작 -->
-		<div class="main-item">매일의 인기사진
-			<section class="popular">
-			<ul class="popularul">
-				<li class="popularli">
-					<figure class="popularimage"></figure>
-					<div class="populardesc">
-						<p>작성자</p>	
-					</div>
-				</li>
-				<li class="popularli">
-					<figure class="popularimage"></figure>
-					<div class="populardesc">
-						<p>작성자</p>				
-					</div>
-				</li>
-				<li class="popularli">
-					<figure class="popularimage"></figure>
-					<div class="populardesc">
-					<p>작성자</p>	
-					</div>
-				</li>
-				<li class="popularli">
-					<figure class="popularimage"></figure>
-					<div class="populardesc">
-					<p>작성자</p>	
-					</div>
-				</li>
-			</ul>
-		</section>
-		</div>
-		<!-- 매인의 인기사진 끝 -->
 <!-- 카테고리 이미지 시작 -->
 		<div class="main-item" style="text-align :center; font-size:20px; font-weight:bold;">매일의 집의 카테고리<br>
 	
@@ -410,7 +402,7 @@ text-align : center;
 			</ul>
 		</div>
 <!-- 카테고리 이미지 끝 -->		
-		<!-- 베스트 랭킹 시작 -->
+		<!-- 스토어 시작 -->
 		<div class="main-item">
 			<div class="rankfeed">
 				<ol class="rankfeedul">
@@ -463,7 +455,39 @@ text-align : center;
 			</ul>
 		</section>		
 		</div>
-		<!-- 베스트 랭킹 끝 -->
+		<!-- 스토어 끝 -->
+		<!-- 사진 게시판 추천순 시작 -->
+		<div class="main-item">매일의 인기사진
+			<section class="popular">
+			<ul class="popularul">
+				<li class="popularli">
+					<figure class="popularimage"></figure>
+					<div class="populardesc">
+						<p>작성자</p>	
+					</div>
+				</li>
+				<li class="popularli">
+					<figure class="popularimage"></figure>
+					<div class="populardesc">
+						<p>작성자</p>				
+					</div>
+				</li>
+				<li class="popularli">
+					<figure class="popularimage"></figure>
+					<div class="populardesc">
+					<p>작성자</p>	
+					</div>
+				</li>
+				<li class="popularli">
+					<figure class="popularimage"></figure>
+					<div class="populardesc">
+					<p>작성자</p>	
+					</div>
+				</li>
+			</ul>
+		</section>
+		</div>
+		<!-- 사진 게시판 추천순 끝 -->
 	</div>
 </div>
 <!-- 메인 끝 -->

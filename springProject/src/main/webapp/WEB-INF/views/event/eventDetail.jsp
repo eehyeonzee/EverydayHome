@@ -79,10 +79,7 @@ function shareTwitter() {
 						output += '<h4>' + item.nickname + '</h4>';
 						output += '<div class="sub-item">';
 						output +='   <p>' + item.comm_content.replace(/</gi,'&lt;').replace(/>/gi,'&gt;') + '</p>';
-						if(item.comm_reg_date == null){
-							output += item.comm_reg_date;
-						}else{
-							output += item.comm_mod_date;
+						output += item.comm_reg_date;
 						}
 						if($('#mem_num').val()==item.mem_num){
 							//로그인한 회원 번호가 댓글 작성자 회원 번호와 같으면
