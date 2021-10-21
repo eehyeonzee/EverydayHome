@@ -31,6 +31,7 @@ import kr.spring.houseBoard.vo.HMarkVO;
 import kr.spring.houseBoard.vo.HouseBoardVO;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.util.HousePagingUtil;
 import kr.spring.util.PagingUtil;
 import kr.spring.util.StringUtil;
 
@@ -90,40 +91,180 @@ public class HouseBoardController {
 	}
 	
 	// 글 목록
-	@RequestMapping("/houseBoard/list.do")
-	public ModelAndView Process(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
-								@RequestParam(value="keyfield", defaultValue="") String keyfield,
-								@RequestParam(value="keyword", defaultValue="") String keyword) {
-
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("keyfield", keyfield);
-		map.put("keyword", keyword);
-		
-		// 글의 총 개수 또는 검색된 글의 개수
-		int count = houseBoardService.selectRowCount(map);
-		
-		logger.debug("<<count>> : " + count);
-		
-		// 페이지 처리
-		PagingUtil page = new PagingUtil(keyfield,keyword,currentPage,count,rowCount,pageCount,"list.do");
-		
-		map.put("start", page.getStartCount());
-		map.put("end", page.getEndCount());
-		
-		List<HouseBoardVO> list = null;
-		if(count > 0) {
-			list = houseBoardService.selectHBoardList(map);
+		@RequestMapping("/houseBoard/list.do")
+		public ModelAndView Process(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
+									@RequestParam(value="size", defaultValue="") String size,
+									@RequestParam(value="residence", defaultValue="") String residence,
+									@RequestParam(value="style", defaultValue="") String style,
+									@RequestParam(value="space", defaultValue="") String space)
+											{
+			
+			Map<String,Object> map = new HashMap<String,Object>();
+			map.put("size", size);
+			map.put("residence", residence);
+			map.put("style", style);
+			map.put("space", space);
+			
+			// 글의 총 개수 또는 검색된 글의 개수
+			int count = houseBoardService.selectRowCount(map);
+			
+			logger.debug("<<count>> : " + count);
+			
+			// 페이지 처리
+			HousePagingUtil page = new HousePagingUtil(size, residence, currentPage, count, rowCount, pageCount, "list.do", style, space);
+					
+			
+			map.put("start", page.getStartCount());
+			map.put("end", page.getEndCount());
+			
+			List<HouseBoardVO> list = null;
+			if(count > 0) {
+				list = houseBoardService.selectHBoardList(map);
+			}
+			
+			// select size 처리
+			switch (size) {
+				case "0":
+					size = "10평미만";
+					break;
+				case "1":
+					size = "10평대";
+					break;
+				case "2":
+					size = "20평대";
+					break;
+				case "3":
+					size = "30평대";
+					break;
+				case "4":
+					size = "40평대";
+					break;
+				case "5":
+					size = "50평대 이상";
+					break;
+				default:
+					size = "";
+			}
+			
+			// select residence 처리
+				switch (residence) {
+					case "0":
+						residence = "원룸&오피스텔";
+						break;
+					case "1":
+						residence = "아파트";
+						break;
+					case "2":
+						residence = "빌라&연립";
+						break;
+					case "3":
+						residence = "단독주택";
+						break;
+					case "4":
+						residence = "사무공간";
+						break;
+					case "5":
+						residence = "상업공간";
+						break;
+					default:
+						residence = "";
+				}
+				
+				// select style 처리
+				switch (style) {
+					case "0":
+						style = "모던";
+						break;
+					case "1":
+						style = "북유럽";
+						break;
+					case "2":
+						style = "빈티지";
+						break;
+					case "3":
+						style = "내추럴";
+						break;
+					case "4":
+						style = "프로방스&로맨틱";
+						break;
+					case "5":
+						style = "클래식&앤틱";
+						break;
+					case "6":
+						style = "한국&아시아";
+						break;
+					case "7":
+						style = "유니크";
+						break;
+					default:
+						style = "";
+				}
+				
+				
+				// select space 처리
+				switch (space) {
+					case "0":
+						space = "원룸";
+						break;
+					case "1":
+						space = "거실";
+						break;
+					case "2":
+						space = "침실";
+						break;
+					case "3":
+						space = "주방";
+						break;
+					case "4":
+						space = "욕실";
+						break;
+					case "5":
+						space = "아이방";
+						break;
+					case "6":
+						space = "드레스룸";
+						break;
+					case "7":
+						space = "서재&작업실";
+						break;
+					case "8":
+						space = "베란다";
+						break;
+					case "9":
+						space = "사무공간";
+						break;
+					case "10":
+						space = "상업공간";
+						break;
+					case "11":
+						space = "가구&소품";
+						break;
+					case "12":
+						space = "현관";
+						break;
+					case "13":
+						space = "외관&기타";
+						break;
+					default:
+						space = "";
+				}
+				
+			
+			
+			// 전달 객체
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("houseBoardList"); // 타일스 식별자
+			mav.addObject("count", count);
+			mav.addObject("list", list);
+			mav.addObject("pagingHtml", page.getPagingHtml());
+			mav.addObject("size", size);
+			mav.addObject("residence", residence);
+			mav.addObject("style", style);
+			mav.addObject("space", space);
+			
+			
+			return mav;
 		}
-		
-		// 전달 객체
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("houseBoardList"); // 타일스 식별자
-		mav.addObject("count", count);
-		mav.addObject("list", list);
-		mav.addObject("pagingHtml", page.getPagingHtml());
-		
-		return mav;
-	}
 	
 	// 글 목록 - 썸네일 사진 출력
 	@RequestMapping("/houseBoard/thumbnail.do")

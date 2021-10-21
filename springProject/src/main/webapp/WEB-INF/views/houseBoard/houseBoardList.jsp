@@ -11,45 +11,48 @@
 <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style>
 </style>
-<script type="text/javascript" src="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 <script type="text/javascript">
 	$(function() {
 		
 	});
 </script>
 <div class="page-main">
-<div class="container-fluid">
-	<!-- 카테고리 검색 시작 -->
-	<form id="search_form" action="list.do" method="get">
-		<div class="search">
-			<select name="keyword" id="keyword">
-				<option value="">평수</option>
-				<option value="10평 미만">10평 미만</option>
-				<option value="10평대">10평대</option>
-				<option value="20평대">20평대</option>
-				<option value="30평대">30평대</option>
-				<option value="40평대">40평대</option>
-				<option value="50평 이상">50평 이상</option>
-			</select>
-			<input type="submit" value="찾기" >
-			<input type="button" value="초기화" onclick="location.href='list.do'">
-		</div>
-	</form>
-	<form id="search_form" action="list.do" method="get">
-		<div class="search">
-			<select name="keyword" id="keyword">
-				<option value="">주거형태</option>
-				<option value="원룸&오피스텔">원룸&오피스텔</option>
-				<option value="아파트">아파트</option>
-				<option value="빌라&연립">빌라&연립</option>
-				<option value="단독주택">단독주택</option>
-				<option value="사무공간">사무공간</option>
-				<option value="상업공간">상업공간</option>
-			</select>
-			<input type="submit" value="찾기" >
-		</div>
-	</form>
+	<h2>글 목록</h2>
+<input style="float: right;" type="button" value="초기화" onclick="location.href='list.do'">
+	<br>
+<div style="display: inline-block;">
+	<div class="input-group mb-3">
+	  <div class="input-group-prepend">
+	    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">평수</button>
+	    <div class="dropdown-menu">
+	      <a class="dropdown-item" href="list.do?size=0">10평미만</a>
+	      <a class="dropdown-item" href="list.do?size=1">10평대</a>
+	      <a class="dropdown-item" href="list.do?size=2">20평대</a>
+	      <a class="dropdown-item" href="list.do?size=3">30평대</a>
+	      <a class="dropdown-item" href="list.do?size=4">40평대</a>
+	      <a class="dropdown-item" href="list.do?size=5">50평 이상</a>
+	    </div>
+	  </div>
+	</div>		
+	<span><a style="font-size: 30px; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;" href="#">${size}</a></span>
+</div>
+	<div class="input-group mb-3">
+	  <div class="input-group-prepend">
+	    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">주거형태</button>
+	    <div class="dropdown-menu">
+	      <a class="dropdown-item" href="list.do?residence=0">원룸&오피스텔</a>
+	      <a class="dropdown-item" href="list.do?residence=1">아파트</a>
+	      <a class="dropdown-item" href="list.do?residence=2">빌라&연립</a>
+	      <a class="dropdown-item" href="list.do?residence=3">단독주택</a>
+	      <a class="dropdown-item" href="list.do?residence=4">사무공간</a>
+	      <a class="dropdown-item" href="list.do?residence=5">상업공간</a>
+	    </div>
+	  </div>
+	</div>		
+	<span><a style="font-size: 30px; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;" href="#">${residence}</a></span>
 	<form id="search_form" action="list.do" method="get">
 		<div class="search">
 			<select name="keyword" id="keyword">
