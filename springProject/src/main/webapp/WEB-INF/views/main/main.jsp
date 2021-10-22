@@ -19,7 +19,7 @@
 
 .main-container {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(4, 5fr);
 	grid-auto-rows: minmax(180px, auto);
 	grid-row-gap: 4 rem;
 	grid-column-gap: 2rem;
@@ -289,19 +289,19 @@ text-align : center;
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/event1.png" alt="First slide" style="border-radius:1%;"
+      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/img1.png" alt="First slide" style="border-radius:1%;"
       onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=1'">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/event2.png" alt="Second slide" style="border-radius:1%;"
+      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/img2.png" alt="Second slide" style="border-radius:1%;"
       onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=2'">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/event3.png" alt="Third slide" style="border-radius:1%;"
+      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/img3.png" alt="Third slide" style="border-radius:1%;"
       onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=3'">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/event4.png" alt="Four slide" style="border-radius:1%;"
+      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/img4.png" alt="Four slide" style="border-radius:1%;"
       onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=4'">
     </div>
   </div>
@@ -317,22 +317,22 @@ text-align : center;
 </div>
 <!-- 이벤트 캐러셀끝 -->
 <!-- 사진 게시판 최신순 미리보기 시작 -->
-		<div class="main-item">매일의 스토리
+		<div class="main-item"style="text-align :center;"><p class="mb-2" style="text-align:left; margin-left:70px; font-size:17px; font-weight:bold;">오늘의 스토리</p>
 			<section class="everydaystory">
 			<ul class="storyul">
 	  	  <c:forEach var="houseBoard" items="${ HList }">
-				<li class="storyli">
-					<figure class="storyimage" style="height: 320px; width : 340px;">
+				<li class="card mx-2">
+					<figure class="storyimage" style="height: 200px; width :250px;">
 				<c:if test="${ empty houseBoard.thumbnail_filename }">
-	            	<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="border-radius:1%; width:300px; height:206x;"/>
+	            	<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="border-radius:1%; width:300px; height:206px;"/>
 	            </c:if>
 	            <!-- 사진파일이 있는 경우 -->
 	            <c:if test="${ !empty houseBoard.thumbnail_filename }">
-		            <img class="d-block w-100" src="${pageContext.request.contextPath}/houseBoard/imageView.do?house_num=${houseBoard.house_num}" style="border-radius:1% width:300px; height:206x;;" >
+		            <img class="d-block w-100" src="${pageContext.request.contextPath}/houseBoard/imageView.do?house_num=${houseBoard.house_num}" style="border-radius:1% width:300px; height:206px;" >
 	            </c:if>
 					</figure>
 					<div class="storydesc">
-						<p>작성자</p>
+						<p>${houseBoard.nickname}</p>
 					</div>
 				</li>
         	</c:forEach>
@@ -342,6 +342,7 @@ text-align : center;
 <!-- 사진 게시판 미리보기 끝 -->
 <!-- 두번째 쭐 오른쪽 바로가기 -->
 		<div class="main-item" id="main-item-link">
+		<br>
 			<div class="main-story">
 			<div class="main-story-link" onclick="location.href='${pageContext.request.contextPath}/houseBoard/list.do';">
 				<div class="description">예쁜집 구경하기</div>
@@ -365,7 +366,7 @@ text-align : center;
 		</div>
 <!-- 두번째 줄 오른쪽 바로가기끝 -->
 <!-- 카테고리 이미지 시작 -->
-		<div class="main-item" style="text-align :center; font-size:20px; font-weight:bold;">매일의 집의 카테고리<br>
+		<div class="main-item my-5" style="text-align :center; font-size:20px; font-weight:bold;">매일의 집의 카테고리<br>
 	
 			<ul class="cateul">
 				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category1.png"></a></li>
@@ -381,18 +382,18 @@ text-align : center;
 		</div>
 <!-- 카테고리 이미지 끝 -->		
 		<!-- 스토어 시작 -->
-		<div class="main-item">
+		<div class="main-item mt-5" style="text-align :center;"><p class="mb-2" style="text-align:left; margin-left:70px; font-size:20px; font-weight:bold;">지금 올라온 상품</p>
 			<section class="bestitem">
 			<ul class="bestitemul">
 	  	  	<c:forEach var="store" items="${ SList }">
 				<li class="card mx-3">
-					<figure class="bestimage" style="height: 320px; width : 340px;">
+					<figure class="bestimage p-3" style="height: 300px; width : 340px;">
 					<c:if test="${ empty store.thumbnail_filename }">
-	            	<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="border-radius:1%; width:300px; height:206x;"/>
+	            	<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="border-radius:1%; width:300px; height:300px;"/>
 	            	</c:if>
 	            <!-- 사진파일이 있는 경우 -->
 	            	<c:if test="${ !empty store.thumbnail_filename }">
-		            <img class="d-block w-100" src="${pageContext.request.contextPath}/store/imageView.do?prod_num=${store.prod_num}" style="border-radius:1%; width:300px; height: 206px;" >
+		            <img class="d-block w-100" src="${pageContext.request.contextPath}/store/imageView.do?prod_num=${store.prod_num}" style="border-radius:1%; width:300px; height: 300px;" >
 	            	</c:if>
 					
 					</figure>
@@ -409,18 +410,18 @@ text-align : center;
 		<!-- 사진 게시판 추천순 시작 -->
 		
 		
-		<div class="main-item">매일의 인기사진
+		<div class="main-item mt-5" style="text-align :center;"><p style="text-align:left; margin-left:60px; font-size:20px; font-weight:bold;">이벤트</p>
 			<section class="popular">
 			<ul class="popularul">
 			<c:forEach var="event" items="${EList}">
 				<li class="card mx-3">
-					<figure class="popularimage" style="height: 320px; width : 340px;">
-				      <c:if test="${ empty houseBoard.thumbnail_filename }">
-	            	  <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="border-radius:1%; width:300px; height:206x;"/>
+					<figure class="popularimage p-3" style="height: 300px; width : 340px;">
+				      <c:if test="${empty event.event_filename }">
+	            	  <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="border-radius:1%; width:300px; height:300px;"/>
 	            	  </c:if>
 	            <!-- 사진파일이 있는 경우 -->
-	            	  <c:if test="${ !empty houseBoard.thumbnail_filename }">
-		              <img class="d-block w-100" src="${pageContext.request.contextPath}/houseBoard/imageView.do?house_num=${houseBoard.house_num}" style="border-radius:1%; width:300px; height:206px;" >
+	            	  <c:if test="${!empty event.event_filename }">
+		              <img class="d-block w-100" src="${pageContext.request.contextPath }/event/eventPhotoView.do?event_num=${event.event_num}" style="border-radius:1%; width:300px; height:300px;" >
 	                  </c:if>
 					</figure>
 					<div class="populardesc">
