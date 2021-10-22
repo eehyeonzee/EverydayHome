@@ -137,7 +137,7 @@ h2{
 		<c:forEach var="qna" items="${list}" varStatus="class_count">
 			<tr>
 				<th scope = "row">
-					<div style="width: 100%;" class="button-area">
+					<div align="left" style="width: 100%;" class="button-area">
 		  				<p class="question" style="cursor: pointer;">
 		  				<img class="quest-img" src="${pageContext.request.contextPath}/resources/images/qna.png">
 		  				${qna.qna_content }</p>
