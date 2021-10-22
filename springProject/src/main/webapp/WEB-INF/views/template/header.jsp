@@ -179,11 +179,11 @@ height: 40px;
 			<!-- 비회원 -->
 			<c:if test="${empty user_num}">
 				<nav class="nav-right">
-				<form id="search" action="#" method="get">
+				<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
 					<div class="search-bar" style="width: 170px;">
 						<input type="search" name="search" id="search" class="form-control rounded-pill" placeholder="통합검색" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
 				</div>
-			</form>
+				</form>
 					<a class="navrightitem" href="${pageContext.request.contextPath}/member/login.do" style="font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">로그인</a> 
 					<a class="navrightitem" href="${pageContext.request.contextPath}/member/registerUser.do" style="font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">회원가입</a> 
 					<div class="nav-right-menu">

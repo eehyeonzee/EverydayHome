@@ -65,6 +65,7 @@
 				<beans:value>/WEB-INF/tiles-def/cart.xml</beans:value>
 				<beans:value>/WEB-INF/tiles-def/order.xml</beans:value>
 				<beans:value>/WEB-INF/tiles-def/review.xml</beans:value>
+				<beans:value>/WEB-INF/tiles-def/mainSearch.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>
