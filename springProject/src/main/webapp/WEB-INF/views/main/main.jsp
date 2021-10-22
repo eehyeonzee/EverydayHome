@@ -289,17 +289,28 @@ text-align : center;
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-   	  <c:forEach var="list" items="${ list }">
+   	  <c:forEach var="event" items="${ list }">
+   	  <div class="horizontal-area">
+					<a href="${pageContext.request.contextPath }/event/eventDetail.do?evnet_num=${evnet.event_num}">
+					<c:if test="${!empty event.event_filename }">
+					<img src="${pageContext.request.contextPath }/event/eventPhotoView.do?event_num=${event.event_num}">
+					</c:if>
+					<c:if test="${empty event.event_filename }">
+					<img src="${pageContext.request.contextPath }/resources/images/basic.jpg">
+					</c:if>
+					<span>${event.event_title}</span>
+				</a>
+			</div>
 	            <div class="card" style="height: 540px;">
 		            <div class="card-body">
-		            	<div align="center" style="cursor: pointer;"  onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=${list.event_num}'">
+		            	<div align="center" style="cursor: pointer;"  onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=${event.event_num}'">
 		           		<!-- 사진파일이 없는 경우 -->
-			            <c:if test="${ empty list.event_filename }">
+			            <c:if test="${ empty event.event_filename }">
 			            	<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="border-radius:1%;"/>
 			            </c:if>
 			            <!-- 사진파일이 있는 경우 -->
-			            <c:if test="${ !empty list.event_filename }">
-				            <img class="d-block w-100" src="${pageContext.request.contextPath}/event/eventPhotoView.do?event_num=${list.event_num}" style="border-radius:1%;" >
+			            <c:if test="${ !empty event.event_filename }">
+				            <img class="d-block w-100" src="${pageContext.request.contextPath}/event/eventPhotoView.do?event_num=${event.event_num}" style="border-radius:1%;" >
 			            </c:if>
 			           </div>
 		            </div>
@@ -422,6 +433,23 @@ text-align : center;
 					<li class="rankfeedli" value="lental">렌탈</li>
 				</ol>
 			</div>
+			  	  <c:forEach var="store" items="${ list }">
+	            <div class="card" style="height: 540px;">
+		            <div class="card-body">
+		            	<div align="center" style="cursor: pointer;"  onclick="location.href='${pageContext.request.contextPath}/store/storeDetail.do?prod_num=${store.prod_num}'">
+		           		<!-- 사진파일이 없는 경우 -->
+			            <c:if test="${ empty store.thumbnail_filename }">
+			            	<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="border-radius:1%;"/>
+			            </c:if>
+			            <!-- 사진파일이 있는 경우 -->
+			            <c:if test="${ !empty store.thumbnail_filename }">
+				            <img class="d-block w-100" src="${pageContext.request.contextPath}/store/imageView.do?prod_num=${store.prod_num}" style="border-radius:1%;" >
+			            </c:if>
+			           </div>
+		            </div>
+		          </div>
+        </c:forEach>
+			
 				<section class="bestitem">
 			<ul class="bestitemul">
 				<li class="bestitemli">

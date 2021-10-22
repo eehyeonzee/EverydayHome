@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.spring.event.service.EventService;
 import kr.spring.event.vo.EventVO;
@@ -38,7 +39,8 @@ public class MainController {
 
 	
 	@RequestMapping("/main/main.do")
-	public String main1(Model model) {
+	public String main1(@RequestParam(value="keyword", defaultValue = "") String keyword,
+			Model model) {
 		
 		Map<String, Object>map = new HashMap<String, Object>();
 		
@@ -73,7 +75,7 @@ public class MainController {
 			SList =storeService.selectList(map);
 			logger.debug("<<store list>>" + SList);
 		}
-		/*
+		map.put("keyword", keyword);
 		//이벤트
 		int ECount = eventService.selectRowCount(map);
 		
@@ -84,19 +86,20 @@ public class MainController {
 		map.put("start", EPage.getStartCount());
 		map.put("end", EPage.getEndCount());
 		
+		
 		List<EventVO> EList = null;
 		if(ECount>0) {
 			EList = eventService.eventGetList(map);
 			logger.debug("<<event list>>" + EList);
 		}
-		*/
+		
 		//request에 저장
 		model.addAttribute("HCount", HCount);
 		model.addAttribute("HList", HList);
 		model.addAttribute("SCount", SCount);
 		model.addAttribute("SList", SList);
-		//model.addAttribute("ECount", ECount);
-		//model.addAttribute("EList", EList);
+		model.addAttribute("ECount", ECount);
+		model.addAttribute("EList", EList);
 			
 		return "main"; //타일스 식별자
 	}
