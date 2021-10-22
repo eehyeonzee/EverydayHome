@@ -49,6 +49,8 @@ public class StoreServiceImpl implements StoreService{
 
 	@Override
 	public void deleteProduct(Integer prod_num) {
+		storeMapper.deleteCart(prod_num);
+		storeMapper.deleteReview(prod_num);
 		storeMapper.deleteBoard(prod_num);
 	}
 }

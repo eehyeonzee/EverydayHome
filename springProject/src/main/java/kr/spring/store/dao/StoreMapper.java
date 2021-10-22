@@ -34,4 +34,8 @@ public interface StoreMapper {
 	public void deleteThumbnail(Integer prod_num);
 	@Delete("DELETE FROM product WHERE prod_num = #{prod_num}")
 	public void deleteBoard(Integer prod_num);
+	@Delete("DELETE FROM cart WHERE prod_num = #{prod_num}")
+	public void deleteCart(Integer prod_num);
+	@Delete("DELETE FROM product_review WHERE prod_num = #{prod_num}")
+	public void deleteReview(Integer prod_num);
 }

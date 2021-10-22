@@ -9,6 +9,10 @@
     	<put-attribute name="title" value="결제 페이지"/>
     	<put-attribute name="body" value="/WEB-INF/views/order/orderMain.jsp"/>
     </definition>
+    <definition name="orderSuccess" extends="main">
+    	<put-attribute name="title" value="결제 완료"/>
+    	<put-attribute name="body" value="/WEB-INF/views/order/orderSuccess.jsp"/>
+    </definition>
 </tiles-definitions>
 
 

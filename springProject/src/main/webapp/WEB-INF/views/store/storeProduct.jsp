@@ -231,7 +231,7 @@
 						var quan = $('#quan').val();
 						
 						$('#quan').change(function() {							
-							var quantity = /^[0-9]$/;
+							var quantity = /^[0-9]/;
 							
 							if(!quantity.test(quan)) {
 								$('#quan_result').text('숫자만 입력 가능합니다.');
@@ -245,7 +245,6 @@
 						last_price = quan * ${storeVO.prod_price};
 										
 						$('#last_price').text(last_price + '원');
-						
 					});					
 				});
 			</script>
@@ -257,7 +256,7 @@
 				</div>
 				<div class = "quan">
 					<label class = "col-sm-3 col-form-label " for = "quan">수량</label>
-					<input type = "text" id = "quan" name = "quan"/><br>
+					<form:input path = "quan"/><br>
 				</div>
 				<span id = "quan_result"></span>
 			</div>
@@ -277,7 +276,7 @@
 			$('#quan').change(function() {							
 				var last_price = 0;
 				var quan = $('#quan').val();
-				var quantity = /^[0-9]$/;
+				var quantity = /^[0-9]/;
 				
 				if(!quantity.test(quan)) {
 					$('#quan_result').text('숫자만 입력 가능합니다.');
@@ -290,6 +289,7 @@
 				last_price = quan * ${storeVO.prod_price};
 							
 				$('#last_price').text(last_price + '원');
+				
 			});
 		});
 	</script>
@@ -297,7 +297,7 @@
 		// 장바구니 클릭시
 		var user_check = $('#mem_num').val();
 		$('#btn_cart').click(function() {
-			if(user_check == 1) {
+			if(user_check < 0) {
 				location.assign('${pageContext.request.contextPath}/member/login.do');
 				return false;
 			}
@@ -354,7 +354,13 @@
 		
 		$('#btn_order').click(function() {
 			var quan = $('#quan').val();
-			var price = $('#last_price');
+			var price = $('#last_price').text();
+
+			if(price == 'NaN원') {
+				alert('숫자만 입력 가능합니다!');
+				return false;
+			}
+			
 			if(quan > ${storeVO.prod_quan}) {
 				alert('재고가 부족합니다.');
 				return false;

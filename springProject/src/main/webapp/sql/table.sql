@@ -161,4 +161,6 @@ drop table category;
 -- 21.10.21 17:00 팔로우 테이블 제거
 DROP TABLE follow;
 
+-- 21.10.22 15:00 주문 테이블 외래키 제거
+alter table orders drop constraint FK_ORDERS_MEM_NUM_MEMBER_MEM_N;
 

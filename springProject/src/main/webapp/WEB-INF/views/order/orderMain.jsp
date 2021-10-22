@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix = "form" uri = "http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,10 +17,12 @@
 	<li>연락처 <input type = "text" id = "phone" name = "phone" value = "${memberVO.phone}"></li>
 </ul>
 <h3>배송지</h3>
-<form>
+<form:form id = "orderInsert" action = "orderInsert.do" modelAttribute = "orderVO">
+	<input type = "hidden" id = "mem_num" name = "mem_num" value = "${memberVO.mem_num}">
 	<ul>
 		<li>받는 사람 <input type = "text" name = "receiver_name" id = "receiver_name"><input type = "button" id = "equal" value = "위와 동일하게 채우기"></li>
 		<li>연락처 <input type = "text" name = "receiver_phone" id = "receiver_phone"></li>
+		<li>이메일 <input type = "email" name = "receiver_email" id = "receiver_email"></li>
 		<li>주소 <input type = "text" name = "order_zipcode" id = "order_zipcode" value = "${memberVO.zipcode}">
 		<input class = "btn btn-outline-dark" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 		</li>
@@ -82,12 +85,15 @@
 		$(document).ready(function() {
 			$('#receiver_name').val('');
 			$('#receiver_phone').val('');
+			$('#receiver_email').val('');
 			
 			$('#equal').click(function() {
 				var receiver_name = $('#name').val();
 				var receiver_phone = $('#phone').val();
+				var receiver_email = $('#email').val();
 				$('#receiver_name').val(receiver_name);
 				$('#receiver_phone').val(receiver_phone);
+				$('#receiver_email').val(receiver_email);
 			});
 			
 			var price = ${storeVO.prod_price};
@@ -127,6 +133,7 @@
 			<input type = "hidden" id = "final_price" name = "final_price" value = "final_price">
 		</li>
 	</ul>
+	<input type = "hidden" id = "prod_num" name = "prod_num" value = "${storeVO.prod_num}">
 	<input type = "button" value = "kakao" id = "kakao_btn">
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -140,7 +147,10 @@
 				var quan = $('#quan').val();
 				var commit_option = $('#commit_option').val();
 				var final_price = $('#final_price').val();
-			
+				var prod_num = $('#prod_num').val();
+				var receiver_email = $('#receiver_email').val();
+				var mem_num = $('#mem_num').val();
+				
 			$('#kakao_btn').click(function() {				
 				$.ajax({
 					url: '${pageContext.request.contextPath}/order/kakao.do',
@@ -159,13 +169,54 @@
 					dataType: 'json',
 					success: function(param) {
 						var box = param.next_redirect_pc_url;
-						window.open(box, 'width=500, height=500, resizable=no');
+						window.open(box);
+							
+						var receiver_name = $('#receiver_name').val();
+						var receiver_phone = $('#receiver_phone').val();
+						var order_zipcode = $('#order_zipcode').val();
+						var order_address1 = $('#order_address1').val();
+						var order_address2 = $('#order_address2').val();
+						var buis_name = $('#buis_name').val();
+						var prod_name = $('#prod_name').val();
+						var quan = $('#quan').val();
+						var commit_option = $('#commit_option').val();
+						var final_price = $('#final_price').val();
+						var prod_num = $('#prod_num').val();
+						var receiver_email = $('#receiver_email').val();
+						var mem_num = $('#mem_num').val();
+							
+						$.ajax({
+							url: '${pageContext.request.contextPath}/order/orderInsert.do',
+							data : {
+								receiver_name : receiver_name,
+								receiver_phone : receiver_phone,
+								receiver_email : receiver_email,
+								order_zipcode : order_zipcode,
+								order_address1 : order_address1,
+								order_address2 : order_address2,
+								buis_name : buis_name,
+								prod_name : prod_name,
+								pay_quan : quan,
+								prod_opt : commit_option,
+								pay_price : final_price,
+								mem_num : mem_num,
+								prod_num : prod_num
+							},
+							dataType: 'json',
+							success: function(param) {
+								alert('결제에 성공하였습니다.');
+								location.href=('${pageContext.request.contextPath}/store/storeCategory.do');
+							},
+							error : function() {
+								alert('네트워크 오류');
+							}
+						});
 					},
 					error: function() {
-						alert('암튼 에러임');
+						alert('카카오 페이 통신 오류');
 					}
 				});
 			});
 		});
 	</script>
-</form>
+</form:form>

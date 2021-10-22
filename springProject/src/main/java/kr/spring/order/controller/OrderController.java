@@ -89,18 +89,13 @@ public class OrderController {
 		return "orderMain";
 	}
 	
+	// 카카오 결제 컨트롤러
 	@RequestMapping("/order/kakao.do")
 	@ResponseBody
 	public String kakaopay(OrderVO orderVO, HttpServletRequest request) {
 		
 		try {
 			URL url = new URL("https://kapi.kakao.com/v1/payment/ready");
-			
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			conn.setRequestMethod("POST");
-			conn.setRequestProperty("Authorization", "KakaoAK 023a91daaf2d3e17aca5d8af0d4739a8");
-			conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-			conn.setDoOutput(true);
 			
 			String receiver_name = request.getParameter("receiver_name");
 			orderVO.setReceiver_name(receiver_name);
@@ -123,6 +118,13 @@ public class OrderController {
 			String prod_opt = request.getParameter("commit_option");
 			orderVO.setProd_opt(prod_opt);
 			
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Authorization", "KakaoAK 023a91daaf2d3e17aca5d8af0d4739a8");
+			conn.setRequestProperty("Accept", "APPLICATION_JSON_UTF8_VALUE");
+			conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+			conn.setDoOutput(true);
+			
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("cid", "TC0ONETIME");
 			map.put("partner_order_id", "partner_order_id");
@@ -131,7 +133,7 @@ public class OrderController {
 			map.put("quantity", String.valueOf(orderVO.getPay_quan()));
 			map.put("total_amount", String.valueOf(orderVO.getPay_price()));
 			map.put("tax_free_amount", "0");
-			map.put("approval_url", "http://localhost:8081/EverydayHome/main/main.do");
+			map.put("approval_url", "http://localhost:8081/EverydayHome/order/orderSuccess.do");
 			map.put("fail_url", "http://localhost:8081/EverydayHome/member/login.do");
 			map.put("cancel_url", "http://localhost:8081/EverydayHome/store/storeCategory.do");
 			
@@ -171,4 +173,27 @@ public class OrderController {
 		return "{\"result\":\"NO\"}";
 	}
 	
+	// 주문 등록
+	@RequestMapping("/order/orderInsert.do")
+	@ResponseBody
+	public Map<String, String> orderInsert(OrderVO orderVO, HttpServletRequest request) {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		logger.debug("<<받는 사람 정보>>" + orderVO);
+		
+		Integer prod_num = Integer.parseInt(request.getParameter("prod_num"));
+		orderVO.setProd_num(prod_num);
+		
+		orderService.insertOrder(orderVO);
+		map.put("result", "test");
+		
+		return map;
+	}
+	
+	// 카카오 페이 주문 완료 페이지 호출(바로 닫힘)
+	@GetMapping("/order/orderSuccess.do")
+	public String orderSuccess() {
+		
+		return "orderSuccess";
+	}
 }
