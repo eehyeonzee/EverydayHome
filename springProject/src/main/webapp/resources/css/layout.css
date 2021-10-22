@@ -302,4 +302,31 @@ div.mypage-info table{
 	text-decoration: none;
 }
 
-
+/*메인*/
+a:link{
+	text-decoration:none;
+	color:#000000;
+}
+a:visited{
+	text-decoration:none;
+	color:#000000;
+}
+a:hover{
+	text-decoration:none;
+	color:#999999;
+}
+.horizontal-area{
+	margin:2px;
+	padding:3px;
+	width:200px;
+	float:left;
+	overflow:hidden;
+}
+.horizontal-area img{
+	width:195px;
+	height:175px;
+}
+.horizontal-area span{
+	padding:5px;
+	margin:5px;
+}

@@ -34,12 +34,10 @@ public class MainController {
 	@Autowired
 	private StoreService storeService;
 	
-	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
-	
 	@RequestMapping("/main/main.do")
-	public String main1(@RequestParam(value="keyword", defaultValue = "") String keyword,
+	public String main(@RequestParam(value="keyword", defaultValue = "") String keyword,
 			Model model) {
 		
 		Map<String, Object>map = new HashMap<String, Object>();
@@ -49,7 +47,7 @@ public class MainController {
 		
 		logger.debug("<<HCount>>: " + HCount);
 		
-		PagingUtil HPage = new PagingUtil(1, HCount, 12, 10, null);
+		PagingUtil HPage = new PagingUtil(1, HCount, 3, 1, null);
 		
 		map.put("start", HPage.getStartCount());
 		map.put("end", HPage.getEndCount());
@@ -65,7 +63,7 @@ public class MainController {
 		
 		logger.debug("<<SCount>>: " + SCount);
 		
-		PagingUtil SPage = new PagingUtil(1, SCount, 12, 10, null);
+		PagingUtil SPage = new PagingUtil(1, SCount, 4, 1, null);
 		
 		map.put("start", SPage.getStartCount());
 		map.put("end", SPage.getEndCount());
@@ -76,15 +74,17 @@ public class MainController {
 			logger.debug("<<store list>>" + SList);
 		}
 		map.put("keyword", keyword);
+		
+		
 		//이벤트
 		int ECount = eventService.selectRowCount(map);
 		
 		logger.debug("<<ECount>>: " + ECount);
 		
-		PagingUtil EPage = new PagingUtil(1, ECount, 12, 10, null);
+		PagingUtil page = new PagingUtil(1, ECount, 4, 1, null);
 		
-		map.put("start", EPage.getStartCount());
-		map.put("end", EPage.getEndCount());
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
 		
 		
 		List<EventVO> EList = null;
