@@ -285,12 +285,12 @@ text-align : center;
 	<div class="main-container">
 <!-- 메인 이미지 박스 -->		
 		<div class="main-item">
-			<div class="mainimgwrapper" style="height:560px; width:1126x;">
-			<div class="main-img" id="main-img" style="overflow: hidden;">
+			<div class="mainimgwrapper" style="height:560px; width:1126x; ">
+			<div class="main-img" id="main-img" style="overflow: hidden; cursor: pointer;">
 				<img src="${pageContext.request.contextPath}/resources/images/mainimg1.png" id="mainimg1" style="border-radius:1%;  transition: all 0.2s linear;"
 				onclick="location.href='${pageContext.request.contextPath}/houseBoard/detail.do?house_num=1'">
 			</div>
-			<div class="mainimgtext" style="position: relative; bottom:90px;">
+			<div class="mainimgtext" style="position: relative; bottom:90px; cursor: pointer;">
 			<p style="font-size:40px; padding-left: 55px; font-family: 'Gowun Dodum', sans-serif; font-weight:bolder; color:white;">어디든 환하게 밝혀주는 조명</p><button type="button" class="btn btn-light btn-lg" id="mainimgbutton" style="float:right; margin-right:70px; font-family: 'Gowun Dodum', sans-serif; position: relative; bottom:50px;"
 			onclick="location.href='${pageContext.request.contextPath}/houseBoard/detail.do?house_num=1'">보러가기</button>
 			</div>
@@ -299,7 +299,7 @@ text-align : center;
 		<div class="main-item">
 <!-- 메인 이미지박스 -->
 <!-- 이벤트 캐러셀 시작 -->
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+<div id="carouselExampleControls" class="carousel slide" style="cursor: pointer;" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/event1.png" alt="First slide" style="border-radius:1%;"
