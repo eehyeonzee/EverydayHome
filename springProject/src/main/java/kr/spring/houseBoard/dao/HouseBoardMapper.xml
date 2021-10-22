@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 <mapper namespace="kr.spring.houseBoard.dao.HouseBoardMapper">
-	<!-- 글 목록1 -->
+	<!-- 글 목록 -->
 	<select id="selectHBoardList" parameterType="map" resultType="houseBoardVO">
 		SELECT
 		  *
@@ -78,7 +78,7 @@
 		WHERE rnum >= #{start} AND rnum <= #{end}
 		]]>
 	</select>
-	<!-- 글의 총 개수 (평수) -->
+	<!-- 글의 총 개수 -->
 	<select id="selectRowCount" parameterType="map" resultType="integer">
 		SELECT
 			COUNT(*)
@@ -147,7 +147,6 @@
 		FROM comments b JOIN mem_detail m ON b.mem_num = m.mem_num
 		WHERE b.house_num = #{house_num}
 	</select>
-	
 	<!-- 검색 결과 총 개수 -->
 	<select id="selectAllSearchList" parameterType="map" resultType="houseBoardVO">
 		SELECT
@@ -201,4 +200,3 @@
 		</where>
 	</select>
 </mapper>
-

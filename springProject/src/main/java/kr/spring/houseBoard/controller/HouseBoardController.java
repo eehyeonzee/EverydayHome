@@ -91,219 +91,219 @@ public class HouseBoardController {
 	}
 	
 	// 글 목록
-		@RequestMapping("/houseBoard/list.do")
-		public ModelAndView Process(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
-									@RequestParam(value="size", defaultValue="") String size,
-									@RequestParam(value="residence", defaultValue="") String residence,
-									@RequestParam(value="style", defaultValue="") String style,
-									@RequestParam(value="space", defaultValue="") String space)
-											{
-			String keyfield = "";
-			String keyword = "";
-			
-			// 출력 메시지
-			String sizeOutput = "";
-			String residenceOutput = "";
-			String styleOutput = "";
-			String spaceOutput = "";
-			
-			if(!size.equals("")) {
-				keyfield = "1";
-				// select size 처리
-				switch (size) {
-					case "0":
-						keyword = "10평 미만";
-						break;
-					case "1":
-						keyword = "10평대";
-						break;
-					case "2":
-						keyword = "20평대";
-						break;
-					case "3":
-						keyword = "30평대";
-						break;
-					case "4":
-						keyword = "40평대";
-						break;
-					case "5":
-						keyword = "50평 이상";
-						break;
-					default:
-						keyword = "";
-				}
-				
-				sizeOutput = keyword;
-			}
-			if(!residence.equals("")) {
-				keyfield = "2";
-				// select residence 처리
-				switch (residence) {
-					case "0":
-						keyword = "원룸&오피스텔";
-						break;
-					case "1":
-						keyword = "아파트";
-						break;
-					case "2":
-						keyword = "빌라&연립";
-						break;
-					case "3":
-						keyword = "단독주택";
-						break;
-					case "4":
-						keyword = "사무공간";
-						break;
-					case "5":
-						keyword = "상업공간";
-						break;
-					default:
-						keyword = "";
-				}
-				
-				residenceOutput = keyword;
-				
-			}
-			if(!style.equals("")) {
-				keyfield = "3";
-				// select style 처리
-				switch (style) {
-					case "0":
-						keyword = "모던";
-						break;
-					case "1":
-						keyword = "북유럽";
-						break;
-					case "2":
-						keyword = "빈티지";
-						break;
-					case "3":
-						keyword = "내추럴";
-						break;
-					case "4":
-						keyword = "프로방스&로맨틱";
-						break;
-					case "5":
-						keyword = "클래식&앤틱";
-						break;
-					case "6":
-						keyword = "한국&아시아";
-						break;
-					case "7":
-						keyword = "유니크";
-						break;
-					default:
-						keyword = "";
-				}
-				
-				styleOutput = keyword;
-			}
-			if(!space.equals("")) {
-				keyfield = "4";
-				// select space 처리
-				switch (space) {
-					case "0":
-						keyword = "원룸";
-						break;
-					case "1":
-						keyword = "거실";
-						break;
-					case "2":
-						keyword = "침실";
-						break;
-					case "3":
-						keyword = "주방";
-						break;
-					case "4":
-						keyword = "욕실";
-						break;
-					case "5":
-						keyword = "아이방";
-						break;
-					case "6":
-						keyword = "드레스룸";
-						break;
-					case "7":
-						keyword = "서재&작업실";
-						break;
-					case "8":
-						keyword = "베란다";
-						break;
-					case "9":
-						keyword = "사무공간";
-						break;
-					case "10":
-						keyword = "상업공간";
-						break;
-					case "11":
-						keyword = "가구&소품";
-						break;
-					case "12":
-						keyword = "현관";
-						break;
-					case "13":
-						keyword = "외관&기타";
-						break;
-					default:
-						keyword = "";
-				}
-				
-				spaceOutput = keyword;
+	@RequestMapping("/houseBoard/list.do")
+	public ModelAndView Process(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
+								@RequestParam(value="size", defaultValue="") String size,
+								@RequestParam(value="residence", defaultValue="") String residence,
+								@RequestParam(value="style", defaultValue="") String style,
+								@RequestParam(value="space", defaultValue="") String space)
+										{
+		String keyfield = "";
+		String keyword = "";
+		
+		// 출력 메시지
+		String sizeOutput = "";
+		String residenceOutput = "";
+		String styleOutput = "";
+		String spaceOutput = "";
+		
+		if(!size.equals("")) {
+			keyfield = "1";
+			// select size 처리
+			switch (size) {
+				case "0":
+					keyword = "10평 미만";
+					break;
+				case "1":
+					keyword = "10평대";
+					break;
+				case "2":
+					keyword = "20평대";
+					break;
+				case "3":
+					keyword = "30평대";
+					break;
+				case "4":
+					keyword = "40평대";
+					break;
+				case "5":
+					keyword = "50평 이상";
+					break;
+				default:
+					keyword = "";
 			}
 			
-			
-			Map<String,Object> map = new HashMap<String,Object>();
-			//map.put("keyfield", keyfield);
-			map.put("sizeOutput", sizeOutput);
-			map.put("residenceOutput", residenceOutput);
-			map.put("styleOutput", styleOutput);
-			map.put("spaceOutput", spaceOutput);
-			
-			
-			
-			logger.debug("<<사이즈>> : " + keyword + keyfield);
-			// 글의 총 개수 또는 검색된 글의 개수
-			int count = houseBoardService.selectRowCount(map);
-			logger.debug("<<맵>> : " + map.toString());
-			logger.debug("<<count>> : " + count);
-			
-			// 페이지 처리
-			HousePagingUtil page = new HousePagingUtil(
-					currentPage, count, rowCount, pageCount, 
-					"list.do?size="+ size +"&residence="+ residence +"&style="+ style +"&space="+space);
-					
-			
-			map.put("start", page.getStartCount());
-			map.put("end", page.getEndCount());
-			
-			List<HouseBoardVO> list = null;
-			if(count > 0) {
-				list = houseBoardService.selectHBoardList(map);
-			}
-			
-			
-			
-			// 전달 객체
-			ModelAndView mav = new ModelAndView();
-			mav.setViewName("houseBoardList"); // 타일스 식별자
-			mav.addObject("count", count);
-			mav.addObject("list", list);
-			mav.addObject("pagingHtml", page.getPagingHtml());
-			
-			// GET 유지
-			mav.addObject("size", size);
-			mav.addObject("residence", residence);
-			mav.addObject("style", style);
-			mav.addObject("space", space);
-			
-			// 현재 검색어 출력
-			mav.addObject("sizeOutput", sizeOutput);
-			mav.addObject("residenceOutput", residenceOutput);
-			mav.addObject("styleOutput", styleOutput);
-			mav.addObject("spaceOutput", spaceOutput);
-			
-			return mav;
+			sizeOutput = keyword;
 		}
+		if(!residence.equals("")) {
+			keyfield = "2";
+			// select residence 처리
+			switch (residence) {
+				case "0":
+					keyword = "원룸&오피스텔";
+					break;
+				case "1":
+					keyword = "아파트";
+					break;
+				case "2":
+					keyword = "빌라&연립";
+					break;
+				case "3":
+					keyword = "단독주택";
+					break;
+				case "4":
+					keyword = "사무공간";
+					break;
+				case "5":
+					keyword = "상업공간";
+					break;
+				default:
+					keyword = "";
+			}
+			
+			residenceOutput = keyword;
+			
+		}
+		if(!style.equals("")) {
+			keyfield = "3";
+			// select style 처리
+			switch (style) {
+				case "0":
+					keyword = "모던";
+					break;
+				case "1":
+					keyword = "북유럽";
+					break;
+				case "2":
+					keyword = "빈티지";
+					break;
+				case "3":
+					keyword = "내추럴";
+					break;
+				case "4":
+					keyword = "프로방스&로맨틱";
+					break;
+				case "5":
+					keyword = "클래식&앤틱";
+					break;
+				case "6":
+					keyword = "한국&아시아";
+					break;
+				case "7":
+					keyword = "유니크";
+					break;
+				default:
+					keyword = "";
+			}
+			
+			styleOutput = keyword;
+		}
+		if(!space.equals("")) {
+			keyfield = "4";
+			// select space 처리
+			switch (space) {
+				case "0":
+					keyword = "원룸";
+					break;
+				case "1":
+					keyword = "거실";
+					break;
+				case "2":
+					keyword = "침실";
+					break;
+				case "3":
+					keyword = "주방";
+					break;
+				case "4":
+					keyword = "욕실";
+					break;
+				case "5":
+					keyword = "아이방";
+					break;
+				case "6":
+					keyword = "드레스룸";
+					break;
+				case "7":
+					keyword = "서재&작업실";
+					break;
+				case "8":
+					keyword = "베란다";
+					break;
+				case "9":
+					keyword = "사무공간";
+					break;
+				case "10":
+					keyword = "상업공간";
+					break;
+				case "11":
+					keyword = "가구&소품";
+					break;
+				case "12":
+					keyword = "현관";
+					break;
+				case "13":
+					keyword = "외관&기타";
+					break;
+				default:
+					keyword = "";
+			}
+			
+			spaceOutput = keyword;
+		}
+		
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		//map.put("keyfield", keyfield);
+		map.put("sizeOutput", sizeOutput);
+		map.put("residenceOutput", residenceOutput);
+		map.put("styleOutput", styleOutput);
+		map.put("spaceOutput", spaceOutput);
+		
+		
+		
+		logger.debug("<<사이즈>> : " + keyword + keyfield);
+		// 글의 총 개수 또는 검색된 글의 개수
+		int count = houseBoardService.selectRowCount(map);
+		logger.debug("<<맵>> : " + map.toString());
+		logger.debug("<<count>> : " + count);
+		
+		// 페이지 처리
+		HousePagingUtil page = new HousePagingUtil(
+				currentPage, count, rowCount, pageCount, 
+				"list.do?size="+ size +"&residence="+ residence +"&style="+ style +"&space="+space);
+				
+		
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
+		
+		List<HouseBoardVO> list = null;
+		if(count > 0) {
+			list = houseBoardService.selectHBoardList(map);
+		}
+		
+		
+		
+		// 전달 객체
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("houseBoardList"); // 타일스 식별자
+		mav.addObject("count", count);
+		mav.addObject("list", list);
+		mav.addObject("pagingHtml", page.getPagingHtml());
+		
+		// GET 유지
+		mav.addObject("size", size);
+		mav.addObject("residence", residence);
+		mav.addObject("style", style);
+		mav.addObject("space", space);
+		
+		// 현재 검색어 출력
+		mav.addObject("sizeOutput", sizeOutput);
+		mav.addObject("residenceOutput", residenceOutput);
+		mav.addObject("styleOutput", styleOutput);
+		mav.addObject("spaceOutput", spaceOutput);
+		
+		return mav;
+	}
 	
 	// 글 목록 - 썸네일 사진 출력
 	@RequestMapping("/houseBoard/thumbnail.do")
@@ -319,7 +319,7 @@ public class HouseBoardController {
 		return mav;
 	}
 	
-	// 글 상세ㅇㅇㅇ
+	// 글 상세
 	@RequestMapping("/houseBoard/detail.do")
 	public ModelAndView process(@RequestParam int house_num, HttpSession session) { // 글번호 저장
 		// 해당 글의 조회수 증가
@@ -412,7 +412,7 @@ public class HouseBoardController {
 		HouseBoardVO houseBoard = houseBoardService.selectHBoard(house_num);
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("imageView"); // // imageView 빈 이름(id) 생성 -> mav가 클래스 파일(빈 객체) 찾아서 실행시켜줌
+		mav.setViewName("imageView"); // imageView 빈 이름(id) 생성 -> mav가 클래스 파일(빈 객체) 찾아서 실행시켜줌
 		//				속성명		속성값(byte[]의 데이터)
 		mav.addObject("imageFile", houseBoard.getHouse_thumbnail());
 		mav.addObject("filename", houseBoard.getThumbnail_filename());
@@ -721,7 +721,6 @@ public class HouseBoardController {
 			String already = houseBoardService.checkScrap(hMark);
 			
 			if(already == null) { // 스크랩버튼 누른 적 없음
-				// 좋아요
 				// 테이블에 스크랩 저장
 				houseBoardService.insertScrap(hMark);
 				countScrap += 1;

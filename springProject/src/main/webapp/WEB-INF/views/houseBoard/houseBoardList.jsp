@@ -19,10 +19,6 @@
 	});
 </script>
 <div class="page-main">
-	<h2>글 목록</h2>
-
-
-	<br>
 <div style="display: inline-block;">
 	<div class="input-group mb-3">
 	  <div class="input-group-prepend">
@@ -38,7 +34,7 @@
 	    </div>
 	  </div>
 	</div>		
-	<span><a style="font-size: 30px; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;" href="#">${sizeOutput}</a></span>
+	<span><a style="font-size:15px; text-decoration:none;" href="#">${sizeOutput}</a></span>
 
 	<div class="input-group mb-3">
 	  <div class="input-group-prepend">
@@ -54,7 +50,7 @@
 	    </div>
 	  </div>
 	</div>		
-	<span><a style="font-size: 30px; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;" href="#">${residenceOutput}</a></span>
+	<span><a style="font-size:15px; text-decoration:none;" href="#">${residenceOutput}</a></span>
 	
 	<div class="input-group mb-3">
 	  <div class="input-group-prepend">
@@ -72,7 +68,7 @@
 	    </div>
 	  </div>
 	</div>		
-	<span><a style="font-size: 30px; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;" href="#">${styleOutput}</a></span>
+	<span><a style="font-size:15px; text-decoration:none;" href="#">${styleOutput}</a></span>
 
 	<div class="input-group mb-3">
 	  <div class="input-group-prepend">
@@ -95,7 +91,7 @@
 	    </div>
 	  </div>
 	</div>		
-	<span><a style="font-size: 30px; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;" href="#">${spaceOutput}</a></span>
+	<span><a style="font-size:15px; text-decoration:none;" href="#">${spaceOutput}</a></span>
 	<div class="input-group mb-3">
 	  <div class="input-group-prepend">
 	  	<button class="btn btn-outline-secondary" type="button" onclick="location.href='list.do'">초기화</button>
@@ -133,7 +129,7 @@
 		</tr>
 		</c:forEach>
 	</table>
-	<div class="align-center">${pagingHtml}</div>
+	<div> ${pagingHtml}</div>
 	</c:if>
 	</div>
 	<!-- 게시물 출력 끝 -->
