@@ -176,6 +176,7 @@ height: 40px;
 						</ul>
 				</ul>
 			</nav>
+			
 			<!-- 비회원 -->
 			<c:if test="${empty user_num}">
 				<nav class="nav-right">
@@ -202,6 +203,11 @@ height: 40px;
 			<!-- 정지회원 -->
 			<c:if test="${!empty user_num && user_auth==1}">
 				<nav class="nav-right">
+				<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
+					<div class="search-bar" style="width: 170px;">
+						<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="통합검색" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
+				</div>
+				</form>
 						<c:if test="${empty user_photo }">
 						<img src="${pageContext.request.contextPath }/resources/images/basic.jpg" width="33" height="33" class="my-photo">
 						</c:if>
@@ -224,6 +230,11 @@ height: 40px;
 			<!-- 일반회원 -->
 			<c:if test="${!empty user_num && user_auth==2}">
 				<nav class="nav-right">
+				<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
+					<div class="search-bar" style="width: 170px;">
+						<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="통합검색" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
+				</div>
+				</form>
 						<c:if test="${empty user_photo }">
 						<img src="${pageContext.request.contextPath }/resources/images/basic.jpg" width="33" height="33" class="my-photo">
 						</c:if>
@@ -261,6 +272,11 @@ height: 40px;
 			<!-- 판매자회원 -->
 					<c:if test="${!empty user_num && user_auth == 3}">
 						<nav class="nav-right">
+						<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
+					<div class="search-bar" style="width: 170px;">
+						<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="통합검색" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
+				</div>
+				</form>
 						<c:if test="${empty user_photo }">
 						<img src="${pageContext.request.contextPath }/resources/images/basic.jpg" width="33" height="33" class="my-photo">
 						</c:if>
@@ -294,6 +310,11 @@ height: 40px;
 		<!-- 관리자 -->
 				<c:if test="${!empty user_num && user_auth == 4}">
 						<nav class="nav-right">
+						<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
+					<div class="search-bar" style="width: 170px;">
+						<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="통합검색" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
+				</div>
+				</form>
 						<c:if test="${empty user_photo }">
 						<img src="${pageContext.request.contextPath }/resources/images/crown.gif" width="37" height="37" class="my-photo">
 						</c:if>

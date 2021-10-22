@@ -70,4 +70,52 @@
             prod_cate = #{prod_cate}
          WHERE prod_num = #{prod_num}
   	</update>
+  	
+  	
+  	<!-- 통합 검색 부분 -->
+  	<select id="selectStoreAllSearchList" parameterType="map" resultType="storeVO">
+		SELECT
+  		   *
+  		FROM (SELECT
+  				a.*,
+  				rownum rnum
+  			  FROM (SELECT
+  			  		  p.prod_num,
+  			  		  <![CDATA[
+  			  		  REPLACE(REPLACE(p.prod_name, '<', '&lt;'), '>', '&gt;') prod_name,
+  			  		  ]]>
+  			  		  p.thumbnail_filename,
+  			  		  p.thumbnail_img,
+  			  		  p.prod_price,
+  			  		  p.prod_keyword,
+  			  		  p.prod_cate,
+                      d.buis_name
+  			  FROM product p JOIN member m ON p.mem_num = m.mem_num JOIN buis_detail d ON d.mem_num = m.mem_num
+  			  <where>
+			  	  	<if test = "keyword != '' and keyfield == 1">
+			  			p.prod_name '%' || #{keyword} || '%'
+			  			OR p.prod_content '%' || #{keyword} || '%'
+			  			OR p.prod_keyword '%' || #{keyword} || '%'
+			  			OR p.prod_cate '%' || #{keyword} || '%'
+			  		</if>
+  			  </where>
+  			  ORDER BY p.prod_num DESC) a)
+  		<![CDATA[
+  		WHERE rnum >= #{start} AND rnum <= #{end}
+  		]]>
+	</select>
+	<!-- 검색 결과 총 개수 -->
+	<select id="selectStoreAllSearchRowCount" parameterType="map" resultType="integer">
+		SELECT
+  			COUNT(*)
+  		FROM product p JOIN member m ON p.mem_num = m.mem_num
+  		<where>
+	  		<if test = "keyword != '' and keyfield == 1">
+	  			p.prod_name '%' || #{keyword} || '%'
+	  			OR p.prod_content '%' || #{keyword} || '%'
+	  			OR p.prod_keyword '%' || #{keyword} || '%'
+	  			OR p.prod_cate '%' || #{keyword} || '%'
+	  		</if>
+		</where>
+  	</select>
 </mapper>

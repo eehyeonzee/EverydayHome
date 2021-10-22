@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Update;
 
 import kr.spring.event.vo.ECommentVO;
 import kr.spring.event.vo.EventVO;
+import kr.spring.houseBoard.vo.HouseBoardVO;
 
 public interface EventMapper {
 	//부모글
@@ -46,4 +47,7 @@ public interface EventMapper {
 	@Delete("DELETE FROM comments WHERE event_num=#{event_num}")
 	public void deleteECommentByEventNum(Integer event_num);
 
+	// =============== 통합검색 =============== //
+	public int selectEventAllSearchRowCount(Map<String,Object> map);		// 통합 검색 결과 게시글 수
+	public List<EventVO> selectEventAllSearchList(Map<String,Object> map);		// 통합 검색 결과 게시글 리스트
 }

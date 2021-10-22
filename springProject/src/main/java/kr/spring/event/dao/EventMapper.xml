@@ -77,4 +77,50 @@
 		
 	</select>
 	
+	
+	<!-- 검색 결과 리스트 출력 -->
+	<select id="selectEventAllSearchList" parameterType="map" resultType="eventVO">
+		SELECT
+		  *
+		FROM (SELECT 
+		        a.*,
+		        rownum rnum
+		      FROM (SELECT 
+		              event_num,
+		              <![CDATA[
+		              REPLACE(REPLACE( event_title,'<','&lt;'),'>','&gt;') event_title,
+		              REPLACE(REPLACE( event_type,'<','&lt;'),'>','&gt;') event_type,
+		              ]]>
+		               event_hits,
+		               event_reg_date,
+		               event_filename,
+		               event_photo,
+		               event_day
+		            FROM event 
+		            <where>
+			            <if test="keyword != '' and keyfield == 1">
+			        		 event_title LIKE '%' || #{keyword} || '%' 
+			        		 OR event_content LIKE '%' || #{keyword} || '%' 
+			        		 OR event_type LIKE '%' || #{keyword} || '%'
+			        	</if>
+		            </where>	
+		            ORDER BY  event_num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	<!-- 검색 결과 총 개수 -->
+	<select id="selectEventAllSearchRowCount" parameterType="map" resultType="integer">
+		SELECT
+			 COUNT(*)
+		FROM event
+		<where>
+		   <if test="keyword != '' and keyfield == 1">
+        		 event_title LIKE '%' || #{keyword} || '%' 
+        		 OR event_content LIKE '%' || #{keyword} || '%' 
+        		 OR event_type LIKE '%' || #{keyword} || '%'
+        	</if>
+		</where>
+	</select>
+	
 </mapper>

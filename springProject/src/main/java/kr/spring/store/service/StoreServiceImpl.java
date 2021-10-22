@@ -53,4 +53,14 @@ public class StoreServiceImpl implements StoreService{
 		storeMapper.deleteReview(prod_num);
 		storeMapper.deleteBoard(prod_num);
 	}
+
+	@Override
+	public int selectStoreAllSearchRowCount(Map<String, Object> map) {
+		return storeMapper.selectStoreAllSearchRowCount(map);
+	}
+
+	@Override
+	public List<StoreVO> selectStoreAllSearchList(Map<String, Object> map) {
+		return storeMapper.selectStoreAllSearchList(map);
+	}
 }

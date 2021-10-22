@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import kr.spring.event.dao.EventMapper;
 import kr.spring.event.vo.ECommentVO;
 import kr.spring.event.vo.EventVO;
+import kr.spring.houseBoard.vo.HouseBoardVO;
 @Service
 @Transactional
 public class EventServiceImpl implements EventService{
@@ -78,6 +79,16 @@ public class EventServiceImpl implements EventService{
 	@Override
 	public void deleteEComment(Integer comm_num) {
 		eventMapper.deleteEComment(comm_num);
+	}
+
+	@Override
+	public int selectEventAllSearchRowCount(Map<String, Object> map) {
+		return eventMapper.selectEventAllSearchRowCount(map);
+	}
+
+	@Override
+	public List<EventVO> selectEventAllSearchList(Map<String, Object> map) {
+		return eventMapper.selectEventAllSearchList(map);
 	}
 
 
