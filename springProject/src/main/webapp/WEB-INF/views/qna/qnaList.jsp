@@ -22,7 +22,7 @@ width : 100%;
 margin : 0 auto;
 width: 99%; 
 height: 286px; 
-background-color: #dbf1ff;
+background-color: #8c996b;
 position: relative;
 }
 .link-item{
@@ -70,6 +70,17 @@ h2{
 	right: 100px;
 	text-align: center;
 }
+.qna-category{
+	cursor: pointer; 
+	font-size: 18px; 
+	color: #81a36f;
+}
+.quest-img{
+	margin-top: 1em;
+	margin-bottom: 2px;
+	width: 34px; 
+	height: 34px;
+}
 </style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
@@ -77,8 +88,8 @@ h2{
 <script type="text/javascript">
  	$(function() {
  		
- 		$('.button-area button').click(function(){
- 			$(this).parent().find('p').slideToggle("slow");
+ 		$('.question').click(function(){
+ 			$(this).parent().find('.answer').slideToggle("slow");
  		});
 	});
          
@@ -101,20 +112,50 @@ h2{
 				<input class = "btn btn-outline-dark" type="button" value="이메일 문의 내역" onclick="location.href='serviceBoardList.do'"><br><br>
 			</c:if> 
 			</div>  
-		</div>
-	
-		   
+		</div>   
 	</div>
+	
+	<div class = "container-fluid contents-wrap" style = "width:90%">
+		<div class="text-center col-sm-30 my-5">
 	<c:if test="${count==0 }">
 	   <div class="result-display">출력할 내용이 없습니다.</div>
 	</c:if>
-	   <c:if test="${count > 0 }">
-		   <c:forEach var="qna" items="${list}" varStatus="class_count">
-		   <div class="button-area">
-	   		 <button class = "btn btn-outline-dark" >${qna.qna_content }</button>
-	         <p style="display:none;">${qna.qna_reply }</p>
-		   </div>
-		   </c:forEach>
+	   
+	<c:if test="${count > 0 }">
+		<table class="table table-sm" style="border-spacing: 2px; border-collapse: separate;">
+			<tr>
+				<th scope="col"><p class="qna-category">전체</p></th>
+				<th scope="col"><p class="qna-category">주문/결제</p></th>
+				<th scope="col"><p class="qna-category">배송관련</p></th>
+				<th scope="col"><p class="qna-category">취소/환불</p></th>
+				<th scope="col"><p class="qna-category">반품/교환</p></th>
+				<th scope="col"><p class="qna-category">증빙서류발급</p></th>
+				<th scope="col"><p class="qna-category">회원정보변경</p></th>
+				<th scope="col"><p class="qna-category">상세주소</p></th>
+				<th scope="col"><p class="qna-category">서비스/기타</p></th>
+			</tr>
+		<c:forEach var="qna" items="${list}" varStatus="class_count">
+			<tr>
+				<th scope = "row">
+					<div style="width: 100%;" class="button-area">
+		  				<p class="question" style="cursor: pointer;">
+		  				<img class="quest-img" src="${pageContext.request.contextPath}/resources/images/qna.png">
+		  				${qna.qna_content }</p>
+						<p class="answer" style="display:none;">${qna.qna_reply }</p>
+					</div>
+				</th>
+				<th scope = "row"></th>
+				<th scope = "row"></th>
+				<th scope = "row"></th>
+				<th scope = "row"></th>
+				<th scope = "row"></th>
+				<th scope = "row"></th>
+				<th scope = "row"></th>
+				<th scope = "row"></th>
+			</tr>
+		</c:forEach>
+		</table>
 		</c:if>
 		<div class="align-center">${pagingHtml}</div>
+	</div>
 </div>
