@@ -90,7 +90,6 @@
 			<mapping path="/store/storeRegister.do"/>
 			<mapping path="/store/updateProduct.do"/>
 			<mapping path="/store/productDelete.do"/>
-			<mapping path="/order/orderMain.do"/>
 			<mapping path="/cart/cartList.do"/>
 			<mapping path="/cart/cartInsert.do"/>
 			<beans:bean class="kr.spring.interceptor.LoginCheckInterceptor"/>
