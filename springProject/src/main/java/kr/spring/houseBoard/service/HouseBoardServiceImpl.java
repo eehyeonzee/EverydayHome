@@ -156,5 +156,15 @@ public class HouseBoardServiceImpl implements HouseBoardService {
 	public void deleteScrap(HMarkVO hMark) {
 		houseBoardMapper.deleteScrap(hMark);
 	}
+
+	@Override
+	public int selectAllSearchRowCount(Map<String, Object> map) {
+		return houseBoardMapper.selectAllSearchRowCount(map);
+	}
+
+	@Override
+	public List<HouseBoardVO> selectAllSearchList(Map<String, Object> map) {
+		return houseBoardMapper.selectAllSearchList(map);
+	}
 	
 }

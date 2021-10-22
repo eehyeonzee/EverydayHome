@@ -147,5 +147,58 @@
 		FROM comments b JOIN mem_detail m ON b.mem_num = m.mem_num
 		WHERE b.house_num = #{house_num}
 	</select>
+	
+	<!-- 검색 결과 총 개수 -->
+	<select id="selectAllSearchList" parameterType="map" resultType="houseBoardVO">
+		SELECT
+		  *
+		FROM (SELECT
+				a.*,
+				rownum rnum
+			  FROM (SELECT
+						b.house_num,
+						<![CDATA[
+						REPLACE(REPLACE(b.house_title,'<','&lt;'),'>','&gt;') house_title,
+						REPLACE(REPLACE(b.house_area,'<','&lt;'),'>','&gt;') house_area,
+						REPLACE(REPLACE(b.house_type,'<','&lt;'),'>','&gt;') house_type,
+						REPLACE(REPLACE(b.house_style,'<','&lt;'),'>','&gt;') house_style,
+						REPLACE(REPLACE(b.house_space,'<','&lt;'),'>','&gt;') house_space,
+						]]>
+						b.house_hits,
+						TO_CHAR(b.house_reg_date, 'YY-MM-DD') house_reg_date,
+						b.mem_num,
+						b.house_thumbnail,
+						b.thumbnail_filename,
+						m.nickname,
+						m.profile,
+						m.profile_filename
+					FROM house_board b JOIN mem_detail m ON b.mem_num = m.mem_num
+					<where>
+					   <if test="keyword != '' and keyfield == 1">
+					      b.house_title like '%' || #{keyword} || '%'
+					   </if>
+					   <if test="keyword != '' and keyfield == 2">
+					      b.house_content like '%' || #{keyword} || '%'
+					   </if>
+					</where>
+					ORDER BY b.house_num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	<!-- 검색 결과 리스트 출력 -->
+	<select id="selectAllSearchRowCount" parameterType="map" resultType="integer">
+		SELECT
+			COUNT(*)
+		FROM house_board b JOIN mem_detail m ON b.mem_num = m.mem_num
+		<where>
+		   <if test="keyword != '' and keyfield == 1">
+		      b.house_title like '%' || #{keyword} || '%'
+		   </if>
+		   <if test="keyword != '' and keyfield == 2">
+		      b.house_content like '%' || #{keyword} || '%'
+		   </if>
+		</where>
+	</select>
 </mapper>
 

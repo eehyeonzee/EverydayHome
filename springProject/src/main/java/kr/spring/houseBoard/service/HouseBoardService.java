@@ -49,4 +49,8 @@ public interface HouseBoardService {
 	public void insertScrap(HMarkVO hMark); // 테이블에 스크랩 수 저장
 	public void deleteScrap(HMarkVO hMark); // 테이블에서 스크랩수 제거
 	
+	// =============== 통합검색 =============== //
+	public int selectAllSearchRowCount(Map<String,Object> map);		// 통합 검색 결과 게시글 수
+	public List<HouseBoardVO> selectAllSearchList(Map<String,Object> map);		// 통합 검색 결과 게시글 리스트
+	
 }

@@ -181,7 +181,7 @@ height: 40px;
 				<nav class="nav-right">
 				<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
 					<div class="search-bar" style="width: 170px;">
-						<input type="search" name="search" id="search" class="form-control rounded-pill" placeholder="통합검색" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
+						<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="통합검색" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
 				</div>
 				</form>
 					<a class="navrightitem" href="${pageContext.request.contextPath}/member/login.do" style="font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">로그인</a> 
