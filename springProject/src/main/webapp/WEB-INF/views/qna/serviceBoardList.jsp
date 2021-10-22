@@ -7,16 +7,13 @@
  * 설명 : 
  * 수정일 : 
 --%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>게시판 목록</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css">
-</head>
-<body>
-<div class="page-main">
-   <h2>게시판 목록</h2>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<div class = "container-fluid contents-wrap" style = "width:99%"> 
+   <div align = "left">
+		<h2 class="admin-page-h2">이메일 문의 목록</h2>
+	</div>
     <form id="search_form" action="serviceBoardList.do" method="get">
    		<ul class="search">
 			<li>
@@ -35,28 +32,45 @@
 				</select>
 			</li>
 			<li>
-				<input type="submit" value="찾기">
-				<input type="button" value="목록" onclick="location.href='serviceBoardList.do'">
+				<br>
+				<input class = "btn btn-outline-dark" type="submit" value="찾기">
+				<input class = "btn btn-outline-dark" type="button" value="목록" onclick="location.href='serviceBoardList.do'">
 			</li>
 		</ul>
    </form> 
+
+<hr noshade="noshade" size="2">  
    
-     <c:if test="${count==0 }">
-   <div class="result-display">출력할 내용이 없습니다.</div>
-   </c:if>
-   <c:if test="${count > 0 }">
-   <table>
+
+	<div class="text-center col-sm-30 my-5">
+   	
+   <c:if test="${count==0 }">
+  		<div class="text-center">
+  			출력할 내용이 없습니다.
+  		</div>
+  		
+   	<div class = "text-right">
+		<input type = "button" class = "btn btn-outline-dark" value = "돌아가기" onclick = "location.href='qnaList.do'">&nbsp;
+	</div>
+	</c:if>
+	
+	<c:if test="${count > 0 }">	
+	<div class = "text-right">
+		<input type = "button" class = "btn btn-outline-dark" value = "돌아가기" onclick = "location.href='qnaList.do'">&nbsp;
+   </div>
+   <table class="table table-sm">
    		<tr>
-   			<th>문의번호</th>
-   			<th>키워드</th>
-   			<th>닉네임</th>
-   			<th>제목</th>
-   			<th>내용</th>
-   			<th>이메일</th>
+   			<th scope="col" style="width: 6%">문의번호</th>
+			<th scope="col" style="width: 12%">키워드</th>
+			<th scope="col" style="width: 12%">닉네임</th>
+			<th scope="col" style="width: 19%">제목</th>
+			<th scope="col" style="width: 30%">내용</th>
+			<th scope="col" style="width: 19%">이메일</th>
+
    		</tr>
    		<c:forEach var="serviceboard" items="${list }">
    		<tr>
-   			<td>${serviceboard.service_num}</td>
+   			<th scope = "row">${serviceboard.service_num}</th>
    			<td>${serviceboard.service_keyword}</td>
    			<td>${serviceboard.service_nickname}</td>
    			<td><a href="${pageContext.request.contextPath}/qna/serviceBoardDetail.do?service_num=${serviceboard.service_num}">${serviceboard.service_title}</a></td>
@@ -65,12 +79,7 @@
    		</tr>
    		</c:forEach>
    </table>
-   		
-   <div class="align-center">${pagingHtml}</div>
-   <div class="align-center">
-		<input type="button" value="홈으로" onclick="location.href='qnaList.do'">
-	</div>
-   </c:if>
+	</c:if>
+   	<div class="align-center">${pagingHtml}</div>
 </div>
-</body>
-</html>
+</div>

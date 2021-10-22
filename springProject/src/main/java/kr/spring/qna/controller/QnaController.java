@@ -57,18 +57,46 @@ public class QnaController {
 		
 		@GetMapping("/qna/qnaInsert.do")
 		//글쓰기 폼 호출
-		public String qnaInsert() {
+		public ModelAndView qnaInsert(@RequestParam(value="pageNum",defaultValue="1") int currentPage) {
+			
 			log.debug("<<글쓰기 폼 호출>>");
 			
-			return "qna/qnaInsert";
+			Map<String,Object> map = new HashMap<String,Object>();
+			
+			log.debug("<<currentPage>>: " + currentPage);
+			
+			//글의 총갯수 또는 검색된 글의 갯수
+			int count = serviceBoardService.selectRowCount(map);
+			
+			//페이지 처리
+			PagingUtil page = new PagingUtil(currentPage,count,rowCount,pageCount, "qnaInsert.do");
+			
+			//목록 호출
+			List<ServiceBoardVO> list = null;
+			if(count>0) {
+				map.put("start", page.getStartCount());
+				map.put("end", page.getEndCount());
+				
+				list = serviceBoardService.getServiceBoardList(map);
+			}
+			
+			//전달 객체 생성
+			ModelAndView mav = new ModelAndView();
+			//뷰 이름 설정
+			mav.setViewName("qnaInsert");
+			//데이터 저장
+			mav.addObject("count",count);
+			mav.addObject("list", list);
+			mav.addObject("pagingHtml", page.getPagingHtml());
+			
+			
+			return mav;
 		}
 		//글쓰기 처리
 		@PostMapping("/qna/qnaInsert.do")
-		public String qnaInsertSubmit(@Valid QnaVO vo, BindingResult result) {
+		public String qnaInsertSubmit(QnaVO vo) {
 			//유효성 체크 결과 오류가 있으면 폼 호출
-			if(result.hasErrors()) {
-				return qnaInsert();
-			}
+			
 			//글쓰기
 			qnaService.qnaInsert(vo);
 			
@@ -102,7 +130,7 @@ public class QnaController {
 			ModelAndView mav = new ModelAndView();
 			
 			//뷰 이름 설정
-			mav.setViewName("/qna/qnaServiceList");
+			mav.setViewName("qnaServiceList");
 			
 			//데이터 저장
 			mav.addObject("count",count);
@@ -148,60 +176,72 @@ public class QnaController {
 			return mav;
 			
 		}
-		
-		
-		
-		
-		
-		
-		/*
-		//글 상세
-		@RequestMapping("/serviceBoard/serviceBoardDetail.do")
-		public ModelAndView serviceBoardDetail(@RequestParam int num) {
-			QnaVO serviceboard = serviceBoardService.getServiceBoard(num);
-									//뷰 이름					//속성명		//속성값
-			return new ModelAndView("/serviceBoard/serviceBoardDetail","serviceboard","serviceboard");
-		}
-		*/
-		
+	
 		//수정폼
 		@GetMapping("/qna/qnaUpdate.do")
-		public String qnaUpdate(@RequestParam int num, Model model) {
-			QnaVO qna = qnaService.getQna(num);
+		public ModelAndView qnaUpdate(
+				@RequestParam(value="pageNum",defaultValue="1") int currentPage,
+				@RequestParam int qna_num) {
 			
-			model.addAttribute("qnaVO", qna);
-			return "qna/qnaUpdate";
+			log.debug("<<글 수정 폼 호출>>");
+			
+			Map<String,Object> map = new HashMap<String,Object>();
+			
+			//글의 총갯수 또는 검색된 글의 갯수
+			int count = serviceBoardService.selectRowCount(map);
+			
+			//페이지 처리
+			PagingUtil page = new PagingUtil(currentPage,count,rowCount,pageCount, "qnaUpdate.do");
+			
+			//목록 호출
+			List<ServiceBoardVO> list = null;
+			if(count>0) {
+				map.put("start", page.getStartCount());
+				map.put("end", page.getEndCount());
+				
+				list = serviceBoardService.getServiceBoardList(map);
+			}
+			
+			// 문의 정보 가져오기
+			QnaVO qna = qnaService.getQna(qna_num);
+			
+			//전달 객체 생성
+			ModelAndView mav = new ModelAndView();
+			//뷰 이름 설정
+			mav.setViewName("qnaUpdate");
+			//데이터 저장
+			mav.addObject("count",count);
+			mav.addObject("list", list);
+			mav.addObject("pagingHtml", page.getPagingHtml());
+			mav.addObject("qnaVO", qna);
+			
+			return mav;
 			
 		}
 		//수정 처리
 		@PostMapping("/qna/qnaUpdate.do")
-		public String qnaUpdateSubmit(@Valid QnaVO vo, BindingResult result) {
-			//유효성 체크 결과 오류가 있으면 폼을 호출
-			if(result.hasErrors()) {
-				return "qna/qnaUpdate";
-				
-			}
+		public String qnaUpdateSubmit(QnaVO vo) {
+			
+			log.debug("<<글 수정 객체>> : " + vo);
 			qnaService.qnaUpdate(vo);
+			
 			return "redirect:/qna/qnaList.do";
 		}
 		
-		//글 삭제 폼
-		@GetMapping("/qna/qnaDelete.do")
-		public String qnaDelete(@RequestParam int num, Model model) {
-			QnaVO vo = new QnaVO();
-			vo.setQna_num(num);
-			
-			model.addAttribute("qnaVO",vo);
-			
-			return "qna/qnaDelete";
-		}
 		//글 삭제 처리
 		@PostMapping("/qna/qnaDelete.do")
-		public String qnaDeleteSubmit(@Valid QnaVO vo, BindingResult result) {
+		@ResponseBody()
+		public Map<String, String> qnaDeleteSubmit(@RequestParam String output) {
+			String[] stopChecked = output.split(",");
+			Map<String,String> mapAjax = new HashMap<String,String>();
 			
-			qnaService.qnaDelete(vo.getQna_num());
+			for(String qna_num : stopChecked) {
+				qnaService.qnaDelete(Integer.parseInt(qna_num));		// 바꿀부분
+				
+				mapAjax.put("result", "success");
+			}
 			
-			return "redirect:/qna/qnaList.do";
+			return mapAjax;
 		}
 		
 
@@ -217,7 +257,7 @@ public class QnaController {
 		public String serviceBoardInsertForm() {
 			log.debug("<<글쓰기 폼 호출>>");
 			
-			return "qna/serviceBoardInsertForm";
+			return "serviceBoardInsertForm";
 		}
 		//글쓰기 처리
 		@PostMapping("/qna/serviceBoardInsert.do")
@@ -235,7 +275,7 @@ public class QnaController {
 		
 		
 		
-		//게시판 목록
+		// 이메일 문의 목록
 		@RequestMapping("/qna/serviceBoardList.do")
 		public ModelAndView getServiceBoardList(
 				@RequestParam(value="pageNum",defaultValue="1") int currentPage,
@@ -269,7 +309,7 @@ public class QnaController {
 			//전달 객체 생성
 			ModelAndView mav = new ModelAndView();
 			//뷰 이름 설정
-			mav.setViewName("qna/serviceBoardList");
+			mav.setViewName("serviceBoardList");
 			//데이터 저장
 			mav.addObject("count",count);
 			mav.addObject("list", list);
@@ -282,12 +322,12 @@ public class QnaController {
 		@RequestMapping("/qna/serviceBoardDetail.do")
 		public ModelAndView serviceBoardDetail(@RequestParam int service_num) {
 			ServiceBoardVO serviceboard = serviceBoardService.getServiceBoard(service_num);
-			//HTML 태그 불허
-			//serviceboard.setService_title(StringUtil.useNoHtml(serviceboard.getService_title()));
-			//HTML 태그 불허, 줄바꿈 허용
-			//serviceboard.setService_content(StringUtil.useBrNoHtml(serviceboard.getService_content()));
-									//뷰 이름					//속성명		//속성값
-			return new ModelAndView("qna/serviceBoardDetail","serviceboard",serviceboard);
+			
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("serviceBoardDetail"); // 타일스 식별자
+			mav.addObject("serviceboard", serviceboard);
+			
+			return mav;
 		}
 		
 		//이미지 출력
@@ -306,9 +346,8 @@ public class QnaController {
 	}
 		
 		//이메일 전송
-		@GetMapping("/qna/mailCheck.do")
-		@ResponseBody	//ajax처리를 위한 어노테이션
-		public void sendMail(String service_email, String service_reply)throws Exception{
+		@PostMapping("/qna/sendEmail.do")
+		public String sendMail(String service_email, String service_reply)throws Exception{
 			
 			/* 뷰(View)로부터 넘어온 데이터 확인 */
 	        log.info("이메일 데이터 전송 확인");
@@ -319,9 +358,10 @@ public class QnaController {
 			        		+ "요청하신 사항은 담당 부서로 전달하도록 하겠습니다.<br>"
 			        		+ "앞으로 이용에 불편함이 없도록 노력하는 매일의 홈이 되겠습니다.<br>"
 			        		+ "오늘도 좋은 하루 보내시길 바랍니다.<br>"
-			        		+ "감사합니다." +service_reply;
+			        		+ "감사합니다.<br><hr size='1' noshade='noshade'><br>" 
+			        		+ "Re: " + service_reply;
 	        
-	        String fromEmail = "springtest1010@gmail.com";
+	        String fromEmail = "매일의 홈 <springtest1010@gmail.com>";
 	        String toEmail = service_email;
 	        
 	        
@@ -351,6 +391,7 @@ public class QnaController {
 	        } catch(Exception e) {
 	            e.printStackTrace();
 	        }
+			return "redirect:/qna/qnaList.do";
 	        
 	    }
 }

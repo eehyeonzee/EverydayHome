@@ -9,13 +9,7 @@
  * 설명 : 
  * 수정일 : 
 --%>
-
-<!DOCTYPE html>
-<html>
 <style>
-.name-item{
-	align-items: center;
-}
 .link-container{
 width:1136px;
 margin : 0 auto;
@@ -26,7 +20,10 @@ width : 100%;
 }
 .container{
 margin : 0 auto;
-width:1138px;
+width: 99%; 
+height: 286px; 
+background-color: #dbf1ff;
+position: relative;
 }
 .link-item{
 	border-bottom : 1px solid #dbdbdb;
@@ -52,61 +49,72 @@ width:1138px;
 }
 h2{
 	text-align:left;
-	margin : 70px 0px 50px 130px;
+	margin : 50px 0px 50px 105px;
 }
 .write-button{
 	text-align: right;
 	margin : 40px 100px 0px 30px;
 }
+.main-container{
+	margin : 0 auto;
+	width: 1177px; 
+	
+}
+.qna-left-title{
+	position: absolute;
+	text-align: center;
+}
+.qna-right-title{
+	position: absolute;
+	top: 70px;
+	right: 100px;
+	text-align: center;
+}
 </style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-<head>
-<meta charset="UTF-8">
-<title>Qna 자주 묻는 질문 목록</title>
 <script type="text/javascript">
  	$(function() {
  		
- 		$('.slideToggle').click(function(){
+ 		$('.button-area button').click(function(){
  			$(this).parent().find('p').slideToggle("slow");
  		});
 	});
          
 </script>
-</head>
-<body>
-<div class="container"> 
- <div class="main-container">
-	<div class="name-item" align="center">
-	   <h2 style="font-family: 'Gowun Dodum', sans-serif;">고객센터</h2>
-	  </div>
-	   <div class="align-left">
-	   <c:if test="${user_auth != 4}">
-	      <input type="button" value="이메일 문의하기" onclick="location.href='serviceBoardInsert.do'">
-	   </c:if>
-	   </div>
-	   <div class="align-right">
-	   <c:if test="${user_auth == 4 }"> 
-		   	<input type="button" value="자주묻는 질문 list" onclick="location.href='qnaServiceList.do'">
-	   		<input type="button" value="이메일 문의 list" onclick="location.href='serviceBoardList.do'"><br><br>
-		</c:if> 
-	   </div>
-	   <br><br>
-	   
-	   <c:if test="${count==0 }">
-	   <div class="result-display">출력할 내용이 없습니다.</div>
-	   </c:if>
-	   <c:if test="${count > 0 }">
-	   <c:forEach var="qna" items="${list}" varStatus="class_count">
-	   <div>
-	   		 <button class="slideToggle">${qna.qna_content }</button>
-	         <p style="display:none;">${qna.qna_reply }</p>
-	   </div>
-	   </c:forEach>
-		</c:if>
-	   <div class="align-center">${pagingHtml}</div>
-	</div>
- </div>
+<div class="main-container">
+	<div class="container"> 
+		<div class="qna-left-title">
+			<h2 class="admin-page-h2">고객센터</h2>
+			<div align="left">
+			<c:if test="${user_auth != 4}">
+				<input class = "btn btn-outline-dark" type="button" value="이메일 문의하기" onclick="location.href='serviceBoardInsert.do'">
+			</c:if>
+			</div>
+		</div>
+		
+		<div class="qna-right-title">
+			<div align="right">
+			<c:if test="${user_auth == 4 }"> 
+				<input class = "btn btn-outline-dark" type="button" value="자주묻는 질문 설정" onclick="location.href='qnaServiceList.do'">
+				<input class = "btn btn-outline-dark" type="button" value="이메일 문의 내역" onclick="location.href='serviceBoardList.do'"><br><br>
+			</c:if> 
+			</div>  
+		</div>
 	
-	</body>
-
-</html>
+		   
+	</div>
+	<c:if test="${count==0 }">
+	   <div class="result-display">출력할 내용이 없습니다.</div>
+	</c:if>
+	   <c:if test="${count > 0 }">
+		   <c:forEach var="qna" items="${list}" varStatus="class_count">
+		   <div class="button-area">
+	   		 <button class = "btn btn-outline-dark" >${qna.qna_content }</button>
+	         <p style="display:none;">${qna.qna_reply }</p>
+		   </div>
+		   </c:forEach>
+		</c:if>
+		<div class="align-center">${pagingHtml}</div>
+</div>
