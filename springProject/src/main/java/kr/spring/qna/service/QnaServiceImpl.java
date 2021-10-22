@@ -23,8 +23,8 @@ public class QnaServiceImpl implements QnaService{
 	}
 
 	@Override
-	public int getQnaCount() {
-		return qnaMapper.getQnaCount();
+	public int getQnaCount(Map<String, Object> map) {
+		return qnaMapper.getQnaCount(map);
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class QnaServiceImpl implements QnaService{
 
 	@Override
 	public int getQnaServiceCount() {
-		return qnaMapper.getQnaCount();
+		return qnaMapper.getQnaServiceCount();
 	}
 
 	@Override

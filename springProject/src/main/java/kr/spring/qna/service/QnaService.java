@@ -7,7 +7,7 @@ import kr.spring.qna.vo.QnaVO;
 
 public interface QnaService {
 	public void qnaInsert(QnaVO qna);
-	public int getQnaCount();
+	public int getQnaCount(Map<String, Object> map);
 	public int getQnaServiceCount();
 	public List<QnaVO> getQnaList(Map<String,Object> map);
 	public List<QnaVO> getQnaServiceList(Map<String,Object> map);

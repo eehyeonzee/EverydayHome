@@ -145,22 +145,28 @@ public class QnaController {
 		//qnaList 게시판 목록
 		@RequestMapping("/qna/qnaList.do")
 		public ModelAndView getQnaList(
-				@RequestParam(value="pageNum", defaultValue="1")int currentPage) {
+				@RequestParam(value="pageNum", defaultValue="1")int currentPage,
+				@RequestParam(value="keyword", defaultValue="") String keyword,
+				@RequestParam(value="keyfield",defaultValue = "1") String keyfield) {
 			
 			log.debug("<<currentPage>>: " + currentPage);
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("keyword", keyword);
+			map.put("keyfield", keyfield);
 			
 			//총 레코드 수
-			int count = qnaService.getQnaCount();
+			int count = qnaService.getQnaCount(map);
 			
 			//페이지 처리
-			PagingUtil page = new PagingUtil(currentPage, count, 10, 10, "qnaList.do");
+			PagingUtil page = new PagingUtil(null, keyfield, currentPage, count, 50, 5, "qnaList.do");
 			
 			//목록 호출
 			List<QnaVO> list = null;
 			if(count>0) {
-				Map<String, Object> map = new HashMap<String, Object>();
+				
 				map.put("start", page.getStartCount());
 				map.put("end", page.getEndCount());
+				
 				
 				list = qnaService.getQnaList(map);
 			}

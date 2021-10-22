@@ -14,14 +14,12 @@ public interface QnaMapper {
 
 	@Insert("INSERT INTO qna_list (qna_num, qna_category, qna_content, qna_reply) VALUES (qna_list_seq.nextval, #{qna_category}, #{qna_content}, #{qna_reply})")
 	public void qnaInsert(QnaVO qna);
-	
-	@Select("SELECT COUNT(*) FROM qna_list")
-	public int getQnaCount();
+
+	public int getQnaCount(Map<String, Object> map);
 	
 	@Select("SELECT COUNT(*) FROM qna_list")
 	public int getQnaServiceCount();
 	
-	@Select("SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM qna_list ORDER BY qna_num DESC)a) WHERE rnum >= #{start} AND rnum <= #{end}")
 	public List<QnaVO> getQnaList(Map<String, Object> map);
 	
 	@Select("SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM qna_list ORDER BY qna_num DESC)a) WHERE rnum >= #{start} AND rnum <= #{end}")
