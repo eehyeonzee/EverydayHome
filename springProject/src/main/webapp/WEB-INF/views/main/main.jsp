@@ -36,18 +36,17 @@
 }
 
 .main-item:nth-child(3) {
-	grid-column: 1/4;
-	grid-row: 4/6;
+	grid-column: 1/5;
+	grid-row: 3/5;
 }
-
 .main-item:nth-child(4) {
-	grid-column: 4/5;
-	grid-row: 4/6;
+	grid-column: 1/4;
+	grid-row: 5/7;
 }
 
 .main-item:nth-child(5) {
-	grid-column: 1/5;
-	grid-row: 6/7;
+	grid-column: 4/5;
+	grid-row: 5/7;
 }
 
 .main-item:nth-child(6) {
@@ -185,6 +184,18 @@ text-align : center;
 	}
 }
 
+@media (min-width: 600px) {
+	.categoryul {
+		display: flex;
+		flex-wrap: wrap;
+		margin: 0 -1rem;
+	}
+	.categoryli {
+		width: 50%;
+		padding: 0 -1rem;
+	}
+}
+
 @media (min-width: 1200px) {
 	.popularli {
 		width: 25%;
@@ -276,10 +287,12 @@ text-align : center;
 		<div class="main-item">
 			<div class="mainimgwrapper" style="height:560px; width:1126x;">
 			<div class="main-img" id="main-img" style="overflow: hidden;">
-				<img src="${pageContext.request.contextPath}/resources/images/mainimg1.png" id="mainimg1" style="border-radius:1%;  transition: all 0.2s linear;">
+				<img src="${pageContext.request.contextPath}/resources/images/mainimg1.png" id="mainimg1" style="border-radius:1%;  transition: all 0.2s linear;"
+				onclick="location.href='${pageContext.request.contextPath}/houseBoard/detail.do?house_num=1'">
 			</div>
 			<div class="mainimgtext" style="position: relative; bottom:90px;">
-			<p style="font-size:40px; padding-left: 55px; font-family: 'Gowun Dodum', sans-serif; font-weight:bolder; color:white;">${houseBoard.house_title}</p><button type="button" class="btn btn-light btn-lg" id="mainimgbutton" style="float:right; margin-right:70px; font-family: 'Gowun Dodum', sans-serif; position: relative; bottom:50px;">보러가기</button>
+			<p style="font-size:40px; padding-left: 55px; font-family: 'Gowun Dodum', sans-serif; font-weight:bolder; color:white;">어디든 환하게 밝혀주는 조명</p><button type="button" class="btn btn-light btn-lg" id="mainimgbutton" style="float:right; margin-right:70px; font-family: 'Gowun Dodum', sans-serif; position: relative; bottom:50px;"
+			onclick="location.href='${pageContext.request.contextPath}/houseBoard/detail.do?house_num=1'">보러가기</button>
 			</div>
 			</div>
 		</div>
@@ -289,19 +302,19 @@ text-align : center;
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/img1.png" alt="First slide" style="border-radius:1%;"
+      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/event1.png" alt="First slide" style="border-radius:1%;"
       onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=1'">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/img2.png" alt="Second slide" style="border-radius:1%;"
+      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/event2.png" alt="Second slide" style="border-radius:1%;"
       onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=2'">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/img3.png" alt="Third slide" style="border-radius:1%;"
+      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/event3.png" alt="Third slide" style="border-radius:1%;"
       onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=3'">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/img4.png" alt="Four slide" style="border-radius:1%;"
+      <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/event4.png" alt="Four slide" style="border-radius:1%;"
       onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=4'">
     </div>
   </div>
@@ -316,11 +329,30 @@ text-align : center;
 </div>
 </div>
 <!-- 이벤트 캐러셀끝 -->
+<!-- 카테고리 이미지 시작 -->
+		<div class="main-item my-5" style="text-align :center; font-size:20px; font-weight:bold;"><br>
+			<section class="popular" style="cursor: pointer;">
+			<ul class="cateul">
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/onclick1.png"
+				onclick="location.href='${pageContext.request.contextPath}/store/storeCategory.do'"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/onclick2.png"
+				onclick="location.href='${pageContext.request.contextPath}/houseBoard/list.do'"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/onclick3.png"
+				onclick="location.href='${pageContext.request.contextPath}/houseBoard/list.do'"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/onclick4.png"
+				onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=2'"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/onclick5.png"
+				onclick="location.href='${pageContext.request.contextPath}/qna/qnaList.do'"></a></li>
+			</ul>
+			</section>
+		</div>
+<!-- 카테고리 이미지 끝 -->		
 <!-- 사진 게시판 최신순 미리보기 시작 -->
-		<div class="main-item"style="text-align :center;"><p class="mb-2" style="text-align:left; margin-left:70px; font-size:17px; font-weight:bold;">오늘의 스토리</p>
+		<div class="main-item"style="text-align :center;"><p class="mb-2" style="text-align:left; margin-left:70px; font-size:17px; font-weight:bold;">매일의 스토리</p>
 			<section class="everydaystory">
 			<ul class="storyul">
 	  	  <c:forEach var="houseBoard" items="${ HList }">
+				<div align="center" style="cursor: pointer;"  onclick="location.href='${pageContext.request.contextPath}/houseBoard/detail.do?house_num=${houseBoard.house_num}'">
 				<li class="card mx-2">
 					<figure class="storyimage" style="height: 200px; width :250px;">
 				<c:if test="${ empty houseBoard.thumbnail_filename }">
@@ -335,6 +367,7 @@ text-align : center;
 						<p>${houseBoard.nickname}</p>
 					</div>
 				</li>
+        	</div>
         	</c:forEach>
 			</ul>
 		</section>
@@ -344,21 +377,21 @@ text-align : center;
 		<div class="main-item" id="main-item-link">
 		<br>
 			<div class="main-story">
-			<div class="main-story-link" onclick="location.href='${pageContext.request.contextPath}/houseBoard/list.do';">
+			<div class="main-story-link" style="cursor: pointer;" onclick="location.href='${pageContext.request.contextPath}/houseBoard/list.do';">
 				<div class="description">예쁜집 구경하기</div>
 				<div class="title">
 					<span class="text">>집들이</span>
 				</div>
 			</div> 
-			<div class="main-story-link" onclick="location.href='${pageContext.request.contextPath}/store/storeMain.do';">
+			<div class="main-story-link" style="cursor: pointer;" onclick="location.href='${pageContext.request.contextPath}/store/storeMain.do';">
 				<div class="description">매일 자정, 새로운 특가상품</div>
 				<div class="title">
 					<span class="text">>스토어</span>
 				</div>
 			</div>
-			<div class="main-story-link" onclick="location.href='${pageContext.request.contextPath}/event/eventList.do';">
+			<div class="main-story-link" style="cursor: pointer;" onclick="location.href='${pageContext.request.contextPath}/event/eventList.do';">
 				<div class="description">매일의 집은 처음이세요?</div>
-				<div class="title">
+				<div class="title" >
 					<span class="text">>이벤트</span>
 				</div>
 			</div>
@@ -366,34 +399,44 @@ text-align : center;
 		</div>
 <!-- 두번째 줄 오른쪽 바로가기끝 -->
 <!-- 카테고리 이미지 시작 -->
-		<div class="main-item my-5" style="text-align :center; font-size:20px; font-weight:bold;">매일의 집의 카테고리<br>
+		<div class="main-item my-5" style="text-align:left; cursor: pointer; font-size:20px; font-weight:bold;">카테고리별 상품 찾기<br>
 	
 			<ul class="cateul">
-				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category1.png"></a></li>
-				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category2.png"></a></li>
-				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category3.png"></a></li>
-				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category4.png"></a></li>
-				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category5.png"></a></li>
-				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category6.png"></a></li>
-				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category7.png"></a></li>
-				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category8.png"></a></li>
-				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category9.png"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category1.png"
+				onclick="location.href='${pageContext.request.contextPath}/store/storeCategory.do?prod_cate=furniture'"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category2.png"
+				onclick="location.href='${pageContext.request.contextPath}/store/storeCategory.do?prod_cate=fabric'"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category3.png"
+				onclick="location.href='${pageContext.request.contextPath}/store/storeCategory.do?prod_cate=lamp'"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category4.png"
+				onclick="location.href='${pageContext.request.contextPath}/store/storeCategory.do?prod_cate=electronic'"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category5.png"
+				onclick="location.href='${pageContext.request.contextPath}/store/storeCategory.do?prod_cate=kitchen'"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category6.png"
+				onclick="location.href='${pageContext.request.contextPath}/store/storeCategory.do?prod_cate=deco'"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category7.png"
+				onclick="location.href='${pageContext.request.contextPath}/store/storeCategory.do?prod_cate=storage'"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category8.png"
+				onclick="location.href='${pageContext.request.contextPath}/store/storeCategory.do?prod_cate=daily_necessities'"></a></li>
+				<li class="cateli"><a><img src ="${pageContext.request.contextPath}/resources/images/category9.png"
+				onclick="location.href='${pageContext.request.contextPath}/store/storeCategory.do?prod_cate=necessities'"></a></li>
 			</ul>
 		</div>
 <!-- 카테고리 이미지 끝 -->		
 		<!-- 스토어 시작 -->
-		<div class="main-item mt-5" style="text-align :center;"><p class="mb-2" style="text-align:left; margin-left:70px; font-size:20px; font-weight:bold;">지금 올라온 상품</p>
+		<div class="main-item mt-5" style="text-align :center;"><p class="mb-2" style="text-align:left; margin-left:70px; font-size:20px; font-weight:bold;">매일의딜</p>
 			<section class="bestitem">
 			<ul class="bestitemul">
 	  	  	<c:forEach var="store" items="${ SList }">
+	  	  		<div align="center" style="cursor: pointer;"  onclick="location.href='${pageContext.request.contextPath}/store/storeDetail.do?prod_num=${store.prod_num}'">
 				<li class="card mx-3">
-					<figure class="bestimage p-3" style="height: 300px; width : 340px;">
+					<figure class="bestimage p-3" style="height: 300px; width : 280px;">
 					<c:if test="${ empty store.thumbnail_filename }">
-	            	<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="border-radius:1%; width:300px; height:300px;"/>
+	            	<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="border-radius:1%; width:280; height:280px;"/>
 	            	</c:if>
 	            <!-- 사진파일이 있는 경우 -->
 	            	<c:if test="${ !empty store.thumbnail_filename }">
-		            <img class="d-block w-100" src="${pageContext.request.contextPath}/store/imageView.do?prod_num=${store.prod_num}" style="border-radius:1%; width:300px; height: 300px;" >
+		            <img class="d-block w-100" src="${pageContext.request.contextPath}/store/imageView.do?prod_num=${store.prod_num}" style="border-radius:1%; width:280px; height: 280px;" >
 	            	</c:if>
 					
 					</figure>
@@ -402,36 +445,13 @@ text-align : center;
 						${store.prod_price}
 					</div>
 				</li>
+				</div>
 			</c:forEach>
 			</ul>
 		</section>		
 		</div>
 		<!-- 스토어 끝 -->
 		<!-- 사진 게시판 추천순 시작 -->
-		
-		
-		<div class="main-item mt-5" style="text-align :center;"><p style="text-align:left; margin-left:60px; font-size:20px; font-weight:bold;">이벤트</p>
-			<section class="popular">
-			<ul class="popularul">
-			<c:forEach var="event" items="${EList}">
-				<li class="card mx-3">
-					<figure class="popularimage p-3" style="height: 300px; width : 340px;">
-				      <c:if test="${empty event.event_filename }">
-	            	  <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="border-radius:1%; width:300px; height:300px;"/>
-	            	  </c:if>
-	            <!-- 사진파일이 있는 경우 -->
-	            	  <c:if test="${!empty event.event_filename }">
-		              <img class="d-block w-100" src="${pageContext.request.contextPath }/event/eventPhotoView.do?event_num=${event.event_num}" style="border-radius:1%; width:300px; height:300px;" >
-	                  </c:if>
-					</figure>
-					<div class="populardesc">
-						<p>${event.event_title}</p>	
-					</div>
-				</li>
-			</c:forEach>
-			</ul>
-		</section>
-		</div>
 		</div>
 		</div>
 		<!-- 사진 게시판 추천순 끝 -->
