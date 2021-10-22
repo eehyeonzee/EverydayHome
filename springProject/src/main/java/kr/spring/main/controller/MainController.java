@@ -47,7 +47,7 @@ public class MainController {
 		
 		logger.debug("<<HCount>>: " + HCount);
 		
-		PagingUtil HPage = new PagingUtil(1, HCount, 4, 1, null);
+		PagingUtil HPage = new PagingUtil(1, HCount, 12, 10, null);
 		
 		map.put("start", HPage.getStartCount());
 		map.put("end", HPage.getEndCount());

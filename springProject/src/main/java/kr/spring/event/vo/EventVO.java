@@ -13,7 +13,9 @@ public class EventVO {
 	private String event_title;			//제목
 	@NotEmpty
 	private String event_content;		//내용
+	@NotEmpty
 	private String event_type; 			//분류 널가능
+	@NotEmpty
 	private String event_day; 			//진행 날짜
 	private int event_hits; 			//조회수 널가능 기본값 0 
 	private Date event_reg_date; 		//작성일 널가능 기본값 sysdate
