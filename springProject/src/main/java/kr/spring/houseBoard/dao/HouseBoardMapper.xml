@@ -28,18 +28,21 @@
 						m.profile_filename
 					FROM house_board b JOIN mem_detail m ON b.mem_num = m.mem_num
 					<where>
-						<if test="keyword != '' and keyfield == 1">
-							b.house_area LIKE '%' || #{keyword} || '%'
+						<if test="sizeOutput != null">
+							b.house_area LIKE '%' || #{sizeOutput} || '%' AND
 						</if>
-						<if test="keyword != '' and keyfield == 2">
-							b.house_type LIKE '%' || #{keyword} || '%'
+
+						<if test="residenceOutput != null">
+							b.house_type LIKE '%' || #{residenceOutput} || '%' AND
 						</if>
-						<if test="keyword != '' and keyfield == 3">
-							b.house_style LIKE '%' || #{keyword} || '%'
+						
+						<if test="styleOutput != null">
+							b.house_style LIKE '%' || #{styleOutput} || '%' AND
 						</if>
-						<if test="keyword != '' and keyfield == 4">
-							b.house_space LIKE '%' || #{keyword} || '%'
+						<if test="spaceOutput != null">
+							b.house_space LIKE '%' || #{spaceOutput} || '%'
 						</if>
+			
 					</where>
 					ORDER BY b.house_num DESC)a)
 		<![CDATA[
@@ -81,19 +84,22 @@
 			COUNT(*)
 		FROM house_board b JOIN mem_detail m ON b.mem_num = m.mem_num
 		<where>
-			<if test="keyword != '' and keyfield == 1">
-				b.house_area LIKE '%' || #{keyword} || '%'
-			</if>
-			<if test="keyword != '' and keyfield == 2">
-				b.house_type LIKE '%' || #{keyword} || '%'
-			</if>
-			<if test="keyword != '' and keyfield == 3">
-				b.house_style LIKE '%' || #{keyword} || '%'
-			</if>
-			<if test="keyword != '' and keyfield == 4">
-				b.house_space LIKE '%' || #{keyword} || '%'
-			</if>
-		</where>
+						<if test="sizeOutput != null">
+							b.house_area LIKE '%' || #{sizeOutput} || '%' AND
+						</if>
+
+						<if test="residenceOutput != null">
+							b.house_type LIKE '%' || #{residenceOutput} || '%' AND
+						</if>
+						
+						<if test="styleOutput != null">
+							b.house_style LIKE '%' || #{styleOutput} || '%' AND
+						</if>
+						<if test="spaceOutput != null">
+							b.house_space LIKE '%' || #{spaceOutput} || '%'
+						</if>
+			
+					</where>
 	</select>
 	<!-- 글 수정 -->
 	<update id="updateHBoard" parameterType="houseBoardVO">
