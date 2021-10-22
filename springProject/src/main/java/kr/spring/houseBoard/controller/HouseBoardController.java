@@ -127,7 +127,7 @@ public class HouseBoardController {
 						keyword = "40평대";
 						break;
 					case "5":
-						keyword = "50평대 이상";
+						keyword = "50평 이상";
 						break;
 					default:
 						keyword = "";
@@ -253,8 +253,14 @@ public class HouseBoardController {
 			
 			
 			Map<String,Object> map = new HashMap<String,Object>();
-			map.put("keyfield", keyfield);
-			map.put("keyword", keyword);
+			//map.put("keyfield", keyfield);
+			map.put("sizeOutput", sizeOutput);
+			map.put("residenceOutput", residenceOutput);
+			map.put("styleOutput", styleOutput);
+			map.put("spaceOutput", spaceOutput);
+			
+			
+			
 			logger.debug("<<사이즈>> : " + keyword + keyfield);
 			// 글의 총 개수 또는 검색된 글의 개수
 			int count = houseBoardService.selectRowCount(map);
