@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.event.service.EventService;
+import kr.spring.event.vo.EventVO;
 import kr.spring.houseBoard.service.HouseBoardService;
 import kr.spring.houseBoard.vo.HouseBoardVO;
 import kr.spring.store.service.StoreService;
-import kr.spring.util.PagingUtil;
+import kr.spring.store.vo.StoreVO;
+import kr.spring.util.SearchPagingUtil;
 
 @Controller
 public class MainSearchController {
@@ -37,7 +39,18 @@ public class MainSearchController {
 		 
 	    return new HouseBoardVO();
 	 }
-		 
+
+	 // EventVO 객체 초기화
+	 public EventVO initCommand2() {
+	 
+	    return new EventVO();
+	 }
+	 
+	// StoreVO 객체 초기화
+	 public StoreVO initCommand3() {
+	 
+	    return new StoreVO();
+	 }
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainSearchController.class);
 
@@ -62,7 +75,10 @@ public class MainSearchController {
 		logger.debug("<<houseCount>> : " + houseCount);
 		
 		// 사진게시판 페이지 처리
-		PagingUtil housePage = new PagingUtil(houseCurrentPage,houseCount,4,5,"mainSearch.do");	// 나중에 URL 수정
+		SearchPagingUtil housePage = new SearchPagingUtil(keyfield, keyword,
+				houseCurrentPage,houseCount,4,5,
+				"mainSearch.do?eventPageNum=" + eventcurrentPage + "&storePageNum=" + storecurrentPage,
+				"house");	// 나중에 URL 수정
 		
 		hmap.put("start", housePage.getStartCount());
 		hmap.put("end", housePage.getEndCount());
@@ -74,7 +90,57 @@ public class MainSearchController {
 		
 		//------------------------ 이벤트 부분 ------------------------//
 		
+		Map<String,Object> emap = new HashMap<String,Object>();
+		emap.put("keyfield", keyfield);
+		emap.put("keyword", keyword);
 		
+		int eventCount = eventService.selectEventAllSearchRowCount(emap);
+		logger.debug("<<이벤트 맵>> : " + emap.toString());
+		logger.debug("<<eventCount>> : " + eventCount);
+		
+		// 사진게시판 페이지 처리
+		SearchPagingUtil eventPage = new SearchPagingUtil(keyfield, keyword,
+				eventcurrentPage,eventCount,3,5,
+				"mainSearch.do?housePageNum=" + houseCurrentPage + "&storePageNum" + storecurrentPage,
+				"event");	// 나중에 URL 수정
+		
+		emap.put("start", eventPage.getStartCount());
+		emap.put("end", eventPage.getEndCount());
+		
+		List<EventVO> eventList = null;
+		if(eventCount > 0) {
+			eventList = eventService.selectEventAllSearchList(emap);
+		}
+		
+		//------------------------ 스토어 부분 ------------------------//
+		
+		Map<String, Object> smap = new HashMap<String, Object>();
+		smap.put("keyfield", keyfield);
+		smap.put("keyword", keyword);
+		
+		
+		// 글의 총 갯수 또는 검색된 글의 갯수
+		int productCount = storeService.selectStoreAllSearchRowCount(smap);
+		logger.debug("<<이벤트 맵>> : " + smap.toString());
+		logger.debug("<<productCount>> : " + productCount);
+		
+		// 상품 페이징 처리
+		SearchPagingUtil productPage = new SearchPagingUtil(keyfield, keyword,
+				storecurrentPage,productCount,8,5,
+				"mainSearch.do?housePageNum=" + houseCurrentPage + "&eventPageNum=" + eventcurrentPage,
+				"store");	// 나중에 URL 수정
+		
+		smap.put("start", productPage.getStartCount());
+		smap.put("end", productPage.getEndCount());
+		
+		
+		List<StoreVO> productList = null;
+		if(productCount > 0) {
+			productList = storeService.selectStoreAllSearchList(smap);
+		}
+		
+		
+		//------------------------ Model로 데이터 보내기 ------------------------//
 		
 		// 전달 객체
 		ModelAndView mav = new ModelAndView();
@@ -86,19 +152,17 @@ public class MainSearchController {
 		mav.addObject("housePagingHtml", housePage.getPagingHtml());
 		
 		// 이벤트
-//		mav.addObject("eventCount", eventCount);
-//		mav.addObject("eventList", eventList);
-//		mav.addObject("eventPagingHtml", eventPage.getPagingHtml());
+		mav.addObject("eventCount", eventCount);
+		mav.addObject("eventList", eventList);
+		mav.addObject("eventPagingHtml", eventPage.getPagingHtml());
 		
 		// 상품
-//		mav.addObject("productCount", productCount);
-//		mav.addObject("productList", productList);
-//		mav.addObject("productPagingHtml", productPage.getPagingHtml());
-		
+		mav.addObject("productCount", productCount);
+		mav.addObject("productList", productList);
+		mav.addObject("productPagingHtml", productPage.getPagingHtml());
 		
 		// 현재 검색어 출력
 		mav.addObject("keyword", keyword);
-		mav.addObject("keyfield", keyfield);
 		
 		
 		return mav;

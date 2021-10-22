@@ -60,19 +60,19 @@
 	<div class="text-center col-sm-12 my-5">
 	<form:form id="register_form" action="kakaoLoginProcess.do" modelAttribute="memberVO">
 		<div class = "form-group row">
-				<label class = "col-sm-2 col-form-label" for="mem_name">이름&nbsp;</label>
+				<label class = "col-sm-3 col-form-label" for="mem_name">이름&nbsp;</label>
 				<form:input path="mem_name"/>
 		</div>	
 		<div class = "form-group row">
-			<label class = "col-sm-2 col-form-label" for="phone">전화번호&nbsp;</label>
+			<label class = "col-sm-3 col-form-label" for="phone">전화번호&nbsp;</label>
 			<form:input path="phone"/>
 		</div>
 		<div class = "form-group row">	
-			<label class = "col-sm-2 col-form-label" for="email">이메일&nbsp;</label>
+			<label class = "col-sm-3 col-form-label" for="email">이메일&nbsp;</label>
 			<form:input path="email"/>
 		</div>
 		<div class = "form-group row">	
-			<label class = "col-sm-2 col-form-label" for="zipcope">우편번호&nbsp;</label>
+			<label class = "col-sm-3 col-form-label" for="zipcope">우편번호&nbsp;</label>
 			<input id="zipcode" name="zipcode" placeholder="우편번호" type="text" value="" maxlength="5" readonly="readonly"/>&nbsp;&nbsp;&nbsp;
 			<input class = "btn btn-outline-dark" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 				
@@ -131,11 +131,11 @@
 	</script>
 			</div>
 			<div class = "form-group row">
-				<label class = "col-sm-2 col-form-label" for="address1">주소&nbsp;</label>
+				<label class = "col-sm-3 col-form-label" for="address1">주소&nbsp;</label>
 				<input id="address1" name="address1" type="text" value="" maxlength="30" readonly="readonly" placeholder="주소"/>
 			</div>
 			<div class = "form-group row">
-				<label class = "col-sm-2 col-form-label" for="address2">나머지주소&nbsp;</label>
+				<label class = "col-sm-3 col-form-label" for="address2">나머지주소&nbsp;</label>
 				<form:input path="address2" maxlength="30" placeholder="상세주소"/>
 			</div>
 			<div class = "form-group row">

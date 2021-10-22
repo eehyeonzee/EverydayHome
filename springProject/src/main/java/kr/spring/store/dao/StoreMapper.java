@@ -38,4 +38,8 @@ public interface StoreMapper {
 	public void deleteCart(Integer prod_num);
 	@Delete("DELETE FROM product_review WHERE prod_num = #{prod_num}")
 	public void deleteReview(Integer prod_num);
+	
+	// =============== 통합검색 =============== //
+	public int selectStoreAllSearchRowCount(Map<String,Object> map);		// 통합 검색 결과 게시글 수
+	public List<StoreVO> selectStoreAllSearchList(Map<String,Object> map);		// 통합 검색 결과 게시글 리스트
 }
