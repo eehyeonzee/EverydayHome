@@ -244,6 +244,7 @@ text-align : center;
     left: 50%;
     margin: 0 auto;
 }
+
 </style>
 
 <script type="text/javascript">
@@ -258,7 +259,6 @@ text-align : center;
 					console.log(data);
 					str +="<li"
 				})
-				
 			})
 		});
 		
@@ -268,8 +268,37 @@ text-align : center;
 		  $("#mainimg1").css("transform", "scale(1)"),$("#mainimgbutton").css("color","");
 		});
 	});
-
 </script>
+<div class="page-main">
+	<div>
+		<c:if test="${ECount ==0 }">
+		<div class="result-display">
+			등록된 게시물이 없습니다.
+		</div>
+		</c:if>
+		<c:if test="${ECount>0 }">
+		<div>
+			<c:forEach var="event" items="${EList }">
+				<div class="horizontal-area">
+					<a href="${pageContext.request.contextPath }/event/eventDetail.do?event_num=${event.event_num}">
+					<c:if test="${!empty event.event_filename }">
+					<img src="${pageContext.request.contextPath }/event/eventPhotoView.do?event_num=${event.event_num}">
+					</c:if>
+					<c:if test="${empty event.event_filename }">
+					<img src="${pageContext.request.contextPath }/resources/images/basic.jpg">
+					</c:if>
+					<span>${event.event_title}</span>
+					</a>	
+				</div>
+			</c:forEach>
+		</div>
+		</c:if>
+		<div style="clear:both;">	<!-- clear:both 넣으면 floating이 해제되고 튀어올라가지 않음 -->
+			<hr width="100%" size="1" noshade="noshade">
+		</div>
+	</div>
+</div>
+<!-- 메인 끝 -->
 <div class="main">
 	<div class="main-container">
 <!-- 메인 이미지 박스 -->		
@@ -279,7 +308,7 @@ text-align : center;
 				<img src="${pageContext.request.contextPath}/resources/images/mainimg1.png" id="mainimg1" style="border-radius:1%;  transition: all 0.2s linear;">
 			</div>
 			<div class="mainimgtext" style="position: relative; bottom:130px;">
-			<p style="font-size:40px; padding-left: 55px; font-family: 'Gowun Dodum', sans-serif; font-weight:bolder; color:white;">어디든 환하게 밝혀주는 조명</p><button type="button" class="btn btn-light btn-lg" id="mainimgbutton" style="float:right; margin-right:70px; font-family: 'Gowun Dodum', sans-serif; position: relative; bottom:50px;">보러가기</button>
+			<p style="font-size:40px; padding-left: 55px; font-family: 'Gowun Dodum', sans-serif; font-weight:bolder; color:white;">${houseBoard.house_title}</p><button type="button" class="btn btn-light btn-lg" id="mainimgbutton" style="float:right; margin-right:70px; font-family: 'Gowun Dodum', sans-serif; position: relative; bottom:50px;">보러가기</button>
 			</div>
 			</div>
 		</div>
@@ -289,48 +318,20 @@ text-align : center;
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-   	  <c:forEach var="event" items="${ list }">
-   	  <div class="horizontal-area">
-					<a href="${pageContext.request.contextPath }/event/eventDetail.do?evnet_num=${evnet.event_num}">
-					<c:if test="${!empty event.event_filename }">
-					<img src="${pageContext.request.contextPath }/event/eventPhotoView.do?event_num=${event.event_num}">
-					</c:if>
-					<c:if test="${empty event.event_filename }">
-					<img src="${pageContext.request.contextPath }/resources/images/basic.jpg">
-					</c:if>
-					<span>${event.event_title}</span>
-				</a>
-			</div>
-	            <div class="card" style="height: 540px;">
-		            <div class="card-body">
-		            	<div align="center" style="cursor: pointer;"  onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=${event.event_num}'">
-		           		<!-- 사진파일이 없는 경우 -->
-			            <c:if test="${ empty event.event_filename }">
-			            	<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="border-radius:1%;"/>
-			            </c:if>
-			            <!-- 사진파일이 있는 경우 -->
-			            <c:if test="${ !empty event.event_filename }">
-				            <img class="d-block w-100" src="${pageContext.request.contextPath}/event/eventPhotoView.do?event_num=${event.event_num}" style="border-radius:1%;" >
-			            </c:if>
-			           </div>
-		            </div>
-		          </div>
-        </c:forEach>
-    
       <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/event1.png" alt="First slide" style="border-radius:1%;"
-      onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=${list.event_num}'">
+      onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=1'">
     </div>
     <div class="carousel-item">
       <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/event2.png" alt="Second slide" style="border-radius:1%;"
-      onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=${list.event_num}'">
+      onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=2'">
     </div>
     <div class="carousel-item">
       <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/event3.png" alt="Third slide" style="border-radius:1%;"
-      onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=${list.event_num}'">
+      onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=3'">
     </div>
     <div class="carousel-item">
       <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/event4.png" alt="Four slide" style="border-radius:1%;"
-      onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=${list.event_num}'">
+      onclick="location.href='${pageContext.request.contextPath}/event/eventDetail.do?event_num=4'">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -345,9 +346,36 @@ text-align : center;
 </div>
 <!-- 이벤트 캐러셀끝 -->
 <!-- 사진 게시판 최신순 미리보기 시작 -->
-
-
-
+		<c:if test="${ECount ==0 }">
+		<div class="result-display">
+			등록된 게시물이 없습니다.
+		</div>
+		</c:if>
+		<c:if test="${ECount>0 }">
+		<div>
+	  	  <c:forEach var="houseBoard" items="${ HList }">
+           <div class="card" style="height: 540px;">
+            <div class="card-body">
+            	<div align="center" style="cursor: pointer;"  onclick="location.href='${pageContext.request.contextPath}/houseBoard/detail.do?house_num=${houseBoard.house_num}'">
+           		<!-- 사진파일이 없는 경우 -->
+	            <c:if test="${ empty houseBoard.thumbnail_filename }">
+	            	<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="border-radius:1%;"/>
+	            </c:if>
+	            <!-- 사진파일이 있는 경우 -->
+	            <c:if test="${ !empty houseBoard.thumbnail_filename }">
+		            <img class="d-block w-100" src="${pageContext.request.contextPath}/houseBoard/imageView.do?house_num=${houseBoard.house_num}" style="border-radius:1%;" >
+	            </c:if>
+	           </div>
+            </div>
+          </div>
+        </c:forEach>
+		</div>
+		</c:if>
+		<div style="clear:both;">	<!-- clear:both 넣으면 floating이 해제되고 튀어올라가지 않음 -->
+			<hr width="100%" size="1" noshade="noshade">
+		</div>
+	</div>
+</div>
 		<div class="main-item">매일의 스토리
 			<section class="everydaystory">
 			<ul class="storyul">
@@ -433,23 +461,23 @@ text-align : center;
 					<li class="rankfeedli" value="lental">렌탈</li>
 				</ol>
 			</div>
-			  	  <c:forEach var="store" items="${ list }">
-	            <div class="card" style="height: 540px;">
-		            <div class="card-body">
-		            	<div align="center" style="cursor: pointer;"  onclick="location.href='${pageContext.request.contextPath}/store/storeDetail.do?prod_num=${store.prod_num}'">
-		           		<!-- 사진파일이 없는 경우 -->
-			            <c:if test="${ empty store.thumbnail_filename }">
-			            	<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="border-radius:1%;"/>
-			            </c:if>
-			            <!-- 사진파일이 있는 경우 -->
-			            <c:if test="${ !empty store.thumbnail_filename }">
-				            <img class="d-block w-100" src="${pageContext.request.contextPath}/store/imageView.do?prod_num=${store.prod_num}" style="border-radius:1%;" >
-			            </c:if>
-			           </div>
-		            </div>
-		          </div>
-        </c:forEach>
-			
+	  	  <c:forEach var="store" items="${ SList }">
+	          <div class="card" style="height: 540px;">
+	           <div class="card-body">
+	           	<div align="center" style="cursor: pointer;"  onclick="location.href='${pageContext.request.contextPath}/store/storeDetail.do?prod_num=${store.prod_num}'">
+	          		<!-- 사진파일이 없는 경우 -->
+	            <c:if test="${ empty store.thumbnail_filename }">
+	            	<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="border-radius:1%;"/>
+	            </c:if>
+	            <!-- 사진파일이 있는 경우 -->
+	            <c:if test="${ !empty store.thumbnail_filename }">
+		            <img class="d-block w-100" src="${pageContext.request.contextPath}/store/imageView.do?prod_num=${store.prod_num}" style="border-radius:1%;" >
+	            </c:if>
+	           </div>
+	           </div>
+	         </div>
+	     		</c:forEach>
+
 				<section class="bestitem">
 			<ul class="bestitemul">
 				<li class="bestitemli">
