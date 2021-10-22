@@ -263,7 +263,7 @@ public class QnaController {
 		public String serviceBoardInsertForm() {
 			log.debug("<<글쓰기 폼 호출>>");
 			
-			return "serviceBoardInsertForm";
+			return "qna/serviceBoardInsertForm";
 		}
 		//글쓰기 처리
 		@PostMapping("/qna/serviceBoardInsert.do")
