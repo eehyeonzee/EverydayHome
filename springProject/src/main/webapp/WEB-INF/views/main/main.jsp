@@ -340,7 +340,7 @@ text-align : center;
 		</section>
 		</div>
 <!-- 사진 게시판 미리보기 끝 -->
-<!-- 두번째 쭐 오른쪽 바로가기 -->
+<!-- 두번째 쭐 오른쪽 바로가기 --><!--  -->
 		<div class="main-item" id="main-item-link">
 		<br>
 			<div class="main-story">
