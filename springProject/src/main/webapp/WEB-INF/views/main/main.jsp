@@ -115,7 +115,7 @@ text-align : center;
 .bestimage {
 	height: 0;
 	padding-bottom: 60%;
-	background-color: lightgray;
+	background-color: white;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -159,7 +159,7 @@ text-align : center;
 .popularimage {
 	height: 0;
 	padding-bottom: 60%;
-	background-color: lightgray;
+	background-color: white;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -200,7 +200,7 @@ text-align : center;
 .storyimage {
 	height: 0;
 	padding-bottom: 60%;
-	background-color: lightgray;
+	background-color: white;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -263,51 +263,22 @@ text-align : center;
 		});
 		
 	$('.mainimgwrapper').hover(function() {
-		  $("#mainimg1").css("transform", "scale(1.1)"),$("#mainimgbutton").css("color","blue");
+		  $("#mainimg1").css("transform", "scale(1.2)"),$("#mainimgbutton").css("color","blue");
 		}, function(){
-		  $("#mainimg1").css("transform", "scale(1)"),$("#mainimgbutton").css("color","");
+		  $("#mainimg1").css("transform", "scale(1.1)"),$("#mainimgbutton").css("color","");
 		});
 	});
 </script>
-<div class="page-main">
-	<div>
-		<c:if test="${ECount ==0 }">
-		<div class="result-display">
-			등록된 게시물이 없습니다.
-		</div>
-		</c:if>
-		<c:if test="${ECount>0 }">
-		<div>
-			<c:forEach var="event" items="${EList }">
-				<div class="horizontal-area">
-					<a href="${pageContext.request.contextPath }/event/eventDetail.do?event_num=${event.event_num}">
-					<c:if test="${!empty event.event_filename }">
-					<img src="${pageContext.request.contextPath }/event/eventPhotoView.do?event_num=${event.event_num}">
-					</c:if>
-					<c:if test="${empty event.event_filename }">
-					<img src="${pageContext.request.contextPath }/resources/images/basic.jpg">
-					</c:if>
-					<span>${event.event_title}</span>
-					</a>	
-				</div>
-			</c:forEach>
-		</div>
-		</c:if>
-		<div style="clear:both;">	<!-- clear:both 넣으면 floating이 해제되고 튀어올라가지 않음 -->
-			<hr width="100%" size="1" noshade="noshade">
-		</div>
-	</div>
-</div>
 <!-- 메인 끝 -->
 <div class="main">
 	<div class="main-container">
 <!-- 메인 이미지 박스 -->		
 		<div class="main-item">
-			<div class="mainimgwrapper" style="height:560px;width:1084px;">
+			<div class="mainimgwrapper" style="height:560px; width:1126x;">
 			<div class="main-img" id="main-img" style="overflow: hidden;">
 				<img src="${pageContext.request.contextPath}/resources/images/mainimg1.png" id="mainimg1" style="border-radius:1%;  transition: all 0.2s linear;">
 			</div>
-			<div class="mainimgtext" style="position: relative; bottom:130px;">
+			<div class="mainimgtext" style="position: relative; bottom:90px;">
 			<p style="font-size:40px; padding-left: 55px; font-family: 'Gowun Dodum', sans-serif; font-weight:bolder; color:white;">${houseBoard.house_title}</p><button type="button" class="btn btn-light btn-lg" id="mainimgbutton" style="float:right; margin-right:70px; font-family: 'Gowun Dodum', sans-serif; position: relative; bottom:50px;">보러가기</button>
 			</div>
 			</div>
@@ -346,57 +317,25 @@ text-align : center;
 </div>
 <!-- 이벤트 캐러셀끝 -->
 <!-- 사진 게시판 최신순 미리보기 시작 -->
-		<c:if test="${ECount ==0 }">
-		<div class="result-display">
-			등록된 게시물이 없습니다.
-		</div>
-		</c:if>
-		<c:if test="${ECount>0 }">
-		<div>
-	  	  <c:forEach var="houseBoard" items="${ HList }">
-           <div class="card" style="height: 540px;">
-            <div class="card-body">
-            	<div align="center" style="cursor: pointer;"  onclick="location.href='${pageContext.request.contextPath}/houseBoard/detail.do?house_num=${houseBoard.house_num}'">
-           		<!-- 사진파일이 없는 경우 -->
-	            <c:if test="${ empty houseBoard.thumbnail_filename }">
-	            	<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="border-radius:1%;"/>
-	            </c:if>
-	            <!-- 사진파일이 있는 경우 -->
-	            <c:if test="${ !empty houseBoard.thumbnail_filename }">
-		            <img class="d-block w-100" src="${pageContext.request.contextPath}/houseBoard/imageView.do?house_num=${houseBoard.house_num}" style="border-radius:1%;" >
-	            </c:if>
-	           </div>
-            </div>
-          </div>
-        </c:forEach>
-		</div>
-		</c:if>
-		<div style="clear:both;">	<!-- clear:both 넣으면 floating이 해제되고 튀어올라가지 않음 -->
-			<hr width="100%" size="1" noshade="noshade">
-		</div>
-	</div>
-</div>
 		<div class="main-item">매일의 스토리
 			<section class="everydaystory">
 			<ul class="storyul">
+	  	  <c:forEach var="houseBoard" items="${ HList }">
 				<li class="storyli">
-					<figure class="storyimage"></figure>
+					<figure class="storyimage" style="height: 320px; width : 340px;">
+				<c:if test="${ empty houseBoard.thumbnail_filename }">
+	            	<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="border-radius:1%; width:300px; height:206x;"/>
+	            </c:if>
+	            <!-- 사진파일이 있는 경우 -->
+	            <c:if test="${ !empty houseBoard.thumbnail_filename }">
+		            <img class="d-block w-100" src="${pageContext.request.contextPath}/houseBoard/imageView.do?house_num=${houseBoard.house_num}" style="border-radius:1% width:300px; height:206x;;" >
+	            </c:if>
+					</figure>
 					<div class="storydesc">
 						<p>작성자</p>
 					</div>
 				</li>
-				<li class="storyli">
-					<figure class="storyimage"></figure>
-					<div class="storydesc">
-						<p>작성자</p>
-					</div>
-				</li>
-				<li class="storyli">
-					<figure class="storyimage"></figure>
-					<div class="storydesc">
-						<p>작성자</p>
-					</div>
-				</li>
+        	</c:forEach>
 			</ul>
 		</section>
 		</div>
@@ -443,107 +382,56 @@ text-align : center;
 <!-- 카테고리 이미지 끝 -->		
 		<!-- 스토어 시작 -->
 		<div class="main-item">
-			<div class="rankfeed">
-				<ol class="rankfeedul">
-					<li class="rankfeedli" >전체</li>
-					<li class="rankfeedli" value="">가구</li>
-					<li class="rankfeedli" value="">패브릭</li>
-					<li class="rankfeedli" value="light">조명</li>
-					<li class="rankfeedli" value="">가전</li>
-					<li class="rankfeedli" value="kitchen">주방용품</li>
-					<li class="rankfeedli" value="deco">데코/취미</li>
-					<li class="rankfeedli" value="">수납/정리</li>
-					<li class="rankfeedli" value="">생필품</li>
-					<li class="rankfeedli" value="DIY">공구/DIY</li>
-					<li class="rankfeedli" value="pets">반려동물용품</li>
-					<li class="rankfeedli" value="">실내운동</li>
-					<li class="rankfeedli" value="baby">유아아동</li>
-					<li class="rankfeedli" value="lental">렌탈</li>
-				</ol>
-			</div>
-	  	  <c:forEach var="store" items="${ SList }">
-	          <div class="card" style="height: 540px;">
-	           <div class="card-body">
-	           	<div align="center" style="cursor: pointer;"  onclick="location.href='${pageContext.request.contextPath}/store/storeDetail.do?prod_num=${store.prod_num}'">
-	          		<!-- 사진파일이 없는 경우 -->
-	            <c:if test="${ empty store.thumbnail_filename }">
-	            	<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="border-radius:1%;"/>
-	            </c:if>
-	            <!-- 사진파일이 있는 경우 -->
-	            <c:if test="${ !empty store.thumbnail_filename }">
-		            <img class="d-block w-100" src="${pageContext.request.contextPath}/store/imageView.do?prod_num=${store.prod_num}" style="border-radius:1%;" >
-	            </c:if>
-	           </div>
-	           </div>
-	         </div>
-	     		</c:forEach>
-
-				<section class="bestitem">
+			<section class="bestitem">
 			<ul class="bestitemul">
-				<li class="bestitemli">
-					<figure class="bestimage"></figure>
+	  	  	<c:forEach var="store" items="${ SList }">
+				<li class="card mx-3">
+					<figure class="bestimage" style="height: 320px; width : 340px;">
+					<c:if test="${ empty store.thumbnail_filename }">
+	            	<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="border-radius:1%; width:300px; height:206x;"/>
+	            	</c:if>
+	            <!-- 사진파일이 있는 경우 -->
+	            	<c:if test="${ !empty store.thumbnail_filename }">
+		            <img class="d-block w-100" src="${pageContext.request.contextPath}/store/imageView.do?prod_num=${store.prod_num}" style="border-radius:1%; width:300px; height: 206px;" >
+	            	</c:if>
+					
+					</figure>
 					<div class="bestdesc">
-						제품명<br>
-						가격
+						${store.prod_name}<br>
+						${store.prod_price}
 					</div>
 				</li>
-				<li class="bestitemli">
-					<figure class="bestimage"></figure>
-					<div class="bestdesc">
-						제품명<br>
-						가격
-					</div>
-				</li>
-				<li class="bestitemli">
-					<figure class="bestimage"></figure>
-					<div class="bestdesc">
-						제품명<br>
-						가격
-					</div>
-				</li>
-				<li class="bestitemli">
-					<figure class="bestimage"></figure>
-					<div class="bestdesc">
-						제품명<br>
-						가격
-					</div>
-				</li>
+			</c:forEach>
 			</ul>
 		</section>		
 		</div>
 		<!-- 스토어 끝 -->
 		<!-- 사진 게시판 추천순 시작 -->
+		
+		
 		<div class="main-item">매일의 인기사진
 			<section class="popular">
 			<ul class="popularul">
-				<li class="popularli">
-					<figure class="popularimage"></figure>
+			<c:forEach var="event" items="${EList}">
+				<li class="card mx-3">
+					<figure class="popularimage" style="height: 320px; width : 340px;">
+				      <c:if test="${ empty houseBoard.thumbnail_filename }">
+	            	  <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="border-radius:1%; width:300px; height:206x;"/>
+	            	  </c:if>
+	            <!-- 사진파일이 있는 경우 -->
+	            	  <c:if test="${ !empty houseBoard.thumbnail_filename }">
+		              <img class="d-block w-100" src="${pageContext.request.contextPath}/houseBoard/imageView.do?house_num=${houseBoard.house_num}" style="border-radius:1%; width:300px; height:206px;" >
+	                  </c:if>
+					</figure>
 					<div class="populardesc">
-						<p>작성자</p>	
+						<p>${event.event_title}</p>	
 					</div>
 				</li>
-				<li class="popularli">
-					<figure class="popularimage"></figure>
-					<div class="populardesc">
-						<p>작성자</p>				
-					</div>
-				</li>
-				<li class="popularli">
-					<figure class="popularimage"></figure>
-					<div class="populardesc">
-					<p>작성자</p>	
-					</div>
-				</li>
-				<li class="popularli">
-					<figure class="popularimage"></figure>
-					<div class="populardesc">
-					<p>작성자</p>	
-					</div>
-				</li>
+			</c:forEach>
 			</ul>
 		</section>
 		</div>
+		</div>
+		</div>
 		<!-- 사진 게시판 추천순 끝 -->
-	</div>
-</div>
 <!-- 메인 끝 -->
