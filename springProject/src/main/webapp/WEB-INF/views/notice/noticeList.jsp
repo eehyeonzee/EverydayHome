@@ -4,11 +4,6 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
-<script>
-$('a').click(function(event){
-    event.preventDefault(); 
-	});
-</script>
 <style>
 .name-item{
 	align-items: center;
