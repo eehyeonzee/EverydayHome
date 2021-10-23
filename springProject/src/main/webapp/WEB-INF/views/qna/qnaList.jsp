@@ -100,7 +100,7 @@ h2{
 			<h2 class="admin-page-h2">고객센터</h2>
 			<div align="left">
 			<c:if test="${user_auth != 4}">
-				<input class = "btn btn-outline-dark" type="button" value="이메일 문의하기" onclick="location.href='serviceBoardInsert.do'">
+				<input class = "btn btn-outline-dark" type="button" value="이메일 문의하기" onclick="location.href='${pageContext.request.contextPath}/qna/serviceBoardInsert.do'">
 			</c:if>
 			</div>
 		</div>
