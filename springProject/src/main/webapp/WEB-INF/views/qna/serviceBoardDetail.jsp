@@ -73,6 +73,9 @@
 		<li>글번호: ${serviceboard.service_num }</li>
 		<li>작성자 이메일: ${serviceboard.service_email }</li>
 		<li>문의 유형: ${serviceboard.service_keyword }</li>
+	</ul>
+		<hr width="98%" size="1" noshade="noshade">
+	<ul style="-webkit-padding-start:0px;">	
 		<li>문의내용: ${serviceboard.service_content }</li>
 	</ul>
 	<c:if test="${!empty serviceboard.service_filename}">

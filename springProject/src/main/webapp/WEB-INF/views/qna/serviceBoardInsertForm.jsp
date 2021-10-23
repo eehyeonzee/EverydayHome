@@ -37,13 +37,13 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<div class = "container-fluid contents-wrap" style = "width:70%">
+<div class = "container-fluid contents-wrap" style = "width:70%;">
 	<div class="text-center col-sm-30 my-5">
 		<div align = "left">
 			<h2>이메일 문의</h2>
 		</div>
 		<hr noshade="noshade" size="2"><br>
-		<div align="center" class = "container-fluid" style = "width:900px; border: 1px solid #d2f1f7; font-family: 'Gowun Dodum', sans-serif; ">
+		<div align="center" class = "container-fluid" style = "width:900px; border: 1px solid #b8b8b8; font-family: 'Gowun Dodum', sans-serif; ">
 			<div class="text-center col-sm-12 my-5">
 				<form:form action="serviceBoardInsert.do" modelAttribute="serviceBoardVO" enctype="multipart/form-data">
 					<div style="width:343px;" class="form-group row" >

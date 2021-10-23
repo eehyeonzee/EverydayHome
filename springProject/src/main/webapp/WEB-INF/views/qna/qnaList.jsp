@@ -153,6 +153,41 @@ a.faq_item:hover{
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<!--  공유 API 시작 -->
+<script type="text/javascript">
+//페이스북
+function shareFacebook() {
+    var sendUrl = 'localhost:8081/EverydayHome/event/eventDetail.do?event_num=${event.event_num}'; // 전달할 URL
+    window.open('http://www.facebook.com/sharer/sharer.php?u=' + sendUrl);
+}
+// 카카오톡
+function shareKakao() {
+		// 사용할 앱의 JavaScript 키 설정
+	Kakao.init('bb121a537c2b70043cc692b909a3c23f');
+	// 링크 버튼 생성
+	Kakao.Link.createDefaultButton({
+		container: '#btnKakao', // 공유 버튼 ID
+		objectType: 'feed',
+		content: {
+			title: '매일의 집', // 보여질 제목
+			description: '매일 새롭게 올라오는 예쁜 집들을 구경하세요!', // 보여질 설명
+			imageUrl: 'localhost:8081/EverydayHome/main/main.do', // 콘텐츠 URL
+			link: {
+			mobileWebUrl: 'localhost:8081/EverydayHome/main/main.do',
+			webUrl: 'localhost:8081/EverydayHome/main/main.do'
+			}
+		}
+	});
+}
+// 트위터
+function shareTwitter() {
+    var sendText = '매일의 집'; // 전달할 텍스트
+    var sendUrl = 'http://localhost:8081/EverydayHome/event/eventDetail.do?event_num=${event.event_num}'; // 전달할 URL
+    window.open('https://twitter.com/intent/tweet?text=' + sendText + '&url=' + sendUrl);
+}
+</script>
+<!-- 공유 API  끝 -->
 <script type="text/javascript">
  	$(function() {
  		
@@ -162,7 +197,8 @@ a.faq_item:hover{
 	});
          
 </script>
-  <script>
+<!-- 클릭시 이메일 복사 시작-->
+<script>
     function copyToClipboard(val) {
 	    var t = document.createElement("textarea");
 	    document.body.appendChild(t);
@@ -171,17 +207,32 @@ a.faq_item:hover{
 	    document.execCommand('copy');
 	    document.body.removeChild(t);
     }
+</script>
+<!-- 클릭시 이메일 복사 끝 -->
+<!-- 클릭시 URL 복사 시작-->
+  <script>
+    function copyUrl() {
+    	var url='';
+	    var textarea = document.createElement("textarea");
+	    document.body.appendChild(textarea);
+	    url=window.document.location.href;
+	    textarea.value=url;
+	    textarea.select();
+	    document.execCommand('copy');
+	    document.body.removeChild(textarea);
+	    alert("URL이 복사되었습니다.")
+    }
   </script>
-<div class="main-container">
+<!-- 클릭시 URL 복사 끝 -->
 	<div class="container"> 
 		<div class="qna-left-title">
 			<br><h2 class="h2">&nbsp;&nbsp;고객센터</h2><br>
 			<div class="box">
 	   			<section class="col-12 col-md-6 qna_contact"><address>운영시간 : 평일 09:00 ~ 18:00 (주말 &amp; 공휴일 제외)<br>
-			    <c:if test="${user_auth != 4}">
-		   			이메일 :&nbsp;<a href="${pageContext.request.contextPath}/qna/serviceBoardInsert.do" style="text-decoration:underline">이메일 문의하기</a>
-		   			<button id="copybtn" class="copy-email" onclick="copyToClipboard('springtest1010@gmail.com');" title="주소 복사">이메일 주소 복사</button>
-			    </c:if>
+				    <c:if test="${user_auth != 4}">
+			   			이메일 :&nbsp;<a href="${pageContext.request.contextPath}/qna/serviceBoardInsert.do" style="text-decoration:underline">이메일 문의하기</a>
+			   			<button id="copybtn" class="copy-email" onclick="copyToClipboard('springtest1010@gmail.com');" title="주소 복사">이메일 주소 복사</button>
+				    </c:if>
 	   			<br>전화 :&nbsp;<a href="tel:1234-5678" style="text-decoration: underline;">1234-5678</a></address>
 				    <c:if test="${user_auth != 4}">
 				        <button class="email_button" type="button" value="이메일 문의하기" onclick="location.href='${pageContext.request.contextPath}/qna/serviceBoardInsert.do'">이메일 문의하기</button>
@@ -193,21 +244,17 @@ a.faq_item:hover{
 	   			</section>
 				<section class="col-12 col-md-6 customer-center__faq" >
 					<ul class="faq_list" >
-						<li><a class="faq_item" href="/customer_center#배송관련__배송은+얼마나+걸리나요">배송은 얼마나 걸리나요?</a></li>
-						<li><a class="faq_item" href="/customer_center#취소+환불__주문+취소는+어떻게+하나요">주문 취소는 어떻게 하나요?</a></li>
-						<li><a class="faq_item" href="/customer_center#서비스+기타__제품의+자세한+정보는+어떻게+알+수+있나요">제품의 자세한 정보를 알고 싶어요.</a></li>
-						<li><a class="faq_item" href="/customer_center#반품+교환__제품이+불량입니다.+반품+혹은+교환은+어떻게+하나요">제품이 불량일 때는?</a></li>
+						<li><a class="faq_item" href="#">배송은 얼마나 걸리나요?</a></li>
+						<li><a class="faq_item" href="#">주문 취소는 어떻게 하나요?</a></li>
+						<li><a class="faq_item" href="#">제품의 자세한 정보를 알고 싶어요.</a></li>
+						<li><a class="faq_item" href="#">제품이 불량일 때는?</a></li>
 					</ul>
 				</section>	   		
 	   		</div>
 		</div>
-		
 	</div>
-	
 	<div class = "container-fluid contents-wrap" style = "width:90%">
 		<div class="text-center col-sm-30 my-5">
-	
-	   
 	
 		<table class="table table-sm" style="border-spacing: 2px; border-collapse: separate;">
 			<tr>
@@ -248,6 +295,14 @@ a.faq_item:hover{
 			</c:forEach>
 		</c:if>
 		</table>
+		<!-- SNS 공유하기 버튼 시작 -->
+		<div align="right">
+			<a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();">　　　</a><!-- 페이스북 -->
+			<a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();">　　　</a><!-- 카카오톡 -->
+			<a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();">　　　</a><!-- 트위터 -->
+			<img style="cursor: pointer;" src="${pageContext.request.contextPath}/resources/images/url.png" onclick="copyUrl(); return false;" title="URL 복사"/>
+		</div>
+		<!-- SNS 공유 API 버튼 끝 -->
 		<div class="align-center">${pagingHtml}</div>
 	</div>
 </div>

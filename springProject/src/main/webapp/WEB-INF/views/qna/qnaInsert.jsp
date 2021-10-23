@@ -9,6 +9,29 @@
  * 수정일 : 
 --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+<style>
+.submit{
+    cursor: pointer;
+    touch-action: manipulation;
+    box-sizing: border-box;
+    display: inline-block;
+    border-width: 1px;
+    border-style: solid;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: bold;
+    line-height: 1;
+    height: 60px;
+    padding: 21px 0;
+    font-size: 18px;
+    transition: .2s ease;
+    background-color: #8c996b;
+    border-color: #8c996b;
+    color: #ffffff;
+    user-select: none;
+    width: 250px;
+}
+</style>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -43,15 +66,17 @@
 		}
 	};
 </script>
-<div class = "container-fluid contents-wrap" style = "width:95%">
+<div class = "container-fluid contents-wrap" style = "width:70%">
    <div class="text-center col-sm-30 my-5">
 
-<hr noshade="noshade" size="2">
 <div align = "left">
-	<h2 class="admin-page-h2">관리자 - 자주묻는질문 등록</h2>
+	<h3>관리자 - 자주묻는질문 등록</h3>
 </div>
-	
-		<div align="center" class = "container-fluid" style = "width:700px; border: 1px solid #d2f1f7; font-family: 'Gowun Dodum', sans-serif; ">
+<div align = "right">
+	<input class = "btn btn-outline-dark" type="button" value="홈으로" onclick="location.href='qnaList.do'">
+</div>
+	<hr noshade="noshade" size="2"><br>
+		<div align="center" class = "container-fluid" style = "width:900px; border: 1px solid #b8b8b8; font-family: 'Gowun Dodum', sans-serif; ">
 			<div class="text-center col-sm-12 my-5">
 			<form:form id="qnaInsertForm" action="qnaInsert.do" modelAttribute="qnaVO">
 				<div style="flex: auto;" class="input-group-prepend col-xs-2">
@@ -67,18 +92,19 @@
 					</select>
 				</div>
 				<div style="display: inline-block;"><hr size="1" noshade="noshade"></div>
-				<div class = "form-group row">		
-					<label class = "col-sm-3 col-form-label" for="qna_content">질문내용</label>
-					<form:textarea path="qna_content"/>
-				</div>
-				<div class = "form-group row">		
-					<label class = "col-sm-3 col-form-label" for="qna_reply">답변내용</label>
-					<form:textarea path="qna_reply"/>
-				</div>
+				<div class = "form-group row" style="width:750px; height:160px;">
+					<label class = "col-sm-3 col-form-label" for="qna_content"></label>
+					<textarea rows="1" style="height:160px;" class="form-control" name="qna_content" id="qna_content" maxlength="500" placeholder="Q: 질문 내용"></textarea>
+					<form:errors path="qna_content" cssClass="error-color"/>
+				</div><br>
+				<div class = "form-group row" style="width:750px; height:160px;">
+					<label class = "col-sm-3 col-form-label" for="qna_reply"></label>
+					<textarea rows="1" style="height:160px;" class="form-control" name="qna_reply" id="qna_reply" maxlength="500" placeholder="A: 답변 내용"></textarea>
+					<form:errors path="qna_reply" cssClass="error-color"/>
+				</div><br>
 				<!-- 버튼 -->
 				<div class="align-center">
-					<input class = "btn btn-outline-dark" type="submit" value="등록">
-					<input class = "btn btn-outline-dark" type="button" value="홈으로" onclick="location.href='qnaList.do'">
+					<input class = "submit" type="submit" value="등록">
 				</div>
 			</form:form>
 		</div>

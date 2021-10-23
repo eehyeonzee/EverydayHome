@@ -303,6 +303,11 @@ div.mypage-info table{
 	background-repeat: no-repeat;
 	text-decoration: none;
 }
+.link-icon.url {
+	background-image: url(../images/url.png);
+	background-repeat: no-repeat;
+	text-decoration: none;
+}
 
 /*메인*/
 a:link{
