@@ -23,6 +23,8 @@
 						TO_CHAR(b.house_reg_date, 'YYYY-MM-DD') house_reg_date,
 						TO_CHAR(b.house_mod_date, 'YYYY-MM-DD') house_mod_date,
 						b.mem_num,
+						b.house_thumbnail,
+						b.thumbnail_filename,
 						m.nickname,
 						m.profile,
 						m.profile_filename

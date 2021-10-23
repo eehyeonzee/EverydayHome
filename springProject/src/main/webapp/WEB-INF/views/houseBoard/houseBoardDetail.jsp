@@ -160,7 +160,7 @@
 						//each() 메소드는 매개변수로 받은 것을 사용해 for in 반복문과 같이 배열이나 객체의 요소를 검사함
 						var output = '<div class="item">';
 						if(item.profile != null) {
-							output += '<div style="width:57px; height:57px; float:left; padding-right:5em;"><img src="${pageContext.request.contextPath}/houseBoard/commPhotoView.do?mem_num='+item.mem_num+'" style="height:53px; width:53px;" class="my-photo"/></div>';
+							output += '<div style="width:57px; height:57px; float:left; padding-right:5em;"><img src="${pageContext.request.contextPath}/houseBoard/boardProfile.do?mem_num='+item.mem_num+'" style="height:53px; width:53px;" class="my-photo"/></div>';
 						}else {
 							output += '<div style="width:57px; height:57px; float:left; padding-right:5em;"><img src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="height:45px; width:45px;" class="my-photo"/></div>';
 						}

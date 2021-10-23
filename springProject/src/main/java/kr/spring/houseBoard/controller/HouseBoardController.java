@@ -96,8 +96,8 @@ public class HouseBoardController {
 								@RequestParam(value="size", defaultValue="") String size,
 								@RequestParam(value="residence", defaultValue="") String residence,
 								@RequestParam(value="style", defaultValue="") String style,
-								@RequestParam(value="space", defaultValue="") String space)
-										{
+								@RequestParam(value="space", defaultValue="") String space) {
+		
 		String keyfield = "";
 		String keyword = "";
 		
@@ -135,6 +135,7 @@ public class HouseBoardController {
 			
 			sizeOutput = keyword;
 		}
+		
 		if(!residence.equals("")) {
 			keyfield = "2";
 			// select residence 처리
@@ -162,8 +163,8 @@ public class HouseBoardController {
 			}
 			
 			residenceOutput = keyword;
-			
 		}
+		
 		if(!style.equals("")) {
 			keyfield = "3";
 			// select style 처리
@@ -198,6 +199,7 @@ public class HouseBoardController {
 			
 			styleOutput = keyword;
 		}
+		
 		if(!space.equals("")) {
 			keyfield = "4";
 			// select space 처리
@@ -251,15 +253,12 @@ public class HouseBoardController {
 			spaceOutput = keyword;
 		}
 		
-		
 		Map<String,Object> map = new HashMap<String,Object>();
 		//map.put("keyfield", keyfield);
 		map.put("sizeOutput", sizeOutput);
 		map.put("residenceOutput", residenceOutput);
 		map.put("styleOutput", styleOutput);
 		map.put("spaceOutput", spaceOutput);
-		
-		
 		
 		logger.debug("<<사이즈>> : " + keyword + keyfield);
 		// 글의 총 개수 또는 검색된 글의 개수
@@ -280,8 +279,6 @@ public class HouseBoardController {
 		if(count > 0) {
 			list = houseBoardService.selectHBoardList(map);
 		}
-		
-		
 		
 		// 전달 객체
 		ModelAndView mav = new ModelAndView();
@@ -305,16 +302,17 @@ public class HouseBoardController {
 		return mav;
 	}
 	
-	// 글 목록 - 썸네일 사진 출력
-	@RequestMapping("/houseBoard/thumbnail.do")
-	public ModelAndView thumbnailViewImage(@RequestParam int house_num) {
+	// 글 목록 - 썸네일 이미지 출력
+	@RequestMapping("/houseBoard/imageView.do")
+	public ModelAndView thumbnailImage(@RequestParam int house_num) {
 		
-		HouseBoardVO houseBoardVO = houseBoardService.selectHBoard(house_num);
+		HouseBoardVO houseBoard = houseBoardService.selectHBoard(house_num);
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("imageView");
-		mav.addObject("imageFile", houseBoardVO.getHouse_thumbnail());
-		mav.addObject("filename", houseBoardVO.getThumbnail_filename());
+		mav.setViewName("imageView"); // imageView 빈 이름(id) 생성 -> mav가 클래스 파일(빈 객체) 찾아서 실행시켜줌
+		//				속성명			속성값(byte[]의 데이터)
+		mav.addObject("imageFile", houseBoard.getHouse_thumbnail());
+		mav.addObject("filename", houseBoard.getThumbnail_filename());
 		
 		return mav;
 	}
@@ -353,7 +351,6 @@ public class HouseBoardController {
 		// 댓글수
 		int countComm = houseBoardService.countComm(house_num);
 		
-		
 		// 추천 버튼 실행
 		if(user_num == null) {
 			// 로그인 되어있지 않음
@@ -387,7 +384,7 @@ public class HouseBoardController {
 			String already = houseBoardService.checkScrap(hMark);
 			if(already == null) { // 스크랩버튼 누른 적 없음
 				
-			}else { // 추천버튼 누른 적 있음
+			}else { // 스크랩버튼 누른 적 있음
 				scrapCheckNum = 1;
 			}
 		}
@@ -402,21 +399,6 @@ public class HouseBoardController {
 	    mav.addObject("countScrap", countScrap);
 	    mav.addObject("countComm", countComm);
 	     
-		return mav;
-	}
-	
-	// 이미지 출력
-	@RequestMapping("/houseBoard/imageView.do")
-	public ModelAndView viewImage(@RequestParam int house_num) {
-		
-		HouseBoardVO houseBoard = houseBoardService.selectHBoard(house_num);
-		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("imageView"); // imageView 빈 이름(id) 생성 -> mav가 클래스 파일(빈 객체) 찾아서 실행시켜줌
-		//				속성명		속성값(byte[]의 데이터)
-		mav.addObject("imageFile", houseBoard.getHouse_thumbnail());
-		mav.addObject("filename", houseBoard.getThumbnail_filename());
-		
 		return mav;
 	}
 	
@@ -578,9 +560,9 @@ public class HouseBoardController {
 		return mapJson;
 	}
 	
-	// 댓글 프로필 사진 출력
-	@GetMapping("/houseBoard/commPhotoView.do")
-	public ModelAndView boardViewImage(@RequestParam int mem_num) {
+	// 회원 프로필 사진 출력
+	@GetMapping("/houseBoard/boardProfile.do")
+	public ModelAndView boardProfileImage(@RequestParam int mem_num) {
 		
 		MemberVO memberVO = memberService.selectMember(mem_num);
 		

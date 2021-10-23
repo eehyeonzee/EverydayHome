@@ -8,19 +8,28 @@
  * 수정일 : 
 --%>
 <!-- 중앙 내용 시작 -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 <style>
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 <script type="text/javascript">
 	$(function() {
-		
+		// 이미지 트랜지션
+		/* $('.imgTransition').hover(function() {
+			$('#thumbnail').css("transform","scale(1.1)");
+		}, function() {
+			$("#thumbnail").css("transform","scale(1.0)");
+		}); */
 	});
 </script>
-<div class="page-main">
+<div class="houseBoard-list">
+<div class="container">
+<!-- 카테고리 검색 시작 -->
 <div style="display: inline-block;">
-	<div class="input-group mb-3">
+	<div class="row">
+	<!-- 평수 -->
+	<div class="input-group col-3 mb-3">
 	  <div class="input-group-prepend">
 	    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">평수</button>
 	    <div class="dropdown-menu">
@@ -34,9 +43,9 @@
 	    </div>
 	  </div>
 	</div>		
-	<span><a style="font-size:15px; text-decoration:none;" href="#">${sizeOutput}</a></span>
-
-	<div class="input-group mb-3">
+	<span><a style="font-size:15px; color:#8c996b; text-decoration:none;" href="#">${sizeOutput}</a></span>
+	<!-- 주거형태 -->
+	<div class="input-group col-3 mb-3">
 	  <div class="input-group-prepend">
 	    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">주거형태</button>
 	    <div class="dropdown-menu">
@@ -51,8 +60,8 @@
 	  </div>
 	</div>		
 	<span><a style="font-size:15px; text-decoration:none;" href="#">${residenceOutput}</a></span>
-	
-	<div class="input-group mb-3">
+	<!-- 스타일 -->
+	<div class="input-group col-3 mb-3">
 	  <div class="input-group-prepend">
 	    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">스타일</button>
 	    <div class="dropdown-menu">
@@ -69,8 +78,8 @@
 	  </div>
 	</div>		
 	<span><a style="font-size:15px; text-decoration:none;" href="#">${styleOutput}</a></span>
-
-	<div class="input-group mb-3">
+	<!-- 공간 -->
+	<div class="input-group col-3 mb-3">
 	  <div class="input-group-prepend">
 	    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">공간</button>
 	    <div class="dropdown-menu">
@@ -92,46 +101,76 @@
 	  </div>
 	</div>		
 	<span><a style="font-size:15px; text-decoration:none;" href="#">${spaceOutput}</a></span>
-	<div class="input-group mb-3">
+	<div class="input-group col-3 mb-3">
 	  <div class="input-group-prepend">
 	  	<button class="btn btn-outline-secondary" type="button" onclick="location.href='list.do'">초기화</button>
 	  </div>
 	</div>
 </div>
-	<!-- 카테고리 검색 끝 -->
+</div>
+<!-- 카테고리 검색 끝 -->
 	<!-- 게시물 출력 시작 -->
-	<div class="row mb-5 ml-5 mr-5" align="center">
+	<!-- 등록된 게시물이 없을 경우 -->
 	<c:if test="${count == 0}">
-	<div class="align-center">
+	<div class="result-display">
 		등록된 게시물이 없습니다.
 	</div>
 	</c:if>
+	<!-- 등록된 게시물이 있을 경우 -->
 	<c:if test="${count > 0}">
-	<p>
+	<div>
 		총 <b style="color:#8c996b">${count}</b>개의 글
-	</p>
-	
-	<table>
-		<tr>
-			<th>번호</th>
-			<th width="400">제목</th>
-			<th>작성자</th>
-			<th>작성일</th>
-			<th>조회수</th>
-		</tr>
-		<c:forEach var="houseBoard" items="${list}">
-		<tr>
-			<td>${houseBoard.house_num}</td>
-			<td><a href="detail.do?house_num=${houseBoard.house_num}">${houseBoard.house_title}</a></td>
-			<td>${houseBoard.nickname}</td>
-			<td>${houseBoard.house_reg_date}</td>
-			<td>${houseBoard.house_hits}</td>
-		</tr>
-		</c:forEach>
-	</table>
-	<div> ${pagingHtml}</div>
-	</c:if>
 	</div>
-	<!-- 게시물 출력 끝 -->
+	<%-- 반복문 시작 --%>
+	<div class="container">
+	<div class="row mb-5 mr-7">
+	<c:forEach var="houseBoard" items="${list}">
+		<div class="col-3">
+			<div class="card" style="width:255px; height:450px; text-align:center;">
+				<div class="card-header">
+					<div style="float:left; cursor:pointer;" onclick="location.href='${pageContext.request.contextPath}/houseBoard/detail.do?house_num=${houseBoard.house_num}'">
+						<%-- 회원 프로필 사진이 없는 경우 --%>
+						<c:if test="${empty houseBoard.profile_filename}">
+							<img src="${pageContext.request.contextPath }/resources/images/basic.jpg" style="width:33px; height:33px;" class="my-photo">
+						</c:if>
+						<%-- 회원 프로필 사진이 있는 경우 --%>
+						<c:if test="${!empty houseBoard.profile_filename}">
+							<img src="${pageContext.request.contextPath}/houseBoard/boardProfile.do?mem_num=${houseBoard.mem_num}" style="width:33px; height:33px;" class="my-photo">
+						</c:if>
+						<b style="font-size:17px">${houseBoard.nickname}</b>
+					</div>
+				</div>
+				<div class="imgTransition" style="cursor:pointer; overflow:hidden;" onclick="location.href='detail.do?house_num=${houseBoard.house_num}'">
+					<%-- 사진파일이 없는 경우 --%>
+					<c:if test="${empty houseBoard.thumbnail_filename}">
+						<figure class="embed-responsive embed-responsive-1by1">
+		            	<img class="card-img-top embed-responsive-item" id="thumbnail" src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="width:100%; border-radius:1%;"/>
+						</figure>
+					</c:if>
+					<%-- 사진파일이 있는 경우 --%>
+					<c:if test="${!empty houseBoard.thumbnail_filename}">
+		            	<figure class="embed-responsive embed-responsive-1by1">
+		            	<img class="card-img-top embed-responsive-item" id="thumbnail" src="imageView.do?house_num=${houseBoard.house_num}" style="width:100%; border-radius:1%;"/>
+		            	</figure>
+		            </c:if>
+	            	<div class="box" align="center">
+					<br>
+					<div class="content" align="center">
+					<h5 class="card-title"><a href="detail.do?house_num=${houseBoard.house_num}" class="btn btn-outline-dark">${houseBoard.house_title}</a></h5>
+					</div>
+					</div>
+				</div>
+			</div>&nbsp;
+		</div>
+	</c:forEach>
+	<%-- 반복문 끝 --%>
+	</div>
+	</div>
+	</c:if>
+	<div class="paging" align="center">
+		<span>${pagingHtml}</span>
+	</div>
 </div>
+</div>
+	<!-- 게시물 출력 끝 -->
 <!-- 중앙 내용 끝 -->
