@@ -22,7 +22,7 @@ public interface EventMapper {
 	public int selectRowCount(Map<String,Object> map);
 	@Select("SELECT * FROM event b JOIN mem_detail m ON b.mem_num=m.mem_num WHERE b.event_num=#{event_num}")
 	public EventVO eventDetail(int event_num);
-	@Update("UPDATE event SET event_title=#{event_title},event_content=#{event_content},event_day=#{event_day},event_type=#{event_type} WHERE event_num=#{event_num}")
+	//@Update("UPDATE event SET event_title=#{event_title},event_content=#{event_content},event_day=#{event_day},event_type=#{event_type} WHERE event_num=#{event_num}")
 	public void eventUpdate(EventVO eventVO);
 	@Delete("DELETE FROM event WHERE event_num=#{event_num}")
 	public void eventDelete(int event_num);

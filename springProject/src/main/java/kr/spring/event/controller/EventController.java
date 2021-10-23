@@ -168,15 +168,19 @@ public class EventController {
 	}
 	//이벤트 업데이트 
 	@PostMapping("/event/eventUpdate.do")
-	public String submitUpdate(@Valid EventVO eventVO, BindingResult result) {
+	public String submitUpdate(@Valid EventVO eventVO, BindingResult result, HttpServletRequest request, Model model) {
 		logger.debug("<<수정>>:" + eventVO);
 		
 		if(result.hasErrors()) {
-			return "redirect:eventList.do";
+			return "eventUpdate";
 		}
-		
+		//수정
 		eventService.eventUpdate(eventVO);
-		return "redirect:eventList.do";
+		// View에 표시할 메시지
+		model.addAttribute("message", "수정이 완료되었습니다.");
+		model.addAttribute("url", request.getContextPath() + "/event/eventList.do"); // url은 전체 경로를 명시해주는 것이 좋음
+		
+		return "common/resultView";
 	}
 	//글 수정시 이미지 
 	@RequestMapping("/event/deleteFile.do")
@@ -400,10 +404,6 @@ public class EventController {
 	   return mav;
    }
 }
-//카테고리 추가해야함 카테고리 추가후 mapper에 있는 sql수정필요 ==> 현재 다 1로 해둠
-//리스트에서 이미지파일 썸네일처럼 미리보기 추가해야함
-//이미지 여러개 보일 수 있게 구현할수 있다면 하기O
-//수정 jsp에서 이미지 파일 넣을 수 있게 수정해야함O
+//수정 썸네일 등록안됨
 //수정,글등록 완료시 글등록 완료 알림창 뜨게 바꾸기 << 이건 notice도 마찬가지 
-//버튼 디자인 변경 << notice도 마찬가지
-//수정 오류있음 수정해야함(?)
+//댓글 등록 안됨

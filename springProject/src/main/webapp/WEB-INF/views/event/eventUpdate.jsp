@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
+<link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style>
 .container{
 width: 900px;
@@ -72,8 +73,10 @@ min-height: 500px;
 				<form:input path="event_day"/><br>
 				<form:errors path="event_day" cssClass="error-color"/>
 			</li>
+			<!-- CKEditor 시작 -->
 			<li class="li-content">
 			<li>
+				<label for="event_content"></label>
 				<form:textarea path="event_content"/>
 				<form:errors path="event_content" cssClass="error-color"/>
 				<script>
@@ -92,6 +95,8 @@ min-height: 500px;
 					})
 				</script>
 			</li>
+			<!-- CKEditor 끝 -->
+			<!-- 썸네일 시작 -->
 			<li>
 				<label for="upload">썸네일 파일</label>
 				<input type="file" name="upload" id="upload" accept="image/gif,image/png,image/jpeg">
@@ -107,23 +112,23 @@ min-height: 500px;
 								var choice = confirm('삭제하시겠습니까?');
 								if(choice) { // true
 									$.ajax({
-										data: {event_num:${eventVO.event_num}},
+										data: {event_num: ${eventVO.event_num}},
 										type: 'post',
 										url: 'deleteFile.do',
 										dataType: 'json',
 										cache: false,
 										timeout: 30000,
 										success: function(param) {
-											if(param.result == 'logout') {
-												alert('로그인 후 사용하세요');
+											if(param.result == 'wrongauth') {
+												alert('Wrong auth');
 											}else if(param.result == 'success') {
 												$('#file_detail').hide();
 											}else {
-												alert('파일삭제 오류 발생');
+												alert('파일삭제 오류🤯');
 											}
 										},
-										error: function() {
-											alert('네트워크 오류 발생');
+										error : function(request,status,error) { // 에러메시지 반환
+											alert("🤯 code = " + request.status + " message = " + request.responseText + " error = " + error);
 										}
 									});
 								}
@@ -132,11 +137,22 @@ min-height: 500px;
 					</script>
 				</c:if>
 			</li>
-
+			<!-- 썸네일 끝 -->
 		</ul>
 		<div class="submit-button">
-			<input type="submit" value="등록">
-			<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/event/eventList.do'">
+			<input class = "btn btn-outline-dark" type = "submit" value = "글 수정" id = "update">
+			<script type = "text/javascript">
+				var update = document.getElementById('update');
+				update.onclick=function() {
+					var choice = confirm('수정 하시겠습니까?');
+					if(choice) {
+						return;
+					}else {
+						return false;
+					}
+				};
+			</script>
+			<input class = "btn btn-outline-dark" type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/event/eventList.do'">
 		</div>
 	</form:form>
 	</div>

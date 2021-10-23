@@ -42,8 +42,22 @@
         </where>
 	</select>
 	
-	<!-- 댓글 목록 -->
+	<!-- 글 수정 -->
+	<update id="eventUpdate" parameterType="eventVO">
+		UPDATE event SET
+			<if test="event_filename != ''">
+			event_photo = #{event_photo},
+			event_filename = #{event_filename},
+			</if>
+			event_title = #{event_title},
+			event_type = #{event_type},
+			event_content = #{event_content},
+			event_day = #{event_day},
+			event_modi = SYSDATE
+		WHERE event_num = #{event_num}
+	</update>
 	
+	<!-- 댓글 목록 -->
 	 <select id="selectListEComment" parameterType="map" resultType="eCommentVO">
 		SELECT
 		   *
