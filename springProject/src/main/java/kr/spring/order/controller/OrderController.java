@@ -10,20 +10,25 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
@@ -31,6 +36,7 @@ import kr.spring.order.service.OrderService;
 import kr.spring.order.vo.OrderVO;
 import kr.spring.store.service.StoreService;
 import kr.spring.store.vo.StoreVO;
+import kr.spring.util.PagingUtil;
 
 @Controller
 public class OrderController {
@@ -49,6 +55,9 @@ public class OrderController {
 	public OrderVO initCommand() {
 		return new OrderVO();
 	}
+	
+	private int rowCount = 20;
+	private int pageCount = 10;
 	
 	// 주문 메인 호출
 	@GetMapping("/order/orderMain.do")
@@ -197,4 +206,100 @@ public class OrderController {
 		return "orderSuccess";
 	}
 	
+	// 주문 성공 후 이동할 페이지
+	@GetMapping("/order/orderComplete.do")
+	public String orderComplete() {
+		
+		logger.debug("주문 성공 페이지 호출");
+		
+		return "orderComplete";
+	}
+	
+	// 비회원 주문 조회 페이지
+	@GetMapping("/order/nonCheck.do")
+	public String nonCheck() {
+		
+		logger.debug("비회원 주문 조회");
+		
+		return "nonCheck";
+	}
+	
+	// 비회원 주문 조회
+	@RequestMapping("/order/orderNonCheck.do")
+	public ModelAndView process(@Valid OrderVO orderVO, BindingResult result, @RequestParam(value="pageNum", defaultValue="1") int currentPage, @RequestParam String receiver_phone) {
+		
+		logger.debug("<<비회원 주문 조회>>");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("receiver_phone", receiver_phone);
+		
+		int count = orderService.selectNonRowCount(map);
+		
+		logger.debug("<<count>> : " + count);
+		
+		// 페이지 처리
+		PagingUtil page = new PagingUtil(currentPage, count, rowCount, pageCount, "orderNonCheck.do");
+		
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
+		
+		List<OrderVO> list = null;
+		ModelAndView mav = new ModelAndView();
+		
+		if(count > 0) {
+			list = orderService.selectNonList(map);
+			logger.debug("<<list>> : " + list);
+		}
+		
+		if(result.hasErrors()) {
+			mav.setViewName("nonCheck");
+			return mav;
+		}
+		
+		mav.setViewName("orderNonCheck");
+		mav.addObject("orderVO", orderVO);
+		mav.addObject("count", count);
+		mav.addObject("list", list);
+		mav.addObject("pagingHtml", page.getPagingHtml());
+		
+		return mav;
+	}
+	
+	// 나의 주문 내역 조회
+	@RequestMapping("/order/myOrder.do")
+	public ModelAndView process(OrderVO orderVO, @RequestParam(value="pageNum", defaultValue="1") int currentPage, HttpSession session) {
+		
+		logger.debug("<<회원 주문 조회>>");
+		
+		Integer mem_num = (Integer)session.getAttribute("user_num");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mem_num", mem_num);
+		
+		int count = orderService.selectRowCount(map);
+		
+		logger.debug("<<count>> : " + count);
+		
+		// 페이지 처리
+		PagingUtil page = new PagingUtil(currentPage, count, rowCount, pageCount, "myOrder.do");
+		
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
+		
+		List<OrderVO> list = null;
+		ModelAndView mav = new ModelAndView();
+		
+		if(count > 0) {
+			list = orderService.selectList(map);
+			logger.debug("<<list>> : " + list);
+		}
+		
+		mav.setViewName("myOrder");
+		mav.addObject("orderVO", orderVO);
+		mav.addObject("count", count);
+		mav.addObject("list", list);
+		mav.addObject("pagingHtml", page.getPagingHtml());
+		
+		return mav;
+	}
 }

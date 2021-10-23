@@ -205,7 +205,7 @@
 							dataType: 'json',
 							success: function(param) {
 								alert('결제에 성공하였습니다.');
-								location.href=('${pageContext.request.contextPath}/store/storeCategory.do');
+								location.href=('${pageContext.request.contextPath}/order/orderComplete.do');
 							},
 							error : function() {
 								alert('네트워크 오류');

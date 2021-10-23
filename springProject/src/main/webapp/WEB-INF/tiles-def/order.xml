@@ -13,6 +13,22 @@
     	<put-attribute name="title" value="결제 완료"/>
     	<put-attribute name="body" value="/WEB-INF/views/order/orderSuccess.jsp"/>
     </definition>
+    <definition name="orderComplete" extends="main">
+    	<put-attribute name="title" value="결제 완료"/>
+    	<put-attribute name="body" value="/WEB-INF/views/order/orderComplete.jsp"/>
+    </definition>
+    <definition name="nonCheck" extends="main">
+    	<put-attribute name="title" value="비회원 주문 조회"/>
+    	<put-attribute name="body" value="/WEB-INF/views/order/nonCheck.jsp"/>
+    </definition>
+    <definition name="orderNonCheck" extends="main">
+    	<put-attribute name="title" value="비회원 주문 조회 결과"/>
+    	<put-attribute name="body" value="/WEB-INF/views/order/orderNonCheck.jsp"/>
+    </definition>
+    <definition name="myOrder" extends="main">
+    	<put-attribute name="title" value="나의 쇼핑"/>
+    	<put-attribute name="body" value="/WEB-INF/views/order/myOrder.jsp"/>
+    </definition>
 </tiles-definitions>
 
 

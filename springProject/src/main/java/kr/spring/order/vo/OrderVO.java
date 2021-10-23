@@ -2,6 +2,8 @@ package kr.spring.order.vo;
 
 import java.sql.Date;
 
+import javax.validation.constraints.NotEmpty;
+
 public class OrderVO {
 	
 	private int order_num;			// 주문번호
@@ -10,6 +12,7 @@ public class OrderVO {
 	private String order_address1;	// 주문 주소
 	private String order_address2;	// 나머지 주소
 	private String receiver_name;	// 주문자 이름
+	@NotEmpty
 	private String receiver_phone;	// 주문자 전화번호
 	private String receiver_email;	// 주문자 이메일
 	private int mem_num;			// 주문자 회원번호

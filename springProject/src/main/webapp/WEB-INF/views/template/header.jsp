@@ -187,6 +187,7 @@ height: 40px;
 				</form>
 					<a class="navrightitem" href="${pageContext.request.contextPath}/member/login.do" style="font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">로그인</a> 
 					<a class="navrightitem" href="${pageContext.request.contextPath}/member/registerUser.do" style="font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">회원가입</a> 
+					<a class="navrightitem" href="${pageContext.request.contextPath}/order/nonCheck.do" style="font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">비회원주문조회</a> 
 					<div class="nav-right-menu">
 						<ul>
 							<li class="navrightmenuli"><a class="navmenuitem" href="#" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">글쓰기</a>
@@ -248,7 +249,7 @@ height: 40px;
 							<li class="navrightmenuli"><a class="navmenuitem" href="${pageContext.request.contextPath}/member/myPage.do" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">마이페이지</a>
 								<ul class="dropdownbar">
 									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/myPage.do">마이페이지</a>
-									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="#">나의쇼핑</a></li>
+									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/order/myOrder.do">나의쇼핑</a></li>
 									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/sellerApplication.do">판매자신청</a></li>
 									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
 								</ul>
