@@ -282,7 +282,7 @@ div.btn modify-btn {
 							output += ' <input type="button" data-num="'+item.comm_num+'" data-mem="'+item.mem_num+'" value="수정" id="run" class="btn modify-btn" style="margin-left:70px;">';
 							output += ' <input type="button" data-num="'+item.comm_num+'" data-mem="'+item.mem_num+'" value="삭제" id="run" class="btn delete-btn">';
 						}
-						output += '  <hr size="1" noshade>';
+						output += '  <hr size="1" style="color:#bfbfbf; noshade;">';
 						output += '</div>';
 						output += '</div>';
 						
@@ -396,7 +396,7 @@ div.btn modify-btn {
 			   modifyUI += '	  <input type="submit" value="등록" id="run" class="btn">';
 			   modifyUI += '	  <input type="submit" value="취소" id="run" class="btn comm-reset">';
 			   modifyUI += '   </div>';
-			   modifyUI += '<hr size="1" width="100%" noshade>';
+			   modifyUI += '<hr size="1" width="100%" style="color:#bfbfbf; noshade;">';
 			   modifyUI += '</form>';
 			   
 			   // 이전에 이미 수정하는 댓글이 있을 경우 수정 버튼을 클릭하면 숨겨진 sub-item을 환원시키고 수정폼을 초기화
