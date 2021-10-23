@@ -10,6 +10,16 @@
  * 수정일 : 
 --%>
 <style>
+.box {
+	display: flex;
+	flex-direction: row;
+    flex-wrap: wrap;
+    box-sizing: margin-box;
+    justify-content: space-between;
+    padding-right: 10px;
+    padding-left: 10px;
+    justify-content: space-between;
+}
 .link-container{
 width:1136px;
 margin : 0 auto;
@@ -21,8 +31,8 @@ width : 100%;
 .container{
 margin : 0 auto;
 width: 99%; 
-height: 286px; 
-background-color: #8c996b;
+height: 300px; 
+background-color: #d9e6b8;
 position: relative;
 }
 .link-item{
@@ -49,7 +59,6 @@ position: relative;
 }
 h2{
 	text-align:left;
-	margin : 50px 0px 50px 105px;
 }
 .write-button{
 	text-align: right;
@@ -61,13 +70,13 @@ h2{
 	
 }
 .qna-left-title{
-	position: absolute;
-	text-align: center;
+	text-align: left;
+	top: 70px;
 }
 .qna-right-title{
-	position: absolute;
+	position: static;
 	top: 70px;
-	right: 100px;
+	right: 10px;
 	text-align: center;
 }
 .qna-category{
@@ -80,6 +89,65 @@ h2{
 	margin-bottom: 20px;
 	width: 20px; 
 	height: 20px;
+}
+.h2 {
+	font: bold;
+    text-align: left;
+    font-family: 'Gowun Dodum', sans-serif;
+}
+a.faq_item{
+    line-height: 1;
+    font-family: "Noto Sans KR", "Apple SD Gothic Neo", "맑은 고딕", "Malgun Gothic", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.4px;
+    -webkit-box-direction: normal;
+    font-size: 18px;
+    list-style: none;
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+    cursor: pointer;
+    touch-action: manipulation;
+    margin-bottom: 24px;
+    display: block;
+    font-weight: 700;
+    color: #8c996b;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+a.faq_item:hover{
+	color: #6c7a48;
+}
+.email_button{
+    cursor: pointer;
+    touch-action: manipulation;
+    box-sizing: border-box;
+    display: inline-block;
+    border-width: 1px;
+    border-style: solid;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: bold;
+    line-height: 1;
+    height: 60px;
+    padding: 21px 0;
+    font-size: 18px;
+    transition: .2s ease;
+    background-color: #8c996b;
+    border-color: #8c996b;
+    color: #ffffff;
+    user-select: none;
+    width: 220px;
+}
+.copy-email{
+	cursor: pointer;
+    touch-action: manipulation;
+    margin-left: .5ch;
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    text-decoration: underline;
+    color: #6c7a48;
 }
 </style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
@@ -94,25 +162,44 @@ h2{
 	});
          
 </script>
+  <script>
+    function copyToClipboard(val) {
+	    var t = document.createElement("textarea");
+	    document.body.appendChild(t);
+	    t.value = val;
+	    t.select();
+	    document.execCommand('copy');
+	    document.body.removeChild(t);
+    }
+  </script>
 <div class="main-container">
 	<div class="container"> 
 		<div class="qna-left-title">
-			<h2 class="admin-page-h2">고객센터</h2>
-			<div align="left">
-			<c:if test="${user_auth != 4}">
-				<input class = "btn btn-outline-dark" type="button" value="이메일 문의하기" onclick="location.href='${pageContext.request.contextPath}/qna/serviceBoardInsert.do'">
-			</c:if>
-			</div>
+			<br><h2 class="h2">&nbsp;&nbsp;고객센터</h2><br>
+			<div class="box">
+	   			<section class="col-12 col-md-6 qna_contact"><address>운영시간 : 평일 09:00 ~ 18:00 (주말 &amp; 공휴일 제외)<br>
+	   			이메일 :&nbsp;<a href="/contacts/new" style="text-decoration:underline">이메일 문의하기</a>
+	   			<button id="copybtn" class="copy-email" onclick="copyToClipboard('springtest1010@gmail.com');" title="주소 복사">이메일 주소 복사</button>
+	   			<br>전화 :&nbsp;<a href="tel:1234-5678" style="text-decoration: underline;">1234-5678</a></address>
+				    <c:if test="${user_auth != 4}">
+				        <button class="email_button" type="button" value="이메일 문의하기" onclick="location.href='${pageContext.request.contextPath}/qna/serviceBoardInsert.do'">이메일 문의하기</button>
+				    </c:if>
+					<c:if test="${user_auth == 4 }"> 
+						<input class = "email_button" type="button" value="자주묻는 질문 설정" onclick="location.href='qnaServiceList.do'">
+						<input class = "email_button" type="button" value="이메일 문의 내역" onclick="location.href='serviceBoardList.do'"><br><br>
+					</c:if> 
+	   			</section>
+				<section class="col-12 col-md-6 customer-center__faq" >
+					<ul class="faq_list" >
+						<li><a class="faq_item" href="/customer_center#배송관련__배송은+얼마나+걸리나요">배송은 얼마나 걸리나요?</a></li>
+						<li><a class="faq_item" href="/customer_center#취소+환불__주문+취소는+어떻게+하나요">주문 취소는 어떻게 하나요?</a></li>
+						<li><a class="faq_item" href="/customer_center#서비스+기타__제품의+자세한+정보는+어떻게+알+수+있나요">제품의 자세한 정보를 알고 싶어요.</a></li>
+						<li><a class="faq_item" href="/customer_center#반품+교환__제품이+불량입니다.+반품+혹은+교환은+어떻게+하나요">제품이 불량일 때는?</a></li>
+					</ul>
+				</section>	   		
+	   		</div>
 		</div>
 		
-		<div class="qna-right-title">
-			<div align="right">
-			<c:if test="${user_auth == 4 }"> 
-				<input class = "btn btn-outline-dark" type="button" value="자주묻는 질문 설정" onclick="location.href='qnaServiceList.do'">
-				<input class = "btn btn-outline-dark" type="button" value="이메일 문의 내역" onclick="location.href='serviceBoardList.do'"><br><br>
-			</c:if> 
-			</div>  
-		</div>   
 	</div>
 	
 	<div class = "container-fluid contents-wrap" style = "width:90%">

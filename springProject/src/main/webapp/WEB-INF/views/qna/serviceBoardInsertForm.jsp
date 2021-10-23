@@ -17,7 +17,7 @@
 	<div class="text-center col-sm-30 my-5">
 	<hr noshade="noshade" size="2">
 		<div align = "left">
-			<h2 class="admin-page-h2">관리자 - 자주묻는질문 등록</h2>
+			<h2 class="admin-page-h2">이메일 문의</h2>
 		</div>
 		<div align="center" class = "container-fluid" style = "width:900px; border: 1px solid #d2f1f7; font-family: 'Gowun Dodum', sans-serif; ">
 			<div class="text-center col-sm-12 my-5">

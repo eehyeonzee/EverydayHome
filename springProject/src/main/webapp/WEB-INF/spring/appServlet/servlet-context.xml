@@ -91,7 +91,6 @@
 			<mapping path="/event/eventDelete.do"/>
 			<mapping path="/qna/qnaUpdate.do"/>
 			<mapping path="/qna/qnaDelete.do"/>
-			<mapping path="/qna/serviceBoardInsert.do"/>
 			<mapping path="/qna/serviceBoardList.do"/>
 			<mapping path="/store/storeRegister.do"/>
 			<mapping path="/store/updateProduct.do"/>
