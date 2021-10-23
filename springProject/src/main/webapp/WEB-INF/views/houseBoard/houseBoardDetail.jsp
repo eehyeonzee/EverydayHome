@@ -10,6 +10,50 @@
 --%>
 <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style>
+.btn#run {
+	cursor: pointer;
+	width: 50px;
+    height: 30px;
+    font-size:13px;
+    margin-top:7px;
+	margin-bottom:22px;
+}
+
+div.btn delete-btn {
+	cursor: pointer;
+	width:44px;
+    height:26px;
+    font-size:13px;
+    margin-top:10px;
+	margin-bottom:10px;
+	margin-left:5px;
+}
+
+div.btn modify-btn {
+	cursor: pointer;
+	width:44px;
+    height:26px;
+    font-size:13px;
+    margin-top:10px;
+	margin-bottom:10px;
+	margin-left:5px;
+}
+
+.btn comm-reset {
+	cursor: pointer;
+	width: 50px;
+    height: 30px;
+    font-size:13px;
+    margin-top:7px;
+	margin-bottom:22px;
+}
+
+.btn-default {
+	color: #333;
+	background-color: #fff;
+	border-color: #ccc;
+}
+
 .heart-btn{
     cursor: pointer;
     touch-action: manipulation;
@@ -57,6 +101,23 @@
     width: 100px;
     height: 42px;
 }
+
+.my-photo#profile {
+	margin-top:0px;
+}
+
+.sub-item {
+	margin-top:10px;
+}
+
+#mcomm_first {
+	float:left;
+	width:70%;
+	padding-left:5px;
+	margin-top:7px;
+	margin-bottom:22px;
+}
+
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/videoAdapter.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
@@ -209,18 +270,17 @@
 						//each() 메소드는 매개변수로 받은 것을 사용해 for in 반복문과 같이 배열이나 객체의 요소를 검사함
 						var output = '<div class="item">';
 						if(item.profile != null) {
-							output += '<div style="width:57px; height:57px; float:left; padding-right:5em;"><img src="${pageContext.request.contextPath}/houseBoard/boardProfile.do?mem_num='+item.mem_num+'" style="height:53px; width:53px;" class="my-photo"/></div>';
+							output += '<div style="width:55px; height:57px; float:left; padding-right:5em;"><img src="${pageContext.request.contextPath}/houseBoard/boardProfile.do?mem_num='+item.mem_num+'" style="height:42px; width:42px;" class="my-photo" id="profile"/></div>';
 						}else {
-							output += '<div style="width:57px; height:57px; float:left; padding-right:5em;"><img src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="height:45px; width:45px;" class="my-photo"/></div>';
+							output += '<div style="width:55px; height:57px; float:left; padding-right:5em;"><img src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="height:42px; width:42px;" class="my-photo" id="profile"/></div>';
 						}
-						output += '<h4 style="font-size:15px;"><b>' + item.nickname + '</b></h4>';
+						output += '<div style="font-size:15px; float:left;"><b>' + item.nickname + '</b></div>' + '<div>&nbsp;·&nbsp;' + item.comm_reg_date + '</div>';
 						output += '<div class="sub-item">';
 						output += '   <p>' + item.comm_content.replace(/</gi,'&lt;').replace(/>/gi,'&gt;') + '</p>';
-						output += item.comm_reg_date;
 						if($('#mem_num').val() == item.mem_num) {
 							// 로그인한 회원번호가 댓글 작성자 회원번호와 같으면 버튼 노출
-							output += ' <input type="button" data-num="'+item.comm_num+'" data-mem="'+item.mem_num+'" value="수정" class="modify-btn">';
-							output += ' <input type="button" data-num="'+item.comm_num+'" data-mem="'+item.mem_num+'" value="삭제" class="delete-btn">';
+							output += ' <input type="button" data-num="'+item.comm_num+'" data-mem="'+item.mem_num+'" value="수정" id="run" class="btn modify-btn" style="margin-left:70px;">';
+							output += ' <input type="button" data-num="'+item.comm_num+'" data-mem="'+item.mem_num+'" value="삭제" id="run" class="btn delete-btn">';
 						}
 						output += '  <hr size="1" noshade>';
 						output += '</div>';
@@ -330,13 +390,13 @@
 			var modifyUI = '<form id="mcomm_form">';
 			   modifyUI += '   <input type="hidden" name="comm_num" id="mcomm_num" value="'+comm_num+'">';
 			   modifyUI += '   <input type="hidden" name="mem_num" id="mmem_num" value="'+mem_num+'">';
-			   modifyUI += '   <textarea rows="1" name="comm_content" id="mcomm_content" class="form-control" placeholder="칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)">'+comm_content+'</textarea>';
+			   modifyUI += '   <textarea rows="1" name="comm_content" id="mcomm_content" class="form-control"" placeholder="칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)">'+comm_content+'</textarea>';
 			   modifyUI += '   <div id="mcomm_first"><span class="letter-count">300/300</span></div>';
 			   modifyUI += '   <div id="mcomm_second" class="align-right">'
-			   modifyUI += '	  <input type="submit" value="수정">';
-			   modifyUI += '	  <input type="submit" value="취소" class="comm-reset">';
+			   modifyUI += '	  <input type="submit" value="등록" id="run" class="btn">';
+			   modifyUI += '	  <input type="submit" value="취소" id="run" class="btn comm-reset">';
 			   modifyUI += '   </div>';
-			   modifyUI += '<hr size="1" width="90%" noshade>';
+			   modifyUI += '<hr size="1" width="100%" noshade>';
 			   modifyUI += '</form>';
 			   
 			   // 이전에 이미 수정하는 댓글이 있을 경우 수정 버튼을 클릭하면 숨겨진 sub-item을 환원시키고 수정폼을 초기화
@@ -505,7 +565,7 @@
 			<span style="color:#737373;">${houseBoard.house_area}&nbsp;｜&nbsp;${houseBoard.house_type}&nbsp;｜&nbsp;${houseBoard.house_style}&nbsp;｜&nbsp;${houseBoard.house_space}</span>
 		</div>
 		<div class="date">
-			<span style="float:right; display:inline-block; color:#737373;">${houseBoard.house_reg_date}&nbsp;등록&nbsp;&nbsp;·&nbsp;조회&nbsp;${houseBoard.house_hits}</span>
+			<span style="float:right; display:inline-block; color:#737373;">${houseBoard.house_reg_date}&nbsp;등록&nbsp;·&nbsp;조회&nbsp;${houseBoard.house_hits}</span>
 		</div>
 	</div>
 	<!-- 카테고리｜등록일｜조회수 끝 -->
@@ -538,11 +598,11 @@
 	<div class="detail-button" style="text-align:right;">
 		<!-- 로그인 회원번호와 작성자 회원번호가 일치해야 수정 및 삭제 가능 -->
 		<c:if test="${!empty user_num && user_num == houseBoard.mem_num}">
-			<input class="btn" type="button" value="수정" onclick="location.href='update.do?house_num=${houseBoard.house_num}'">&nbsp;
-			<input class="btn" type="button" value="삭제" id="delete_btn">&nbsp;
+			<input class="btn" type="button" value="수정" id="run" onclick="location.href='update.do?house_num=${houseBoard.house_num}'">&nbsp;
+			<input class="btn" type="button" value="삭제" id="delete_run">&nbsp;
 				<script type="text/javascript">
-					var delete_btn = document.getElementById('delete_btn');
-					delete_btn.onclick = function() {
+					var delete_btn = document.getElementById('delete_run');
+					delete_run.onclick = function() {
 						var choice = confirm('삭제하시겠습니까?');
 						if(choice) {
 							location.replace('delete.do?house_num=${houseBoard.house_num}') // replace는 삭제 후 경로 지워줌 -> back 못함
@@ -571,7 +631,7 @@
 				<span class="letter-count">300/300</span>
 			</div>
 			<div id="comm_second" class="align-right">
-				<input type="submit" value="등록">
+				<input type="submit" value="등록" class="btn" id="run">
 			</div>
 			</c:if>
 		</form>

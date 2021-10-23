@@ -186,6 +186,7 @@ div.mypage-info table{
 .page-main span.letter-count{
 	font-size:10pt;
 	color:#999;
+	float:left;
 }
 .page-main span.form-id{
 	padding-left:93px;
@@ -193,20 +194,21 @@ div.mypage-info table{
 }
 .page-main textarea.comm-content{
 	width:100%;
-	height:70px;
-	margin:10px 10px;
+	height:90px;
+	margin:5 10 5 10;
+	float:left;
 	text-align:left;
 }
 .page-main div#comm_first{
 	float:left;
 	width:70%;
-	padding-left:15px;
-	margin-bottom:10px;
+	padding-left:5px;
+	margin-top:7px;
+	margin-bottom:22px;
 }
 .page-main div#comm_second{
-	float:left;
+	float:right;
 	width:19%;
-	margin-bottom:10px;
 }
 .page-main div#loading{
 	width:100px;
