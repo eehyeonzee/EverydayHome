@@ -431,8 +431,9 @@ text-align : center;
 	  	  		<div align="center" style="cursor: pointer;"  onclick="location.href='${pageContext.request.contextPath}/store/storeDetail.do?prod_num=${store.prod_num}'">
 				<li class="card mx-3">
 					<figure class="bestimage p-3" style="height: 300px; width : 280px;">
+				<!-- 사진 파일이 없는 경우 -->
 					<c:if test="${ empty store.thumbnail_filename }">
-	            	<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="border-radius:1%; width:280; height:280px;"/>
+	            	<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/gift.png" style="border-radius:1%; width:280; height:280px;"/>
 	            	</c:if>
 	            <!-- 사진파일이 있는 경우 -->
 	            	<c:if test="${ !empty store.thumbnail_filename }">

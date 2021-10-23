@@ -24,6 +24,7 @@
 		margin-top : 50px;
 	}
 </style>
+<h2>주문 내역</h2>
 <div class = "align-center">
 	<c:if test = "${count == 0}">
 		<div id = "con_non_main" class = "container">
