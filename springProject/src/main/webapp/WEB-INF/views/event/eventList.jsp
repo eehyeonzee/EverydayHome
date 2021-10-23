@@ -73,7 +73,16 @@
 	            <c:if test="${ !empty list.event_filename }">
 		            <img src="${pageContext.request.contextPath}/event/eventPhotoView.do?event_num=${list.event_num}" width="600px" height="177px" >
 	            </c:if>
-	            <p style="font-family: 'Gowun Dodum', sans-serif;">${list.event_type}	|	${list.event_day}</p><br><br>
+	            <c:if test="${list.event_type=='진행중' }">
+		            <br><br><p style="font-family: 'Gowun Dodum', sans-serif; color:#35c5f0; display:inline; font-weight:bold;">${list.event_type}</p>
+		            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+		            ${list.event_day}<br><br><br><br><br>
+	            </c:if>
+	            <c:if test="${list.event_type=='종료' }">
+		            <br><br><b style="font-family: 'Gowun Dodum', sans-serif; color:gray; display:inline; font-weight:bold;" >${list.event_type}</b>
+		            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+		            ${list.event_day}<br><br><br><br><br>
+	            </c:if>
            </div>
            </div>
         </c:forEach>
@@ -82,9 +91,9 @@
         <!-- 카드끝 -->
  		 
         </div>
- 		<div class="paging">
+ 	</div>
+ 		<div class="paging" align="center">
  			<span>${pagingHtml}</span>
  		</div>
- 	</div>
  </div>
  </div>

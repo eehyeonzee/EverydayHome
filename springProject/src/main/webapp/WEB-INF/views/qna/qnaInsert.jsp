@@ -36,42 +36,6 @@
 </script>
 <div class = "container-fluid contents-wrap" style = "width:95%">
    <div class="text-center col-sm-30 my-5">
-   <div align = "left">
-		<h2 class="admin-page-h2">관리자 - 자주묻는 질문 리스트</h2>
-	</div>
-   <c:if test="${count==0 }">
-  		<div class="text-center">
-  			출력할 내용이 없습니다.
-  		</div>
-   	<div class = "text-right">
-		<input type = "button" class = "btn btn-outline-dark" value = "돌아가기" onclick = "location.href='qnaServiceList.do'">&nbsp;
-	</div>
-	</c:if>
-	
-	<c:if test="${count > 0 }">	
-	<div class = "text-right">
-		<input type = "button" class = "btn btn-outline-dark" value = "돌아가기" onclick = "location.href='qnaServiceList.do'">&nbsp;
-   </div>
-   <table class="table table-sm">
-   		<tr>
-   			<th scope="col" style="width: 8%">문의번호</th>
-			<th scope="col" style="width: 19%">키워드</th>
-			<th scope="col" style="width: 24%">제목</th>
-			<th scope="col" style="width: 44%">내용</th>
-
-   		</tr>
-   		<c:forEach var="serviceboard" items="${list }">
-   		<tr>
-   			<th scope = "row">${serviceboard.service_num}</th>
-   			<td>${serviceboard.service_keyword}</td>
-   			<td>${serviceboard.service_title}</td>
-   			<td>${serviceboard.service_content}</td>
-   		</tr>
-   		</c:forEach>
-   </table>
-	</c:if>
-   	<div class="align-center">${pagingHtml}</div>
-	
 
 <hr noshade="noshade" size="2">
 <div align = "left">

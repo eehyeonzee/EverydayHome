@@ -77,9 +77,9 @@ h2{
 }
 .quest-img{
 	margin-top: 1em;
-	margin-bottom: 2px;
-	width: 34px; 
-	height: 34px;
+	margin-bottom: 20px;
+	width: 20px; 
+	height: 20px;
 }
 </style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
@@ -129,7 +129,6 @@ h2{
 				<th scope="col"><p class="qna-category"><a href="qnaList.do?keyword=반품/교환">반품/교환</a></p></th>
 				<th scope="col"><p class="qna-category"><a href="qnaList.do?keyword=증빙서류발급">증빙서류발급</a></p></th>
 				<th scope="col"><p class="qna-category"><a href="qnaList.do?keyword=회원정보변경">회원정보변경</a></p></th>
-				<th scope="col"><p class="qna-category"><a href="qnaList.do?keyword=상세주소">상세주소</a></p></th>
 				<th scope="col"><p class="qna-category"><a href="qnaList.do?keyword=서비스/기타">서비스/기타</a></p></th>
 			</tr>
 		<c:if test="${count==0 }">
@@ -139,11 +138,13 @@ h2{
 			<c:forEach var="qna" items="${list}" varStatus="class_count">
 				<tr>
 					<th scope = "row">
-						<div align="left" style="width: 100%;" class="button-area">
+						<div align="left" style="width: 150%;" class="button-area">
 			  				<p class="question" style="cursor: pointer;">
 			  				<img class="quest-img" src="${pageContext.request.contextPath}/resources/images/qna.png">
 			  				${qna.qna_content }</p>
-							<p class="answer" style="display:none;">${qna.qna_reply }</p>
+							<p class="answer" style="display:none;">
+			  				<img class="quest-img" src="${pageContext.request.contextPath}/resources/images/answer.png">
+			  				${qna.qna_reply }</p>
 						</div>
 					</th>
 					<th scope = "row"></th>

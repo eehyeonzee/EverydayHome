@@ -8,11 +8,7 @@
  * 설명 : 고객센터 질문하기 폼
  * 수정일 : 
 --%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>고객센터 글 작성</title>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css">
 </head>
 <body>
@@ -76,5 +72,3 @@
 		</div>
 		</form:form>
 </div>
-</body>
-</html>
