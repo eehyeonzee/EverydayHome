@@ -168,9 +168,9 @@ height: 40px;
 							<li class="navmenuitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/event/eventList.do">이벤트</a></li>
 						</ul>
 					</li>
-					<li class="navmenuli"><a class="navmenuitem" style="font-family: 'Gowun Dodum', sans-serif; text-decoration: none;" href="${pageContext.request.contextPath}/store/storeMain.do">스토어</a>
+					<li class="navmenuli"><a class="navmenuitem" style="font-family: 'Gowun Dodum', sans-serif; text-decoration: none;" href="#">스토어</a>
 						<ul class="dropdownbar">
-							<li class="navmenuitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/store/storeMain.do">스토어홈</a></li>
+							<li class="navmenuitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="#">스토어홈</a></li>
 							<li class="navmenuitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/store/storeCategory.do">카테고리</a></li>
 							<li class="navmenuitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="#">베스트</a></li>
 						</ul>
