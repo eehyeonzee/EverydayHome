@@ -390,7 +390,7 @@ div.btn modify-btn {
 			var modifyUI = '<form id="mcomm_form">';
 			   modifyUI += '   <input type="hidden" name="comm_num" id="mcomm_num" value="'+comm_num+'">';
 			   modifyUI += '   <input type="hidden" name="mem_num" id="mmem_num" value="'+mem_num+'">';
-			   modifyUI += '   <textarea rows="1" name="comm_content" id="mcomm_content" class="form-control"" placeholder="칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)">'+comm_content+'</textarea>';
+			   modifyUI += '   <textarea rows="1" name="comm_content" id="mcomm_content" class="form-control" placeholder="칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)">'+comm_content+'</textarea>';
 			   modifyUI += '   <div id="mcomm_first"><span class="letter-count">300/300</span></div>';
 			   modifyUI += '   <div id="mcomm_second" class="align-right">'
 			   modifyUI += '	  <input type="submit" value="등록" id="run" class="btn">';
