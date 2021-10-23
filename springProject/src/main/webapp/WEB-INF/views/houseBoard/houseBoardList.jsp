@@ -131,13 +131,13 @@
 					<div style="float:left; cursor:pointer;" onclick="location.href='${pageContext.request.contextPath}/houseBoard/detail.do?house_num=${houseBoard.house_num}'">
 						<%-- 회원 프로필 사진이 없는 경우 --%>
 						<c:if test="${empty houseBoard.profile_filename}">
-							<img src="${pageContext.request.contextPath }/resources/images/basic.jpg" style="width:33px; height:33px;" class="my-photo">
+							<img src="${pageContext.request.contextPath }/resources/images/basic.jpg" style="width:33px; height:33px; margin-bottom:15px;" class="my-photo">
 						</c:if>
 						<%-- 회원 프로필 사진이 있는 경우 --%>
 						<c:if test="${!empty houseBoard.profile_filename}">
-							<img src="${pageContext.request.contextPath}/houseBoard/boardProfile.do?mem_num=${houseBoard.mem_num}" style="width:33px; height:33px;" class="my-photo">
+							<img src="${pageContext.request.contextPath}/houseBoard/boardProfile.do?mem_num=${houseBoard.mem_num}" style="width:33px; height:33px; margin-bottom:15px;" class="my-photo">
 						</c:if>
-						<b style="font-size:17px">${houseBoard.nickname}</b>
+						<span style="font-size:16px;">&nbsp;${houseBoard.nickname}</span>
 					</div>
 				</div>
 				<div class="imgTransition" style="cursor:pointer; overflow:hidden;" onclick="location.href='detail.do?house_num=${houseBoard.house_num}'">
@@ -167,7 +167,7 @@
 	</div>
 	</div>
 	</c:if>
-	<div class="paging" align="center">
+	<div class="paging" align="center">	
 		<span>${pagingHtml}</span>
 	</div>
 </div>

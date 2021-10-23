@@ -9,9 +9,58 @@
  * 수정일 : 
 --%>
 <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script type="text/javascript" src="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+.heart-btn{
+    cursor: pointer;
+    touch-action: manipulation;
+    box-sizing: border-box;
+    display: inline-block;
+    border-width: 1px;
+    border-style: solid;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: bold;
+    line-height: 1;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin-top: 12px;
+    font-size: 13px;
+    transition: .2s ease;
+    background-color: #ededed;
+    border-color: #ededed;
+    color: #000000;
+    user-select: none;
+    width: 100px;
+    height: 42px;
+}
+
+.scrap-btn{
+    cursor: pointer;
+    touch-action: manipulation;
+    box-sizing: border-box;
+    display: inline-block;
+    border-width: 1px;
+    border-style: solid;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: bold;
+    line-height: 1;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin-top: 12px;
+    font-size: 13px;
+    transition: .2s ease;
+    background-color: #ededed;
+    border-color: #ededed;
+    color: #000000;
+    user-select: none;
+    width: 100px;
+    height: 42px;
+}
+</style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/videoAdapter.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- 추천 및 스크랩 자바스크립트 시작 -->
 <script type="text/javascript">
 	$(function() {
@@ -406,52 +455,77 @@
 <!-- 댓글 자바스크립트 끝 -->
 <!-- 중앙 내용 시작 -->
 <div class="page-main">
-	<!-- 해당 게시글 상세 내용 시작 -->
-	<h2>${houseBoard.house_title}</h2>
-	<input type="hidden" id="house_num" value="${houseBoard.house_num}">
-	<ul>
-		<li>번호 : ${houseBoard.house_num}</li>
-		<li>작성자 : ${houseBoard.nickname}</li>
-		<li>조회수 : ${houseBoard.house_hits}</li>
-		<li>작성일 : ${houseBoard.house_reg_date}</li>
-		<li>최근수정일 : ${houseBoard.house_mod_date}</li>
-		<li>${houseBoard.house_area}｜${houseBoard.house_type}｜${houseBoard.house_style}｜${houseBoard.house_space}</li>
-	</ul>
-	<hr size="1" width="100%" noshade>
-	<c:if test="${!empty houseBoard.thumbnail_filename}">
-	<div class="align-center">
-		<img src="imageView.do?house_num=${houseBoard.house_num}" style="max-width:500px">
+<div class="houseBoard-detail">
+<div class="container">
+	<input type="hidden" id="house_num" value="${houseBoard.house_num}"/>
+	<!-- 작성자 프로필 시작 -->
+	<div class="profile" style="float:left;">
+		<div style="float:left; cursor:pointer;" onclick="location.href='${pageContext.request.contextPath}/houseBoard/detail.do?house_num=${houseBoard.house_num}'">
+			<%-- 회원 프로필 사진이 없는 경우 --%>
+			<c:if test="${empty houseBoard.profile_filename}">
+				<img src="${pageContext.request.contextPath }/resources/images/basic.jpg" style="width:33px; height:33px; margin-bottom:15px;" class="my-photo">
+			</c:if>
+			<%-- 회원 프로필 사진이 있는 경우 --%>
+			<c:if test="${!empty houseBoard.profile_filename}">
+				<img src="${pageContext.request.contextPath}/houseBoard/boardProfile.do?mem_num=${houseBoard.mem_num}" style="width:33px; height:33px; margin-bottom:15px;" class="my-photo">
+			</c:if>
+			<b style="font-size:16px;">&nbsp;${houseBoard.nickname}</b>
+		</div>
 	</div>
-	</c:if>
-	<p>${houseBoard.house_content}</p>
-	<!-- 해당 게시글 상세 내용 끝 -->
+	<!-- 작성자 프로필 끝 -->
 	<!-- 추천 및 스크랩 시작 -->
-	<div class="btn_click">
+	<div class="btn_click" style="float:right; display:inline-block;">
 		<!-- 추천 버튼 -->
-		<button type="button" id="heart_btn" class="heart-btn">
+		<button type="button" id="heart_btn" class="heart-btn"">
 			<c:if test="${heartCheckNum == 0}">
 				<img id="heart" style="margin: 5 10 5 10; width:25px; height:25px;" src="${pageContext.request.contextPath}/resources/images/dislike.png">
 			</c:if>
 			<c:if test="${heartCheckNum == 1}">
 				<img id="heart" style="margin: 5 10 5 10; width:25px; height:25px;" src="${pageContext.request.contextPath}/resources/images/like.png">
 			</c:if>
+			<!-- 추천수 -->
+			&nbsp;<span id="heartCount" style="display:inline-block;"></span>&nbsp;
 		</button>
-		<!-- 추천수 -->
-		<span id="heartCount" style="display:inline-block;"></span>&nbsp;
 		<!-- 스크랩 버튼 -->
-		<button type="button" id="scrap_btn" class="scrap-btn">
+		<button type="button" id="scrap_btn" class="scrap-btn" style="border:none;">
 			<c:if test="${scrapCheckNum == 0}">
 				<img id="scrap" style="margin: 5 10 5 10; width:25px; height:25px;" src="${pageContext.request.contextPath}/resources/images/scrapX.png">
 			</c:if>
 			<c:if test="${scrapCheckNum == 1}">
 				<img id="scrap" style="margin: 5 10 5 10; width:25px; height:25px;" src="${pageContext.request.contextPath}/resources/images/scrapO.png">
 			</c:if>
+			<!-- 스크랩수 -->
+			&nbsp;<span id="scrapCount" style="display:inline-block;"></span>
 		</button>
-		<!-- 스크랩수 -->
-		<span id="scrapCount" style="display:inline-block;"></span>
 	</div>
 	<!-- 추천 및 스크랩 끝 -->
-	
+	<hr size="1" width="100%" style="color:#bfbfbf; noshade;">
+	<!-- 카테고리｜등록일｜조회수 시작 -->
+	<div class="info">
+		<div class="category" style="float:left;">
+			<span style="color:#737373;">${houseBoard.house_area}&nbsp;｜&nbsp;${houseBoard.house_type}&nbsp;｜&nbsp;${houseBoard.house_style}&nbsp;｜&nbsp;${houseBoard.house_space}</span>
+		</div>
+		<div class="date">
+			<span style="float:right; display:inline-block; color:#737373;">${houseBoard.house_reg_date}&nbsp;등록&nbsp;&nbsp;·&nbsp;조회&nbsp;${houseBoard.house_hits}</span>
+		</div>
+	</div>
+	<!-- 카테고리｜등록일｜조회수 끝 -->
+	<br><br><br>
+	<!-- 썸네일 시작 -->
+	<div class="detail-thumbnail">
+		<c:if test="${!empty houseBoard.thumbnail_filename}">
+			<p>
+				<img src="imageView.do?house_num=${houseBoard.house_num}" style="max-width:500px">
+			</p>
+		</c:if>
+	</div>
+	<!-- 썸네일 끝 -->
+	<br>
+	<!-- 해당 게시글 상세 내용 시작 -->
+	<div class="content">
+	<p>${houseBoard.house_content}</p>
+	</div>
+	<!-- 해당 게시글 상세 내용 끝 -->
 	<!-- SNS 공유하기 버튼 시작 -->
 	<div align="right">
 		<a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();">　　　</a><!-- 페이스북 -->
@@ -459,13 +533,13 @@
 		<a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();">　　　</a><!-- 트위터 -->
 	</div>
 	<!-- SNS 공유 API 버튼 끝 -->
+	<hr size="1" width="100%" style="color:#bfbfbf; noshade;">
 	<!-- 수정｜삭제｜목록 버튼 시작 -->
-	<hr size="1" width="100%" noshade>
-	<div class="align-right">
-		<!-- 로그인 회원번호와 작성자 회원번호가 일치해야 수정/삭제 가능 -->
+	<div class="detail-button" style="text-align:right;">
+		<!-- 로그인 회원번호와 작성자 회원번호가 일치해야 수정 및 삭제 가능 -->
 		<c:if test="${!empty user_num && user_num == houseBoard.mem_num}">
-			<input type="button" value="수정" onclick="location.href='update.do?house_num=${houseBoard.house_num}'">
-			<input type="button" value="삭제" id="delete_btn">
+			<input class="btn btn-outline-dark" type="button" value="수정" onclick="location.href='update.do?house_num=${houseBoard.house_num}'">&nbsp;
+			<input class="btn btn-outline-dark" type="button" value="삭제" id="delete_btn">&nbsp;
 				<script type="text/javascript">
 					var delete_btn = document.getElementById('delete_btn');
 					delete_btn.onclick = function() {
@@ -476,11 +550,14 @@
 					};
 				</script>
 		</c:if>
-		<input type="button" value="목록" onclick="location.href='list.do'">
+		<input class="btn btn-outline-dark" type="button" value="목록" onclick="location.href='list.do'">
 	</div>
 	<!-- 수정｜삭제｜목록 버튼 끝 -->
+	<br><br>
 	<!-- 댓글 시작 -->
-	<span class="comm-title">댓글 <b style="color:#8c996b">${countComm}</b></span>
+	<div class="comm-title" style="font-weight:bold; font-size:15pt;">
+		댓글 <span style="color:#8c996b">${countComm}</span>
+	</div>
 	<div id="comm_div">
 		<p>
 		<form id="comm_form">
@@ -508,5 +585,7 @@
 		<img src="${pageContext.request.contextPath}/resources/images/ajax-loader.gif">
 	</div>
 	<!-- 댓글 끝 -->
+</div>
+</div>
 </div>
 <!-- 중앙 내용 끝 -->

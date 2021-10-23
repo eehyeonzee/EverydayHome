@@ -90,9 +90,9 @@ $(function() {
 				<label for="house_type"></label>
 				<select name="house_type" id="house_type">
 					<option value="">주거형태</option>
-					<option value="원룸&오피스텔" <c:if test="${houseBoardVO.house_type.equals('원룸&오피스텔')}">selected</c:if>>원룸&오피스텔</option>
+					<option value="원룸&오피스텔" <c:if test="${houseBoardVO.house_type.equals('원룸&오피스텔')}">selected</c:if>>원룸&amp;오피스텔</option>
 					<option value="아파트" <c:if test="${houseBoardVO.house_type.equals('아파트')}">selected</c:if>>아파트</option>
-					<option value="빌라&연립" <c:if test="${houseBoardVO.house_type.equals('빌라&연립')}">selected</c:if>>빌라&연립</option>
+					<option value="빌라&연립" <c:if test="${houseBoardVO.house_type.equals('빌라&연립')}">selected</c:if>>빌라&amp;연립</option>
 					<option value="단독주택" <c:if test="${houseBoardVO.house_type.equals('단독주택')}">selected</c:if>>단독주택</option>
 					<option value="사무공간" <c:if test="${houseBoardVO.house_type.equals('사무공간')}">selected</c:if>>사무공간</option>
 					<option value="상업공간" <c:if test="${houseBoardVO.house_type.equals('상업공간')}">selected</c:if>>상업공간</option>
@@ -105,9 +105,9 @@ $(function() {
 					<option value="북유럽" <c:if test="${houseBoardVO.house_style.equals('북유럽')}">selected</c:if>>북유럽</option>
 					<option value="빈티지" <c:if test="${houseBoardVO.house_style.equals('빈티지')}">selected</c:if>>빈티지</option>
 					<option value="내추럴" <c:if test="${houseBoardVO.house_style.equals('내추럴')}">selected</c:if>>내추럴</option>
-					<option value="프로방스&로맨틱" <c:if test="${houseBoardVO.house_style.equals('프로방스&로맨틱')}">selected</c:if>>프로방스&로맨틱</option>
-					<option value="클래식&앤틱" <c:if test="${houseBoardVO.house_style.equals('클래식&앤틱')}">selected</c:if>>클래식&앤틱</option>
-					<option value="한국&아시아" <c:if test="${houseBoardVO.house_style.equals('한국&아시아')}">selected</c:if>>한국&아시아</option>
+					<option value="프로방스&로맨틱" <c:if test="${houseBoardVO.house_style.equals('프로방스&로맨틱')}">selected</c:if>>프로방스&amp;로맨틱</option>
+					<option value="클래식&앤틱" <c:if test="${houseBoardVO.house_style.equals('클래식&앤틱')}">selected</c:if>>클래식&amp;앤틱</option>
+					<option value="한국&아시아" <c:if test="${houseBoardVO.house_style.equals('한국&아시아')}">selected</c:if>>한국&amp;아시아</option>
 					<option value="유니크" <c:if test="${houseBoardVO.house_style.equals('유니크')}">selected</c:if>>유니크</option>
 				</select>
 				<form:errors path="house_style" cssClass="error-color"/>
@@ -123,13 +123,13 @@ $(function() {
 					<option value="욕실" <c:if test="${houseBoardVO.house_space.equals('욕실')}">selected</c:if>>욕실</option>
 					<option value="아이방" <c:if test="${houseBoardVO.house_space.equals('아이방')}">selected</c:if>>아이방</option>
 					<option value="드레스룸" <c:if test="${houseBoardVO.house_space.equals('드레스룸')}">selected</c:if>>드레스룸</option>
-					<option value="서재&작업실" <c:if test="${houseBoardVO.house_space.equals('서재&작업실')}">selected</c:if>>서재&작업실</option>
+					<option value="서재&작업실" <c:if test="${houseBoardVO.house_space.equals('서재&작업실')}">selected</c:if>>서재&amp;작업실</option>
 					<option value="베란다" <c:if test="${houseBoardVO.house_space.equals('베란다')}">selected</c:if>>베란다</option>
 					<option value="사무공간" <c:if test="${houseBoardVO.house_space.equals('사무공간')}">selected</c:if>>사무공간</option>
 					<option value="상업공간" <c:if test="${houseBoardVO.house_space.equals('상업공간')}">selected</c:if>>상업공간</option>
-					<option value="가구&소품" <c:if test="${houseBoardVO.house_space.equals('가구&소품')}">selected</c:if>>가구&소품</option>
+					<option value="가구&소품" <c:if test="${houseBoardVO.house_space.equals('가구&소품')}">selected</c:if>>가구&amp;소품</option>
 					<option value="현관" <c:if test="${houseBoardVO.house_space.equals('현관')}">selected</c:if>>현관</option>
-					<option value="외관&기타" <c:if test="${houseBoardVO.house_space.equals('외관&기타')}">selected</c:if>>외관&기타</option>
+					<option value="외관&기타" <c:if test="${houseBoardVO.house_space.equals('외관&기타')}">selected</c:if>>외관&amp;기타</option>
 				</select>
 				<form:errors path="house_space" cssClass="error-color"/>
 			</li>
