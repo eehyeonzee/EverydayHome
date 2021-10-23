@@ -85,32 +85,61 @@
 			<mapping path="/member/memberPasswdUpdate.do"/>
 			<mapping path="/member/memberDelete.do"/>
 			<mapping path="/member/myBoard.do"/>
+			<mapping path="/member/myScrap.do"/>
+			<mapping path="/member/myRecomm.do"/>
+			<mapping path="/member/myCoupon.do"/>
 			<mapping path="/houseBoard/write.do"/>
 			<mapping path="/houseBoard/update.do"/>
 			<mapping path="/houseBoard/delete.do"/>
-			<mapping path="/event/eventDelete.do"/>
 			<mapping path="/qna/qnaUpdate.do"/>
 			<mapping path="/qna/qnaDelete.do"/>
 			<mapping path="/qna/serviceBoardList.do"/>
-			<mapping path="/store/storeRegister.do"/>
-			<mapping path="/store/updateProduct.do"/>
-			<mapping path="/store/productDelete.do"/>
 			<mapping path="/cart/cartList.do"/>
 			<mapping path="/cart/cartInsert.do"/>
+			<mapping path="/review/myBuyList.do"/>
 			<beans:bean class="kr.spring.interceptor.LoginCheckInterceptor"/>
 		</interceptor>
 		<!-- 로그인 회원번호와 작성자 회원번호 일치 여부 체크 -->
 		<interceptor>
 			<mapping path="/houseBoard/update.do"/>
 			<mapping path="/houseBoard/delete.do"/>
+			<mapping path="/review/reviewUpdate.do"/>
 			<beans:bean class="kr.spring.interceptor.WriterCheckInterceptor"/>
 		</interceptor>
-		<!-- 상품 등록 및 수정 로그인한 회원 체크 -->
+		<!-- 상품 수정 로그인한 회원 체크 -->
 		<interceptor>
-			<mapping path="/store/updateProduct.do"/>
-			<mapping path="/store/productDelete.do"/>
+			<mapping path="/store/storeModify.do"/>
 			<beans:bean class="kr.spring.interceptor.ProductRegisterCheckInterceptor"/>
 		</interceptor>
+		<!-- 판매자가 맞는지 체크 -->
+		<interceptor>
+			<mapping path="/store/storeRegister.do"/>
+			<beans:bean class="kr.spring.interceptor.SellerCheckInterceptor"/>
+		</interceptor>
+		<!-- 판매자가 맞고 관리자가 맞는지 체크-->
+		<interceptor>
+			<mapping path="/store/productDelete.do"/>
+			<beans:bean class="kr.spring.interceptor.AdminAndSellerCheckInterceptor"/>
+		</interceptor>
+		<!-- 관리자가 맞는지 체크 -->
+		<interceptor>
+			<mapping path="/notice/noticeWrite.do"/>
+			<mapping path="/notice/noticeUpdate.do"/>
+			<mapping path="/notice/noticeDelete.do"/>
+			<mapping path="/member/memberList.do"/>
+			<mapping path="/member/sellerApplyList.do"/>
+			<mapping path="/qna/qnaInsert.do"/>
+			<mapping path="/qna/serviceBoardList.do"/>
+			<mapping path="/qna/qnaServiceList.do"/>
+			<mapping path="/qna/qnaUpdate.do"/>
+			<mapping path="/qna/qnaDelete.do"/>
+			<mapping path="/qna/serviceBoardList.do"/>
+			<mapping path="/event/eventUpdate.do"/>
+			<mapping path="/event/eventDelete.do"/>
+			<mapping path="/event/eventWrite.do"/>
+			<beans:bean class="kr.spring.interceptor.AdminCheckInterceptor"/>
+		</interceptor>
+		
 	</interceptors>
 	
 </beans:beans>

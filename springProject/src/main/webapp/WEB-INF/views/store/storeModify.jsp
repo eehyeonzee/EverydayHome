@@ -65,7 +65,7 @@
 <!-- 내용 시작 -->
 <div class = "container-fluid" style = "width:700px; border: 1px solid #d2f1f7; font-family: 'Gowun Dodum', sans-serif; ">
 	<h2>상품 등록</h2>
-	<form:form id = "productRegister" action = "updateProduct.do" modelAttribute = "storeVO"
+	<form:form id = "productRegister" action = "storeModify.do" modelAttribute = "storeVO"
 	           enctype="multipart/form-data">
 		<div class = "form-group row">
 		<form:hidden path = "prod_num" />

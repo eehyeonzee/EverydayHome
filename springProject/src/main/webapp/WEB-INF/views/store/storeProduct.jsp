@@ -119,17 +119,19 @@
 	</div>
 <div  class = "align-right">
 	<c:if test = "${!empty user_num && user_num == storeVO.mem_num}">
-			<input class = "btn btn-outline-dark" type = "button" value = "수정" onclick="location.href='updateProduct.do?prod_num=${storeVO.prod_num}'">
-			<input class = "btn btn-outline-dark" type = "button" value = "삭제" id = "delete_btn">
-			<script type = "text/javascript">
-				var delete_btn = document.getElementById('delete_btn');
-				delete_btn.onclick=function() {
-					var choice = confirm('삭제하시겠습니까?');
-					if(choice) {
-						location.replace('productDelete.do?prod_num=${storeVO.prod_num}');
-					}
-				};
-			</script>
+		<input class = "btn btn-outline-dark" type = "button" value = "수정" onclick="location.href='storeModify.do?prod_num=${storeVO.prod_num}'">
+	</c:if>
+	<c:if test = "${storeVO.mem_auth == 4 || user_num == storeVO.mem_num}">
+		<input class = "btn btn-outline-dark" type = "button" value = "삭제" id = "delete_btn">
+		<script type = "text/javascript">
+			var delete_btn = document.getElementById('delete_btn');
+			delete_btn.onclick=function() {
+				var choice = confirm('삭제하시겠습니까?');
+				if(choice) {
+					location.replace('productDelete.do?prod_num=${storeVO.prod_num}');
+				}
+			};
+		</script>
 	</c:if>
 </div>
 <div class = "content">
@@ -265,7 +267,9 @@
 			</div>
 		</div>
 		<div>
+			<c:if test = "${!empty user_num}">
 			<input class = "btn btn-outline-dark" type = "button" id = "btn_cart" value = "장바구니">
+			</c:if>
 			<form:button class = "btn btn-outline-dark" id = "btn_order">구매하기</form:button>
 		</div>
 	</div>
@@ -295,14 +299,6 @@
 	</script>
 	<script type = "text/javascript">
 		// 장바구니 클릭시
-		var user_check = $('#mem_num').val();
-		$('#btn_cart').click(function() {
-			if(user_check < 0) {
-				location.assign('${pageContext.request.contextPath}/member/login.do');
-				return false;
-			}
-		});
-		
 		$('#btn_cart').click(function() {
 			var quan = $('#quan').val();
 			if(quan > ${storeVO.prod_quan}) {
@@ -316,7 +312,7 @@
 						url : '${pageContext.request.contextPath}/cart/cartInsert.do',
 						data : {
 							prod_num : ${storeVO.prod_num},
-							user_num : user_check,
+							user_num : $('#mem_num').val(),
 							cart_quan : quan
 						},
 						dataType : 'json',

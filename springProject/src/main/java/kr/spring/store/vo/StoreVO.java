@@ -46,6 +46,7 @@ public class StoreVO {
 	private int quan;					// 주문 수량
 	private String buis_name;			// 사업자 이름
 	private String commit_option;		// 선택한 옵션
+	private int mem_auth;				// 유저 권한
 	
 	// 썸네일 BLOB 처리
 	public void setUpload1(MultipartFile upload1)throws IOException {
@@ -67,6 +68,12 @@ public class StoreVO {
 	}
 	
 	
+	public int getMem_auth() {
+		return mem_auth;
+	}
+	public void setMem_auth(int mem_auth) {
+		this.mem_auth = mem_auth;
+	}
 	public String getCommit_option() {
 		return commit_option;
 	}
@@ -259,6 +266,6 @@ public class StoreVO {
 				+ ", prod_option3=" + prod_option3 + ", prod_option4=" + prod_option4 + ", prod_option5=" + prod_option5
 				+ ", prod_option6=" + prod_option6 + ", prod_option7=" + prod_option7 + ", prod_option8=" + prod_option8
 				+ ", prod_option9=" + prod_option9 + ", prod_option10=" + prod_option10 + ", quan=" + quan
-				+ ", buis_name=" + buis_name + ", commit_option=" + commit_option + "]";
+				+ ", buis_name=" + buis_name + ", commit_option=" + commit_option + ", mem_auth=" + mem_auth + "]";
 	}
 }

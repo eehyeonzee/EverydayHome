@@ -15,7 +15,7 @@ import kr.spring.store.vo.StoreVO;
 
 public class ProductRegisterCheckInterceptor extends HandlerInterceptorAdapter{
 	
-private static final Logger logger = LoggerFactory.getLogger(WriterCheckInterceptor.class);
+	private static final Logger logger = LoggerFactory.getLogger(WriterCheckInterceptor.class);
 	
 	@Autowired
 	private StoreService storeService;
