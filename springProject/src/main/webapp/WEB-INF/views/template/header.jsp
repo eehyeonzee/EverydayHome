@@ -153,7 +153,7 @@ height: 40px;
 }
 
 .nav-left {
-	margin-top:20px;
+	margin-top:22px;
 	margin-right:30px;
 }
 
