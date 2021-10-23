@@ -31,7 +31,7 @@
 		         	 alert("선택한 질문이 없습니다!");
 		         	 return false;
 		      	}else{
-		    		if(confirm("선택한 회원의 권한을 변경 하시겠습니까?")){
+		    		if(confirm("삭제하시겠습니까?")){
 			    
 						$.ajax({
 							url: 'qnaDelete.do',

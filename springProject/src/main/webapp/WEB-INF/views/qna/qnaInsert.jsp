@@ -34,6 +34,15 @@
 
 	});
 </script>
+<script type="text/javascript">
+	var submit = document.getElementById('submit');
+	submit.onclick = function() {
+		var choice = confirm('글 등록을 하시겠습니까?');
+		if(choice) {
+			alert('등록이 완료되었습니다.');
+		}
+	};
+</script>
 <div class = "container-fluid contents-wrap" style = "width:95%">
    <div class="text-center col-sm-30 my-5">
 

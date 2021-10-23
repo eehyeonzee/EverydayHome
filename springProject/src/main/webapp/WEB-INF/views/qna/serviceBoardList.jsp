@@ -12,10 +12,10 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <div class = "container-fluid contents-wrap" style = "width:99%"> 
    <div align = "left">
-		<h2 class="admin-page-h2">이메일 문의 목록</h2>
+		<h3>이메일 문의 목록</h3><br>
 	</div>
     <form id="search_form" action="serviceBoardList.do" method="get">
-   		<ul class="search">
+   		<ul class="search" style="-webkit-padding-start:3px;">
 			<li>
 				<select name="keyword" id="keyword">
 					<option value="">전체</option>
@@ -30,34 +30,26 @@
 					<option value="불편 신고">불편 신고</option>
 					<option value="기타 문의">기타 문의</option>
 				</select>
-			</li>
-			<li>
-				<br>
-				<input class = "btn btn-outline-dark" type="submit" value="찾기">
-				<input class = "btn btn-outline-dark" type="button" value="목록" onclick="location.href='serviceBoardList.do'">
+					&nbsp;&nbsp;
+					<input class = "btn btn-outline-dark" type="submit" value="찾기">&nbsp;&nbsp;
+					<input class = "btn btn-outline-dark" type="button" value="목록" onclick="location.href='serviceBoardList.do'">
+					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+					<input type = "button" class = "btn btn-outline-dark" value = "돌아가기" onclick = "location.href='qnaList.do'">
 			</li>
 		</ul>
    </form> 
 
 <hr noshade="noshade" size="2">  
-   
-
 	<div class="text-center col-sm-30 my-5">
    	
    <c:if test="${count==0 }">
   		<div class="text-center">
   			출력할 내용이 없습니다.
   		</div>
-  		
-   	<div class = "text-right">
-		<input type = "button" class = "btn btn-outline-dark" value = "돌아가기" onclick = "location.href='qnaList.do'">&nbsp;
-	</div>
 	</c:if>
 	
 	<c:if test="${count > 0 }">	
-	<div class = "text-right">
-		<input type = "button" class = "btn btn-outline-dark" value = "돌아가기" onclick = "location.href='qnaList.do'">&nbsp;
-   </div>
    <table class="table table-sm">
    		<tr>
    			<th scope="col" style="width: 6%">문의번호</th>

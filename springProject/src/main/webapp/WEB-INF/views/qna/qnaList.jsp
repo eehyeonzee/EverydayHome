@@ -178,8 +178,10 @@ a.faq_item:hover{
 			<br><h2 class="h2">&nbsp;&nbsp;고객센터</h2><br>
 			<div class="box">
 	   			<section class="col-12 col-md-6 qna_contact"><address>운영시간 : 평일 09:00 ~ 18:00 (주말 &amp; 공휴일 제외)<br>
-	   			이메일 :&nbsp;<a href="/contacts/new" style="text-decoration:underline">이메일 문의하기</a>
-	   			<button id="copybtn" class="copy-email" onclick="copyToClipboard('springtest1010@gmail.com');" title="주소 복사">이메일 주소 복사</button>
+			    <c:if test="${user_auth != 4}">
+		   			이메일 :&nbsp;<a href="${pageContext.request.contextPath}/qna/serviceBoardInsert.do" style="text-decoration:underline">이메일 문의하기</a>
+		   			<button id="copybtn" class="copy-email" onclick="copyToClipboard('springtest1010@gmail.com');" title="주소 복사">이메일 주소 복사</button>
+			    </c:if>
 	   			<br>전화 :&nbsp;<a href="tel:1234-5678" style="text-decoration: underline;">1234-5678</a></address>
 				    <c:if test="${user_auth != 4}">
 				        <button class="email_button" type="button" value="이메일 문의하기" onclick="location.href='${pageContext.request.contextPath}/qna/serviceBoardInsert.do'">이메일 문의하기</button>
