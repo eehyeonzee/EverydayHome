@@ -164,9 +164,7 @@ div.mypage-info table{
 	max-width: 500px;
 }
 .page-main div#comm_div{
-	padding:5px 10px 40px 10px;
-	margin-top:10px;
-	background-color:#eeeeee;
+	background-color:#ffffff;
 }
 .page-main #output_fav, .output_rfav{
 	cursor : pointer;
@@ -178,6 +176,7 @@ div.mypage-info table{
 .page-main form#comm_form{
 	width:650px;
 	border:none;
+	float:left;
 }
 .page-main span.comm-title{
 	color:#000;
@@ -196,6 +195,7 @@ div.mypage-info table{
 	width:100%;
 	height:70px;
 	margin:10px 10px;
+	text-align:left;
 }
 .page-main div#comm_first{
 	float:left;

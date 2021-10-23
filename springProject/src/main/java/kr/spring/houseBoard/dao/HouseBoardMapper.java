@@ -83,8 +83,8 @@ public interface HouseBoardMapper {
 		public void deleteScrapByHouseNum(Integer house_num);
 		
 		// =============== 통합검색 =============== //
-		public int selectAllSearchRowCount(Map<String,Object> map);		// 통합 검색 결과 게시글 수
-		public List<HouseBoardVO> selectAllSearchList(Map<String,Object> map);		// 통합 검색 결과 게시글 리스트
+		public int selectAllSearchRowCount(Map<String,Object> map);	// 통합 검색 결과 게시글 수
+		public List<HouseBoardVO> selectAllSearchList(Map<String,Object> map); // 통합 검색 결과 게시글 리스트
 		
 }
 

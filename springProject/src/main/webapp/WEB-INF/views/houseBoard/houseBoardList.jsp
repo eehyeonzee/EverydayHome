@@ -144,7 +144,7 @@
 					<%-- 사진파일이 없는 경우 --%>
 					<c:if test="${empty houseBoard.thumbnail_filename}">
 						<figure class="embed-responsive embed-responsive-1by1">
-		            	<img class="card-img-top embed-responsive-item" id="thumbnail" src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="width:100%; border-radius:1%;"/>
+		            	<img class="card-img-top embed-responsive-item" id="thumbnail" src="${pageContext.request.contextPath}/resources/images/basic_house.png" style="width:100%; border-radius:1%;"/>
 						</figure>
 					</c:if>
 					<%-- 사진파일이 있는 경우 --%>

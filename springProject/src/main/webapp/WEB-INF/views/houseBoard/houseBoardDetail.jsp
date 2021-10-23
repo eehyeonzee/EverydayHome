@@ -330,7 +330,7 @@
 			var modifyUI = '<form id="mcomm_form">';
 			   modifyUI += '   <input type="hidden" name="comm_num" id="mcomm_num" value="'+comm_num+'">';
 			   modifyUI += '   <input type="hidden" name="mem_num" id="mmem_num" value="'+mem_num+'">';
-			   modifyUI += '   <textarea rows="3" cols="50" name="comm_content" id="mcomm_content" class="comm-content">'+comm_content+'</textarea>';
+			   modifyUI += '   <textarea rows="1" name="comm_content" id="mcomm_content" class="form-control" placeholder="칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)">'+comm_content+'</textarea>';
 			   modifyUI += '   <div id="mcomm_first"><span class="letter-count">300/300</span></div>';
 			   modifyUI += '   <div id="mcomm_second" class="align-right">'
 			   modifyUI += '	  <input type="submit" value="수정">';
@@ -455,7 +455,6 @@
 <!-- 댓글 자바스크립트 끝 -->
 <!-- 중앙 내용 시작 -->
 <div class="page-main">
-<div class="houseBoard-detail">
 <div class="container">
 	<input type="hidden" id="house_num" value="${houseBoard.house_num}"/>
 	<!-- 작성자 프로필 시작 -->
@@ -476,7 +475,7 @@
 	<!-- 추천 및 스크랩 시작 -->
 	<div class="btn_click" style="float:right; display:inline-block;">
 		<!-- 추천 버튼 -->
-		<button type="button" id="heart_btn" class="heart-btn"">
+		<button type="button" id="heart_btn" class="heart-btn">
 			<c:if test="${heartCheckNum == 0}">
 				<img id="heart" style="margin: 5 10 5 10; width:25px; height:25px;" src="${pageContext.request.contextPath}/resources/images/dislike.png">
 			</c:if>
@@ -487,7 +486,7 @@
 			&nbsp;<span id="heartCount" style="display:inline-block;"></span>&nbsp;
 		</button>
 		<!-- 스크랩 버튼 -->
-		<button type="button" id="scrap_btn" class="scrap-btn" style="border:none;">
+		<button type="button" id="scrap_btn" class="scrap-btn">
 			<c:if test="${scrapCheckNum == 0}">
 				<img id="scrap" style="margin: 5 10 5 10; width:25px; height:25px;" src="${pageContext.request.contextPath}/resources/images/scrapX.png">
 			</c:if>
@@ -526,6 +525,7 @@
 	<p>${houseBoard.house_content}</p>
 	</div>
 	<!-- 해당 게시글 상세 내용 끝 -->
+	<br><br>
 	<!-- SNS 공유하기 버튼 시작 -->
 	<div align="right">
 		<a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();">　　　</a><!-- 페이스북 -->
@@ -538,8 +538,8 @@
 	<div class="detail-button" style="text-align:right;">
 		<!-- 로그인 회원번호와 작성자 회원번호가 일치해야 수정 및 삭제 가능 -->
 		<c:if test="${!empty user_num && user_num == houseBoard.mem_num}">
-			<input class="btn btn-outline-dark" type="button" value="수정" onclick="location.href='update.do?house_num=${houseBoard.house_num}'">&nbsp;
-			<input class="btn btn-outline-dark" type="button" value="삭제" id="delete_btn">&nbsp;
+			<input class="btn" type="button" value="수정" onclick="location.href='update.do?house_num=${houseBoard.house_num}'">&nbsp;
+			<input class="btn" type="button" value="삭제" id="delete_btn">&nbsp;
 				<script type="text/javascript">
 					var delete_btn = document.getElementById('delete_btn');
 					delete_btn.onclick = function() {
@@ -550,7 +550,7 @@
 					};
 				</script>
 		</c:if>
-		<input class="btn btn-outline-dark" type="button" value="목록" onclick="location.href='list.do'">
+		<input class="btn" type="button" value="목록" onclick="location.href='list.do'">
 	</div>
 	<!-- 수정｜삭제｜목록 버튼 끝 -->
 	<br><br>
@@ -563,7 +563,7 @@
 		<form id="comm_form">
 			<input type="hidden" name="house_num" value="${houseBoard.house_num}" id="house_num">
 			<input type="hidden" name="mem_num" value="${user_num}" id="mem_num">
-			<textarea rows="3" cols="50" name="comm_content" id="comm_content" class="comm-content" placeholder="칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)"
+			<textarea rows="1" name="comm_content" id="comm_content" class="form-control" placeholder="칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)"
 				<c:if test="${empty user_num}">disabled="disabled"</c:if>
 				><c:if test="${empty user_num}">로그인 후 사용하세요</c:if></textarea><!-- 닫는 태그 내리지(띄어쓰지) 말자! 공백으로 인식함 -->
 			<c:if test="${!empty user_num}">
@@ -585,7 +585,6 @@
 		<img src="${pageContext.request.contextPath}/resources/images/ajax-loader.gif">
 	</div>
 	<!-- 댓글 끝 -->
-</div>
 </div>
 </div>
 <!-- 중앙 내용 끝 -->
