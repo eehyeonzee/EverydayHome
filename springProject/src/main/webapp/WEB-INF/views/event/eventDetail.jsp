@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <!--  공유 API 시작 -->
@@ -80,7 +82,6 @@ function shareTwitter() {
 						output += '<div class="sub-item">';
 						output +='   <p>' + item.comm_content.replace(/</gi,'&lt;').replace(/>/gi,'&gt;') + '</p>';
 						output += item.comm_reg_date;
-						}
 						if($('#mem_num').val()==item.mem_num){
 							//로그인한 회원 번호가 댓글 작성자 회원 번호와 같으면
 							output += ' <input type="button" data-num="'+item.comm_num+'" data-mem="'+item.mem_num+'" value="수정" class="modify-btn">';
@@ -117,6 +118,7 @@ function shareTwitter() {
 		});
 		//댓글 등록
 		$('#comm_form').submit(function(event){
+			alert("댓글등록 컨트롤러 진입");
 			if($('#comm_content').val().trim()==''){
 				alert('내용을 입력하세요!');
 				$('#comm_content').val('').focus();
@@ -135,6 +137,7 @@ function shareTwitter() {
 					if(param.result == 'logout'){
 						alert('로그인 해야 작성할 수 있습니다.');
 					}else if(param.result == 'success'){
+						
 						//폼 초기화
 						initForm();
 						//댓글 작성이 성공하면 새로 삽입한 글을 포함해서 첫번째 페이지의
