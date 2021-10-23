@@ -61,7 +61,6 @@
 </script>
 <!-- 중앙 내용 시작 -->
 <div class="page-main2">
-	<h2>글쓰기</h2>
 	<form:form id="register_form" action="write.do" modelAttribute="houseBoardVO" enctype="multipart/form-data">
 		<form:errors element="div" cssClass="error-color"/>
 		<ul>

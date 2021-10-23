@@ -10,6 +10,15 @@
 <!-- 중앙 내용 시작 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 <style>
+.card {
+	border:none;
+}
+
+.count {
+	margin-top:15px;
+	margin-bottom:25px;
+}
+
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
@@ -31,7 +40,7 @@
 	<!-- 평수 -->
 	<div class="input-group col-3 mb-3">
 	  <div class="input-group-prepend">
-	    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">평수</button>
+	    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">평수</button>
 	    <div class="dropdown-menu">
 	      <a class="dropdown-item" href="list.do?size=0&residence=${residence}&style=${style}&space=${space}">10평미만</a>
 	      <a class="dropdown-item" href="list.do?size=1&residence=${residence}&style=${style}&space=${space}">10평대</a>
@@ -118,7 +127,7 @@
 	</c:if>
 	<!-- 등록된 게시물이 있을 경우 -->
 	<c:if test="${count > 0}">
-	<div>
+	<div class="count">
 		총 <b style="color:#8c996b">${count}</b>개의 글
 	</div>
 	<%-- 반복문 시작 --%>
@@ -127,7 +136,7 @@
 	<c:forEach var="houseBoard" items="${list}">
 		<div class="col-3">
 			<div class="card" style="width:255px; height:450px; text-align:center;">
-				<div class="card-header">
+				<div>
 					<div style="float:left; cursor:pointer;" onclick="location.href='${pageContext.request.contextPath}/houseBoard/detail.do?house_num=${houseBoard.house_num}'">
 						<%-- 회원 프로필 사진이 없는 경우 --%>
 						<c:if test="${empty houseBoard.profile_filename}">
