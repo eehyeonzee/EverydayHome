@@ -30,7 +30,7 @@
 					<option value="진행중">진행중</option>
 					<option value="종료">종료</option>
 				</select>
-				<input type="submit" value="찾기">
+				<input type="submit" value="찾기" class="btn">
 				<input type="button" value="목록" onclick="location.href='eventList.do'">
 			</li>
 		</ul>
