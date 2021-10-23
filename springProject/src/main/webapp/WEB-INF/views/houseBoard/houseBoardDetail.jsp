@@ -598,7 +598,7 @@ div.btn modify-btn {
 	<div class="detail-button" style="text-align:right;">
 		<!-- 로그인 회원번호와 작성자 회원번호가 일치해야 수정 및 삭제 가능 -->
 		<c:if test="${!empty user_num && user_num == houseBoard.mem_num}">
-			<input class="btn" type="button" value="수정" id="run" onclick="location.href='update.do?house_num=${houseBoard.house_num}'">&nbsp;
+			<input class="btn" type="button" value="수정" id="modify_run" onclick="location.href='update.do?house_num=${houseBoard.house_num}'">&nbsp;
 			<input class="btn" type="button" value="삭제" id="delete_run">&nbsp;
 				<script type="text/javascript">
 					var delete_btn = document.getElementById('delete_run');
