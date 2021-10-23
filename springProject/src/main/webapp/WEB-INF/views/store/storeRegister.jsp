@@ -205,7 +205,7 @@
 				</script>
 			</li>
 		</ul>
-		<div class = "align-center">
+		<div class = "align-center" style = "margin-left : 40px;">
 			<input class = "btn btn-outline-dark" type = "submit" value = "상품 등록" id = "regist">
 			<script type = "text/javascript">
 				var regist = document.getElementById('regist');
@@ -220,6 +220,6 @@
 			</script>
 			<input class = "btn btn-outline-dark" type = "button" value = "홈으로" onclick = "location.href='${pageContext.request.contextPath}/store/storeMain.do'">
 		</div>
-		</div>
+	</div>
 	</form:form>
 </div>

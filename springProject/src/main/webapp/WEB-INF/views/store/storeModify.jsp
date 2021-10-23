@@ -181,8 +181,8 @@
 				<input class = "btn btn-outline-dark" type = "button" id = "minus" value = "상품 옵션 제거">
 			</li>
 			<li>
-				<label class = "col-sm-3 col-form-label"  for = "upload1">썸네일 이미지</label>
-				<input type = "file" name = "upload1" id = "upload1" accept = "image/gif,image/png,image/jpeg"><br>
+				<label class = "col-sm-3 col-form-label" for = "upload1">썸네일 이미지</label>
+				<input class = "btn btn-outline-dark" type = "file" name = "upload1" id = "upload1" accept = "image/gif,image/png,image/jpeg"><br>
 				<span id = "file_detail">(${storeVO.thumbnail_filename}) 파일이 등록되어 있습니다.
 				다시 업로드하면 기존 파일은 삭제 됩니다.
 				<input class = "btn btn-outline-dark" type = "button" value = "파일삭제" id = "file_del">
@@ -238,7 +238,7 @@
 				</script>
 			</li>
 		</ul>
-		<div class = "align-center">
+		<div class = "align-center" style = "margin-left : 40px;">
 			<input class = "btn btn-outline-dark" type = "submit" value = "상품 수정" id = "modify">
 			<script type = "text/javascript">
 				var modify = document.getElementById('modify');

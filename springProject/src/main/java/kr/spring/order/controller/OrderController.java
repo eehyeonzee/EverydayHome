@@ -182,7 +182,7 @@ public class OrderController {
 		return "{\"result\":\"NO\"}";
 	}
 	
-	// 주문 등록
+	// 주문내역 DB에 등록
 	@RequestMapping("/order/orderInsert.do")
 	@ResponseBody
 	public Map<String, String> orderInsert(OrderVO orderVO, HttpServletRequest request) {
@@ -194,7 +194,7 @@ public class OrderController {
 		orderVO.setProd_num(prod_num);
 		
 		orderService.insertOrder(orderVO);
-		map.put("result", "test");
+		map.put("result", "success");
 		
 		return map;
 	}

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "form" uri = "http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <meta charset="UTF-8">
@@ -9,25 +10,79 @@
 <script type = "text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<style>
+	h4 {
+		margin : 10px;
+	}
+	hr {
+		margin-bottom : 5px;
+		margin-top : 5px;
+	}
+	#kakao_btn {
+		background: url("${pageContext.request.contextPath}/resources/images/kakao_pay_img.png") no-repeat;
+		border: none;
+        width: 121px;
+        height: 50px;
+        cursor: pointer;
+	}
+</style>
 <h2>주문/결제</h2>
-<h3>주문자</h3>
-<ul>
-	<li>이름 <input type = "text" id = "name" name = "name" value = "${memberVO.mem_name}"></li>
-	<li>이메일 <input type = "email" id = "email" name = "email" value = "${memberVO.email}"></li>
-	<li>연락처 <input type = "text" id = "phone" name = "phone" value = "${memberVO.phone}"></li>
-</ul>
-<h3>배송지</h3>
+<div class = "container-fluid" style = "width:700px; border: 1px solid #d2f1f7; font-family: sans-serif;">
+	<h4 class = "order">주문자 정보</h4>
+	<div>
+		<ul>
+			<li>
+				<label class = "col-sm-3 col-form-label">이름</label>
+				<input class = "col-sm-4" type = "text" id = "name" name = "name" value = "${memberVO.mem_name}">
+				<hr>
+			</li>
+			<li>
+				<label class = "col-sm-3 col-form-label">이메일</label>
+				<input class = "col-sm-4" type = "email" id = "email" name = "email" value = "${memberVO.email}">
+				<hr>
+			</li>
+			<li>
+				<label class = "col-sm-3 col-form-label">연락처</label>
+				<input class = "col-sm-4" type = "text" id = "phone" name = "phone" value = "${memberVO.phone}">
+			</li>
+		</ul>
+	</div>
+</div>
+<br>
 <form:form id = "orderInsert" action = "orderInsert.do" modelAttribute = "orderVO">
+<div class = "container-fluid" style = "width:700px; border: 1px solid #d2f1f7; font-family: sans-serif;">
+	<h4 class = "order">배송지</h4>
 	<input type = "hidden" id = "mem_num" name = "mem_num" value = "${memberVO.mem_num}">
 	<ul>
-		<li>받는 사람 <input type = "text" name = "receiver_name" id = "receiver_name"><input type = "button" id = "equal" value = "위와 동일하게 채우기"></li>
-		<li>연락처 <input type = "text" name = "receiver_phone" id = "receiver_phone"></li>
-		<li>이메일 <input type = "email" name = "receiver_email" id = "receiver_email"></li>
-		<li>주소 <input type = "text" name = "order_zipcode" id = "order_zipcode" value = "${memberVO.zipcode}">
-		<input class = "btn btn-outline-dark" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+		<li>
+			<label class = "col-sm-3 col-form-label">받는 사람</label>
+			<input class = "col-sm-4" type = "text" name = "receiver_name" id = "receiver_name">&nbsp;&nbsp;
+			<input class = "btn btn-outline-dark" type = "button" id = "equal" value = "위와 동일하게 채우기">
+			<hr>
 		</li>
-		<li><input type = "text" name = "order_address1" id = "order_address1" value = "${memberVO.address1}"></li>
-		<li><input type = "text" name = "order_address2" id = "order_address2" value = "${memberVO.address2}"></li>
+		<li>
+			<label class = "col-sm-3 col-form-label">연락처</label>
+			<input class = "col-sm-4" type = "text" name = "receiver_phone" id = "receiver_phone">
+			<hr>	
+		</li>
+		<li>
+			<label class = "col-sm-3 col-form-label">이메일</label>
+			<input class = "col-sm-4" type = "email" name = "receiver_email" id = "receiver_email">
+			<hr>
+		</li>
+		<li>
+			<label class = "col-sm-3 col-form-label">주소</label>
+			<input class = "col-sm-4" type = "text" name = "order_zipcode" id = "order_zipcode" value = "${memberVO.zipcode}">&nbsp;&nbsp;
+			<input style = "margin-bottom : 10px;" class = "btn btn-outline-dark" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+		</li>
+		<li>
+			<label class = "col-sm-3 col-form-label"></label>
+			<input style = "margin-bottom : 10px;" class = "col-sm-7" type = "text" name = "order_address1" id = "order_address1" value = "${memberVO.address1}">
+		</li>
+		<li>
+			<label class = "col-sm-3 col-form-label"></label>
+			<input class = "col-sm-7" type = "text" name = "order_address2" id = "order_address2" value = "${memberVO.address2}">
+		</li>
 	</ul>
 	<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
 		<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
@@ -99,42 +154,63 @@
 			var price = ${storeVO.prod_price};
 			var delive = ${storeVO.delive_price};
 			var quan = ${storeVO.quan};
+			var won = '원';
 			
 			var final_price = (price * quan) + delive;
 			$('#final_price').val(final_price);
 			$('#final_price_li').append(final_price);
-			
+			$('#final_price_li').append(won);
 		});
 	</script>
-	<h3>상품 정보</h3>
-	<ul>
-		<li>판매자명 : ${storeVO.buis_name}
-			<input type = "hidden" id = "buis_name" name = "buis_name" value = "${storeVO.buis_name}">
-		</li>
-		<li>상품명 : ${storeVO.prod_name}
-			<input type = "hidden" id = "prod_name" name = "prod_name" value = "${storeVO.prod_name}">		
-		</li>
-		<li>상품 가격 : ${storeVO.prod_price}
-			<input type = "hidden" id = "prod_price" name = "prod_price" value = "${storeVO.prod_price}">
-		</li>
-		<li>수량 : ${storeVO.quan}
-			<input type = "hidden" id = "quan" name = "quan" value = "${storeVO.quan}">
-		</li>
-		<li>배송 방법 : ${storeVO.delive_type}
-			<input type = "hidden" id = "delive_type" name = "delive_type" value = "${storeVO.delive_type}">
-		</li>
-		<li>배송비 : ${storeVO.delive_price}
-			<input type = "hidden" id = "delive_price" name = "delive_price" value = "${storeVO.delive_price}">
-		</li>
-		<li>옵션 : ${storeVO.commit_option}
-			<input type = "hidden" id = "commit_option" name = "commit_option" value = "${storeVO.commit_option}">
-		</li>
-		<li id = "final_price_li">최종 결제 금액 : 
-			<input type = "hidden" id = "final_price" name = "final_price" value = "final_price">
-		</li>
-	</ul>
+</div>
+<br>
+<div class = "container-fluid" style = "width:700px; border: 1px solid #d2f1f7; font-family: sans-serif;">
+	<h4 class = "order">상품 정보</h4>
+	<table class = "table table-bordered">
+		<tr>
+			<th scope = "col" class = "align-center">상품 정보</th>
+			<th scope = "col" class = "align-center">수량</th>
+			<th scope = "col" class = "align-center">가격</th>
+			<th scope = "col" class = "align-center">배송</th>
+			<th scope = "col" class = "align-center">결제 금액</th>
+		</tr>
+		<tr>
+			<td>
+				<span style = "font-weight : bold;">[${storeVO.buis_name}]</span>
+				<input type = "hidden" id = "buis_name" name = "buis_name" value = "${storeVO.buis_name}">
+				${storeVO.prod_name}<br>
+				<input type = "hidden" id = "prod_name" name = "prod_name" value = "${storeVO.prod_name}">		
+				<c:if test = "${storeVO.commit_option != null}">옵션 : </c:if>
+				${storeVO.commit_option}
+				<input type = "hidden" id = "commit_option" name = "commit_option" value = "${storeVO.commit_option}">
+			</td>
+			<td class = "align-center">
+				${storeVO.quan}개
+				<input type = "hidden" id = "quan" name = "quan" value = "${storeVO.quan}">	
+			</td>
+			<td class = "align-center">
+				${storeVO.prod_price}원
+				<input type = "hidden" id = "prod_price" name = "prod_price" value = "${storeVO.prod_price}">
+			</td>
+			<td class = "align-center">
+				${storeVO.delive_type}
+				<input type = "hidden" id = "delive_type" name = "delive_type" value = "${storeVO.delive_type}">
+				<br>
+				${storeVO.delive_price}원
+				<input type = "hidden" id = "delive_price" name = "delive_price" value = "${storeVO.delive_price}">
+			</td>
+			<td class = "align-center" id = "final_price_li">
+				<input type = "hidden" id = "final_price" name = "final_price" value = "final_price">
+			</td>
+		</tr>
+		<tr>
+			<td class = "align-center" colspan = "5">
+				<input class = "btn btn-outline-dark" type = "button" value = "" id = "kakao_btn">
+			</td>
+		</tr>
+	</table>
+</div>
 	<input type = "hidden" id = "prod_num" name = "prod_num" value = "${storeVO.prod_num}">
-	<input type = "button" value = "kakao" id = "kakao_btn">
 	<script type="text/javascript">
 		$(document).ready(function() {
 				var receiver_name = $('#receiver_name').val();
@@ -151,7 +227,63 @@
 				var receiver_email = $('#receiver_email').val();
 				var mem_num = $('#mem_num').val();
 				
-			$('#kakao_btn').click(function() {				
+			$('#kakao_btn').click(function() {
+				
+				if($('#name').val().trim() == '') {
+					alert('주문자 이름을 입력하세요!');
+					$('#name').focus();
+					$('#name').val('');
+					return false;
+				}
+				if($('#email').val().trim() == '') {
+					alert('주문자 이메일을 입력하세요!');
+					$('#email').focus();
+					$('#email').val('');
+					return false;
+				}
+				if($('#phone').val().trim() == '') {
+					alert('주문자 전화번호를 입력하세요!');
+					$('#phone').focus();
+					$('#phone').val('');
+					return false;
+				}
+				if($('#receiver_name').val().trim() == '') {
+					alert('수령자 이름을 입력하세요!');
+					$('#receiver_name').focus();
+					$('#receiver_name').val('');
+					return false;
+				}
+				if($('#receiver_phone').val().trim() == '') {
+					alert('수령자 전화번호를 입력하세요!');
+					$('#receiver_phone').focus();
+					$('#receiver_phone').val('');
+					return false;
+				}
+				if($('#receiver_email').val().trim() == '') {
+					alert('수령자 이메일을 입력하세요!');
+					$('#receiver_email').focus();
+					$('#receiver_email').val('');
+					return false;
+				}
+				if($('#order_zipcode').val().trim() == '') {
+					alert('우편번호를 입력하세요!');
+					$('#order_zipcode').focus();
+					$('#order_zipcode').val('');
+					return false;
+				}
+				if($('#order_address1').val().trim() == '') {
+					alert('주소를 입력하세요!');
+					$('#order_address1').focus();
+					$('#order_address1').val('');
+					return false;
+				}
+				if($('#order_address2').val().trim() == '') {
+					alert('상세 주소를 입력하세요!');
+					$('#order_address2').focus();
+					$('#order_address2').val('');
+					return false;
+				}
+				
 				$.ajax({
 					url: '${pageContext.request.contextPath}/order/kakao.do',
 					data : {
