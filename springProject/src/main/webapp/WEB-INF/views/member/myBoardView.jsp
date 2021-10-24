@@ -8,7 +8,6 @@
  * 수정일 : 
 --%>
 <%@ include file="/WEB-INF/views/member/common/myPageHeader.jsp" %>
-<%@ include file="/WEB-INF/views/member/common/myPageProfile.jsp" %>
 <script type="text/javascript">
 	$(document).ready(function(){
 		// 카드형 게시물 110글자 초과시 ... 처리
@@ -22,10 +21,10 @@
 	    });
 	});
 </script>
-	<div class = "container-fluid contents-wrap" style = "width:99%">
-		<div class="text-center col-sm-10 my-5" style="float: right;">
-		<div align = "left">
-			<h2 class="admin-page-h2">내가 쓴 글 ( ${count} )</h2>
+	<br><div  style = "width:99%">
+		<div  style="float: right;">
+		<div align = "center">
+			<h2 style="text-align:center;">내가 쓴 글 ( ${count} )</h2>
 		</div>
 		<%-- 카드시작 --%>
 		<div class="row my-5 ml-5 mr-5" align="center">
@@ -39,8 +38,8 @@
 		<c:if test="${count > 0}">
 			<!-- 반복문 시작 -->
 			<c:forEach var="houseBoard" items="${list}">
-				<div class="col-3">
-					<div class="card" style="height: 465px; width: 220px;">
+				<div >
+					<div class="card" style="height: 470px; width: 330px;">
 			            <div class="card-header">
 			            	<div style="float: left; cursor: pointer;" onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">
 				         		<%-- 회원 프로필 사진이 없는 경우 --%>

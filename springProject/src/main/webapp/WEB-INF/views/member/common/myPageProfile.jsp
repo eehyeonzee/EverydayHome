@@ -8,8 +8,10 @@
  * 수정일 : 
 --%>
 <div class ="page-main">
-	<h3>프로필 사진</h3>
-	<div class="mypage-info-main" style=" width:350px;">
+	<div style="align:center;">
+	</div>
+	<h2 style="align:center;">프로필 사진</h2>
+	<div class="mypage-info-main" style=" width:300px; height:400px;">
 	<ul style=" margin:0;list-style:none; clear:both;" >
 		<li style="text-align:center;">
 			<c:if test="${empty user_photo }">
