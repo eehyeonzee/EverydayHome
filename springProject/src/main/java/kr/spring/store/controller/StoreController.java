@@ -90,8 +90,8 @@ public class StoreController {
 	// 카테고리 페이지 출력
 	@RequestMapping("/store/storeCategory.do")
 	public ModelAndView process(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
-			@RequestParam(value="keyfield", defaultValue = "") String keyfield,
-			@RequestParam(value="keyword", defaultValue = "") String keyword) {
+			@RequestParam(value="keyfield", defaultValue = "1") String keyfield,
+			@RequestParam(value="prod_cate", defaultValue = "") String keyword) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("keyfield", keyfield);
@@ -103,7 +103,7 @@ public class StoreController {
 		logger.debug("<<count>> : " + count);
 		
 		// 페이지 처리
-		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, rowCount, pageCount, "storeCategory.do");
+		PagingUtil page = new PagingUtil(null, keyfield, currentPage, count, rowCount, pageCount, "storeCategory.do");
 		
 		map.put("start", page.getStartCount());
 		map.put("end", page.getEndCount());

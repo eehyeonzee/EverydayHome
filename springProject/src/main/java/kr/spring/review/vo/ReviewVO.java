@@ -15,7 +15,7 @@ public class ReviewVO {
 	private String rev_filename;
 	private int prod_num;
 	private int mem_num;
-	private int mem_name;
+	private String mem_name;
 	private String star;
 	
 	//제품정보
@@ -139,21 +139,26 @@ public class ReviewVO {
 		this.prod_price = prod_price;
 	}
 
-	@Override
-	public String toString() {
-		return "ReviewVO [rev_num=" + rev_num + ", rev_content=" + rev_content + ", rev_grade=" + rev_grade
-				+ ", rev_reg_date=" + rev_reg_date + ", rev_filename="
-				+ rev_filename + ", prod_num=" + prod_num + ", mem_num=" + mem_num + ", buis_name=" + buis_name
-				+ ", prod_name=" + prod_name + ", prod_option=" + prod_option + ", order_date=" + order_date
-				+ ", prod_price=" + prod_price + ", thumbnail_filename=" + thumbnail_filename + "]";
-	}
-
-	public int getMem_name() {
+	
+	public String getMem_name() {
 		return mem_name;
 	}
 
-	public void setMem_name(int mem_name) {
+	public void setMem_name(String mem_name) {
 		this.mem_name = mem_name;
+	}
+
+	
+
+	
+
+	@Override
+	public String toString() {
+		return "ReviewVO [rev_num=" + rev_num + ", rev_content=" + rev_content + ", rev_grade=" + rev_grade
+				+ ", rev_reg_date=" + rev_reg_date + ", rev_filename=" + rev_filename + ", prod_num=" + prod_num
+				+ ", mem_num=" + mem_num + ", mem_name=" + mem_name + ", star=" + star + ", buis_name=" + buis_name
+				+ ", prod_name=" + prod_name + ", prod_option=" + prod_option + ", order_date=" + order_date
+				+ ", prod_price=" + prod_price + ", thumbnail_filename=" + thumbnail_filename + "]";
 	}
 
 	public String getStar() {
