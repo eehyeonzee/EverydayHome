@@ -18,7 +18,6 @@
 	margin-top:15px;
 	margin-bottom:25px;
 }
-
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>

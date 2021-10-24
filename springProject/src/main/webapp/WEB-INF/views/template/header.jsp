@@ -161,6 +161,10 @@ height: 40px;
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
+.nav-right {
+		font-family: 'Noto Sans KR', sans-serif;
+}
+
 .nav-dropdown {
 	font-family: 'Noto Sans KR', sans-serif;
 }
@@ -177,8 +181,67 @@ ul li.navrightmenuli {
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
+ul.dropdownbar {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #8c996b;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #000000;
+    min-width: 160px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+
+.dropdown-content a:hover {background-color: #8c996b}
+
+.show {display:block;}
 
 </style>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	function myFunction() {
+	    document.getElementById("myDropdown").classList.toggle("show");
+	}
+	
+	window.onclick = function(event) {
+		if (!event.target.matches('.dropbtn')) {
+		var dropdowns = document.getElementsByClassName("dropdown-content");
+		var i;
+		for (i = 0; i < dropdowns.length; i++) {
+			var openDropdown = dropdowns[i];
+			if (openDropdown.classList.contains('show')) {
+				openDropdown.classList.remove('show');
+			}
+	    }
+		}
+	}
+</script>
 <div class="topbar">
 	<div class="navline">
 		<div class="navcontainer">
@@ -190,11 +253,11 @@ ul li.navrightmenuli {
 				<ul>
 					<li class="navmenuli"><a class="navmenuitem" href="${pageContext.request.contextPath}/main/main.do" style="color:#8c996b; text-decoration: none;">커뮤니티</a>
 						<ul class="dropdownbar">
-							<li class="navmenuitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/main/main.do">홈</a></li>
-							<li class="navmenuitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/houseBoard/list.do">집들이</a></li>
-							<li class="navmenuitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/event/eventList.do">이벤트</a></li>
-							<li class="navmenuitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/notice/noticeList.do">공지사항</a></li>
-							<li class="navmenuitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/qna/qnaList.do">고객센터</a></li>
+							<li class="navmenuitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/main/main.do">홈</a></li>
+							<li class="navmenuitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/houseBoard/list.do">집들이</a></li>
+							<li class="navmenuitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/event/eventList.do">이벤트</a></li>
+							<li class="navmenuitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/notice/noticeList.do">공지사항</a></li>
+							<li class="navmenuitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/qna/qnaList.do">고객센터</a></li>
 						</ul>
 					</li>
 					<li class="navmenuli"><a class="navmenuitem" style="text-decoration:none;" href="${pageContext.request.contextPath}/store/storeCategory.do">스토어홈</a></li>
@@ -210,14 +273,14 @@ ul li.navrightmenuli {
 				</form>
 					<a class="navrightitem" href="${pageContext.request.contextPath}/member/login.do" style="text-decoration: none;">로그인</a> 
 					<a class="navrightitem" href="${pageContext.request.contextPath}/member/registerUser.do" style="text-decoration: none;">회원가입</a> 
-					<a class="navrightitem" href="${pageContext.request.contextPath}/order/nonCheck.do" style="text-decoration: none;">비회원주문조회</a> 
+					<a class="navrightitem" href="${pageContext.request.contextPath}/order/nonCheck.do" style="text-decoration: none;">비회원주문조회</a>
 					<div class="nav-right-menu">
 						<ul>
 							<li class="navrightmenuli"><a class="navmenuitem" href="#" style="color:#8c996b; text-decoration:none;">글쓰기</a>
 								<ul class="dropdownbar">
-									<li class="navrightitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/houseBoard/write.do">사진 올리기</a></li>
-									<li class="navrightitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/review/myBuyList.do">상품 리뷰 쓰기</a></li>
-									<li class="navrightitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/qna/serviceBoardInsert.do">고객센터 질문하기</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/houseBoard/write.do">사진 올리기</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/review/myBuyList.do">상품 리뷰 쓰기</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/qna/serviceBoardInsert.do">고객센터 질문하기</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -241,10 +304,10 @@ ul li.navrightmenuli {
 					<span class="navrightitem">${user_nickname} 님은 <b style="color: red;">정지회원입니다.</b></span>
 					<div class="nav-right-menu">
 						<ul>
-							<li class="navrightmenuli"><a class="navmenuitem" href="#" style="color: #35c5f0; text-decoration: none;">마이페이지</a>
+							<li class="navrightmenuli"><a class="navmenuitem" href="#" style="color:#8c996b; text-decoration: none;">마이페이지</a>
 								<ul class="dropdownbar">
-									<li class="navrightitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/myPage.do">마이페이지</a></li>
-									<li class="navrightitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/myPage.do">마이페이지</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -271,10 +334,10 @@ ul li.navrightmenuli {
 						<ul>
 							<li class="navrightmenuli"><a class="navmenuitem" href="${pageContext.request.contextPath}/member/myPage.do" style="color:#8c996b; text-decoration: none;">마이페이지</a>
 								<ul class="dropdownbar">
-									<li class="navrightitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/myPage.do">마이페이지</a>
-									<li class="navrightitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/order/myOrder.do">나의쇼핑</a></li>
-									<li class="navrightitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/sellerApplication.do">판매자 신청</a></li>
-									<li class="navrightitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/myPage.do">마이페이지</a>
+									<li class="navrightitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/order/myOrder.do">나의쇼핑</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/sellerApplication.do">판매자 신청</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -283,10 +346,10 @@ ul li.navrightmenuli {
 						<ul>
 							<li class="navrightmenuli"><a class="navmenuitem" href="#" style="color:#8c996b; text-decoration: none;">글쓰기</a>
 								<ul class="dropdownbar">
-									<li class="navrightitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/houseBoard/write.do">사진 올리기</a></li>
-									<li class="navrightitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/review/myBuyList.do">상품 리뷰 쓰기</a></li>
-									<li class="navrightitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/qna/serviceBoardInsert.do">고객센터 질문하기</a></li>
-									<li class="navrightitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/store/storeRegister.do">상품 등록</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/houseBoard/write.do">사진 올리기</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/review/myBuyList.do">상품 리뷰 쓰기</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/qna/serviceBoardInsert.do">고객센터 질문하기</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/store/storeRegister.do">상품 등록</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -312,9 +375,9 @@ ul li.navrightmenuli {
 						<ul>
 							<li class="navrightmenuli"><a class="navmenuitem" href="${pageContext.request.contextPath}/member/myPage.do" style="color:#8c996b; text-decoration: none;">판매자페이지</a>
 								<ul class="dropdownbar">
-									<li class="navrightitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/myPage.do">마이페이지</a></li>
-									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/myProduct.do">나의물건</a></li>
-									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/myPage.do">마이페이지</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/myProduct.do">나의물건</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -323,8 +386,8 @@ ul li.navrightmenuli {
 						<ul>
 							<li class="navrightmenuli"><a class="navmenuitem" href="#" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">등록</a>
 								<ul class="dropdownbar">
-									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/qna/serviceBoardInsert.do">고객센터 질문하기</a></li>
-									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/store/storeRegister.do">상품 등록</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/qna/serviceBoardInsert.do">고객센터 질문하기</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/store/storeRegister.do">상품 등록</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -350,8 +413,8 @@ ul li.navrightmenuli {
 						<ul>
 							<li class="navrightmenuli"><a class="navmenuitem" href="${pageContext.request.contextPath}/member/myPage.do" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">관리자페이지</a>
 								<ul class="dropdownbar">
-									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/myPage.do">관리자페이지</a></li>
-									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/myPage.do">관리자페이지</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -360,9 +423,9 @@ ul li.navrightmenuli {
 						<ul>
 							<li class="navrightmenuli"><a class="navmenuitem" href="#" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">등록</a>
 								<ul class="dropdownbar">
-									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/event/eventWrite.do">이벤트 등록</a></li>
-									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/notice/noticeWrite.do">공지 등록</a></li>
-									<li class="navrightitemdropdown" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/couponRegisterView.do">쿠폰 등록</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/event/eventWrite.do">이벤트 등록</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/notice/noticeWrite.do">공지 등록</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/couponRegisterView.do">쿠폰 등록</a></li>
 								</ul>
 							</li>
 						</ul>
