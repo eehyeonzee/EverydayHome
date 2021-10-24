@@ -8,7 +8,6 @@
  * 수정일 : 
 --%>
 <%@ include file="/WEB-INF/views/member/common/myPageHeader.jsp" %>
-<%@ include file="/WEB-INF/views/member/common/myPageProfile.jsp" %>
 <div style="display: inline-block;" align = "right">
 	<h2 class="admin-page-h2">내가 등록한 상품 ( ${count} )</h2>
 </div>

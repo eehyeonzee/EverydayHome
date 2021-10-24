@@ -9,7 +9,6 @@
 --%>
 <!DOCTYPE html>
 <%@ include file="/WEB-INF/views/member/common/myPageHeader.jsp" %>
-<%@ include file="/WEB-INF/views/member/common/myPageProfile.jsp" %>
 <div class = "container-fluid contents-wrap" style = "width:700px; font-family: 'Gowun Dodum', sans-serif; ">
 	<div align = "left">
 		<h3>내 포인트 조회</h3>
