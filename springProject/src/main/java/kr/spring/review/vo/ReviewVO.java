@@ -148,9 +148,6 @@ public class ReviewVO {
 		this.mem_name = mem_name;
 	}
 
-	
-
-	
 
 	@Override
 	public String toString() {
