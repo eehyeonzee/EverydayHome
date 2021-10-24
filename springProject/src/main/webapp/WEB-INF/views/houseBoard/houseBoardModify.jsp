@@ -8,14 +8,14 @@
  * 설명 : 집들이 게시판 글 수정 폼
  * 수정일 : 
 --%>
-<link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 <style>
 	.ck-editor__editable_inline {
 		min-height: 250px;
 	}
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ckeditor.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/uploadAdapter.js"></script>
 <script type="text/javascript">
@@ -62,7 +62,6 @@ $(function() {
 </script>
 <!-- 중앙 내용 시작 -->
 <div class="page-main2">
-	<h2>글 수정</h2>
 	<form:form id="register_form" action="update.do" modelAttribute="houseBoardVO" enctype="multipart/form-data">
 		<form:hidden path="house_num"/>
 		<form:errors element="div" cssClass="error-color"/>
@@ -70,14 +69,14 @@ $(function() {
 			<!-- 제목 시작 -->
 			<li>
 				<label for="house_title"></label>
-				<form:input path="house_title" placeholder="제목을 입력하세요"/>
+				<form:input path="house_title" class="form-control" placeholder="제목을 입력하세요"/>
 				<form:errors path="house_title" cssClass="error-color"/>
 			</li>
 			<!-- 제목 끝 -->
 			<!-- 카테고리 시작 -->
 			<li>
 				<label for="house_area"></label>
-				<select name="house_area" id="house_area">
+				<select name="house_area" id="house_area" class="form-control">
 					<option value="">평수</option>
 					<option value="10평 미만" <c:if test="${houseBoardVO.house_area.equals('10평 미만')}">selected</c:if>>10평 미만</option>
 					<option value="10평대" <c:if test="${houseBoardVO.house_area.equals('10평대')}">selected</c:if>>10평대</option>
@@ -88,7 +87,7 @@ $(function() {
 				</select>
 				<form:errors path="house_area" cssClass="error-color"/>
 				<label for="house_type"></label>
-				<select name="house_type" id="house_type">
+				<select name="house_type" id="house_type" class="form-control">
 					<option value="">주거형태</option>
 					<option value="원룸&오피스텔" <c:if test="${houseBoardVO.house_type.equals('원룸&오피스텔')}">selected</c:if>>원룸&amp;오피스텔</option>
 					<option value="아파트" <c:if test="${houseBoardVO.house_type.equals('아파트')}">selected</c:if>>아파트</option>
@@ -99,7 +98,7 @@ $(function() {
 				</select>
 				<form:errors path="house_type" cssClass="error-color"/>
 				<label for="house_style"></label>
-				<select name="house_style" id="house_style">
+				<select name="house_style" id="house_style" class="form-control">
 					<option value="">스타일</option>
 					<option value="모던" <c:if test="${houseBoardVO.house_style.equals('모던')}">selected</c:if>>모던</option>
 					<option value="북유럽" <c:if test="${houseBoardVO.house_style.equals('북유럽')}">selected</c:if>>북유럽</option>
@@ -111,10 +110,8 @@ $(function() {
 					<option value="유니크" <c:if test="${houseBoardVO.house_style.equals('유니크')}">selected</c:if>>유니크</option>
 				</select>
 				<form:errors path="house_style" cssClass="error-color"/>
-			</li>
-			<li>
 				<label for="house_space"></label>
-				<select name="house_space" id="house_space">
+				<select name="house_space" id="house_space" class="form-control">
 					<option value="">공간 (필수)</option>
 					<option value="원룸" <c:if test="${houseBoardVO.house_space.equals('원룸')}">selected</c:if>>원룸</option>
 					<option value="거실" <c:if test="${houseBoardVO.house_space.equals('거실')}">selected</c:if>>거실</option>
@@ -159,12 +156,12 @@ $(function() {
 			<!-- 썸네일 시작 -->
 			<li>
 				<label for="upload">썸네일 파일</label>
-				<input type="file" name="upload" id="upload" accept="image/gif,image/png,image/jpeg">
+				<input type="file" name="upload" id="upload" class = "btn btn-outline-dark" accept="image/gif,image/png,image/jpeg">
 				<c:if test="${!empty houseBoardVO.thumbnail_filename}">
 					<br>
 					<span id="file_detail">(${houseBoardVO.thumbnail_filename}) 파일이 등록되어 있습니다.
 					다시 업로드하면 기존 파일은 삭제됩니다.</span>
-					<input type="button" value="파일삭제" id="file_del">
+					<input type="button" class = "btn btn-outline-dark" value="파일삭제" id="file_del">
 					<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 					<script type="text/javascript">
 						$(function() {
@@ -201,8 +198,8 @@ $(function() {
 		</ul>
 		<!-- 버튼 시작 -->
 		<div class="align-center">
-			<form:button>수정</form:button>
-			<input type="button" value="목록" onclick="location.href='list.do'">	
+			<form:button class="btn btn-outline-dark">수정</form:button>
+			<input type="button" class="btn btn-outline-dark" value="목록" onclick="location.href='list.do'">	
 		</div>
 		<!-- 버튼 끝 -->
 	</form:form>

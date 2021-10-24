@@ -7,22 +7,14 @@
  * 설명 : 집들이 게시판 글쓰기 폼
  * 수정일 : 
 --%>
-<link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 <style>
 .ck-editor__editable_inline {
 	min-height: 250px;
 }
-
-.btn-default {
-	color: #333;
-	background-color: #fff;
-	border-color: #ccc;
-}
-	
-	
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ckeditor.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/uploadAdapter.js"></script>
 <script type="text/javascript">
@@ -74,15 +66,15 @@
 		<ul>
 			<!-- 제목 시작 -->
 			<li>
-				<label for="house_title"></label>
-				<form:input path="house_title" placeholder="제목을 입력하세요"/>
+				<label for="house_title" class="title"></label>
+				<form:input path="house_title" class="form-control" placeholder="제목을 입력하세요"/>
 				<form:errors path="house_title" cssClass="error-color"/>
 			</li>
 			<!-- 제목 끝 -->
 			<!-- 카테고리 시작 -->
 			<li>
 				<label for="house_area"></label>
-				<select name="house_area" id="house_area" class="btn btn-default">
+				<select name="house_area" id="house_area" class="form-control">
 					<option value="">평수</option>
 					<option value="10평 미만">10평 미만</option>
 					<option value="10평대">10평대</option>
@@ -93,7 +85,7 @@
 				</select>
 				<form:errors path="house_area" cssClass="error-color"/>
 				<label for="house_type"></label>
-				<select name="house_type" id="house_type">
+				<select name="house_type" id="house_type" class="form-control">
 					<option value="">주거형태</option>
 					<option value="원룸&오피스텔">원룸&오피스텔</option>
 					<option value="아파트">아파트</option>
@@ -104,7 +96,7 @@
 				</select>
 				<form:errors path="house_type" cssClass="error-color"/>
 				<label for="house_style"></label>
-				<select name="house_style" id="house_style">
+				<select name="house_style" id="house_style" class="form-control">
 					<option value="">스타일</option>
 					<option value="모던">모던</option>
 					<option value="북유럽">북유럽</option>
@@ -116,10 +108,8 @@
 					<option value="유니크">유니크</option>
 				</select>
 				<form:errors path="house_style" cssClass="error-color"/>
-			</li>
-			<li>
 				<label for="house_space"></label>
-				<select name="house_space" id="house_space">
+				<select name="house_space" id="house_space" class="form-control">
 					<option value="">공간</option>
 					<option value="원룸">원룸</option>
 					<option value="거실">거실</option>
@@ -164,14 +154,14 @@
 			<!-- 썸네일 시작 -->
 			<li>
 				<label for="upload">썸네일 파일</label>
-				<input type="file" name="upload" id="upload" accept="image/gif,image/png,image/jpeg">
+				<input type="file" name="upload" id="upload" class = "btn btn-outline-dark" accept="image/gif,image/png,image/jpeg">
 			</li>
 			<!-- 썸네일 끝 -->
 		</ul>
 		<!-- 버튼 시작 -->
 		<div class="align-center">
-			<form:button>등록</form:button>
-			<input type="button" value="목록" onclick="location.href='list.do'">	
+			<form:button class="btn btn-outline-dark">등록</form:button>
+			<input type="button" class="btn btn-outline-dark" value="목록" onclick="location.href='list.do'">	
 		</div>
 		<!-- 버튼 끝 -->
 	</form:form>

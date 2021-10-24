@@ -161,6 +161,10 @@ height: 40px;
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
+.nav-menu {
+		font-family: 'Noto Sans KR', sans-serif;
+}
+
 .nav-right {
 		font-family: 'Noto Sans KR', sans-serif;
 }
@@ -182,6 +186,10 @@ ul li.navrightmenuli {
 }
 
 ul.dropdownbar {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+ul li.navmenuli {
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
@@ -272,7 +280,7 @@ ul.dropdownbar li.navmenuitemdropdown {
 				<nav class="nav-right">
 					<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
 						<div class="search-bar" style="width:200px; margin-top:10px; margin-left:0px; margin-right:0px;">
-							<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="매일의집 통합검색       📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
+							<input type="search" name="keyword" id="keyword" class="form-control" placeholder="매일의집 통합검색          📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
 						</div>
 					</form>
 					<a class="navrightitem" href="${pageContext.request.contextPath}/member/login.do" style="text-decoration: none;">로그인</a> 
@@ -296,7 +304,7 @@ ul.dropdownbar li.navmenuitemdropdown {
 				<nav class="nav-right">
 					<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
 						<div class="search-bar" style="width:200px; margin-top:10px; margin-left:0px; margin-right:0px;">
-							<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="매일의집 통합검색       📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
+							<input type="search" name="keyword" id="keyword" class="form-control" placeholder="매일의집 통합검색          📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
 						</div>
 					</form>
 						<c:if test="${empty user_photo }">
@@ -323,7 +331,7 @@ ul.dropdownbar li.navmenuitemdropdown {
 				<nav class="nav-right">
 					<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
 						<div class="search-bar" style="width:200px; margin-top:10px; margin-left:0px; margin-right:0px;">
-							<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="매일의집 통합검색       📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
+							<input type="search" name="keyword" id="keyword" class="form-control" placeholder="매일의집 통합검색          📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
 						</div>
 					</form>
 						<c:if test="${empty user_photo }">
@@ -365,7 +373,7 @@ ul.dropdownbar li.navmenuitemdropdown {
 					<nav class="nav-right">
 					<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
 						<div class="search-bar" style="width:200px; margin-top:10px; margin-left:0px; margin-right:0px;">
-							<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="매일의집 통합검색       📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
+							<input type="search" name="keyword" id="keyword" class="form-control" placeholder="매일의집 통합검색          📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
 						</div>
 					</form>
 						<c:if test="${empty user_photo }">
@@ -404,7 +412,7 @@ ul.dropdownbar li.navmenuitemdropdown {
 						<nav class="nav-right">
 					<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
 						<div class="search-bar" style="width:200px; margin-top:10px; margin-left:0px; margin-right:0px;">
-							<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="매일의집 통합검색       📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
+							<input type="search" name="keyword" id="keyword" class="form-control" placeholder="매일의집 통합검색          📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
 						</div>
 					</form>
 						<c:if test="${empty user_photo }">
