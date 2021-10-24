@@ -46,7 +46,7 @@ ul {
 <div class="category">
 	<div class="row">
 	<!-- 평수 -->
-	<div>
+	<div style="display:inline-block;">
 	<ul>
 		<li><div class="input-group mb-3">
 			<div class="input-group-prepend">
@@ -63,11 +63,10 @@ ul {
 			</div>
 		</div></li>
 	</ul>
-	</div>
-	<div>
 	<span><a style="font-size:15px; color:#8c996b; text-decoration:none;" href="#">${sizeOutput}</a></span>
 	</div>
 	<!-- 주거형태 -->
+	<div style="display:inline-block;">
 	<ul>
 		<li><div class="input-group mb-3">
 			<div class="input-group-prepend">
@@ -83,9 +82,11 @@ ul {
 					</div>
 			</div>
 		</div></li>
-	</ul>	
+	</ul>
 	<span><a style="font-size:15px; color:#8c996b; text-decoration:none;" href="#">${residenceOutput}</a></span>
+	</div>
 	<!-- 스타일 -->
+	<div style="display:inline-block;">
 	<ul>
 		<li><div class="input-group mb-3">
 			<div class="input-group-prepend">
@@ -105,7 +106,9 @@ ul {
 		</div></li>
 	</ul>	
 	<span><a style="font-size:15px; color:#8c996b; text-decoration:none;" href="#">${styleOutput}</a></span>
+	</div>
 	<!-- 공간 -->
+	<div style="display:inline-block;">
 	<ul>
 		<li><div class="input-group mb-3">
 			<div class="input-group-prepend">
@@ -130,6 +133,7 @@ ul {
 		</div></li>
 	</ul>
 	<span><a style="font-size:15px; color:#8c996b; text-decoration:none;" href="#">${spaceOutput}</a></span>
+	</div>
 	<ul>
 		<li><div class="input-group mb-3">
 			<div class="input-group-prepend">
