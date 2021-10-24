@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
-<script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 .box {
@@ -18,32 +18,30 @@
 }
 </style>
 
-<div class="container"> 
- <div class="main-container">
- 	<div class="name-item" align="center">
- 		<h2 style="font-family: 'Gowun Dodum', sans-serif;">이벤트</h2>
- 		<form id="search_form" action="eventList.do" method="get">
-   		<ul class="search">
+<div class = "container-fluid contents-wrap" style = "width:99%"> 
+   <div align = "left">
+ 		<h3>이벤트</h3><br>
+ 	</div>
+ 	<form id="search_form" action="eventList.do" method="get" align="center">
+   		<ul class="search"  >
 			<li>
-				<select name="keyword" id="keyword">
+				<select name="keyword" id="keyword" style="align:center;">
 					<option value="">전체</option>
 					<option value="진행중">진행중</option>
 					<option value="종료">종료</option>
-				</select>
-				<input type="submit" value="찾기" class="btn">
-				<input type="button" value="목록" onclick="location.href='eventList.do'">
+				</select>&nbsp;&nbsp;
+				<input class = "btn btn-outline-dark" type="submit" value="찾기">&nbsp;&nbsp;
+				<input class = "btn btn-outline-dark" type="button" value="목록" onclick="location.href='eventList.do'">
 			</li>
 		</ul>
    </form> 
- 	</div>
- 	<div class="link-container">
- 		<c:if test="${user_auth==4}">
- 			 <div class="write-button" align="right"> 		
- 				<a href="${pageContext.request.contextPath}/event/eventWrite.do">이벤트 작성</a><br><br>
- 				<hr size="1" width="100%" noshade="noshade"><br><br>
- 			</div>
- 		</c:if>
- 	
+	<c:if test="${user_auth==4}">
+		 <div align="right"> 		
+			<input type = "button" class = "btn btn-outline-dark" value = "이벤트 작성" onclick = "location.href='eventWrite.do'">
+		</div>
+	</c:if>
+ 	<hr noshade="noshade" size="2">  
+ 	<div class="text-center col-sm-30 my-5">
 	  <!-- 카드시작 -->
       <div class="box">
       <!-- 등록된 게시물이 없는 경우 -->
@@ -95,5 +93,4 @@
  		<div class="paging" align="center">
  			<span>${pagingHtml}</span>
  		</div>
- </div>
  </div>

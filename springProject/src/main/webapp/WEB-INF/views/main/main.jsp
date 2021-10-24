@@ -433,17 +433,17 @@ text-align : center;
 					<figure class="bestimage p-3" style="height: 300px; width : 280px;">
 				<!-- 사진 파일이 없는 경우 -->
 					<c:if test="${ empty store.thumbnail_filename }">
-	            	<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/gift.png" style="border-radius:1%; width:280; height:280px;"/>
+	            		<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/gift.png" style="border-radius:1%; width:280; height:280px;"/>
 	            	</c:if>
 	            <!-- 사진파일이 있는 경우 -->
 	            	<c:if test="${ !empty store.thumbnail_filename }">
-		            <img class="d-block w-100" src="${pageContext.request.contextPath}/store/imageView.do?prod_num=${store.prod_num}" style="border-radius:1%; width:280px; height: 280px;" >
+		            	<img class="d-block w-100" src="${pageContext.request.contextPath}/store/imageView.do?prod_num=${store.prod_num}" style="border-radius:1%; width:280px; height: 280px;" >
 	            	</c:if>
 					
 					</figure>
 					<div class="bestdesc">
 						${store.prod_name}<br>
-						${store.prod_price}
+						<span id = "prod_price"><fmt:formatNumber value = "${store.prod_price}" type = "number"/>원<br></span>
 					</div>
 				</li>
 				</div>

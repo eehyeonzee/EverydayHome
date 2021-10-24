@@ -206,6 +206,7 @@ function shareTwitter() {
 	    t.select();
 	    document.execCommand('copy');
 	    document.body.removeChild(t);
+	    alert("이메일 주소가 복사되었습니다.")
     }
 </script>
 <!-- 클릭시 이메일 복사 끝 -->
@@ -300,7 +301,7 @@ function shareTwitter() {
 			<a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();">　　　</a><!-- 페이스북 -->
 			<a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();">　　　</a><!-- 카카오톡 -->
 			<a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();">　　　</a><!-- 트위터 -->
-			<img style="cursor: pointer;" src="${pageContext.request.contextPath}/resources/images/url.png" onclick="copyUrl(); return false;" title="URL 복사"/>
+			<a id="btnUrl" class="link-icon url" style="cursor: pointer;" onclick="copyUrl(); return false;" title="URL 복사">　　　</a><!-- URL복사 -->
 		</div>
 		<!-- SNS 공유 API 버튼 끝 -->
 		<div class="align-center">${pagingHtml}</div>
