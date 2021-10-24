@@ -6,6 +6,81 @@
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<style>
+.btn#run {
+	cursor: pointer;
+	width: 50px;
+    height: 30px;
+    font-size:13px;
+    margin-top:7px;
+	margin-bottom:22px;
+	bordr-color: #b8b7b4;
+}
+
+div.btn delete-btn {
+	cursor: pointer;
+    touch-action: manipulation;
+    box-sizing: border-box;
+    display: inline-block;
+    border-width: 1px;
+    border-style: solid;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: bold;
+    line-height: 1;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin-top: 12px;
+    font-size: 13px;
+    transition: .2s ease;
+    background-color: #ededed;
+    border-color: #ededed;
+    color: #000000;
+    user-select: none;
+    width: 100px;
+    height: 42px;
+}
+
+div.btn modify-btn {
+	cursor: pointer;
+    touch-action: manipulation;
+    box-sizing: border-box;
+    display: inline-block;
+    border-width: 1px;
+    border-style: solid;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: bold;
+    line-height: 1;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin-top: 12px;
+    font-size: 13px;
+    transition: .2s ease;
+    background-color: #ededed;
+    border-color: #ededed;
+    color: #000000;
+    user-select: none;
+    width: 100px;
+    height: 42px;
+}
+
+.btn comm-reset {
+	cursor: pointer;
+	width: 50px;
+    height: 30px;
+    font-size:13px;
+    margin-top:7px;
+	margin-bottom:22px;
+}
+
+.btn-default {
+	color: #333;
+	background-color: #fff;
+	border-color: #ccc;
+}
+
+</style>
 <!--  공유 API 시작 -->
 <script type="text/javascript">
 //페이스북
@@ -90,18 +165,17 @@ function shareTwitter() {
 					$(param.list).each(function(index,item){
 						var output = '<div class="item">';
 						if(item.profile != null) {
-							output += '<div style="width:57px; height:57px; float:left; padding-right:5em;"><img src="${pageContext.request.contextPath}/event/commentPhotoView.do?mem_num=' + item.mem_num + '" style="height:53px; width:53px;" class="my-photo"/></div>';
+							output += '<div style="width:57px; height:57px; float:left; padding-right:5em;"><img src="${pageContext.request.contextPath}/event/commentPhotoView.do?mem_num=' + item.mem_num + '" style="height:42px; width:42px;" class="my-photo" id="profile"/></div>';
 						}else {
-							output += '<div style="width:57px; height:57px; float:left; padding-right:5em;"><img src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="height:45px; width:45px;" class="my-photo"/></div>';
+							output += '<div style="width:57px; height:57px; float:left; padding-right:5em;"><img src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="height:42px; width:42px;" class="my-photo" id="profile"/></div>';
 						}
-						output += '<h4>' + item.nickname + '</h4>';
+						output += '<div style="font-size:15px; float:left;"><b>' + item.nickname + '</b></div>' + '<div>&nbsp;·&nbsp;' + item.comm_reg_date + '</div>';
 						output += '<div class="sub-item">';
 						output +='   <p>' + item.comm_content.replace(/</gi,'&lt;').replace(/>/gi,'&gt;') + '</p>';
-						output += item.comm_reg_date;
 						if($('#mem_num').val()==item.mem_num){
-							//로그인한 회원 번호가 댓글 작성자 회원 번호와 같으면
-							output += ' <input type="button" data-num="'+item.comm_num+'" data-mem="'+item.mem_num+'" value="수정" class="modify-btn">';
-							output += ' <input type="button" data-num="'+item.comm_num+'" data-mem="'+item.mem_num+'" value="삭제" class="delete-btn">';
+							//로그인한 회원 번호가 댓글 작성자 회원 번호와 같으면 버튼 노출
+							output += ' <input type="button" data-num="'+item.comm_num+'" data-mem="'+item.mem_num+'" value="수정" id="run" class="btn modify-btn" style="margin-left:70px;">';
+							output += ' <input type="button" data-num="'+item.comm_num+'" data-mem="'+item.mem_num+'" value="삭제" id="run" class="btn delete-btn">';
 						}
 						output += '  <hr size="1" noshade>';
 						output += '</div>';
@@ -134,7 +208,6 @@ function shareTwitter() {
 		});
 		//댓글 등록
 		$('#comm_form').submit(function(event){
-			alert("댓글등록 컨트롤러 진입");
 			if($('#comm_content').val().trim()==''){
 				alert('내용을 입력하세요!');
 				$('#comm_content').val('').focus();
@@ -210,8 +283,8 @@ function shareTwitter() {
 			   modifyUI += '  <textarea rows="3" cols="50" name="comm_content" id="mcomm_content" class="commp-content">'+content+'</textarea>';
 			   modifyUI += '  <div id="mcomm_first"><span class="letter-count">300/300</span></div>';	
 			   modifyUI += '  <div id="mcomm_second" class="align-right">';
-			   modifyUI += '     <input type="submit" value="수정">';
-			   modifyUI += '     <input type="button" value="취소" class="comm-reset">';
+			   modifyUI += '     <input type="submit" value="수정" id="run" class="btn">';
+			   modifyUI += '     <input type="button" value="취소" id="run" class="btn comm-reset">';
 			   modifyUI += '  </div>';
 			   modifyUI += '  <hr size="1" noshade width="90%">';
 			   modifyUI += '</form>';
@@ -380,7 +453,7 @@ padding : 40px 8px 0px 100px;
 	</c:if>
  	<!-- 썸네일 끝 -->
  	<div class="content-item" align="center">
- 		<p id="content" style="font-family: 'Gowun Dodum', sans-serif;">${event.event_content}</p>
+ 		<p id="content" >${event.event_content}</p>
  	</div>
 	<!-- 게시글 내용 끝 -->
  	<!-- SNS 공유하기 버튼 시작 -->
@@ -392,31 +465,30 @@ padding : 40px 8px 0px 100px;
 	</div>
 	<!-- SNS 공유 API 버튼 끝 -->
  	<!-- 버튼 시작 -->
- 	<div class="icon-item" align="center">
-	 	<a href="${pageContext.request.contextPath}/event/eventList.do">목록으로 돌아가기</a>
+ 	<div align="right">
+	 	<a class = "btn btn-outline-dark"  href="${pageContext.request.contextPath}/event/eventList.do">목록으로 돌아가기</a>
 	 	<c:if test="${user_auth==4}">
-		 	<a href="${pageContext.request.contextPath}/event/eventUpdate.do?event_num=${event.event_num}">수정</a>
-			<a href="${pageContext.request.contextPath}/event/eventDelete.do?event_num=${event.event_num}" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+		 	<a  class = "btn btn-outline-dark" href="${pageContext.request.contextPath}/event/eventUpdate.do?event_num=${event.event_num}">수정</a>
+			<a  class = "btn btn-outline-dark" href="${pageContext.request.contextPath}/event/eventDelete.do?event_num=${event.event_num}" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
 		</c:if>
  	</div>
  	<!-- 버튼 끝 -->
  	
+	<hr size="1" noshade="noshade">
  	<!-- 댓글 시작 -->
- 	<hr size="1" width="100%" noshade="noshade">
-	<div id="comment_div">
-	 	<span class="comm-title">댓글 달기</span>
+	<div id="comm_div">
 		<form id="comm_form">
 			<input type="hidden" name="event_num" value="${event.event_num }" id="event_num">
-			<input type="hidden" name="mem_num" value="${user_num }" id="mem_num">
-			<textarea rows="3" cols="50" name="comm_content" id="comm_content" class="commp-content" placeholder="댓글을 남겨보세요."
+			<input type="hidden" name="mem_num" value="${user_num }" id="mem_num"><br><br>
+			<textarea rows="5" name="comm_content" id="comm_content" class="form-control" placeholder="댓글을 남겨보세요."
 				<c:if test="${empty user_num }">disabled="disabled"</c:if>
 				><c:if test="${empty user_num }">로그인 해야 작성할 수 있습니다.</c:if></textarea>
 			<c:if test="${!empty user_num }">
 			<div id="comm_first">
-			<span class="letter-count">300/300</span>
+				<span class="letter-count">300/300</span>
 			</div>
 			<div id="comm_second" class="align-right">
-				<input type="submit" value="전송">
+				<input class = "btn btn-outline-dark" type="submit" value="등록" >
 			</div>
 			</c:if>
 		</form>
@@ -424,7 +496,7 @@ padding : 40px 8px 0px 100px;
 	<!-- 댓글 목록 출력 -->
 	<div id="output"></div>
 	<div class="paging-button" style="display:none;">
-		<input type="button" value="다음 글 보기">
+		<input type="button" value="더보기">
 	</div>
 	<div id="loading" style="display:none;">
 		<img src="${pageContext.request.contextPath }/resources/images/ajax-loader.gif">

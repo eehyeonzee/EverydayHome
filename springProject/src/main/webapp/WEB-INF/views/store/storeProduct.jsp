@@ -71,7 +71,7 @@
 		margin : 50px;
 	}
 	.prod-title {
-		font-size: 50px;
+		font-size: 35px;
 		line-height: 35px;
 		color: #222;
 		letter-spacing: -0.5px;
@@ -80,7 +80,7 @@
 		margin-bottom : 20px;
 	}
 	#prod_price {
-		font-size: 40px;
+		font-size:25px;
 	}
 	#del_price {
 		font-size : 20px;

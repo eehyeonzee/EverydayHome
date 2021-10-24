@@ -39,7 +39,7 @@
 	</div>
 	<div class="nav-right-menu">
 		<ul style="display: inline-block;">
-			<li class="navrightmenuli"><a class="navmenuitem" href="#" style="font-size: 30px; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">나의쇼핑</a>
+			<li class="navrightmenuli"><a class="navmenuitem" href="${pageContext.request.contextPath}/order/myOrder.do" style="font-size: 30px; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">나의쇼핑</a>
 				<ul class="dropdownbar">
 					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/order/myOrder.do">주문배송내역조회</a></li>						
 					<li class="navrightitemdropdown" style=" font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/cart/cartList.do">장바구니</a></li>
