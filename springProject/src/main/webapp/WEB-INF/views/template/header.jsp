@@ -169,7 +169,7 @@ height: 40px;
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
-.nav-right-menu {
+div.nav-right-menu {
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
@@ -222,6 +222,10 @@ ul.dropdownbar {
 
 .show {display:block;}
 
+ul.dropdownbar li.navmenuitemdropdown {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -249,7 +253,7 @@ ul.dropdownbar {
 				<a class="logo" href="${pageContext.request.contextPath}/main/main.do" style=""><img src="${pageContext.request.contextPath}/resources/images/logo-main.png" style="height:25px;"></a>
 			</div>
 			<!-- 기본매뉴 -->
-			<nav class="nav-menu">
+			<nav class="nav-menu" style="float:left;">
 				<ul>
 					<li class="navmenuli"><a class="navmenuitem" href="${pageContext.request.contextPath}/main/main.do" style="color:#8c996b; text-decoration: none;">커뮤니티</a>
 						<ul class="dropdownbar">
@@ -267,8 +271,8 @@ ul.dropdownbar {
 			<c:if test="${empty user_num}">
 				<nav class="nav-right">
 					<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
-						<div class="search-bar" style="width:180px; margin-top:10px; margin-right:40px;">
-							<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="매일의집 통합검색     📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
+						<div class="search-bar" style="width:200px; margin-top:10px; margin-left:0px; margin-right:0px;">
+							<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="매일의집 통합검색       📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
 						</div>
 					</form>
 					<a class="navrightitem" href="${pageContext.request.contextPath}/member/login.do" style="text-decoration: none;">로그인</a> 
@@ -291,8 +295,8 @@ ul.dropdownbar {
 			<c:if test="${!empty user_num && user_auth==1}">
 				<nav class="nav-right">
 					<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
-						<div class="search-bar" style="width:180px; margin-top:10px; margin-right:40px;">
-							<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="매일의집 통합검색     📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
+						<div class="search-bar" style="width:200px; margin-top:10px; margin-left:0px; margin-right:0px;">
+							<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="매일의집 통합검색       📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
 						</div>
 					</form>
 						<c:if test="${empty user_photo }">
@@ -318,8 +322,8 @@ ul.dropdownbar {
 			<c:if test="${!empty user_num && user_auth==2}">
 				<nav class="nav-right">
 					<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
-						<div class="search-bar" style="width:180px; margin-top:10px; margin-right:40px;">
-							<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="매일의집 통합검색     📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
+						<div class="search-bar" style="width:200px; margin-top:10px; margin-left:0px; margin-right:0px;">
+							<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="매일의집 통합검색       📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
 						</div>
 					</form>
 						<c:if test="${empty user_photo }">
@@ -359,11 +363,11 @@ ul.dropdownbar {
 			<!-- 판매자회원 -->
 					<c:if test="${!empty user_num && user_auth == 3}">
 					<nav class="nav-right">
-						<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
-							<div class="search-bar" style="width:180px; margin-top:10px; margin-right:40px;">
-								<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="매일의집 통합검색     📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
-							</div>
-						</form>
+					<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
+						<div class="search-bar" style="width:200px; margin-top:10px; margin-left:0px; margin-right:0px;">
+							<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="매일의집 통합검색       📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
+						</div>
+					</form>
 						<c:if test="${empty user_photo }">
 						<img src="${pageContext.request.contextPath }/resources/images/basic.jpg" width="33" height="33" class="my-photo">
 						</c:if>
@@ -384,11 +388,11 @@ ul.dropdownbar {
 					</div>
 					<div class="nav-right-menu">
 						<ul>
-							<li class="navrightmenuli"><a class="navmenuitem" href="#" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">등록</a>
+							<li class="navrightmenuli"><a class="navmenuitem" href="#" style="color: #8c996b; font-family: text-decoration: none;">등록</a>
 								<ul class="dropdownbar">
-									
-									<li class="navrightitemdropdown" style="color:#8c996b; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/qna/serviceBoardInsert.do">고객센터 질문하기</a></li>
-									<li class="navrightitemdropdown" style="color:#8c996b; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/store/storeRegister.do">상품 등록</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/houseBoard/write.do">사진 올리기</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/qna/serviceBoardInsert.do">고객센터 질문하기</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/store/storeRegister.do">상품 등록</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -398,11 +402,11 @@ ul.dropdownbar {
 		<!-- 관리자 -->
 				<c:if test="${!empty user_num && user_auth == 4}">
 						<nav class="nav-right">
-						<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
-							<div class="search-bar" style="width:180px; margin-top:10px; margin-right:40px;">
-								<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="매일의집 통합검색     📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
-							</div>
-						</form>
+					<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
+						<div class="search-bar" style="width:200px; margin-top:10px; margin-left:0px; margin-right:0px;">
+							<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="매일의집 통합검색       📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
+						</div>
+					</form>
 						<c:if test="${empty user_photo }">
 						<img src="${pageContext.request.contextPath }/resources/images/crown.gif" width="37" height="37" class="my-photo">
 						</c:if>
@@ -412,21 +416,21 @@ ul.dropdownbar {
 						<span class="navrightitem">관리자</span>
 					<div class="nav-right-menu">
 						<ul>
-							<li class="navrightmenuli"><a class="navmenuitem" href="${pageContext.request.contextPath}/member/myPage.do" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">관리자페이지</a>
+							<li class="navrightmenuli"><a class="navmenuitem" href="${pageContext.request.contextPath}/member/myPage.do" style="color:#8c996b; text-decoration: none;">관리자페이지</a>
 								<ul class="dropdownbar">
-									<li class="navrightitemdropdown" style="color:#8c996b; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/myPage.do">관리자페이지</a></li>
-									<li class="navrightitemdropdown" style="color:#8c996b; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/myPage.do">관리자페이지</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
 								</ul>
 							</li>
 						</ul>
 					</div>
 					<div class="nav-right-menu">
 						<ul>
-							<li class="navrightmenuli"><a class="navmenuitem" href="#" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">등록</a>
+							<li class="navrightmenuli"><a class="navmenuitem" href="#" style="color:#8c996b; text-decoration: none;">등록</a>
 								<ul class="dropdownbar">
-									<li class="navrightitemdropdown" style="color:#8c996b; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/event/eventWrite.do">이벤트 등록</a></li>
-									<li class="navrightitemdropdown" style="color:#8c996b; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/notice/noticeWrite.do">공지 등록</a></li>
-									<li class="navrightitemdropdown" style="color:#8c996b; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/couponRegisterView.do">쿠폰 등록</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/event/eventWrite.do">이벤트 등록</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/notice/noticeWrite.do">공지 등록</a></li>
+									<li class="navrightitemdropdown" style="color:#8c996b; text-decoration: none;"><a href="${pageContext.request.contextPath}/member/couponRegisterView.do">쿠폰 등록</a></li>
 								</ul>
 							</li>
 						</ul>
