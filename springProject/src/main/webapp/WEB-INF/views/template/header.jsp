@@ -174,24 +174,18 @@ height: 40px;
 			<!-- 기본매뉴 -->
 			<nav class="nav-menu">
 				<ul>
-					<li class="navmenuli"><a class="navmenuitem" href="#" style="color:#8c996b; text-decoration: none;">커뮤니티</a>
+					<li class="navmenuli"><a class="navmenuitem" href="${pageContext.request.contextPath}/main/main.do" style="color:#8c996b; text-decoration: none;">커뮤니티</a>
 						<ul class="dropdownbar">
-							<li class="navmenuitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="#">커뮤니티 메인</a></li>
+							<li class="navmenuitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/main/main.do">홈</a></li>
 							<li class="navmenuitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/notice/noticeList.do">공지사항</a></li>
 							<li class="navmenuitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/houseBoard/list.do">사진게시판</a></li>
 							<li class="navmenuitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/qna/qnaList.do">고객센터</a></li>
 							<li class="navmenuitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/event/eventList.do">이벤트</a></li>
 						</ul>
 					</li>
-					<li class="navmenuli"><a class="navmenuitem" style="text-decoration: none;" href="#">스토어</a>
-						<ul class="dropdownbar">
-							<li class="navmenuitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="#">스토어홈</a></li>
-							<li class="navmenuitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="${pageContext.request.contextPath}/store/storeCategory.do">카테고리</a></li>
-							<li class="navmenuitemdropdown" style="color: #35c5f0; text-decoration: none;"><a href="#">베스트</a></li>
-						</ul>
+					<li class="navmenuli"><a class="navmenuitem" style="text-decoration: none;" href="${pageContext.request.contextPath}/store/storeCategory.do">스토어홈</a></li>
 				</ul>
 			</nav>
-			
 			<!-- 비회원 -->
 			<c:if test="${empty user_num}">
 				<nav class="nav-right">
