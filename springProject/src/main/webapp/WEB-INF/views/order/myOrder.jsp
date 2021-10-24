@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -54,7 +55,7 @@
 					<td><a href = "${pageContext.request.contextPath}/store/storeDetail.do?prod_num=${orderVO.prod_num}">${orderVO.prod_name}</a></td>
 					<td>${orderVO.order_address1}<br>${orderVO.order_address2}</td>
 					<td>${orderVO.pay_quan}</td>
-					<td>${orderVO.pay_price}</td>
+					<td><fmt:formatNumber pattern="###,###,###" value="${orderVO.pay_price}"/>원</td>
 					<td>${orderVO.receiver_name}</td>
 					<td>${orderVO.receiver_phone}</td>
 				</tr>

@@ -245,8 +245,9 @@
 						});
 						
 						last_price = quan * ${storeVO.prod_price};
-										
-						$('#last_price').text(last_price + '원');
+						
+					    var number = last_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+						$('#last_price').text(number + '원');
 					});					
 				});
 			</script>
@@ -292,7 +293,8 @@
 				
 				last_price = quan * ${storeVO.prod_price};
 							
-				$('#last_price').text(last_price + '원');
+				var number = last_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+				$('#last_price').text(number + '원');
 				
 			});
 		});

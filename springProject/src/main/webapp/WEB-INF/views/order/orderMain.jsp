@@ -3,6 +3,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "form" uri = "http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%-- 
  * 작성일 : 2021. 10. 18.
@@ -162,8 +163,9 @@
 			var won = '원';
 			
 			var final_price = (price * quan) + delive;	// 최종 결제 금액 = 가격 * 갯수 + 배송비
-			$('#final_price').val(final_price);			// 최종 결제 금액을 final_price 값에 저장 
-			$('#final_price_li').append(final_price);	// 최종 결제 금액을 출력
+			var number = final_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			$('#final_price').val(number);			// 최종 결제 금액을 final_price 값에 저장 
+			$('#final_price_li').append(number);	// 최종 결제 금액을 출력
 			$('#final_price_li').append(won);			// 최종 결제 금액 + 원 출력
 		});
 	</script>
@@ -194,14 +196,14 @@
 				<input type = "hidden" id = "quan" name = "quan" value = "${storeVO.quan}">	
 			</td>
 			<td class = "align-center">
-				${storeVO.prod_price}원
+				<fmt:formatNumber pattern="###,###,###" value="${storeVO.prod_price}"/>원
 				<input type = "hidden" id = "prod_price" name = "prod_price" value = "${storeVO.prod_price}">
 			</td>
 			<td class = "align-center">
 				${storeVO.delive_type}
 				<input type = "hidden" id = "delive_type" name = "delive_type" value = "${storeVO.delive_type}">
 				<br>
-				${storeVO.delive_price}원
+				<fmt:formatNumber pattern="###,###,###" value="${storeVO.delive_price}"/>원
 				<input type = "hidden" id = "delive_price" name = "delive_price" value = "${storeVO.delive_price}">
 			</td>
 			<td class = "align-center" id = "final_price_li">
