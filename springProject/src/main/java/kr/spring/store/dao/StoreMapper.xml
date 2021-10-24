@@ -94,10 +94,10 @@
   			  FROM product p JOIN member m ON p.mem_num = m.mem_num JOIN buis_detail d ON d.mem_num = m.mem_num
   			  <where>
 			  	  	<if test = "keyword != '' and keyfield == 1">
-			  			p.prod_name '%' || #{keyword} || '%'
-			  			OR p.prod_content '%' || #{keyword} || '%'
-			  			OR p.prod_keyword '%' || #{keyword} || '%'
-			  			OR p.prod_cate '%' || #{keyword} || '%'
+			  			p.prod_name LIKE '%' || #{keyword} || '%'
+			  			OR p.prod_content LIKE '%' || #{keyword} || '%'
+			  			OR p.prod_keyword LIKE '%' || #{keyword} || '%'
+			  			OR p.prod_cate LIKE '%' || #{keyword} || '%'
 			  		</if>
   			  </where>
   			  ORDER BY p.prod_num DESC) a)
@@ -112,10 +112,10 @@
   		FROM product p JOIN member m ON p.mem_num = m.mem_num
   		<where>
 	  		<if test = "keyword != '' and keyfield == 1">
-	  			p.prod_name '%' || #{keyword} || '%'
-	  			OR p.prod_content '%' || #{keyword} || '%'
-	  			OR p.prod_keyword '%' || #{keyword} || '%'
-	  			OR p.prod_cate '%' || #{keyword} || '%'
+	  			p.prod_name LIKE '%' || #{keyword} || '%'
+	  			OR p.prod_content LIKE '%' || #{keyword} || '%'
+	  			OR p.prod_keyword LIKE '%' || #{keyword} || '%'
+	  			OR p.prod_cate LIKE '%' || #{keyword} || '%'
 	  		</if>
 		</where>
   	</select>
