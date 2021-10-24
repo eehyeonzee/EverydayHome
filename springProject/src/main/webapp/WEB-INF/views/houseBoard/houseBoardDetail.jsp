@@ -229,6 +229,18 @@ div.btn modify-btn {
 	    var sendUrl = 'http://localhost:8081/EverydayHome/houseBoard/detail.do?house_num=${houseBoard.house_num}'; // 전달할 URL
 	    window.open('https://twitter.com/intent/tweet?text=' + sendText + '&url=' + sendUrl);
 	}
+	// URL
+	function copyUrl() {
+    	var url='';
+	    var textarea = document.createElement("textarea");
+	    document.body.appendChild(textarea);
+	    url=window.document.location.href;
+	    textarea.value=url;
+	    textarea.select();
+	    document.execCommand('copy');
+	    document.body.removeChild(textarea);
+	    alert("URL이 복사되었습니다.")
+    }
 </script>
 <!-- 공유 API 자바스크립트 끝 -->
 <!-- 댓글 자바스크립트 시작 -->
@@ -591,6 +603,7 @@ div.btn modify-btn {
 		<a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();">　　　</a><!-- 페이스북 -->
 		<a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();">　　　</a><!-- 카카오톡 -->
 		<a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();">　　　</a><!-- 트위터 -->
+		<a id="btnUrl" class="link-icon url" onclick="copyUrl(); return false;">　　　</a><!-- URL복사 -->
 	</div>
 	<!-- SNS 공유 API 버튼 끝 -->
 	<hr size="1" width="100%" style="color:#bfbfbf; noshade;">

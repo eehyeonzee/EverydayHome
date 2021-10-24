@@ -44,7 +44,7 @@ body {
 		매일의집은 개별 판매자가 상품을 판매하는 오픈마켓이며 (주)버킷플레이스는 통신판매중개자로 거래 당사자가 아니므로, 판매자가 등록한 상품정보 및 거래 등에 대해 일체 책임을 지지 않습니다.<br>
 		단 ㈜버킷플레이스가 판매자로 등록 판매한 상품의 경우는 판매자로서 책임을 부담합니다.
 	</p>
-	<div style="font-size:10px; color:#595959; margin-bottom:30px;">
+	<div style="font-size:10px; color:#404040; margin-bottom:30px;">
 		Copyright 2021. ohshinleenayong, Co., Ltd. All rights reserved
 	</div>
 </div>
