@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- 
  * 작성일 : 2021. 10. 18.
  * 작성자 : 오상준
@@ -7,22 +8,22 @@
  * 수정일 : 
 --%>
 <div class ="page-main">
-	<h2>프로필 사진</h2>
-	<div class="mypage-info-main" align="center">
-	<ul style="width: 105px; margin-right: 5em;">
-		<li>
+	<h3>프로필 사진</h3>
+	<div class="mypage-info-main" style=" width:350px;">
+	<ul style=" margin:0;list-style:none; clear:both;" >
+		<li style="text-align:center;">
 			<c:if test="${empty user_photo }">
 			<img src="${pageContext.request.contextPath }/resources/images/basic.jpg" width="100" height="100" class="my-photo">
 			</c:if>
 			<c:if test="${!empty user_photo }">
 			<img src="${pageContext.request.contextPath }/member/photoView.do" width="100" height="100" class="my-photo">
 			</c:if>
-		</li>
+		</li >
 		<li>
 			
 		</li>
 	</ul>
-		<h3>닉네임 : ${member.nickname}</h3>
+		<br><h4 style="text-align:center;">닉네임 : ${member.nickname}</h4>
 		<br style="margin-bottom: 2em; margin-top: 2em;">
 		<div class="align-center">
 				<input class = "btn btn-outline-dark" type="button" value="수정" id="modify_btn" onclick="location.href='memberUpdate.do'">
