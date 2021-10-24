@@ -164,7 +164,7 @@
 			
 			var final_price = (price * quan) + delive;	// 최종 결제 금액 = 가격 * 갯수 + 배송비
 			var number = final_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			$('#final_price').val(number);			// 최종 결제 금액을 final_price 값에 저장 
+			$('#final_price').val(final_price);			// 최종 결제 금액을 final_price 값에 저장 
 			$('#final_price_li').append(number);	// 최종 결제 금액을 출력
 			$('#final_price_li').append(won);			// 최종 결제 금액 + 원 출력
 		});
@@ -349,13 +349,13 @@
 								alert('결제에 성공하였습니다.');
 								location.href=('${pageContext.request.contextPath}/order/orderComplete.do');
 							},
-							error : function() {
-								alert('네트워크 오류');
+							error: function(request,status,error) { // 에러메시지 반환
+								alert("🤯 code = " + request.status + " message = " + request.responseText + " error = " + error);
 							}
 						});
 					},
-					error: function() {
-						alert('카카오 페이 통신 오류');
+					error: function(request,status,error) { // 에러메시지 반환
+						alert("🤯 code = " + request.status + " message = " + request.responseText + " error = " + error);
 					}
 				});
 			});

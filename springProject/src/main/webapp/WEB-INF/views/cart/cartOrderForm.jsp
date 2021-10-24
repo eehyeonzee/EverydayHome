@@ -28,16 +28,16 @@
 		        <tr>
 		            <th>${status.count}</th>
 		            <td>${cartVO.prod_name}</td>
-		            <td>${cartVO.prod_price}</td>
-		            <td>${cartVO.cart_quan}</td>
-		            <td>${cartVO.money}</td>
+		            <td><fmt:formatNumber pattern="###,###,###" value="${cartVO.prod_price}"/></td>
+		            <td><fmt:formatNumber pattern="###,###,###" value="${cartVO.cart_quan}"/></td>
+		            <td><fmt:formatNumber pattern="###,###,###" value="${cartVO.money}"/></td>
 		        </tr>
  		    </c:forEach>
   		 </tbody>
     	 <tfoot>
     		<tr>
         		<td colspan="4"></td>
-        		<td>${totalPrice}</td>
+        		<td><fmt:formatNumber pattern="###,###,###" value="${totalPrice}"/></td>
    			</tr>
   		 </tfoot>
 	</table>
@@ -81,7 +81,7 @@
 			<li id="li-coupon-list">${coupon_name}<button data-coupon="N" data-serial="${coupon_num}">사용가능</button><li>
 			</c:forEach>
 			</c:if>
-			<li><h6>포인트사용 ( 현재 포인트 : <span id="nowPoint" data-now-point="${memberVO.point}">${memberVO.point}</span>)</h6></li>
+			<li><h6>포인트사용 ( 현재 포인트 : <span id="nowPoint" data-now-point="${memberVO.point}"><fmt:formatNumber pattern="###,###,###" value="${memberVO.point}"/> P</span>)</h6></li>
 			<li><div>
 				<button class="btn btn-outline-secondary" id="allPointBtn">전체사용</button>
 				<input type="number" min="0" value="0" placeholder="0" id="pointInput" class="form-control text-end" style="color:#999;">
@@ -92,7 +92,7 @@
 			<div class="total" id="div-total" data-movie-price="${totalPrice}">
 			<dl>
 							<dt>상품금액</dt>
-							<dd><fmt:formatNumber value="${totalPrice }"/>원</dd>
+							<dd><fmt:formatNumber pattern="###,###,###" value="${totalPrice }"/>원</dd>
 						</dl>
 						<dl>
 							<dt>쿠폰할인</dt>

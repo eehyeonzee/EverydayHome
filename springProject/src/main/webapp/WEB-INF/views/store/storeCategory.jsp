@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix = "form" uri = "http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
@@ -151,7 +152,7 @@
 										[${storeVO.buis_name}]
 										${storeVO.prod_name}<br>
 										#${storeVO.prod_keyword}<br>
-										${storeVO.prod_price}원
+										<fmt:formatNumber pattern="###,###,###" value="${storeVO.prod_price}"/>원
 									</a>
 								</c:if>
 								<c:if test = "${!empty storeVO.thumbnail_filename}">
@@ -161,7 +162,7 @@
 									[${storeVO.buis_name}]
 									${storeVO.prod_name}<br>
 									#${storeVO.prod_keyword}<br>
-									${storeVO.prod_price}원
+									<fmt:formatNumber pattern="###,###,###" value="${storeVO.prod_price}"/>원
 									</a>
 								</c:if>	
 							</div>
