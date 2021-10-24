@@ -4,6 +4,12 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "form" uri = "http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%-- 
+ * 작성일 : 2021. 10. 18.
+ * 작성자 : 박용복
+ * 설명 : 주문 페이지 - 주문 작성 및 결제 페이지
+ * 수정일 : 
+--%>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
@@ -87,6 +93,7 @@
 	<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
 		<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
 	</div>
+	<!-- 카카오 주소 api 호출 -->
 	<script>
 	    function sample6_execDaumPostcode() {
 	        new daum.Postcode({
@@ -136,30 +143,28 @@
 	        }).open();
 	    }
   	</script>
+  	<!-- 주문자와 수령자의 정보 동기화 버튼 작업 -->
 	<script type = "text/javascript">
 		$(document).ready(function() {
-			$('#receiver_name').val('');
-			$('#receiver_phone').val('');
-			$('#receiver_email').val('');
+			$('#receiver_name').val('');		// 페이지가 새로고침 되면 수령자 이름 초기화
+			$('#receiver_phone').val('');		// 페이지가 새로고침 되면 수령자 연락처 초기화
+			$('#receiver_email').val('');		// 페이지가 새로고침 되면 수령자 이메일 초기화
 			
-			$('#equal').click(function() {
-				var receiver_name = $('#name').val();
-				var receiver_phone = $('#phone').val();
-				var receiver_email = $('#email').val();
-				$('#receiver_name').val(receiver_name);
-				$('#receiver_phone').val(receiver_phone);
-				$('#receiver_email').val(receiver_email);
+			$('#equal').click(function() {	// 위와 동일하게 채우기 버튼을 클릭시
+				$('#receiver_name').val($('#name').val());		// 수령자 이름에 DB에 저장된 이름 호출
+				$('#receiver_phone').val($('#phone').val());	// 수령자 연락처에 DB에 저장된 연락처 호출
+				$('#receiver_email').val($('#email').val());	// 수령자 이메일에 DB에 저장된 이메일 호출
 			});
 			
-			var price = ${storeVO.prod_price};
-			var delive = ${storeVO.delive_price};
-			var quan = ${storeVO.quan};
+			var price = ${storeVO.prod_price};		// DB에 저장된 상품의 가격을 price 변수에 저장
+			var delive = ${storeVO.delive_price};	// DB에 저장된 배송비를 delive 변수에 저장
+			var quan = ${storeVO.quan};				// DB에 저장한 상품 갯수를 quan 변수에 저장
 			var won = '원';
 			
-			var final_price = (price * quan) + delive;
-			$('#final_price').val(final_price);
-			$('#final_price_li').append(final_price);
-			$('#final_price_li').append(won);
+			var final_price = (price * quan) + delive;	// 최종 결제 금액 = 가격 * 갯수 + 배송비
+			$('#final_price').val(final_price);			// 최종 결제 금액을 final_price 값에 저장 
+			$('#final_price_li').append(final_price);	// 최종 결제 금액을 출력
+			$('#final_price_li').append(won);			// 최종 결제 금액 + 원 출력
 		});
 	</script>
 </div>
@@ -213,22 +218,24 @@
 	<input type = "hidden" id = "prod_num" name = "prod_num" value = "${storeVO.prod_num}">
 	<script type="text/javascript">
 		$(document).ready(function() {
-				var receiver_name = $('#receiver_name').val();
-				var receiver_phone = $('#receiver_phone').val();
-				var order_zipcode = $('#order_zipcode').val();
-				var order_address1 = $('#order_address1').val();
-				var order_address2 = $('#order_address2').val();
-				var buis_name = $('#buis_name').val();
-				var prod_name = $('#prod_name').val();
-				var quan = $('#quan').val();
-				var commit_option = $('#commit_option').val();
-				var final_price = $('#final_price').val();
-				var prod_num = $('#prod_num').val();
-				var receiver_email = $('#receiver_email').val();
-				var mem_num = $('#mem_num').val();
+				var receiver_name = $('#receiver_name').val();		// 주문 DB에 들어갈 수령자 이름을 변수에 저장
+				var receiver_phone = $('#receiver_phone').val();	// 주문 DB에 들어갈 수령자 연락처를 변수에 저장
+				var order_zipcode = $('#order_zipcode').val();		// 주문 DB에 들어갈 수령자 우편번호를 변수에 저장
+				var order_address1 = $('#order_address1').val();	// 주문 DB에 들어갈 주소를 변수에 저장
+				var order_address2 = $('#order_address2').val();	// 주문 DB에 들어갈 나머지 주소를 변수에 저장
+				var buis_name = $('#buis_name').val();				// 주문 DB에 들어갈 판매자명을 변수에 저장
+				var prod_name = $('#prod_name').val();				// 주문 DB에 들어갈 상품명을 변수에 저장
+				var quan = $('#quan').val();						// 주문 DB에 들어갈 수량을 변수에 저장
+				var commit_option = $('#commit_option').val();		// 주문 DB에 들어갈 선택한 옵션을 변수에 저장
+				var final_price = $('#final_price').val();			// 주문 DB에 들어갈 최종 결제 금액을 변수에 저장
+				var prod_num = $('#prod_num').val();				// 주문 DB에 들어갈 상품 번호를 변수에 저장
+				var receiver_email = $('#receiver_email').val();	// 주문 DB에 들어갈 수령자 이메일을 변수에 저장
+				var mem_num = $('#mem_num').val();					// 주문 DB에 들어갈 회원 번호를 변수에 저장
 				
+			// 카카오페이 버튼을 클릭시
 			$('#kakao_btn').click(function() {
 				
+				// 유효성 체크
 				if($('#name').val().trim() == '') {
 					alert('주문자 이름을 입력하세요!');
 					$('#name').focus();
@@ -284,6 +291,7 @@
 					return false;
 				}
 				
+				// ajax 통신
 				$.ajax({
 					url: '${pageContext.request.contextPath}/order/kakao.do',
 					data : {
@@ -301,22 +309,22 @@
 					dataType: 'json',
 					success: function(param) {
 						var box = param.next_redirect_pc_url;
-						window.open(box);
+						window.open(box, 'about:blank', 'content', 'width=300, height=300');		// 성공시 카카오페이 결제 페이지 호출
 							
-						var receiver_name = $('#receiver_name').val();
-						var receiver_phone = $('#receiver_phone').val();
-						var order_zipcode = $('#order_zipcode').val();
-						var order_address1 = $('#order_address1').val();
-						var order_address2 = $('#order_address2').val();
-						var buis_name = $('#buis_name').val();
-						var prod_name = $('#prod_name').val();
-						var quan = $('#quan').val();
-						var commit_option = $('#commit_option').val();
-						var final_price = $('#final_price').val();
-						var prod_num = $('#prod_num').val();
-						var receiver_email = $('#receiver_email').val();
-						var mem_num = $('#mem_num').val();
-							
+						var receiver_name = $('#receiver_name').val();		// 주문 DB에 들어갈 수령자 이름을 변수에 저장
+						var receiver_phone = $('#receiver_phone').val();	// 주문 DB에 들어갈 수령자 연락처를 변수에 저장
+						var order_zipcode = $('#order_zipcode').val();		// 주문 DB에 들어갈 수령자 우편번호를 변수에 저장
+						var order_address1 = $('#order_address1').val();	// 주문 DB에 들어갈 주소를 변수에 저장
+						var order_address2 = $('#order_address2').val();	// 주문 DB에 들어갈 나머지 주소를 변수에 저장
+						var buis_name = $('#buis_name').val();				// 주문 DB에 들어갈 판매자명을 변수에 저장
+						var prod_name = $('#prod_name').val();				// 주문 DB에 들어갈 상품명을 변수에 저장
+						var quan = $('#quan').val();						// 주문 DB에 들어갈 수량을 변수에 저장
+						var commit_option = $('#commit_option').val();		// 주문 DB에 들어갈 선택한 옵션을 변수에 저장
+						var final_price = $('#final_price').val();			// 주문 DB에 들어갈 최종 결제 금액을 변수에 저장
+						var prod_num = $('#prod_num').val();				// 주문 DB에 들어갈 상품 번호를 변수에 저장
+						var receiver_email = $('#receiver_email').val();	// 주문 DB에 들어갈 수령자 이메일을 변수에 저장
+						var mem_num = $('#mem_num').val();					// 주문 DB에 들어갈 회원 번호를 변수에 저장
+						
 						$.ajax({
 							url: '${pageContext.request.contextPath}/order/orderInsert.do',
 							data : {
