@@ -266,11 +266,11 @@ ul.dropdownbar {
 			<!-- 비회원 -->
 			<c:if test="${empty user_num}">
 				<nav class="nav-right">
-				<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
-					<div class="search-bar" style="width: 170px;">
-						<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="통합검색" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
-				</div>
-				</form>
+					<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
+						<div class="search-bar" style="width:180px; margin-top:10px; margin-right:40px;">
+							<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="매일의집 통합검색     📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
+						</div>
+					</form>
 					<a class="navrightitem" href="${pageContext.request.contextPath}/member/login.do" style="text-decoration: none;">로그인</a> 
 					<a class="navrightitem" href="${pageContext.request.contextPath}/member/registerUser.do" style="text-decoration: none;">회원가입</a> 
 					<a class="navrightitem" href="${pageContext.request.contextPath}/order/nonCheck.do" style="text-decoration: none;">비회원주문조회</a>
@@ -290,11 +290,11 @@ ul.dropdownbar {
 			<!-- 정지회원 -->
 			<c:if test="${!empty user_num && user_auth==1}">
 				<nav class="nav-right">
-				<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
-					<div class="search-bar" style="width: 170px;">
-						<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="통합검색" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
-				</div>
-				</form>
+					<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
+						<div class="search-bar" style="width:180px; margin-top:10px; margin-right:40px;">
+							<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="매일의집 통합검색     📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
+						</div>
+					</form>
 						<c:if test="${empty user_photo }">
 						<img src="${pageContext.request.contextPath }/resources/images/basic.jpg" width="33" height="33" class="my-photo">
 						</c:if>
@@ -317,11 +317,11 @@ ul.dropdownbar {
 			<!-- 일반회원 -->
 			<c:if test="${!empty user_num && user_auth==2}">
 				<nav class="nav-right">
-				<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
-					<div class="search-bar" style="width: 170px;">
-						<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="통합검색" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
-				</div>
-				</form>
+					<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
+						<div class="search-bar" style="width:180px; margin-top:10px; margin-right:40px;">
+							<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="매일의집 통합검색     📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
+						</div>
+					</form>
 						<c:if test="${empty user_photo }">
 						<img src="${pageContext.request.contextPath }/resources/images/basic.jpg" width="33" height="33" class="my-photo">
 						</c:if>
@@ -358,12 +358,12 @@ ul.dropdownbar {
 			</c:if>
 			<!-- 판매자회원 -->
 					<c:if test="${!empty user_num && user_auth == 3}">
-						<nav class="nav-right">
+					<nav class="nav-right">
 						<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
-					<div class="search-bar" style="width: 170px;">
-						<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="통합검색" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
-				</div>
-				</form>
+							<div class="search-bar" style="width:180px; margin-top:10px; margin-right:40px;">
+								<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="매일의집 통합검색     📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
+							</div>
+						</form>
 						<c:if test="${empty user_photo }">
 						<img src="${pageContext.request.contextPath }/resources/images/basic.jpg" width="33" height="33" class="my-photo">
 						</c:if>
@@ -386,6 +386,7 @@ ul.dropdownbar {
 						<ul>
 							<li class="navrightmenuli"><a class="navmenuitem" href="#" style="color: #35c5f0; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;">등록</a>
 								<ul class="dropdownbar">
+									
 									<li class="navrightitemdropdown" style="color:#8c996b; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/qna/serviceBoardInsert.do">고객센터 질문하기</a></li>
 									<li class="navrightitemdropdown" style="color:#8c996b; font-family: 'Gowun Dodum', sans-serif; text-decoration: none;"><a href="${pageContext.request.contextPath}/store/storeRegister.do">상품 등록</a></li>
 								</ul>
@@ -398,10 +399,10 @@ ul.dropdownbar {
 				<c:if test="${!empty user_num && user_auth == 4}">
 						<nav class="nav-right">
 						<form id="search" action="${pageContext.request.contextPath}/mainSearch/mainSearch.do" method="get">
-					<div class="search-bar" style="width: 170px;">
-						<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="통합검색" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
-				</div>
-				</form>
+							<div class="search-bar" style="width:180px; margin-top:10px; margin-right:40px;">
+								<input type="search" name="keyword" id="keyword" class="form-control rounded-pill" placeholder="매일의집 통합검색     📷" style="font-size:13px;" autocomplete="off" aria-label="통합검색" aria-describedby="button-addon2">
+							</div>
+						</form>
 						<c:if test="${empty user_photo }">
 						<img src="${pageContext.request.contextPath }/resources/images/crown.gif" width="37" height="37" class="my-photo">
 						</c:if>

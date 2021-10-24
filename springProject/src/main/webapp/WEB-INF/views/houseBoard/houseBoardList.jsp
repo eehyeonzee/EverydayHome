@@ -43,7 +43,7 @@
 	<!-- 평수 -->
 	<div class="input-group col-3 mb-3">
 	  <div class="input-group-prepend">
-	    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">평수</button>
+	    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">평수</button>
 	    <div class="dropdown-menu">
 	      <a class="dropdown-item" href="list.do?size=0&residence=${residence}&style=${style}&space=${space}">10평미만</a>
 	      <a class="dropdown-item" href="list.do?size=1&residence=${residence}&style=${style}&space=${space}">10평대</a>
