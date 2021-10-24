@@ -268,9 +268,11 @@ function shareTwitter() {
 				<th scope="col"><p class="qna-category"><a href="qnaList.do?keyword=회원정보변경">회원정보변경</a></p></th>
 				<th scope="col"><p class="qna-category"><a href="qnaList.do?keyword=서비스/기타">서비스/기타</a></p></th>
 			</tr>
+		</table>
 		<c:if test="${count==0 }">
 	   		<div class="result-display">출력할 내용이 없습니다.</div>
 		</c:if>
+		<table class="table table-sm" style="border-spacing: 2px; border-collapse: separate;">
 		<c:if test="${count > 0 }">
 			<c:forEach var="qna" items="${list}" varStatus="class_count">
 				<tr>
