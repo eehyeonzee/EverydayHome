@@ -9,9 +9,17 @@
 --%>
 <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style>
-	.ck-editor__editable_inline {
-		min-height: 250px;
-	}
+.ck-editor__editable_inline {
+	min-height: 250px;
+}
+
+.btn-default {
+	color: #333;
+	background-color: #fff;
+	border-color: #ccc;
+}
+	
+	
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -74,7 +82,7 @@
 			<!-- 카테고리 시작 -->
 			<li>
 				<label for="house_area"></label>
-				<select name="house_area" id="house_area">
+				<select name="house_area" id="house_area" class="btn btn-default">
 					<option value="">평수</option>
 					<option value="10평 미만">10평 미만</option>
 					<option value="10평대">10평대</option>

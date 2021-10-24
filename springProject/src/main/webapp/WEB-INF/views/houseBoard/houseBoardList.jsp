@@ -24,12 +24,16 @@
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		// 이미지 트랜지션
-		/* $('.imgTransition').hover(function() {
-			$('#thumbnail').css("transform","scale(1.1)");
-		}, function() {
-			$("#thumbnail").css("transform","scale(1.0)");
-		}); */
+		// 카드형 게시물 110글자 초과시 ... 처리
+		/* $('.box').each(function(){
+			var content = $(this).children('.content');
+			var content_txt = content.text();
+			var content_txt_short = content_txt.substring(0,100) + "……";
+
+			if(content_txt.length >= 110){
+				content.html(content_txt_short);
+            }
+        }); */
 	});
 </script>
 <div class="houseBoard-list">
@@ -162,11 +166,10 @@
 		            	<img class="card-img-top embed-responsive-item" id="thumbnail" src="imageView.do?house_num=${houseBoard.house_num}" style="width:100%; border-radius:1%;"/>
 		            	</figure>
 		            </c:if>
-	            	<div class="box" align="center">
-					<br>
-					<div class="content" align="center">
-					<h5 class="card-title"><a href="detail.do?house_num=${houseBoard.house_num}" class="btn btn-outline-dark">${houseBoard.house_title}</a></h5>
-					</div>
+	            	<div class="card-body" align="center">
+	            	</div>
+	            	<div class="card-title" align="center">
+						<h5><a href="detail.do?house_num=${houseBoard.house_num}" class="btn btn-outline-dark">${houseBoard.house_title}</a></h5>
 					</div>
 				</div>
 			</div>&nbsp;

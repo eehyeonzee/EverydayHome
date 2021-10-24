@@ -282,9 +282,9 @@ div.btn modify-btn {
 						//each() 메소드는 매개변수로 받은 것을 사용해 for in 반복문과 같이 배열이나 객체의 요소를 검사함
 						var output = '<div class="item">';
 						if(item.profile != null) {
-							output += '<div style="width:55px; height:57px; float:left; padding-right:5em;"><img src="${pageContext.request.contextPath}/houseBoard/boardProfile.do?mem_num='+item.mem_num+'" style="height:42px; width:42px;" class="my-photo" id="profile"/></div>';
+							output += '<div style="width:55px; height:57px; float:left; padding-right:5em; margin-right:-18px;"><img src="${pageContext.request.contextPath}/houseBoard/boardProfile.do?mem_num='+item.mem_num+'" style="height:42px; width:42px;" class="my-photo" id="profile"/></div>';
 						}else {
-							output += '<div style="width:55px; height:57px; float:left; padding-right:5em;"><img src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="height:42px; width:42px;" class="my-photo" id="profile"/></div>';
+							output += '<div style="width:55px; height:57px; float:left; padding-right:5em; margin-right:-18px;"><img src="${pageContext.request.contextPath}/resources/images/basic.jpg" style="height:42px; width:42px;" class="my-photo" id="profile"/></div>';
 						}
 						output += '<div style="font-size:15px; float:left;"><b>' + item.nickname + '</b></div>' + '<div>&nbsp;·&nbsp;' + item.comm_reg_date + '</div>';
 						output += '<div class="sub-item">';
