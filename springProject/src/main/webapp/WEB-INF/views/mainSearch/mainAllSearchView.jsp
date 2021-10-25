@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%-- 
  * 작성일 : 2021. 10. 22.
  * 작성자 : 오상준
@@ -187,7 +188,7 @@ ul {
 	            	<div class="card-body" align="center">
 	            	</div>
 	            	<div class="card-title" align="center">
-						<h5><a href="${pageContext.request.contextPath}/store/storeDetail.do?prod_num=${storeVO.prod_num}" class="btn btn-outline-dark">${storeVO.prod_name} / ${storeVO.prod_price}원</a></h5>
+						<h5><a href="${pageContext.request.contextPath}/store/storeDetail.do?prod_num=${storeVO.prod_num}" class="btn btn-outline-dark">${storeVO.prod_name} / <fmt:formatNumber pattern="###,###,###" value="${storeVO.prod_price}"/>원</a></h5>
 					</div>
 				</div>
 			</div>&nbsp;
