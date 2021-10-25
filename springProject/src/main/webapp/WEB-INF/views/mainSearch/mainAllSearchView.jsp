@@ -201,6 +201,6 @@ ul {
 	<div class="paging" align="center">	
 		<span>${productPagingHtml}</span>
 	</div>
-</div>
+</div> 
 </div>
 <!-- 스토어 게시물 출력 끝 -->
