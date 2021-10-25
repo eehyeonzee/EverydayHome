@@ -38,7 +38,7 @@
 		<c:if test="${count > 0}">
 			<!-- 반복문 시작 -->
 			<c:forEach var="houseBoard" items="${list}">
-				<div >
+				<div class="col-3" >
 					<div class="card" style="height: 470px; width: 330px;">
 			            <div class="card-header">
 			            	<div style="float: left; cursor: pointer;" onclick="location.href='${pageContext.request.contextPath}/member/myPage.do'">
