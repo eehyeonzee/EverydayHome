@@ -214,8 +214,8 @@
                     cd.discount_price,
                     c.coupon_num,
                     c.mem_num
-                    FROM coupon_detail cd JOIN coupon c ON CD.coupondetail_num = c.coupondetail_num
-                    WHERE mem_num = 49
+                    FROM coupon_detail cd JOIN coupon c ON cd.coupondetail_num = c.coupondetail_num
+                    WHERE c.mem_num = #{mem_num}
                     ORDER BY coupondetail_num DESC)a)
         <![CDATA[
 		WHERE rnum >= #{start} AND rnum <= #{end}

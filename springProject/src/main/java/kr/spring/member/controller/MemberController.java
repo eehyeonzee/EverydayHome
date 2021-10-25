@@ -1080,6 +1080,7 @@ public class MemberController {
 		
 		map.put("start", page.getStartCount());
 		map.put("end", page.getEndCount());
+		map.put("mem_num", user_num);
 		
 		List<MemberVO> list = null;
 		if(count > 0) {
