@@ -64,7 +64,8 @@ h2{
 			<c:if test="${empty row.thumbnail_filename}">
 			<!-- 상세페이지링크연결 -->
 			<div class="link-item" style="display:float;"> 
-			<a href="storeDetail.do?prod_num=${row.prod_num}"><img src = "${pageContext.request.contextPath}/resources/images/gift.png" style = "width:240px; height:240px; max-width:240px; max-height:240px;"></a><br>
+			<a href="storeDetail.do?prod_num=${row.prod_num}"><img src = "${pageContext.request.contextPath}/resources/images/gift.png"
+			style = "width:240px; height:240px; max-width:240px; max-height:240px;"></a><br>
 			<!-- 이미지 추가 -->
  			<div class="title">
  			<p style="font-family: 'Gowun Dodum', sans-serif;">${row.prod_name}</p>
@@ -74,9 +75,7 @@ h2{
  			<div class="reg_date">
  			<p style="font-family: 'Gowun Dodum', sans-serif;">
  			 <fmt:formatNumber pattern="###,###,###" value="${row.prod_price}"/>
- 			 </p>
- 			 <a href="${pageContext.request.contextPath}/cart/cartDelete.do?cart_num=${row.cart_num}" class="btn btn-outline-danger">삭제</a>
- 			</div>
+ 			 </p><a href="${pageContext.request.contextPath}/cart/cartDelete.do?cart_num=${row.cart_num}" class="btn btn-outline-danger">삭제</a></div>
  			</div>
  			</c:if>
  			<c:if test="${!empty row.thumbnail_filename}">
@@ -85,7 +84,8 @@ h2{
 			<div class="container" style="display: flex;"> 
 			<!-- 이미지 추가 -->
 			<div class="imgBox" style="display:flex;">
-			<a href="${pageContext.request.contextPath}/store/storeDetail.do?prod_num=${row.prod_num}"><img src = "imageView.do?prod_num=${row.prod_num}" style = "width:240px; height:240px; max-width:240px; max-height:240px; display: float;"></a><br>
+			<a href="${pageContext.request.contextPath}/store/storeDetail.do?prod_num=${row.prod_num}"><img src = "imageView.do?prod_num=${row.prod_num}" 
+			style = "width:240px; height:240px; max-width:240px; max-height:240px; display: float;"></a><br>
 			</div>
  			<div class="title" style="display:flex;">
  			<p style="font-family: 'Gowun Dodum', sans-serif;">${row.prod_name}</p>
@@ -95,10 +95,8 @@ h2{
  			<div class="reg_date">
  			<span style="font-family: 'Gowun Dodum', sans-serif;">
  			 가격:<fmt:formatNumber pattern="###,###,###" value="${row.prod_price}"/>원<br>
-             장바구니 수량:<input type="number" style="width: 50px; height: 34px;" name="cart_quan" value="${row.cart_quan}" min="1" max="10">ㅣㅣㅣ
- 			 </span>
- 			 <a href="${pageContext.request.contextPath}/cart/cartDelete.do?cart_num=${row.cart_num}" class="btn btn-outline-danger">삭제</a>
- 			</div>
+             장바구니 수량:<input type="number" style="width: 50px; height: 34px;" name="cart_quan" value="${row.cart_quan}" min="1" max="10">
+ 			 </span><a href="${pageContext.request.contextPath}/cart/cartDelete.do?cart_num=${row.cart_num}" class="btn btn-outline-danger">삭제</a></div>
  			</div>
  			</c:if>
 		</c:forEach>
@@ -108,7 +106,6 @@ h2{
          *10만원 이상부터는 배송료가 0원이 됩니다.<br>
          전체 주문금액  :<fmt:formatNumber pattern="###,###,###" value="${map.allSum}"/>
 		<input type="submit" class="btn btn-success" value="수정" formaction="${pageContext.request.contextPath}/cart/cartUpdate.do">
-		<input type="submit" class="btn btn-info" value="주문" formaction="${pageContext.request.contextPath}/cart/cartOrderForm.do">
 		</form>
  		</c:if>
  	</div>
