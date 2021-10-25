@@ -89,7 +89,7 @@ ul {
 	</div>
 	</c:if>
 	<div class="paging" align="center">	
-		<span>${pagingHtml}</span>
+		<span>${housePagingHtml}</span>
 	</div>
 </div>
 </div>
@@ -143,7 +143,7 @@ ul {
 	</div>
 	</c:if>
 	<div class="paging" align="center">	
-		<span>${pagingHtml}</span>
+		<span>${eventPagingHtml}</span>
 	</div>
 </div>
 </div>
@@ -199,7 +199,7 @@ ul {
 	</div>
 	</c:if>
 	<div class="paging" align="center">	
-		<span>${pagingHtml}</span>
+		<span>${productPagingHtml}</span>
 	</div>
 </div>
 </div>
