@@ -324,6 +324,7 @@ public class HouseBoardController {
 		houseBoardService.updateHBoardHits(house_num);
 		
 		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer user_auth = (Integer)session.getAttribute("user_auth");
 		
 		// 추천 중복 체크 변수
 		int heartCheckNum = 0;
@@ -398,6 +399,7 @@ public class HouseBoardController {
 	    mav.addObject("scrapCheckNum", scrapCheckNum);
 	    mav.addObject("countScrap", countScrap);
 	    mav.addObject("countComm", countComm);
+	    mav.addObject("user_auth", user_auth);
 	     
 		return mav;
 	}
@@ -584,11 +586,12 @@ public class HouseBoardController {
 		Map<String,String> map = new HashMap<String,String>();
 		
 		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer user_auth = (Integer)session.getAttribute("user_auth");
 		
 		if(user_num == null) {
 			// 로그인 되어있지 않음
 			map.put("result", "logout");
-		}else if(user_num != null && user_num == hCommentVO.getMem_num()) {
+		}else if(user_num != null && user_num == hCommentVO.getMem_num() || user_auth == 4) {
 			// 로그인 되어있고 로그인한 회원번호와 작성자 회원번호가 일치
 			// 댓글 수정
 			houseBoardService.updateComm(hCommentVO);
@@ -614,11 +617,12 @@ public class HouseBoardController {
 		Map<String,String> map = new HashMap<String,String>();
 		
 		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer user_auth = (Integer)session.getAttribute("user_auth");
 		
 		if(user_num == null) {
 			// 로그인 되어있지 않음
 			map.put("result", "logout");
-		}else if(user_num != null && user_num == mem_num) {
+		}else if(user_num != null && user_num == mem_num || user_auth == 4) {
 			// 로그인 되어있고 로그인한 회원번호와 작성자 회원번호가 일치
 			houseBoardService.deleteComm(comm_num);
 			map.put("result", "success");

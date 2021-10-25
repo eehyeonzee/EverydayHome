@@ -289,7 +289,7 @@ div.btn modify-btn {
 						output += '<div style="font-size:15px; float:left;"><b>' + item.nickname + '</b></div>' + '<div>&nbsp;·&nbsp;' + item.comm_reg_date + '</div>';
 						output += '<div class="sub-item">';
 						output += '   <p>' + item.comm_content.replace(/</gi,'&lt;').replace(/>/gi,'&gt;') + '</p>';
-						if($('#mem_num').val() == item.mem_num || item.user_auth == 4) {
+						if($('#mem_num').val() == item.mem_num || $('#user_auth').val() == 4) {
 							// 로그인한 회원번호가 댓글 작성자 회원번호와 같으면 버튼 노출
 							output += ' <input type="button" data-num="'+item.comm_num+'" data-mem="'+item.mem_num+'" value="수정" id="run" class="btn modify-btn" style="margin-left:70px;">';
 							output += ' <input type="button" data-num="'+item.comm_num+'" data-mem="'+item.mem_num+'" value="삭제" id="run" class="btn delete-btn">';
@@ -636,6 +636,7 @@ div.btn modify-btn {
 		<form id="comm_form">
 			<input type="hidden" name="house_num" value="${houseBoard.house_num}" id="house_num">
 			<input type="hidden" name="mem_num" value="${user_num}" id="mem_num">
+			<input type="hidden" name="user_auth" value="${user_auth}" id="user_auth">
 			<textarea rows="1" name="comm_content" id="comm_content" class="form-control" placeholder="칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)"
 				<c:if test="${empty user_num}">disabled="disabled"</c:if>
 				><c:if test="${empty user_num}">로그인 후 사용하세요</c:if></textarea><!-- 닫는 태그 내리지(띄어쓰지) 말자! 공백으로 인식함 -->
