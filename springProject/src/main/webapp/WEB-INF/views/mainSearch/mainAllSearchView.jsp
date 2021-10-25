@@ -71,7 +71,7 @@ ul {
 					<%-- 사진파일이 있는 경우 --%>
 					<c:if test="${!empty houseBoard.thumbnail_filename}">
 		            	<figure class="embed-responsive embed-responsive-1by1">
-		            	<img class="card-img-top embed-responsive-item" id="thumbnail" src="imageView.do?house_num=${houseBoard.house_num}" style="width:100%; border-radius:1%;"/>
+		            	<img class="card-img-top embed-responsive-item" id="thumbnail" src="${pageContext.request.contextPath}/houseBoard/imageView.do?house_num=${houseBoard.house_num}" style="width:100%; border-radius:1%;"/>
 		            	</figure>
 		            </c:if>
 	            	<div class="card-body" align="center">
@@ -127,11 +127,9 @@ ul {
 					<%-- 사진파일이 있는 경우 --%>
 					<c:if test="${!empty event.event_filename}">
 		            	<figure class="embed-responsive embed-responsive-1by1">
-		            	<img class="card-img-top embed-responsive-item" id="thumbnail" src="eventPhotoView.do?event_num=${event.event_num}" style="width:100%; border-radius:1%;"/>
+		            	<img class="card-img-top embed-responsive-item" id="thumbnail" src="${pageContext.request.contextPath}/event/eventPhotoView.do?event_num=${event.event_num}" style="width:100%; border-radius:1%;"/>
 		            	</figure>
 		            </c:if>
-	            	<div class="card-body" align="center">
-	            	</div>
 	            	<div class="card-title" align="center">
 						<h5><a href="${pageContext.request.contextPath}/event/eventDetail.do?event_num=${event.event_num}" class="btn btn-outline-dark">${event.event_title}</a></h5>
 					</div>
@@ -183,7 +181,7 @@ ul {
 					<%-- 사진파일이 있는 경우 --%>
 					<c:if test="${!empty storeVO.thumbnail_filename}">
 		            	<figure class="embed-responsive embed-responsive-1by1">
-		            	<img class="card-img-top embed-responsive-item" id="thumbnail" src="store/imageView.do?prod_num=${storeVO.prod_num}" style="width:100%; border-radius:1%;"/>
+		            	<img class="card-img-top embed-responsive-item" id="thumbnail" src="${pageContext.request.contextPath}/store/imageView.do?prod_num=${storeVO.prod_num}" style="width:100%; border-radius:1%;"/>
 		            	</figure>
 		            </c:if>
 	            	<div class="card-body" align="center">
