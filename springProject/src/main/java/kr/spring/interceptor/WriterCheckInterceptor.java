@@ -32,12 +32,14 @@ public class WriterCheckInterceptor extends HandlerInterceptorAdapter {
 		// 로그인 회원번호 구하기
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer user_auth = (Integer)session.getAttribute("user_auth");
 		
 		logger.debug("<<작성자 회원번호>> : " + houseBoard.getMem_num());
 		logger.debug("<<로그인 회원번호>> : " + user_num);
+		logger.debug("<<작성자 권한>>" + user_auth);
 		
 		// 회원번호 일치 여부 체크
-		if(user_num != houseBoard.getMem_num()) {
+		if(user_num != houseBoard.getMem_num() && user_auth!=4) {
 			logger.debug("<<로그인 회원번호와 작성자 회원번호 불일치>>");
 			
 			request.setAttribute("accessMsg", "로그인 회원번호와 작성자 회원번호 불일치");
