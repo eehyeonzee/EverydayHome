@@ -36,22 +36,22 @@ padding : 40px 8px 0px 100px;
  <div class="container">
 <div class="main-container"> 
  	<div class="title-item" align="center">
- 	<h2  id="title" style="font-family: 'Gowun Dodum', sans-serif;">${notice.notice_title}</h2>
+ 	<h2  id="title"">${notice.notice_title}</h2>
  	</div>
  	<div class="date-item" align="center">
- 	<p style="font-family: 'Gowun Dodum', sans-serif;">${notice.notice_reg_date}</p>
+ 	<p style="">${notice.notice_reg_date}</p>
  	</div>
  	<div class="hits-item" align="center">
- 	<p style="font-family: 'Gowun Dodum', sans-serif;">hits : ${notice.notice_hits}  |  작성자 : 관리자</p>
+ 	<p style="">hits : ${notice.notice_hits}  |  작성자 : 관리자</p>
  	</div>
  	<div class="content-item" align="center">
- 	<p id="content" style="font-family: 'Gowun Dodum', sans-serif;">${notice.notice_content}</p>
+ 	<p id="content" style="">${notice.notice_content}</p>
  	</div>
  	 <div class="icon-item" align="center">
- 	<a href="${pageContext.request.contextPath}/notice/noticeList.do" class="btn btn-success">목록으로 돌아가기</a>
+ 	<a href="${pageContext.request.contextPath}/notice/noticeList.do" class="btn btn-outline-dark">목록</a>
  	<c:if test="${user_auth==4}">
- 	<a href="${pageContext.request.contextPath}/notice/noticeUpdate.do?notice_num=${notice.notice_num}" class="btn btn-info">수정</a>
-	<a href="${pageContext.request.contextPath}/notice/noticeDelete.do?notice_num=${notice.notice_num}" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+ 	<a href="${pageContext.request.contextPath}/notice/noticeUpdate.do?notice_num=${notice.notice_num}" class="btn btn-outline-dark">수정</a>
+	<a href="${pageContext.request.contextPath}/notice/noticeDelete.do?notice_num=${notice.notice_num}" class="btn btn-outline-dark" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
 	</c:if>
  	</div>
  	</div>

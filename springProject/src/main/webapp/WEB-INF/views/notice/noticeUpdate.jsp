@@ -81,8 +81,8 @@ min-height: 500px;
 			</li>
 		</ul>
 		<div class="submit-button mt-2 mb-2" >
-			<input type="submit" value="등록" class="btn btn-info">
-			<input type="button" value="목록으로"  class="btn btn-success" onclick="location.href='${pageContext.request.contextPath}/notice/noticeList.do'">
+			<input type="submit" value="등록" class="btn btn-outline-dark">
+			<input type="button" value="목록"  class="btn btn-outline-dark" onclick="location.href='${pageContext.request.contextPath}/notice/noticeList.do'">
 		</div>
 	</form:form>
 	</div>

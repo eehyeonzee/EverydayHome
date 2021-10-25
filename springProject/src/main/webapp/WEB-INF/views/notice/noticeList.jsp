@@ -46,11 +46,11 @@ h2{
 <div class="container"> 
  <div class="main-container">
  	<div class="name-item mb-5 pb-5" align="center">
- 	<h2 style="font-family: 'Gowun Dodum', sans-serif;">공지사항</h2>
+ 	<h2 style="">공지사항</h2>
  	</div>
  		<c:if test="${count==0}">
  		<div class="container mt-5">
- 		<div class="link-item mb-5 mb-5" style="font-family: 'Gowun Dodum', sans-serif; text-align:center;">출력할 내용이 없습니다</div>
+ 		<div class="link-item mb-5 mb-5" style="text-align:center;">출력할 내용이 없습니다</div>
  		</div>
  		</c:if>
  		<c:if test="${count>0}">
@@ -58,10 +58,10 @@ h2{
  		<c:forEach var="notice" items="${list}">
  		<div class="link-item" onclick="location.href='noticeDetail.do?notice_num=${notice.notice_num}'">
  			<div class="title">
- 			<h5 style="font-family: 'Gowun Dodum', sans-serif; weight:bold;">${notice.notice_title}</h5>
+ 			<h5 style="weight:bold;">${notice.notice_title}</h5>
  			</div>
  			<div class="reg_date">
- 			<span style="font-family: 'Gowun Dodum', sans-serif;">${notice.notice_reg_date}</span>
+ 			<span style="">${notice.notice_reg_date}</span>
  			</div>
  			<hr>
  		</div>
@@ -73,7 +73,7 @@ h2{
  		</c:if>
  		<c:if test="${user_auth==4}">
  		 <div class="write-button pt-5"> 		
- 		<a href="${pageContext.request.contextPath}/notice/noticeWrite.do" class="btn btn-info">공지 쓰기</a>
+ 		<a href="${pageContext.request.contextPath}/notice/noticeWrite.do" class="btn btn-outline-dark">공지 작성</a>
  		</div>
  		</c:if>
  	</div>
