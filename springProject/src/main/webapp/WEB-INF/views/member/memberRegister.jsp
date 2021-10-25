@@ -132,7 +132,7 @@
 </script>
 <!-- 중앙 내용 시작 -->
 
-<div class = "container-fluid" style = "width:700px; border: 1px solid #d2f1f7; font-family: 'Gowun Dodum', sans-serif; ">
+<div class = "container-fluid" style = "width:700px;">
 	<div align = "left">
 			<h3>회원 가입</h3>
 	</div>

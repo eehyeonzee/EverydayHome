@@ -24,7 +24,7 @@
 	<br><div  style = "width:99%">
 		<div  style="float: right;">
 		<div align = "center">
-			<h2 style="text-align:center;">내가 쓴 글 ( ${count} )</h2>
+			<h3 style="text-align:center;">내가 쓴 글 ( ${count} )</h3>
 		</div>
 		<%-- 카드시작 --%>
 		<div class="row my-5 ml-5 mr-5" align="center">

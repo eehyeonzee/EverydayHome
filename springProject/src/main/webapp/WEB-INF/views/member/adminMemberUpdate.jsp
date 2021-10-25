@@ -12,9 +12,9 @@
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"><script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<div class = "container-fluid" style = "width:700px; border: 1px solid #d2f1f7; font-family: 'Gowun Dodum', sans-serif; ">
+<div class = "container-fluid" style = "width:700px; border: 1px solid #737373">
 	<div align = "left">
-			<h3>관리자 - 회원 정보수정</h3>
+			<h4>관리자 - 회원 정보수정</h4>
 	</div>
 	<div class="text-center col-sm-12 my-5">
 	<form:form id="adminMemberUpdate_form" action="adminMemberUpdate.do" modelAttribute="memberVO" enctype="multipart/form-data">
