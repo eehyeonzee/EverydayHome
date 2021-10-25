@@ -17,54 +17,6 @@
 	bordr-color: #b8b7b4;
 }
 
-div.btn delete-btn {
-	cursor: pointer;
-    touch-action: manipulation;
-    box-sizing: border-box;
-    display: inline-block;
-    border-width: 1px;
-    border-style: solid;
-    text-align: center;
-    border-radius: 4px;
-    font-weight: bold;
-    line-height: 1;
-    padding-bottom: 5px;
-    padding-top: 5px;
-    margin-top: 12px;
-    font-size: 13px;
-    transition: .2s ease;
-    background-color: #ededed;
-    border-color: #ededed;
-    color: #000000;
-    user-select: none;
-    width: 100px;
-    height: 42px;
-}
-
-div.btn modify-btn {
-	cursor: pointer;
-    touch-action: manipulation;
-    box-sizing: border-box;
-    display: inline-block;
-    border-width: 1px;
-    border-style: solid;
-    text-align: center;
-    border-radius: 4px;
-    font-weight: bold;
-    line-height: 1;
-    padding-bottom: 5px;
-    padding-top: 5px;
-    margin-top: 12px;
-    font-size: 13px;
-    transition: .2s ease;
-    background-color: #ededed;
-    border-color: #ededed;
-    color: #000000;
-    user-select: none;
-    width: 100px;
-    height: 42px;
-}
-
 .btn comm-reset {
 	cursor: pointer;
 	width: 50px;

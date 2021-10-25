@@ -100,7 +100,7 @@ public class MainSearchController {
 		
 		// 사진게시판 페이지 처리
 		SearchPagingUtil eventPage = new SearchPagingUtil(keyfield, keyword,
-				eventcurrentPage,eventCount,3,5,
+				eventcurrentPage,eventCount,4,5,
 				"mainSearch.do?housePageNum=" + houseCurrentPage + "&storePageNum" + storecurrentPage,
 				"event");	// 나중에 URL 수정
 		
@@ -126,7 +126,7 @@ public class MainSearchController {
 		
 		// 상품 페이징 처리
 		SearchPagingUtil productPage = new SearchPagingUtil(keyfield, keyword,
-				storecurrentPage,productCount,8,5,
+				storecurrentPage,productCount,4,5,
 				"mainSearch.do?housePageNum=" + houseCurrentPage + "&eventPageNum=" + eventcurrentPage,
 				"store");	// 나중에 URL 수정
 		
