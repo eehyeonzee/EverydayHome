@@ -215,7 +215,7 @@ public class StoreController {
 	//리뷰부분 이미지 끝
 	
 	// 상품 수정 - 폼 호출
-	@GetMapping("/store/updateProduct.do")
+	@GetMapping("/store/storeModify.do")
 	public String productUpdate(@RequestParam int prod_num, Model model) {
 		
 		StoreVO storeVO = storeService.selectProduct(prod_num);
@@ -226,7 +226,7 @@ public class StoreController {
 	}
 	
 	// 상품 수정 - 전송된 데이터 처리
-	@PostMapping("/store/updateProduct.do")
+	@PostMapping("/store/storeModify.do")
 	public String submitUpdate(@Valid StoreVO storeVO, BindingResult result, HttpServletRequest request, Model model) {
 		
 		logger.debug("<<상품 수정>> : " + storeVO);

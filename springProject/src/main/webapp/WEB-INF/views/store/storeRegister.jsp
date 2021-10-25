@@ -218,7 +218,7 @@
 					}
 				};
 			</script>
-			<input class = "btn btn-outline-dark" type = "button" value = "홈으로" onclick = "location.href='${pageContext.request.contextPath}/store/storeMain.do'">
+			<input class = "btn btn-outline-dark" type = "button" value = "홈으로" onclick = "location.href='${pageContext.request.contextPath}/store/storeCategory.do'">
 		</div>
 	</div>
 	</form:form>

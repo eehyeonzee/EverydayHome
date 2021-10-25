@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import kr.spring.member.service.MemberService;
+import kr.spring.member.vo.MemberVO;
 import kr.spring.store.service.StoreService;
 import kr.spring.store.vo.StoreVO;
 
@@ -19,6 +21,9 @@ private static final Logger logger = LoggerFactory.getLogger(WriterCheckIntercep
 	
 	@Autowired
 	private StoreService storeService;
+	
+	@Autowired
+	private MemberService memberService;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -29,9 +34,9 @@ private static final Logger logger = LoggerFactory.getLogger(WriterCheckIntercep
 		
 		// 로그인한 회원번호 구하기
 		Integer user_num = (Integer)session.getAttribute("user_num");
+		MemberVO memberVO = memberService.selectMember(user_num);
 		
-		// 로그인한 회원의 멤버 권한 구하기
-		Integer auth = (Integer)session.getAttribute("mem_auth");
+		Integer auth = memberVO.getMem_auth();
 
 		// 상품 정보 확인
 		int prod_num = Integer.parseInt(request.getParameter("prod_num")); // 전송되는 데이터 뽑아내기
