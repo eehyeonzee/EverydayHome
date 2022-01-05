@@ -15,7 +15,7 @@
   * 고객센터
 <br/><br/>
 
-## 개발환경 및 사용기술
+## 개발 환경 및 사용 기술
 * `OS`&nbsp;&nbsp;Windows 10
 * `Tool`&nbsp;&nbsp;JAVA JDK-1.7
 * `DBMS`&nbsp;&nbsp;Oracle 11g Release2
