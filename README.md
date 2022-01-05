@@ -24,3 +24,7 @@
 ## 시스템 설계
 * ERD
 ![ERD](https://user-images.githubusercontent.com/83903563/148183561-6d8e7131-c14e-4af7-a17a-41a0b67c8f08.png)
+* [UML] Class Diagram - 집들이 게시판
+![Class_Diagram](https://user-images.githubusercontent.com/83903563/148193366-09453079-661d-479f-bf7d-40a375ea9435.jpg)
+* [UML] Sequence Diagram - 집들이 게시판
+![Sequence_Diagram](https://user-images.githubusercontent.com/83903563/148193756-7413f850-db35-4717-af4a-6bfa20baf370.jpg)
