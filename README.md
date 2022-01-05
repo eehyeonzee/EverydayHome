@@ -33,7 +33,6 @@
 
 * [UML] Sequence Diagram - 집들이 게시판
 <img width="70%" src="https://user-images.githubusercontent.com/83903563/148193756-7413f850-db35-4717-af4a-6bfa20baf370.jpg"/>
-<br/><br/>
 
 ## 구축화면 [메인페이지]
 
