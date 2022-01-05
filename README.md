@@ -16,7 +16,7 @@
 
 ## 개발환경 및 사용기술
 * OS : Windows 10
-* Tool : Java JDK-1.7
+* Tool : JAVA JDK-1.7
 * DBMS : Oracle 11g Release2
 * Server : Apache Tomcat 9.0
 * Front-end : HTML5, CSS3, JavaScript, jQuery, Bootstrap
