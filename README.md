@@ -8,20 +8,20 @@
 ## 프로젝트 소개
 <오늘의 집>을 벤치마킹하여 커뮤니티 및 스토어 조합의 인테리어 웹 사이트를 구현하였다.
 * 기능은 크게 5개 파트로 나뉜다.
-  * 메인
+  * 메인페이지
   * 회원가입&마이페이지
   * 커뮤니티
   * 스토어
   * 고객센터
 <br/><br/>
 
-## 개발 환경 및 사용 기술
-* `OS`&nbsp;&nbsp;Windows 10
-* `Tool`&nbsp;&nbsp;JAVA JDK-1.7
-* `DBMS`&nbsp;&nbsp;Oracle 11g Release2
-* `Server`&nbsp;&nbsp;Apache Tomcat 9.0
-* `Front-end`&nbsp;&nbsp;HTML5, CSS3, JavaScript, jQuery, Bootstrap
-* `Back-end`&nbsp;&nbsp;Java, Spring MVC, MyBatis, JSP
+## 개발환경 및 사용기술
+* **`OS`**&nbsp;&nbsp;Windows 10
+* **`Tool`**&nbsp;&nbsp;JAVA JDK-1.7
+* **`DBMS`**&nbsp;&nbsp;Oracle 11g Release2
+* **`Server`**&nbsp;&nbsp;Apache Tomcat 9.0
+* **`Front-end`**&nbsp;&nbsp;HTML5, CSS3, JavaScript, jQuery, Bootstrap
+* **`Back-end`**&nbsp;&nbsp;Java, Spring Framework, MyBatis, JSP
 <br/><br/>
 
 ## 시스템 설계
@@ -33,3 +33,8 @@
 
 * [UML] Sequence Diagram - 집들이 게시판
 <img width="70%" src="https://user-images.githubusercontent.com/83903563/148193756-7413f850-db35-4717-af4a-6bfa20baf370.jpg"/>
+<br/><br/>
+
+## 구축화면 [메인페이지]
+
+
