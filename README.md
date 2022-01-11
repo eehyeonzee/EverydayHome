@@ -34,8 +34,8 @@
 <img width="70%" src="https://user-images.githubusercontent.com/83903563/148193756-7413f850-db35-4717-af4a-6bfa20baf370.jpg"/>
 
 ## 구축 화면
-* ### `매일의집`
-  • **[메인]**&nbsp;&nbsp;전체 페이지
+### `매일의집`
+  * **[메인]**&nbsp;&nbsp;전체 페이지
 <br/><br/>
   <img width="85%" src="https://user-images.githubusercontent.com/83903563/148885942-275e845b-be9c-4ee4-b727-95dabb5bd251.png"/>
 <br/><br/>
