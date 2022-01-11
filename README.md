@@ -53,15 +53,15 @@
 <br/><br/>
 
   * **[글 작성]**
-  <img width="95%" src="https://user-images.githubusercontent.com/83903563/148898015-57f474c1-164e-4609-ab66-e3ac5dd138b5.png"/>
+  <img width="95%" src="https://user-images.githubusercontent.com/83903563/148916130-4b850787-74dd-468a-9b90-2cb27e18b4b5.png"/>
 <br/><br/>
 
   * **[글 상세]**
-  <img width="90%" src="https://user-images.githubusercontent.com/83903563/148904061-b5acd0c2-70fa-49f3-a3ed-33414d0a5815.png"/>
+  <img width="90%" src="https://user-images.githubusercontent.com/83903563/148918174-496872b5-7574-4f7f-815e-5b55ecfc967b.png"/>
 <br/><br/>
 
   * **[글 상세]**&nbsp;&nbsp;추천 및 스크랩
-  ![04-3 추천 및 스크랩 완료(ajax)](https://user-images.githubusercontent.com/83903563/148910920-ff37ca49-97d5-4503-8c26-29784175be70.png)
+  ![04-3 추천 및 스크랩 완료(ajax)](https://user-images.githubusercontent.com/83903563/148918190-edf03c5a-8d93-479c-a6e5-d634add1ab4a.png)
 <br/><br/>
 
 
