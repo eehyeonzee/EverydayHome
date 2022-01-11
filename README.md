@@ -34,11 +34,26 @@
 <img width="70%" src="https://user-images.githubusercontent.com/83903563/148193756-7413f850-db35-4717-af4a-6bfa20baf370.jpg"/>
 
 ## 구축 화면
-* ### `[메인]`&nbsp;&nbsp;전체 페이지
-<img width="80%" src="https://user-images.githubusercontent.com/83903563/148885942-275e845b-be9c-4ee4-b727-95dabb5bd251.png"/>
+* ### `[메인]`
+  • 전체 페이지
+  <br/><br/>
+  <img width="85%" src="https://user-images.githubusercontent.com/83903563/148885942-275e845b-be9c-4ee4-b727-95dabb5bd251.png"/>
 <br/><br/>
 
-* ### `[메인]`&nbsp;&nbsp;푸터
-![01-1  메인-푸터](https://user-images.githubusercontent.com/83903563/148888601-101f1825-659b-41c1-94c2-0b6d6a7fe7c9.png)
+  • 푸터
+  <br/><br/>
+  ![01-1  메인-푸터](https://user-images.githubusercontent.com/83903563/148888601-101f1825-659b-41c1-94c2-0b6d6a7fe7c9.png)
+<br/><br/>
+
+* ### `[집들이]`
+  • 목록
+  <br/><br/>
+  <img width="90%" src="https://user-images.githubusercontent.com/83903563/148889970-8a8f850f-630e-457d-9196-0f032acfb989.png"/>
+<br/><br/>
+
+  • 목록 - 카테고리 검색
+  <br/><br/>
+  ![02-1  목록-카테고리 검색](https://user-images.githubusercontent.com/83903563/148891363-b9617e4a-ed33-4d18-b09e-b5fd26cefeb9.png)
+<br/><br/>
 
 
