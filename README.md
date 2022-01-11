@@ -60,4 +60,8 @@
   <img width="90%" src="https://user-images.githubusercontent.com/83903563/148904061-b5acd0c2-70fa-49f3-a3ed-33414d0a5815.png"/>
 <br/><br/>
 
+  * **[글 상세]**&nbsp;&nbsp;추천 및 스크랩
+  ![04-3 추천 및 스크랩 완료(ajax)](https://user-images.githubusercontent.com/83903563/148910920-ff37ca49-97d5-4503-8c26-29784175be70.png)
+<br/><br/>
+
 
