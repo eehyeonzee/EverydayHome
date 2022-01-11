@@ -53,7 +53,7 @@
 <br/><br/>
 
   * **[글 작성]**
-  <img width="95%" src="https://user-images.githubusercontent.com/83903563/148916130-4b850787-74dd-468a-9b90-2cb27e18b4b5.png"/>
+  <img width="95%" src="https://user-images.githubusercontent.com/83903563/148934295-b274ec7a-131c-49f6-b25c-a229b143fd46.png"/>
 <br/><br/>
 
   * **[글 상세]**
@@ -64,4 +64,7 @@
   ![04-3 추천 및 스크랩 완료(ajax)](https://user-images.githubusercontent.com/83903563/148918190-edf03c5a-8d93-479c-a6e5-d634add1ab4a.png)
 <br/><br/>
 
+  * **[글 상세]**&nbsp;&nbsp;카카오톡 공유API 외
+  <img width="85%" src="https://user-images.githubusercontent.com/83903563/148931261-ac0da8b6-68ff-49d9-a7f1-9fd04fa4be36.png"/>
+<br/><br/>
 
