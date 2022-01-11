@@ -57,7 +57,7 @@
 <br/><br/>
 
   * **[글 상세]**
-  <img width="90%" src="https://user-images.githubusercontent.com/83903563/148918174-496872b5-7574-4f7f-815e-5b55ecfc967b.png"/>
+  <img width="90%" src="https://user-images.githubusercontent.com/83903563/148938197-5aa5d801-8181-4972-9014-1993e602f287.png"/>
 <br/><br/>
 
   * **[글 상세]**&nbsp;&nbsp;추천 및 스크랩
