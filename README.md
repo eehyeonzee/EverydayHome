@@ -68,3 +68,6 @@
   <img width="85%" src="https://user-images.githubusercontent.com/83903563/148931261-ac0da8b6-68ff-49d9-a7f1-9fd04fa4be36.png"/>
 <br/><br/>
 
+  * **[글 수정]**&nbsp;&nbsp;저장된 카테고리 불러오기 외
+  <img width="85%" src="https://user-images.githubusercontent.com/83903563/148943779-9e165344-b600-404a-a1aa-d288243b7be5.png"/>
+<br/><br/>
