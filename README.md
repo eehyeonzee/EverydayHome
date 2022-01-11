@@ -34,9 +34,11 @@
 <img width="70%" src="https://user-images.githubusercontent.com/83903563/148193756-7413f850-db35-4717-af4a-6bfa20baf370.jpg"/>
 
 ## 구축 화면
-### [메인페이지]
+* ### `[메인]`&nbsp;&nbsp;전체 페이지
 <img width="80%" src="https://user-images.githubusercontent.com/83903563/148885942-275e845b-be9c-4ee4-b727-95dabb5bd251.png"/>
+<br/><br/>
 
-
+* ### `[메인]`&nbsp;&nbsp;푸터
+![01-1  메인-푸터](https://user-images.githubusercontent.com/83903563/148888601-101f1825-659b-41c1-94c2-0b6d6a7fe7c9.png)
 
 
