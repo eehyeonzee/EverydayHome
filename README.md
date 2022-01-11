@@ -71,3 +71,7 @@
   * **[글 수정]**&nbsp;&nbsp;저장된 카테고리 불러오기 외
   <img width="85%" src="https://user-images.githubusercontent.com/83903563/148943779-9e165344-b600-404a-a1aa-d288243b7be5.png"/>
 <br/><br/>
+
+  * **[글 삭제]**
+  <img width="80%" src="https://user-images.githubusercontent.com/83903563/148953167-9f50cb60-5054-41ab-8ef5-ae7af7756401.png"/>
+<br/><br/>
