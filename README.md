@@ -35,23 +35,31 @@
 
 ## 구축 화면
 * ### `[메인]`
-  • 전체 페이지
+  • **전체 페이지**
 <br/><br/>
   <img width="85%" src="https://user-images.githubusercontent.com/83903563/148885942-275e845b-be9c-4ee4-b727-95dabb5bd251.png"/>
 <br/><br/>
 
-　　• 푸터
+　　• **푸터**
     ![01-1  메인-푸터](https://user-images.githubusercontent.com/83903563/148888601-101f1825-659b-41c1-94c2-0b6d6a7fe7c9.png)
 <br/><br/>
 
 * ### `[집들이]`
-  • 목록
+  • **목록**
 <br/><br/>
   <img width="90%" src="https://user-images.githubusercontent.com/83903563/148889970-8a8f850f-630e-457d-9196-0f032acfb989.png"/>
 <br/><br/>
 
-　　• 목록 - 카테고리 검색
+　　• **목록** - 카테고리별 검색
     ![02-1  목록-카테고리 검색](https://user-images.githubusercontent.com/83903563/148891363-b9617e4a-ed33-4d18-b09e-b5fd26cefeb9.png)
 <br/><br/>
+
+
+　　• **목록** - 글 작성
+<br/><br/>
+    <img width="95%" src="https://user-images.githubusercontent.com/83903563/148898015-57f474c1-164e-4609-ab66-e3ac5dd138b5.png"/>
+<br/><br/>
+
+
 
 
