@@ -73,7 +73,7 @@
 <br/><br/>
 
   * **[글 삭제]**
-  <img width="80%" src="https://user-images.githubusercontent.com/83903563/148953167-9f50cb60-5054-41ab-8ef5-ae7af7756401.png"/>
+  <img width="80%" src="https://user-images.githubusercontent.com/83903563/149277146-233e3385-7ffd-421c-a147-9d6618156a1a.png"/>
 <br/><br/>
 
 
