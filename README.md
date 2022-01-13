@@ -56,7 +56,7 @@
   <img width="95%" src="https://user-images.githubusercontent.com/83903563/148934295-b274ec7a-131c-49f6-b25c-a229b143fd46.png"/>
 <br/><br/>
 
-  * **[글 상세]**&nbsp;&nbsp;[전체 페이지](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp)
+  * **[글 상세]**&nbsp;&nbsp;[내용과 댓글](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp)
   <img width="90%" src="https://user-images.githubusercontent.com/83903563/148938197-5aa5d801-8181-4972-9014-1993e602f287.png"/>
 <br/><br/>
 
@@ -68,11 +68,11 @@
   <img width="85%" src="https://user-images.githubusercontent.com/83903563/148931261-ac0da8b6-68ff-49d9-a7f1-9fd04fa4be36.png"/>
 <br/><br/>
 
-  * **[글 수정]**&nbsp;&nbsp;저장된 카테고리 불러오기 외
+  * **[글 수정]**&nbsp;&nbsp;[저장된 카테고리 불러오기 외](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardModify.jsp)
   <img width="85%" src="https://user-images.githubusercontent.com/83903563/148943779-9e165344-b600-404a-a1aa-d288243b7be5.png"/>
 <br/><br/>
 
-  * **[글 삭제]**
+  * **[글 삭제]**&nbsp;&nbsp;[로그인 회원번호와 작성자 회원번호가 일치해야 삭제 가능](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L612)
   <img width="80%" src="https://user-images.githubusercontent.com/83903563/149277146-233e3385-7ffd-421c-a147-9d6618156a1a.png"/>
 <br/><br/>
 
