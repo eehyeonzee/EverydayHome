@@ -40,31 +40,31 @@
 <br/><br/>
 
   * **[메인]**&nbsp;&nbsp;[푸터](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/template/footer.jsp)
-  ![01-1  메인-푸터](https://user-images.githubusercontent.com/83903563/148888601-101f1825-659b-41c1-94c2-0b6d6a7fe7c9.png)
+  <img width="95%" src="https://user-images.githubusercontent.com/83903563/148888601-101f1825-659b-41c1-94c2-0b6d6a7fe7c9.png"/>
 <br/><br/>
 
 ### **`커뮤니티`**&nbsp;&nbsp;[집들이 게시판](https://github.com/eehyeonzee/EverydayHome/tree/main2/springProject/src/main/java/kr/spring/houseBoard)
-  * **[글 목록]**
+  * **[글 목록]** [카드형](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardList.jsp)
   <img width="90%" src="https://user-images.githubusercontent.com/83903563/148889970-8a8f850f-630e-457d-9196-0f032acfb989.png"/>
 <br/><br/>
 
-  * **[글 목록]**&nbsp;&nbsp;카테고리별 검색
+  * **[글 목록]**&nbsp;&nbsp;[카테고리별 검색](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardList.jsp#L45)
   ![02-1  목록-카테고리 검색](https://user-images.githubusercontent.com/83903563/148891363-b9617e4a-ed33-4d18-b09e-b5fd26cefeb9.png)
 <br/><br/>
 
-  * **[글 작성]**
+  * **[글 작성]**&nbsp;&nbsp;[위지윅 에디터(CKEditor) 적용 외](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardWrite.jsp)
   <img width="95%" src="https://user-images.githubusercontent.com/83903563/148934295-b274ec7a-131c-49f6-b25c-a229b143fd46.png"/>
 <br/><br/>
 
-  * **[글 상세]**
+  * **[글 상세]**&nbsp;&nbsp;[전체 페이지](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp)
   <img width="90%" src="https://user-images.githubusercontent.com/83903563/148938197-5aa5d801-8181-4972-9014-1993e602f287.png"/>
 <br/><br/>
 
-  * **[글 상세]**&nbsp;&nbsp;추천 및 스크랩
+  * **[글 상세]**&nbsp;&nbsp;[추천 및 스크랩](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L125)
   ![04-3 추천 및 스크랩 완료(ajax)](https://user-images.githubusercontent.com/83903563/148918190-edf03c5a-8d93-479c-a6e5-d634add1ab4a.png)
 <br/><br/>
 
-  * **[글 상세]**&nbsp;&nbsp;카카오톡 공유API 외
+  * **[글 상세]**&nbsp;&nbsp;[카카오톡 공유API 외](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L200)
   <img width="85%" src="https://user-images.githubusercontent.com/83903563/148931261-ac0da8b6-68ff-49d9-a7f1-9fd04fa4be36.png"/>
 <br/><br/>
 
