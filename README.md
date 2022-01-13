@@ -30,8 +30,8 @@
 <br>
 
 ## 담당 업무
-  * **`메인`** 헤더/푸터
-  * **`커뮤니티`** 집들이 게시판
+  * **`메인`**&nbsp;&nbsp;헤더/푸터
+  * **`커뮤니티`**&nbsp;&nbsp;집들이 게시판
 <br><br>
 
 ## 개발환경 및 사용기술
@@ -57,6 +57,7 @@
 ### **`매일의집`**
   * **[메인]**&nbsp;&nbsp;[전체 페이지](https://github.com/eehyeonzee/EverydayHome/tree/main2/springProject/src/main/webapp/WEB-INF/views)
   <img width="85%" src="https://user-images.githubusercontent.com/83903563/148885942-275e845b-be9c-4ee4-b727-95dabb5bd251.png"/>
+  * 헤더 
 <br><br>
 
   * **[메인]**&nbsp;&nbsp;[푸터](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/template/footer.jsp)
