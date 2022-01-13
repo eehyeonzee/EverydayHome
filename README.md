@@ -35,7 +35,7 @@
 
 ## 구축 화면
 ### `매일의집`
-  * **[메인]**&nbsp;&nbsp;전체 페이지
+  * **[메인]**&nbsp;&nbsp;[전체 페이지](https://github.com/eehyeonzee/EverydayHome/tree/main2/springProject/src/main/webapp/WEB-INF/views)
   <img width="85%" src="https://user-images.githubusercontent.com/83903563/148885942-275e845b-be9c-4ee4-b727-95dabb5bd251.png"/>
 <br/><br/>
 
