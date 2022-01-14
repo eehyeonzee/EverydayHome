@@ -55,12 +55,12 @@
 
 ## 구축 화면
 ### **`매일의집`**
-  * **[메인]**&nbsp;&nbsp;[전체 페이지](https://github.com/eehyeonzee/EverydayHome/tree/main2/springProject/src/main/webapp/WEB-INF/views)
+  * **[메인]**&nbsp;&nbsp;[전체](https://github.com/eehyeonzee/EverydayHome/tree/main2/springProject/src/main/webapp/WEB-INF/views)
   <img width="85%" src="https://user-images.githubusercontent.com/83903563/148885942-275e845b-be9c-4ee4-b727-95dabb5bd251.png"/>
   
   - 상단 메뉴에 통합 검색창 UI 구현
-  - 구글 웹폰트 적용
-  - <매일의집> 프로젝트 UI 설계 ([초기 화면 설계](https://ovenapp.io/view/vJpCqYhjm8IaZ7Pbm36FjdGCYPQE8cJb/rwwOd))
+  - 사이트 전체에 구글 웹폰트 적용
+  - <매일의 집> 프로젝트 UI 설계 ([초기 화면 설계](https://ovenapp.io/view/vJpCqYhjm8IaZ7Pbm36FjdGCYPQE8cJb/rwwOd))
 <br><br>
 
   * **[메인]**&nbsp;&nbsp;[푸터](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/template/footer.jsp)
