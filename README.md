@@ -55,7 +55,7 @@
 
 ## 구축 화면
 ### **`매일의집`**
-  * **[메인]**&nbsp;&nbsp;[페이지 전체 화면](https://github.com/eehyeonzee/EverydayHome/tree/main2/springProject/src/main/webapp/WEB-INF/views)
+  * **[메인]**&nbsp;&nbsp;[페이지 전체](https://github.com/eehyeonzee/EverydayHome/tree/main2/springProject/src/main/webapp/WEB-INF/views)
   <img width="85%" src="https://user-images.githubusercontent.com/83903563/148885942-275e845b-be9c-4ee4-b727-95dabb5bd251.png"/>
   
   - 상단 메뉴에 통합 검색창 UI 구현
@@ -65,7 +65,7 @@
 
   * **[메인]**&nbsp;&nbsp;[푸터](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/template/footer.jsp)
   <img width="95%" src="https://user-images.githubusercontent.com/83903563/148888601-101f1825-659b-41c1-94c2-0b6d6a7fe7c9.png"/>
-  - 
+  - 하단에 
   -
 <br><br>
 
