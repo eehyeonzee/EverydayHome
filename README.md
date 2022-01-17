@@ -61,14 +61,13 @@
   - 상단 메뉴에 통합 검색창 UI 구현
   - 사이트 전체에 구글 웹 폰트 적용
   - <매일의 집> 프로젝트 UI 설계 ([초기 화면 설계](https://ovenapp.io/view/vJpCqYhjm8IaZ7Pbm36FjdGCYPQE8cJb/rwwOd, "카카오 오븐"))
-<br><br>
 ___
   * **[메인]**&nbsp;&nbsp;[푸터](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/template/footer.jsp)
   <img width="95%" src="https://user-images.githubusercontent.com/83903563/148888601-101f1825-659b-41c1-94c2-0b6d6a7fe7c9.png"/>
   
   - 메인페이지 하단에 사업자정보조회 기능 추가
-  - 링크를 누르면 팝업창이 열리도록 구현
-<br><br>
+  - '사업자정보확인' 링크를 누르면 팝업창이 열리도록 구현
+<br><br><br>
 
 ### **`커뮤니티`**&nbsp;&nbsp;[집들이 게시판](https://github.com/eehyeonzee/EverydayHome/tree/main2/springProject/src/main/java/kr/spring/houseBoard)
   * **[글 목록]** [카드형](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardList.jsp)
