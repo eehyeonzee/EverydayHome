@@ -18,9 +18,9 @@
     * 사용자는 [집들이]에 사진을 올려 자신의 집 인테리어를 공유하거나, 댓글로 다른 사용자와 소통할 수 있다.
     * 사용자는 [스토어]에서 상품을 주문/결제하고 리뷰를 작성할 수 있으며 [장바구니] 기능을 이용할 수 있다.
     * 사용자는 [고객센터]에서 문의 사항을 작성하고 이메일로 제출할 수 있다.
-    * 사용자는 [마이페이지]에서 나의 상태(내가 쓴 글/나의 쇼핑/나의 리뷰 등)를 확인하거나, 프로필 및 개인정보를 수정할 수 있다.
+    * 사용자는 [마이페이지]에서 나의 상태(내가 쓴 글/나의 쇼핑/나의 리뷰 등)를 확인하거나, 프로필 및 개인 정보를 수정할 수 있다.
     * 사용자(일반)는 [마이페이지]에서 판매자 신청을 할 수 있다.
-    * 사용자(판매자)는 [스토어]에 상품을 등록할 수 있고, [판매자페이지]에서 자신의 상품등록내역을 조회할 수 있다.
+    * 사용자(판매자)는 [스토어]에 상품을 등록할 수 있고, [판매자페이지]에서 자신의 상품 등록 내역을 조회할 수 있다.
   * **`관리자`**
     * 관리자는 [이벤트]와 [공지사항]에 글을 작성할 수 있다.
     * 관리자는 [관리자페이지]에서 전체 회원(사용자)을 조회하고 관리할 수 있다.
@@ -59,15 +59,15 @@
   <img width="85%" src="https://user-images.githubusercontent.com/83903563/148885942-275e845b-be9c-4ee4-b727-95dabb5bd251.png"/>
   
   - 상단 메뉴에 통합 검색창 UI 구현
-  - 사이트 전체에 구글 웹폰트 적용
+  - 사이트 전체에 구글 웹 폰트 적용 등
   - <매일의 집> 프로젝트 UI 설계 ([초기 화면 설계](https://ovenapp.io/view/vJpCqYhjm8IaZ7Pbm36FjdGCYPQE8cJb/rwwOd))
 <br><br>
 
   * **[메인]**&nbsp;&nbsp;[푸터](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/template/footer.jsp)
   <img width="95%" src="https://user-images.githubusercontent.com/83903563/148888601-101f1825-659b-41c1-94c2-0b6d6a7fe7c9.png"/>
   
-  - 메인페이지 하단에 사업자정보조회 링크 추가
-  - 
+  - 메인페이지 하단에 사업자정보조회 기능 추가
+  - 링크를 누르면 팝업창이 열리도록 구현
 <br><br>
 
 ### **`커뮤니티`**&nbsp;&nbsp;[집들이 게시판](https://github.com/eehyeonzee/EverydayHome/tree/main2/springProject/src/main/java/kr/spring/houseBoard)
