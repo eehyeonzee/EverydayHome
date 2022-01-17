@@ -74,7 +74,7 @@ ___
   * **[글 목록]** [카드형](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardList.jsp)
   <img width="90%" src="https://user-images.githubusercontent.com/83903563/148889970-8a8f850f-630e-457d-9196-0f032acfb989.png"/>
   
-  - 등록된 글이 있을 경우 게시물이 출력되도록 구현 (없을 경우 '등록된 게시물이 없습니다.'라는 메시지가 결과 화면으로 뜸)
+  - 등록된 글이 있을 경우 게시물이 출력되도록 구현 (없을 경우 '등록된 게시물이 없습니다.'라는 메시지가 뜸)
   - 
 <br><br>
 
