@@ -66,8 +66,8 @@ ___
   <img width="95%" src="https://user-images.githubusercontent.com/83903563/148888601-101f1825-659b-41c1-94c2-0b6d6a7fe7c9.png"/>
   
   - 메인페이지 하단에 사업자정보조회 기능 추가
-  - '사업자정보확인' 링크를 누르면 팝업창이 열리고 사업자정보조회 가능
-  - '서비스가입사실 확인' 링크를 누르면 은행지급보증서가 열림
+  - '사업자정보확인' 링크를 누르면 팝업창이 열리고 사업자 정보를 조회할 수 있음
+  - '서비스가입사실 확인' 링크를 누르면 은행지급보증서 스캔본을 열람할 수 있음
 <br><br><br>
 
 ### **`커뮤니티`**&nbsp;&nbsp;[집들이 게시판](https://github.com/eehyeonzee/EverydayHome/tree/main2/springProject/src/main/java/kr/spring/houseBoard)
@@ -75,10 +75,11 @@ ___
   <img width="90%" src="https://user-images.githubusercontent.com/83903563/148889970-8a8f850f-630e-457d-9196-0f032acfb989.png"/>
   
   - 등록된 게시물이 있을 경우 카드형 글목록 출력 (없을 경우 '등록된 게시물이 없습니다'라는 메시지가 결과 화면에 뜸)
-  - 총 게시물 수 카운트
-  - 글 작성자의 프로필 사진과 닉네임이 노출
+  - [집들이]의 총 게시물 수 표시
+  - 글 작성자의 프로필 사진/닉네임 노출
   - 사용자가 프로필 사진을 설정하지 않은 경우 기본 프로필 이미지가 보이도록 구현
   - 썸네일 사진으로 게시물 미리보기 가능
+  - 글 작성자가 썸네일 파일을 등록하지 않은 경우 기본 썸네일 이미지가 보이도록 구현
   - 
 ___
   * **[글 목록]**&nbsp;&nbsp;[카테고리별 검색](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardList.jsp#L45)
