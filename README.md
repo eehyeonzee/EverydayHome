@@ -58,7 +58,7 @@
   * **[메인]**&nbsp;&nbsp;[페이지 전체](https://github.com/eehyeonzee/EverydayHome/tree/main2/springProject/src/main/webapp/WEB-INF/views)
   <img width="85%" src="https://user-images.githubusercontent.com/83903563/148885942-275e845b-be9c-4ee4-b727-95dabb5bd251.png"/>
   
-  - 상단 메뉴에 통합 검색창 UI 구현
+  - 메인페이지 상단 메뉴에 통합 검색창 UI 구현
   - 사이트 전체에 구글 웹 폰트 적용
   - <매일의 집> 프로젝트 UI 설계 ([초기 화면 설계](https://ovenapp.io/view/vJpCqYhjm8IaZ7Pbm36FjdGCYPQE8cJb/rwwOd, "카카오 오븐"))
 ___
@@ -67,11 +67,14 @@ ___
   
   - 메인페이지 하단에 사업자정보조회 기능 추가
   - '사업자정보확인' 링크를 누르면 팝업창이 열리도록 구현
+  - '서비스가입사실 확인' 링크를 누르면 은행지급보증서가 열리도록 구현
 <br><br><br>
 
 ### **`커뮤니티`**&nbsp;&nbsp;[집들이 게시판](https://github.com/eehyeonzee/EverydayHome/tree/main2/springProject/src/main/java/kr/spring/houseBoard)
   * **[글 목록]** [카드형](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardList.jsp)
   <img width="90%" src="https://user-images.githubusercontent.com/83903563/148889970-8a8f850f-630e-457d-9196-0f032acfb989.png"/>
+  
+  - 등록된 글이 있을 경우 게시물이 출력되도록 
 <br><br>
 
   * **[글 목록]**&nbsp;&nbsp;[카테고리별 검색](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardList.jsp#L45)
