@@ -77,7 +77,7 @@
   * **[글 목록]** [카드형](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardList.jsp)
   <img width="90%" src="https://user-images.githubusercontent.com/83903563/148889970-8a8f850f-630e-457d-9196-0f032acfb989.png"/>
 
-  - 등록된 게시물이 있을 경우 최신순으로 글목록 출력 (없을 경우 '등록된 게시물이 없습니다'라는 메시지가 뜸)
+  - 등록된 게시물이 있을 경우 최신순으로 글목록 출력 (없을 경우 결과화면에 '등록된 게시물이 없습니다'라는 메시지가 뜸)
   - [집들이]의 총 게시물 수 표시
   - 글 작성자의 프로필 사진/닉네임 노출
   - 작성자가 프로필 사진을 설정하지 않은 경우 기본 프로필 이미지가 보이도록 구현
@@ -91,21 +91,21 @@
   - 카테고리 내에서 원하는 게시물을 쉽게 찾아볼 수 있도록 별도의 검색 필터 배치
   - '평수'부터 '주거형태', '스타일', '공간'까지 다중 선택 및 검색 가능
   - 각각의 카테고리 선택 시 선택값들이 일렬로 나란히 정렬되도록 구현
-  - 각 카테고리 하단에 있는 취소 버튼을 누르면 해당 카테고리 선택값만 취소됨
-  - 초기화 버튼을 누르면 모든 카테고리 선택값이 취소되고 [집들이] 목록으로 복귀
+  - 각 카테고리 하단에 있는 '취소' 버튼을 누르면 해당 카테고리 선택값만 취소됨
+  - '초기화' 버튼을 누르면 모든 카테고리 선택값이 취소되고 [집들이] 목록으로 복귀
 <br><br>
 
   * **[글 작성]**&nbsp;&nbsp;[위지윅 에디터 적용 외](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardWrite.jsp)
   <img width="95%" src="https://user-images.githubusercontent.com/83903563/148934295-b274ec7a-131c-49f6-b25c-a229b143fd46.png"/>
   
   - 로그인하지 않은 상태에서 헤더 메뉴-'글쓰기'-'사진 올리기'를 누르면 [회원 로그인] 페이지로 이동
-  - 로그인 후 '사진 올리기'를 누르면 [집들이] 글 작성 가능
+  - 로그인 후 '사진 올리기'를 누르면 글쓰기 폼으로 이동
   - 제목/카테고리/내용은 필수 입력 항목으로 처리 (유효성 검사 기능 추가)
   - 필수 데이터가 누락된 상태에서 등록 버튼을 누르면 경고창이 뜸
   - 사용자 편의를 위해 CKEditor 적용
   - 썸네일 사진을 업로드할 수 있도록 별도의 파일 첨부 기능 추가
-  - 글 작성 도중 목록 버튼을 누르면 [집들이] 목록으로 복귀
-  - 새 글 작성 후 등록 버튼을 누르면 [집들이] 목록으로 이동 → 총 게시물 수에 반영됨
+  - 글 작성 도중 '목록' 버튼을 누르면 [집들이] 목록으로 복귀
+  - 새 글 작성 후 '등록' 버튼을 누르면 [집들이] 목록으로 이동 → 총 게시물 수 변동
 <br><br>
 
   * **[글 상세]**&nbsp;&nbsp;[내용과 댓글](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp)
