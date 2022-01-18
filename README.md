@@ -77,12 +77,13 @@
   * **[글 목록]** [카드형](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardList.jsp)
   <img width="90%" src="https://user-images.githubusercontent.com/83903563/148889970-8a8f850f-630e-457d-9196-0f032acfb989.png"/>
 
-  - 등록된 게시물이 있을 경우 최신순으로 글목록 출력 (없을 경우 결과화면에 '등록된 게시물이 없습니다'라는 메시지가 뜸)
+  - 등록된 게시물이 있을 경우 최신순으로 글목록 출력 (없을 경우 '등록된 게시물이 없습니다'라는 메시지가 결과 화면에 뜸)
   - [집들이]의 총 게시물 수 표시
   - 글 작성자의 프로필 사진/닉네임 노출
   - 작성자가 프로필 사진을 설정하지 않은 경우 기본 프로필 이미지가 보이도록 구현
   - 썸네일 사진으로 게시물 미리보기 가능
   - 작성자가 썸네일 파일을 등록하지 않은 경우 기본 썸네일 이미지가 보이도록 구현
+  - 제목을 누르면 글 상세보기 페이지로 이동
 <br><br>
 
   * **[글 목록]**&nbsp;&nbsp;[카테고리 검색 필터](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardList.jsp#L45)
@@ -95,12 +96,12 @@
   - '초기화' 버튼을 누르면 모든 카테고리 선택값이 취소되고 [집들이] 목록으로 복귀
 <br><br>
 
-  * **[글 작성]**&nbsp;&nbsp;[위지윅 에디터 적용 외](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardWrite.jsp)
+  * **[글 작성]**&nbsp;&nbsp;[위지윅 에디터 외](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardWrite.jsp)
   <img width="95%" src="https://user-images.githubusercontent.com/83903563/148934295-b274ec7a-131c-49f6-b25c-a229b143fd46.png"/>
   
   - 로그인하지 않은 상태에서 헤더 메뉴-'글쓰기'-'사진 올리기'를 누르면 [회원 로그인] 페이지로 이동
   - 로그인 후 '사진 올리기'를 누르면 글쓰기 폼으로 이동
-  - 제목/카테고리/내용은 필수 입력 항목으로 처리 (유효성 검사 기능 추가)
+  - 제목/4개의 카테고리/내용은 필수 입력 항목으로 처리 (유효성 검사 기능 추가)
   - 필수 데이터가 누락된 상태에서 등록 버튼을 누르면 경고창이 뜸
   - 사용자 편의를 위해 CKEditor 적용
   - 썸네일 사진을 업로드할 수 있도록 별도의 파일 첨부 기능 추가
@@ -108,11 +109,22 @@
   - 새 글 작성 후 '등록' 버튼을 누르면 [집들이] 목록으로 이동 → 총 게시물 수 변동
 <br><br>
 
-  * **[글 상세]**&nbsp;&nbsp;[게시물 파트](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L528) 및 [댓글 파트](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L246)
+  * **[글 상세]**&nbsp;&nbsp;[게시물 파트](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L528)와 [댓글 파트](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L246)
   <img width="90%" src="https://user-images.githubusercontent.com/83903563/148938197-5aa5d801-8181-4972-9014-1993e602f287.png"/>
+  
+  **`게시물`**
+  - 글 작성자의 프로필 사진/닉네임/글의 카테고리/등록일/조회수/글 내용 출력
+  - 작성자가 프로필 사진을 설정하지 않은 경우 기본 프로필 이미지가 보이도록 구현
+  - 4개의 카테고리/글 등록일/글 조회수/글 내용 출력
+  - 날짜 표기 형식을 변경하여   
+  - 제목을 눌러 게시물을 읽는 순간 조회수 +1 증가
+  - 로그인 회원번호와 작성자 회원번호가 일치해야 수정/삭제 버튼이 노출됨
+  - 관리자
+  **`댓글`**
+  
 <br><br>
 
-  * **[글 상세]**&nbsp;&nbsp;[추천 및 스크랩](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L125)
+  * **[글 상세]**&nbsp;&nbsp;[추천과 스크랩](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L125)
   ![04-3 추천 및 스크랩 완료(ajax)](https://user-images.githubusercontent.com/83903563/148918190-edf03c5a-8d93-479c-a6e5-d634add1ab4a.png)
 <br><br>
 
