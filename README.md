@@ -89,8 +89,8 @@
   - 카테고리 내에서 원하는 게시물을 쉽게 찾아볼 수 있도록 별도의 검색 필터 배치
   - '평수'부터 '주거형태', '스타일', '공간'까지 다중 선택 및 검색 가능
   - 각각의 카테고리 선택 시 선택값들이 일렬로 나란히 정렬되도록 구현
-  - 각 카테고리 하단에 있는 취소 버튼 클릭 시 해당 카테고리 선택값만 취소됨
-  - 초기화 버튼 클릭 시 모든 카테고리 선택값이 취소되고 첫 페이지로 원상 복귀
+  - 각 카테고리 하단에 있는 취소 버튼을 누르면 해당 카테고리 선택값만 취소됨
+  - 초기화 버튼을 누르면 모든 카테고리 선택값이 취소되고 첫 페이지로 원상 복귀
 <br><br>
 
   * **[글 작성]**&nbsp;&nbsp;[위지윅 에디터(CKEditor) 적용 외](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardWrite.jsp)
