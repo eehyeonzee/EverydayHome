@@ -61,7 +61,8 @@
   - 메인페이지 상단 메뉴에 통합 검색창 UI 구현
   - 사이트 전체에 구글 웹 폰트 적용
   - <매일의 집> 프로젝트 UI 설계 ([초기 화면 설계](https://ovenapp.io/view/vJpCqYhjm8IaZ7Pbm36FjdGCYPQE8cJb/rwwOd, "카카오 오븐"))
-___
+<br><br>
+  
   * **[메인]**&nbsp;&nbsp;[푸터](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/template/footer.jsp)
   <img width="95%" src="https://user-images.githubusercontent.com/83903563/148888601-101f1825-659b-41c1-94c2-0b6d6a7fe7c9.png"/>
   
@@ -80,7 +81,8 @@ ___
   - 작성자가 프로필 사진을 설정하지 않은 경우 기본 프로필 이미지가 보이도록 구현
   - 썸네일 사진으로 게시물 미리보기 가능
   - 작성자가 썸네일 파일을 등록하지 않은 경우 기본 썸네일 이미지가 보이도록 구현
-___
+<br><br>
+
   * **[글 목록]**&nbsp;&nbsp;[카테고리별 검색](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardList.jsp#L45)
   ![02-1  목록-카테고리 검색](https://user-images.githubusercontent.com/83903563/148891363-b9617e4a-ed33-4d18-b09e-b5fd26cefeb9.png)
 <br><br>
