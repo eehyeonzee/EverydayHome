@@ -83,8 +83,14 @@
   - 작성자가 썸네일 파일을 등록하지 않은 경우 기본 썸네일 이미지가 보이도록 구현
 <br><br>
 
-  * **[글 목록]**&nbsp;&nbsp;[카테고리별 검색](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardList.jsp#L45)
+  * **[글 목록]**&nbsp;&nbsp;[카테고리 검색 필터](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardList.jsp#L45)
   ![02-1  목록-카테고리 검색](https://user-images.githubusercontent.com/83903563/148891363-b9617e4a-ed33-4d18-b09e-b5fd26cefeb9.png)
+  
+  - 카테고리 내에서 원하는 게시물을 쉽게 찾아볼 수 있도록 별도의 검색 필터 배치
+  - '평수'부터 '주거형태', '스타일', '공간'까지 다중 선택 및 검색 가능
+  - 각각의 카테고리 선택 시 선택값들이 일렬로 나란히 정렬되도록 구현
+  - 각 카테고리 하단에 있는 취소 버튼 클릭 시 해당 카테고리 선택값만 취소됨
+  - 초기화 버튼 클릭 시 모든 카테고리 선택값이 취소되고 첫 페이지로 원상 복귀
 <br><br>
 
   * **[글 작성]**&nbsp;&nbsp;[위지윅 에디터(CKEditor) 적용 외](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardWrite.jsp)
@@ -99,7 +105,7 @@
   ![04-3 추천 및 스크랩 완료(ajax)](https://user-images.githubusercontent.com/83903563/148918190-edf03c5a-8d93-479c-a6e5-d634add1ab4a.png)
 <br><br>
 
-  * **[글 상세]**&nbsp;&nbsp;[카카오톡 공유API 외](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L200)
+  * **[글 상세]**&nbsp;&nbsp;[카카오톡 공유 API 외](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L200)
   <img width="85%" src="https://user-images.githubusercontent.com/83903563/148931261-ac0da8b6-68ff-49d9-a7f1-9fd04fa4be36.png"/>
 <br><br>
 
