@@ -108,7 +108,7 @@
   - 새 글 작성 후 '등록' 버튼을 누르면 [집들이] 목록으로 이동 → 총 게시물 수 변동
 <br><br>
 
-  * **[글 상세]**&nbsp;&nbsp;[게시물 내용](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L528) 및 [댓글](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L246)
+  * **[글 상세]**&nbsp;&nbsp;[게시물 파트](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L528) 및 [댓글 파트](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L246)
   <img width="90%" src="https://user-images.githubusercontent.com/83903563/148938197-5aa5d801-8181-4972-9014-1993e602f287.png"/>
 <br><br>
 
