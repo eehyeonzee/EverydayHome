@@ -121,7 +121,7 @@
   - 조회수는 글 제목을 눌러 게시물을 읽는 순간 +1 증가되도록 구현
   - '목록' 버튼을 누르면 [집들이] 목록으로 복귀
   - '수정'/'삭제' 버튼은 글 작성자와 관리자에게만 나타남
-  - 추천(좋아요)/스크랩/SNS 공유 기능 추가
+  - 추천(좋아요)/스크랩/SNS 공유 기능 구현
   
   **`댓글`**
   - 해당 게시물의 총 댓글수 표시
@@ -142,10 +142,9 @@
   - 내용 수정 후 '등록' 버튼을 누르면 알림창이 뜨고 페이지 새로고침 없이 댓글이 등록됨
   - '취소' 버튼을 누르면 폼이 초기화되고 댓글 목록으로 복귀
   - 
-  
 <br><br>
 
-  * **[글 상세]**&nbsp;&nbsp;[추천과 스크랩](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L125)
+  * **[글 상세]**&nbsp;&nbsp;[추천/스크랩](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L125)
   ![04-3 추천 및 스크랩 완료(ajax)](https://user-images.githubusercontent.com/83903563/148918190-edf03c5a-8d93-479c-a6e5-d634add1ab4a.png)
 <br><br>
 
