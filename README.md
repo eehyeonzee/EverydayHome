@@ -85,7 +85,6 @@
 
   * **[글 목록]**&nbsp;&nbsp;[카테고리 검색 필터](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardList.jsp#L45)
   ![02-1  목록-카테고리 검색](https://user-images.githubusercontent.com/83903563/148891363-b9617e4a-ed33-4d18-b09e-b5fd26cefeb9.png)
-  
   - 카테고리 내에서 원하는 게시물을 쉽게 찾아볼 수 있도록 별도의 검색 필터 배치
   - '평수'부터 '주거형태', '스타일', '공간'까지 다중 선택 및 검색 가능
   - 각각의 카테고리 선택 시 선택값들이 일렬로 나란히 정렬되도록 구현
