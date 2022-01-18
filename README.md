@@ -98,14 +98,14 @@
   * **[글 작성]**&nbsp;&nbsp;[위지윅 에디터 적용 외](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardWrite.jsp)
   <img width="95%" src="https://user-images.githubusercontent.com/83903563/148934295-b274ec7a-131c-49f6-b25c-a229b143fd46.png"/>
   
-  - 로그인 후 헤더 메뉴-글쓰기-사진 올리기를 누르면 글 작성 가능
-  - 로그인하지 않은 상태에서 사진 올리기를 누르면 로그인 페이지로 이동
+  - 로그인하지 않은 상태에서 헤더 메뉴-'글쓰기'-'사진 올리기'를 누르면 [회원 로그인] 페이지로 이동
+  - 로그인 후 '사진 올리기'를 누르면 [집들이] 글 작성 가능
   - 제목/카테고리/내용은 필수 입력 항목으로 처리 (유효성 검사 기능 추가)
   - 필수 데이터가 누락된 상태에서 등록 버튼을 누르면 경고창이 뜸
   - 사용자 편의를 위해 CKEditor 적용
-  - 썸네일 사진을 업로드할 수 있도록 별도의 파일 첨부 기능 추가 (필수X)
-  - 새 글 작성 후 등록 버튼을 누르면 글목록으로 이동 → 총 게시물 수에 반영되어 표시
-  - 목록 버튼을 누르면 [집들이]의 1페이지로 복귀
+  - 썸네일 사진을 업로드할 수 있도록 별도의 파일 첨부 기능 추가
+  - 글 작성 도중 목록 버튼을 누르면 [집들이]의 1페이지로 복귀
+  - 새 글 작성 후 등록 버튼을 누르면 글목록으로 이동 → 총 게시물 수에 반영됨
 <br><br>
 
   * **[글 상세]**&nbsp;&nbsp;[내용과 댓글](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp)
