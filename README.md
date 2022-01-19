@@ -108,9 +108,9 @@
   - 썸네일 사진을 업로드할 수 있도록 별도의 파일 첨부 기능 추가
   - 글 작성 도중 '목록' 버튼을 누르면 [집들이] 목록으로 복귀
   - 글 작성 완료 후 '등록' 버튼을 누르면 [집들이] 목록으로 이동
+  - 글목록의 총 게시물 수 변동
+  - [마이페이지]-'내가 쓴 글' 목록에도 새 글이 반영됨
   - 로그인이 풀린 상태에서 '등록' 버튼을 누르면 경고창이 뜨고 [로그인] 페이지로 이동
-  - 새 글이 등록되면 글목록의 총 게시물 수 변동
-  - 새 글을 등록하면 [마이페이지]-'내가 쓴 글' 목록에도 반영됨
 <br><br>
 
   * **[글 상세]**&nbsp;&nbsp;[게시물](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L528)과 [댓글](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L246)
@@ -132,7 +132,7 @@
   - 댓글 작성자가 프로필 사진을 설정하지 않은 경우 기본 프로필 이미지가 보이도록 구현
   - 댓글 등록일/내용 출력
   - 등록일은 댓글 작성 완료의 경과 시간으로 표기 (예: 1시간 전)
-  - R 제외 CUD 로그인 체크 여부
+  - R 제외 CUD 로그인 여부 체크
   - 로그인하지 않은 경우 댓글 작성폼 비활성화 
   - 로그인한 경우 작성폼이 활성화되고 '등록' 버튼이 나타남
   - 작성폼/수정폼은 유효성 검사 기능을 추가하여 필수 입력으로 처리
@@ -151,7 +151,7 @@
   * **[글 상세]**&nbsp;&nbsp;[추천/스크랩](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L125)
   ![04-3 추천 및 스크랩 완료(ajax)](https://user-images.githubusercontent.com/83903563/148918190-edf03c5a-8d93-479c-a6e5-d634add1ab4a.png)
   
-  - 로그인 체크 여부
+  - 로그인 여부 체크
   - 로그인하지 않은 상태에서 추천/스크랩 버튼을 누르면 경고창이 뜨고 [로그인] 페이지로 이동
   - 로그인한 경우 버튼 클릭 가능
   - 버튼을 누르면 알림창이 뜨고 빈 아이콘이 빨간색/노란색으로 채워지면서 추천/스크랩 수 변동 (Ajax 방식)
@@ -171,12 +171,21 @@
   * **[글 수정]**&nbsp;&nbsp;[저장된 카테고리 불러오기 외](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardModify.jsp)
   <img width="85%" src="https://user-images.githubusercontent.com/83903563/148943779-9e165344-b600-404a-a1aa-d288243b7be5.png"/>
   
-  - 
+  - 로그인 여부 체크
+  - 글 작성자/관리자가 '수정' 버튼을 누르면 글 수정폼으로 이동
+  - 로그인이 풀린 상태에서 버튼을 누르면 경고창이 뜨고 [로그인] 페이지로 이동
   
 <br><br>
 
   * **[글 삭제]**&nbsp;&nbsp;[삭제 후 경로 지우기](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L612)
   <img width="80%" src="https://user-images.githubusercontent.com/83903563/149277146-233e3385-7ffd-421c-a147-9d6618156a1a.png"/>
+  
+  - 로그인 여부 체크
+  - 권한 검증을 거친 글 작성자/관리자가 '삭제' 버튼을 누르면 경고창이 뜸
+  - '확인' 버튼을 누르면 글이 삭제되고 [집들이] 목록으로 이동 (경로가 지워지므로 이전페이지로 이동 불가)
+  - 글목록의 총 게시물 수 변동
+  - [마이페이지]-'내가 쓴 글' 목록에서도 해당 글이 삭제됨
+  - 로그인이 풀린 상태에서 '삭제' 버튼을 누르면 경고창이 뜨고 [로그인] 페이지로 이동
 <br><br>
 
 
