@@ -161,7 +161,7 @@
 <br><br>
 
   * **[글 상세]**&nbsp;&nbsp;[카카오톡 공유 API 외](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L200)
-  <img width="85%" src="https://user-images.githubusercontent.com/83903563/148931261-ac0da8b6-68ff-49d9-a7f1-9fd04fa4be36.png"/>
+  <img width="85%" src="https://user-images.githubusercontent.com/83903563/150103918-407a0054-8333-4dbc-982d-7577165a8657.png"/>
   
   - 페이스북/카카오톡/트위터 아이콘을 누르면 해당 SNS를 통해 게시물 공유 가능
   - 카카오 계정으로 로그인한 경우 나의 카카오톡 친구들에게/채팅방에 즉시 공유 가능
