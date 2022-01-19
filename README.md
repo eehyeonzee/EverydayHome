@@ -165,11 +165,14 @@
   
   - 페이스북/카카오톡/트위터 아이콘을 누르면 해당 SNS를 통해 게시물 공유 가능
   - 카카오 계정으로 로그인한 경우 나의 카카오톡 친구들에게/채팅방에 즉시 공유 가능
-  - URL 아이콘을 누르면 URL 복사와 동시에 알림창이 뜸
+  - URL 아이콘을 누르면 URL이 복사되고 알림창이 뜸
 <br><br>
 
   * **[글 수정]**&nbsp;&nbsp;[저장된 카테고리 불러오기 외](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardModify.jsp)
   <img width="85%" src="https://user-images.githubusercontent.com/83903563/148943779-9e165344-b600-404a-a1aa-d288243b7be5.png"/>
+  
+  - 
+  
 <br><br>
 
   * **[글 삭제]**&nbsp;&nbsp;[삭제 후 경로 지우기](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L612)
