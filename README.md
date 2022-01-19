@@ -174,7 +174,7 @@
   - 로그인 여부 체크
   - 글 작성자/관리자가 '수정' 버튼을 누르면 글 수정폼으로 이동
   - 로그인이 풀린 상태에서 버튼을 누르면 경고창이 뜨고 [로그인] 페이지로 이동
-  
+  -
 <br><br>
 
   * **[글 삭제]**&nbsp;&nbsp;[삭제 후 경로 지우기](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L612)
@@ -186,7 +186,8 @@
   - 글목록의 총 게시물 수 변동
   - [마이페이지]-'내가 쓴 글' 목록에서도 해당 글이 삭제됨
   - 로그인이 풀린 상태에서 '삭제' 버튼을 누르면 경고창이 뜨고 [로그인] 페이지로 이동
+<br><br>
 
-## 피드백
+## 개인 피드백
 
 
