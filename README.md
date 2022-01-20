@@ -114,7 +114,7 @@
 <br><br>
 
   * **[글 상세]**&nbsp;&nbsp;[게시물](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L528)과 [댓글](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L246)
-  <img width="90%" src="https://user-images.githubusercontent.com/83903563/148938197-5aa5d801-8181-4972-9014-1993e602f287.png"/>
+  <img width="90%" src="https://user-images.githubusercontent.com/83903563/150299509-1ec22608-e95e-48d0-a0d1-7c9877820656.png"/>
   
   **`게시물`**
   - 글 작성자의 프로필 사진/닉네임 노출
