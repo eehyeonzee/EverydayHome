@@ -168,13 +168,16 @@
   - URL 아이콘을 누르면 URL이 복사되고 알림창이 뜸
 <br><br>
 
-  * **[글 수정]**&nbsp;&nbsp;[저장된 카테고리 불러오기 외](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardModify.jsp)
+  * **[글 수정]**&nbsp;&nbsp;[저장된 카테고리 값 불러오기 외](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardModify.jsp)
   <img width="85%" src="https://user-images.githubusercontent.com/83903563/148943779-9e165344-b600-404a-a1aa-d288243b7be5.png"/>
   
   - 로그인 여부 체크
   - 권한 검증을 거친 글 작성자/관리자가 '수정' 버튼을 누르면 글 수정폼으로 이동
+  - 글 작성 시 지정해놓은 카테고리 값이 기본값으로 고정되도록 구현
+  - 이미 등록된 썸네일 파일이 있으면 메시지와 함께 파일명 출력
+  - '파일삭제' 버튼을 누르면 페이지 새로고침 없이 썸네일 파일이 삭제됨 (Ajax 방식)
   - 로그인이 풀린 상태에서 버튼을 누르면 경고창이 뜨고 [로그인] 페이지로 이동
-  -
+  - 그 외 [글 작성]과 동일
 <br><br>
 
   * **[글 삭제]**&nbsp;&nbsp;[삭제 후 경로 지우기](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardDetail.jsp#L612)
