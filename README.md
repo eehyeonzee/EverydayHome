@@ -77,7 +77,8 @@
   * **[글 목록]** [카드형](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/houseBoard/houseBoardList.jsp)
   <img width="90%" src="https://user-images.githubusercontent.com/83903563/148889970-8a8f850f-630e-457d-9196-0f032acfb989.png"/>
 
-  - 등록된 게시물이 있으면 최신순으로 글목록 출력 (없을 경우 '등록된 게시물이 없습니다' 메시지가 결과 화면에 뜸)
+  - 등록된 게시물이 있으면 카드형 글목록 출력 (없을 경우 '등록된 게시물이 없습니다' 메시지가 결과 화면에 뜸)
+  - 최신순으로 정렬하고 페이징 처리
   - [집들이]의 총 게시물 수 표시
   - 글 작성자의 프로필 사진/닉네임 노출
   - 작성자가 프로필 사진을 설정하지 않은 경우 기본 프로필 이미지가 보이도록 구현
