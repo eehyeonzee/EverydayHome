@@ -62,7 +62,7 @@
   
   - 메인페이지 상단 메뉴에 통합 검색창 UI 구현
   - 사이트 전체에 구글 웹 폰트 적용
-  - <매일의 집> 프로젝트 UI 설계 ([초기 화면 설계](https://ovenapp.io/view/vJpCqYhjm8IaZ7Pbm36FjdGCYPQE8cJb/rwwOd, "카카오 오븐"))
+  - <매일의 집> 프로젝트 UI 설계 ([초기 화면 설계](https://ovenapp.io/view/vJpCqYhjm8IaZ7Pbm36FjdGCYPQE8cJb, "카카오 오븐"))
 <br><br>
   
   * **[메인]**&nbsp;&nbsp;[푸터](https://github.com/eehyeonzee/EverydayHome/blob/main2/springProject/src/main/webapp/WEB-INF/views/template/footer.jsp)
