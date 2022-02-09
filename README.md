@@ -43,6 +43,10 @@
   * **`Back-end`**&nbsp;&nbsp;Java, Spring Framework, MyBatis, JSP
 <br><br>
 
+## 개발 일정
+<img width="95%" src="https://user-images.githubusercontent.com/83903563/153255660-5b9d86fd-441b-4008-b5e4-bfc57e06ed42.png"/>
+<br>
+
 ## 시스템 설계
   * [ERD] 논리/물리 모델
   ![ERD](https://user-images.githubusercontent.com/83903563/148183561-6d8e7131-c14e-4af7-a17a-41a0b67c8f08.png)
